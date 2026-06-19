@@ -1,0 +1,110 @@
+project:
+  name: LOCO-LSGO
+  full_name: LLM-Evolved Coordination Operators for Overlapping Large-Scale Global Optimization
+  stage: 0
+  stage_name: Research Problem Locking and System Boundary Definition
+
+original_problem:
+  type: single_objective_minimization
+  canonical_form: "minimize f(x), x in Omega"
+  multi_objective_original_problem: false
+  note: "Multiple outer evaluation metrics may be used for operator search, but they do not redefine the original objective."
+
+grouping:
+  notation: "G = {G_1, ..., G_M}"
+  membership_count: "m_i = |{j | i in G_j}|"
+  shared_variable_set: "S = {i | m_i >= 2}"
+
+loco_scope:
+  target: shared_variables_only
+  shared_variable_definition: "S = {i | m_i >= 2}"
+  operator_mapping: "O_theta: s_i^t -> x_i^{t+1}"
+  non_shared_variable_updates_owned_by: fixed_baseopt
+  forbidden_information_access:
+    - function_id
+    - benchmark_name
+    - true_optimum_location
+    - test_set_metadata
+    - future_evaluations
+    - hidden_test_information
+
+llm_boundary:
+  allowed_output:
+    - coordination_operator_ast
+  forbidden_output:
+    - optimizer
+    - controller
+    - scheduler
+    - base_optimizer_replacement
+    - benchmark
+    - problem_generator
+    - budget_policy
+    - grouping_oracle
+    - arbitrary_executable_code_outside_typed_ast
+  forbidden_actions:
+    - generate_optimizer
+    - modify_baseopt
+    - generate_scheduler_or_controller
+    - select_optimizer
+    - access_test_feedback
+    - tune_on_test_set
+    - generate_arbitrary_executable_code_outside_typed_ast
+
+base_optimizer:
+  policy: fixed_baseopt
+  can_change_for_loco: false
+  fairness_requirement: same_baseopt_same_budget_same_seed_policy
+
+budget_accounting:
+  function_evaluation_policy: count_all_extra_function_evaluations
+  required_decomposition: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+  components:
+    - FE_grouping
+    - FE_proposal
+    - FE_coordination_extra
+    - FE_repair
+  count_loco_extra_probes: true
+  count_operator_validation_evaluations: true
+  count_tie_breaking_evaluations: true
+  hidden_evaluations_allowed: false
+
+grouping_reporting:
+  separate_oracle_and_detected: true
+  modes:
+    - oracle_grouping
+    - detected_grouping
+  oracle_leakage_allowed_in_detected_mode: false
+
+stage0_allowed_artifacts:
+  - documents
+  - interface_drafts
+  - configuration_drafts
+  - boundary_checklists
+  - boundary_contract_tests
+
+stage0_forbidden_runtime_behavior:
+  frozen_testing_required: true
+  calls_llm: false
+  runs_evolution: false
+  tunes_parameters: false
+  generates_benchmark: false
+  runs_optimizer: false
+  implements_coordination_operator_logic: false
+  claims_performance_improvement: false
+
+regression_guards:
+  no_overlap:
+    required: true
+    expected_behavior: no_op_or_equivalent_safe_path
+  low_overlap:
+    required: true
+    expected_behavior: no_obvious_degradation_against_fixed_baseopt
+
+acceptance:
+  stage0_pass_requires_boundary_tests: true
+  allowed_claim: problem_locked_and_contract_defined
+  forbidden_claim:
+    - algorithmic_utility
+    - benchmark_performance
+    - sota
+    - learned_operator_validated
