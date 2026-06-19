@@ -1,0 +1,44 @@
+metabox:
+  enabled: true
+  package: metaevobox
+  preferred_version: null
+  use_as_dependency: true
+  copy_source_code: false
+
+cec2013lsgo:
+  enabled: true
+  overlap_function_ids: [12, 13, 14]
+  version: numpy
+
+synthetic_overlap:
+  enabled: true
+  dimensions: [100, 500, 1000, 2000, 5000]
+  overlap_ratios: [0.05, 0.10, 0.20, 0.30]
+  topologies: [line, ring, random_graph]
+  seeds: [0, 1, 2, 3, 4]
+
+splits:
+  freeze_manifest: true
+  train:
+    dimensions: [500, 1000]
+    overlap_ratios: [0.05, 0.10]
+    topologies: [line, ring]
+  val:
+    dimensions: [1000]
+    overlap_ratios: [0.15]
+    topologies: [ring, random_graph]
+  test:
+    dimensions: [2000, 5000]
+    overlap_ratios: [0.20, 0.30]
+    topologies: [random_graph]
+
+stage1_boundary:
+  implement_optimizers: false
+  implement_llm: false
+  implement_evolution: false
+  implement_coordination_operators: false
+  expose_metadata_to_operator: false
+  require_reproducibility: true
+  require_fe_accounting: true
+  require_license_report: true
+
