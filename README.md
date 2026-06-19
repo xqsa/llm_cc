@@ -12,13 +12,14 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository stage: `Stage 2.0 PASS`.
+Current repository stage: `Stage 2.1 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
 
 Implemented:
 
 - Stage 0: research problem lock and system boundary definition.
 - Stage 1: benchmark/data layer with MetaBox lazy adapter, synthetic overlap generator, manifest support, and CEC2013 LSGO semantics correction.
 - Stage 2.0: conflict state, conflict metrics, baseline coordination operators, FE accounting, and a minimal synthetic conflict-coordination runner.
+- Stage 2.1: multi-setting synthetic conflict evidence panel across topology, dimension, overlap ratio, and seed settings.
 
 Known blocker:
 
@@ -31,7 +32,7 @@ Known blocker:
 configs/              Stage boundary and benchmark configuration drafts
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
-docs/stage2/          Stage 2.0 result JSON and self-check report
+docs/stage2/          Stage 2.0/2.1 result JSON, CSV summaries, and self-check reports
 loco/benchmarks/      LSGOProblem interface, MetaBox adapter, synthetic overlap generator
 loco/conflict/        Shared-variable conflict state and metrics
 loco/coordination/    Baseline coordination operators
@@ -62,7 +63,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected current local result:
 
 ```text
-45 passed, 1 skipped
+47 passed, 1 skipped
 ```
 
 The skip is the optional Stage 1 real MetaBox smoke when F12/F13/F14 are not all complete PASS. It must give a clear reason and must not fake a real benchmark success.
@@ -81,6 +82,22 @@ docs/stage2/stage2_0_synthetic_result.json
 
 The runner uses a deterministic one-shot perturbation proposal generator. It is not an optimizer and should not be interpreted as performance evidence. Its purpose is to verify that shared-variable conflict states, baseline coordination operators, metrics, and FE accounting work end to end.
 
+## Run Stage 2.1 Multi-setting Panel
+
+```powershell
+python loco\experiments\stage2_panel_runner.py
+```
+
+This writes:
+
+```text
+docs/stage2/stage2_1_synthetic_panel_result.json
+docs/stage2/stage2_1_synthetic_panel_summary.csv
+docs/stage2/stage2_1_self_check_report.md
+```
+
+The default panel covers `line / ring / random_graph`, dimensions `100 / 500 / 1000`, overlap ratios `0.0 / 0.05 / 0.10 / 0.20 / 0.30`, and seeds `0 / 1 / 2`. It is an evidence gate for conflict-state behavior and metric sanity. It does not implement an optimizer, LLM search, evolution, or new coordination operators.
+
 ## Benchmark And License Boundary
 
 LOCO-LSGO reuses external benchmark implementations through dependencies/adapters.
@@ -93,9 +110,9 @@ See [LICENSE_NOTICE.md](LICENSE_NOTICE.md) and [docs/reproducibility.md](docs/re
 
 ## Metric Honesty Note
 
-Stage 2.0 reports `proposal_consensus_collapse_ratio`, not a true longitudinal conflict reduction claim.
+Stage 2.0/2.1 report `proposal_consensus_collapse_ratio`, not a true longitudinal conflict reduction claim.
 
-This value measures how much the current set of proposals collapses after applying a coordination rule. It does **not** prove that future regenerated conflicts are reduced. Stage 2.1 should add `post_coordination_regenerated_conflict` by generating proposals again after coordination or by running a next-step loop.
+This value measures how much the current set of proposals collapses after applying a coordination rule. It does **not** prove that future regenerated conflicts are reduced. Stage 2.1 also reports `post_coordination_regenerated_conflict`, but it is a deterministic regenerated-conflict proxy for evidence-gate auditing, not optimizer-loop longitudinal performance evidence.
 
 ## FE Accounting
 
@@ -112,5 +129,5 @@ Stage 2.0 evaluates each baseline as a separate method run. Cross-baseline compa
 Do not jump directly to Stage 3. Recommended next step:
 
 ```text
-Stage 2.1: multi-setting synthetic runner + stronger conflict metrics + logging schema + typed coordination operator DSL boundary
+Stage 2.2: typed coordination operator DSL boundary + Stage 3 preflight for LLM-generated AST constraints
 ```

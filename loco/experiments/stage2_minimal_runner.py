@@ -220,9 +220,6 @@ def _run_problem(
     if groups is None:
         raise ValueError("Stage 2.0 requires grouping metadata.")
     shared = problem.shared_variables()
-    if not shared:
-        raise ValueError("Stage 2.0 requires non-empty shared variables.")
-
     current = _initial_solution(problem, seed)
     proposal_tracker = FEBudgetTracker(max_fe=max_fe)
     baseline_objective = problem.evaluate(current)
@@ -258,23 +255,26 @@ def _run_problem(
 
         final_objective = problem.evaluate(coordinated)
         tracker.record("proposal", 1)
-        collapse = not isinstance(operator, NoCoordination)
-        after_batch = _collapsed_after_batch(
-            before_batch,
-            coordinated_values={
-                int(key): value["coordinated_value"]
-                for key, value in coordination_results.items()
-            },
-            collapse_rewards=collapse,
-        )
-        after_metrics = aggregate_conflict_metrics(
-            after_batch,
-            overlap_ratio=float(problem.metadata().get("overlap_ratio", 0.0)),
+        collapse = bool(before_batch.states) and not isinstance(
+            operator, NoCoordination
         )
         before_intensity = before_metrics["mean_conflict_intensity"]
-        after_intensity = (
-            after_metrics["mean_conflict_intensity"] if collapse else before_intensity
-        )
+        if before_batch.states and collapse:
+            after_batch = _collapsed_after_batch(
+                before_batch,
+                coordinated_values={
+                    int(key): value["coordinated_value"]
+                    for key, value in coordination_results.items()
+                },
+                collapse_rewards=True,
+            )
+            after_metrics = aggregate_conflict_metrics(
+                after_batch,
+                overlap_ratio=float(problem.metadata().get("overlap_ratio", 0.0)),
+            )
+            after_intensity = after_metrics["mean_conflict_intensity"]
+        else:
+            after_intensity = before_intensity
         if before_intensity <= 1e-12:
             consensus_collapse = 0.0
         else:

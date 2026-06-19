@@ -1,0 +1,50 @@
+stage: "2.1"
+name: "multi_setting_conflict_evidence_gate"
+
+boundary:
+  llm_used: false
+  evolution_used: false
+  optimizer_implemented: false
+  base_optimizer_modified: false
+  metric_claim: "evidence_gate_not_sota_claim"
+
+synthetic_panel:
+  topologies:
+    - line
+    - ring
+    - random_graph
+  dimensions:
+    - 100
+    - 500
+    - 1000
+  overlap_ratios:
+    - 0.0
+    - 0.05
+    - 0.10
+    - 0.20
+    - 0.30
+  seeds:
+    - 0
+    - 1
+    - 2
+  num_groups: 8
+  max_fe_per_method_run: 10000
+
+metrics:
+  proposal_consensus_collapse_ratio:
+    claim: "current proposal-set collapse only"
+    not_claim: "longitudinal conflict reduction"
+  post_coordination_regenerated_conflict:
+    claim: "deterministic Stage 2.1 regenerated-conflict proxy"
+    not_claim: "optimizer-loop performance"
+  conflict_persistence:
+    claim: "after/before conflict proxy ratio"
+  consensus_instability:
+    claim: "dispersion of coordinated shared-variable values"
+  reward_proposal_inconsistency:
+    claim: "difference between reward disagreement and value disagreement"
+
+outputs:
+  json: "docs/stage2/stage2_1_synthetic_panel_result.json"
+  csv: "docs/stage2/stage2_1_synthetic_panel_summary.csv"
+  report: "docs/stage2/stage2_1_self_check_report.md"

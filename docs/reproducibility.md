@@ -33,7 +33,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Current expected local result:
 
 ```text
-45 passed, 1 skipped
+47 passed, 1 skipped
 ```
 
 The skipped test is allowed only when a real MetaBox smoke test is unavailable or not a complete PASS, and it must print a clear reason.
@@ -53,6 +53,33 @@ docs/stage2/stage2_0_synthetic_result.json
 ```
 
 The result is deterministic for the same seed.
+
+## Stage 2.1 Multi-setting Panel
+
+Run:
+
+```powershell
+python loco\experiments\stage2_panel_runner.py
+```
+
+Outputs:
+
+```text
+docs/stage2/stage2_1_synthetic_panel_result.json
+docs/stage2/stage2_1_synthetic_panel_summary.csv
+docs/stage2/stage2_1_self_check_report.md
+```
+
+The default panel runs 45 synthetic settings and 135 seeded runs:
+
+```text
+topology in {line, ring, random_graph}
+dimension in {100, 500, 1000}
+overlap_ratio in {0.0, 0.05, 0.10, 0.20, 0.30}
+seed in {0, 1, 2}
+```
+
+Stage 2.1 remains benchmark/evidence infrastructure. It does not call an LLM, run evolution, implement an optimizer, or generate new coordination operators.
 
 ## FE Accounting
 
