@@ -88,12 +88,15 @@
     "overlap_ratio": 0.1,
     "source": "synthetic_overlap"
   },
-  "git_commit": "4736151",
+  "git_commit": "0cce350",
   "initial_objective": 93.22716979200077,
   "operators": {
     "AverageConsensus": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
       "FE_coordination_extra": 0,
       "FE_total": 10,
+      "budget_scope": "per_method_run",
       "changed_variables": [
         0,
         1,
@@ -106,7 +109,6 @@
         8,
         9
       ],
-      "conflict_reduction_ratio": 1.0,
       "coordination_results": {
         "0": {
           "coordinated_value": 0.0630111547653753,
@@ -199,6 +201,7 @@
           "variable_id": 9
         }
       },
+      "cross_baseline_evaluations_shared": false,
       "fe_accounting": {
         "exhausted": false,
         "fe_coordination_extra": 0,
@@ -212,11 +215,16 @@
       "final_error": 90.36194895668093,
       "final_objective": 90.36194895668093,
       "mean_conflict_after": 0.0,
-      "mean_conflict_before": 0.4327262889253841
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
     },
     "BestRewardSelection": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
       "FE_coordination_extra": 0,
       "FE_total": 10,
+      "budget_scope": "per_method_run",
       "changed_variables": [
         0,
         1,
@@ -229,7 +237,6 @@
         8,
         9
       ],
-      "conflict_reduction_ratio": 1.0,
       "coordination_results": {
         "0": {
           "coordinated_value": 0.2880111547653753,
@@ -332,6 +339,7 @@
           "variable_id": 9
         }
       },
+      "cross_baseline_evaluations_shared": false,
       "fe_accounting": {
         "exhausted": false,
         "fe_coordination_extra": 0,
@@ -345,11 +353,16 @@
       "final_error": 89.32416601132753,
       "final_objective": 89.32416601132753,
       "mean_conflict_after": 0.0,
-      "mean_conflict_before": 0.4327262889253841
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
     },
     "ConflictDampening": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
       "FE_coordination_extra": 0,
       "FE_total": 10,
+      "budget_scope": "per_method_run",
       "changed_variables": [
         0,
         1,
@@ -362,7 +375,6 @@
         8,
         9
       ],
-      "conflict_reduction_ratio": 1.0,
       "coordination_results": {
         "0": {
           "coordinated_value": 0.07687174634733479,
@@ -485,6 +497,7 @@
           "variable_id": 9
         }
       },
+      "cross_baseline_evaluations_shared": false,
       "fe_accounting": {
         "exhausted": false,
         "fe_coordination_extra": 0,
@@ -498,11 +511,16 @@
       "final_error": 90.66163602524843,
       "final_objective": 90.66163602524843,
       "mean_conflict_after": 0.0,
-      "mean_conflict_before": 0.4327262889253841
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
     },
     "NoCoordination": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
       "FE_coordination_extra": 0,
       "FE_total": 10,
+      "budget_scope": "per_method_run",
       "changed_variables": [
         0,
         1,
@@ -515,7 +533,6 @@
         8,
         9
       ],
-      "conflict_reduction_ratio": 0.0,
       "coordination_results": {
         "0": {
           "coordinated_value": 0.1257302210933933,
@@ -608,6 +625,7 @@
           "variable_id": 9
         }
       },
+      "cross_baseline_evaluations_shared": false,
       "fe_accounting": {
         "exhausted": false,
         "fe_coordination_extra": 0,
@@ -621,11 +639,16 @@
       "final_error": 93.22716979200077,
       "final_objective": 93.22716979200077,
       "mean_conflict_after": 0.4327262889253841,
-      "mean_conflict_before": 0.4327262889253841
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 0.0
     },
     "WeightedConsensus": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
       "FE_coordination_extra": 0,
       "FE_total": 10,
+      "budget_scope": "per_method_run",
       "changed_variables": [
         0,
         1,
@@ -638,7 +661,6 @@
         8,
         9
       ],
-      "conflict_reduction_ratio": 1.0,
       "coordination_results": {
         "0": {
           "coordinated_value": 0.28710353376257763,
@@ -771,6 +793,7 @@
           "variable_id": 9
         }
       },
+      "cross_baseline_evaluations_shared": false,
       "fe_accounting": {
         "exhausted": false,
         "fe_coordination_extra": 0,
@@ -784,7 +807,9 @@
       "final_error": 89.45773538223243,
       "final_objective": 89.45773538223243,
       "mean_conflict_after": 0.0,
-      "mean_conflict_before": 0.4327262889253841
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
     }
   },
   "per_variable_conflict_metrics": {

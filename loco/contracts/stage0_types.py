@@ -117,13 +117,19 @@ class Stage0BoundaryConfig:
         """Raise ValueError if the Stage 0 boundary has been weakened."""
 
         if self.original_problem_type != "single_objective_minimization":
-            raise ValueError("Stage 0 requires the original problem to be single-objective.")
+            raise ValueError(
+                "Stage 0 requires the original problem to be single-objective."
+            )
         if self.original_problem_form != "minimize f(x), x in Omega":
-            raise ValueError("Original problem form must remain minimize f(x), x in Omega.")
+            raise ValueError(
+                "Original problem form must remain minimize f(x), x in Omega."
+            )
         if self.grouping_notation != "G = {G_1, ..., G_M}":
             raise ValueError("Grouping notation must remain G = {G_1, ..., G_M}.")
         if self.shared_variable_set_notation != "S = {i | m_i >= 2}":
-            raise ValueError("Shared variable set notation must remain S = {i | m_i >= 2}.")
+            raise ValueError(
+                "Shared variable set notation must remain S = {i | m_i >= 2}."
+            )
         if self.operator_mapping_notation != "O_theta: s_i^t -> x_i^{t+1}":
             raise ValueError("LOCO operator mapping notation must remain fixed.")
         if self.llm_allowed_output is not LLMOutputKind.COORDINATION_OPERATOR_AST:
@@ -136,13 +142,19 @@ class Stage0BoundaryConfig:
         ):
             raise ValueError("All extra function evaluations must be counted.")
         if set(self.grouping_modes) != {GroupingMode.ORACLE, GroupingMode.DETECTED}:
-            raise ValueError("Oracle and detected grouping modes must both be represented.")
+            raise ValueError(
+                "Oracle and detected grouping modes must both be represented."
+            )
         if self.base_optimizer_policy != "fixed_baseopt":
             raise ValueError("BaseOpt must remain fixed for LOCO comparisons.")
         if set(self.fe_budget_decomposition) != set(REQUIRED_FE_COMPONENTS):
-            raise ValueError("FE budget must include grouping, proposal, coordination, and repair.")
+            raise ValueError(
+                "FE budget must include grouping, proposal, coordination, and repair."
+            )
         if set(self.forbidden_information_access) != set(FORBIDDEN_INFORMATION_ACCESS):
-            raise ValueError("Forbidden information access boundary must remain complete.")
+            raise ValueError(
+                "Forbidden information access boundary must remain complete."
+            )
         if set(self.forbidden_llm_actions) != set(FORBIDDEN_LLM_ACTIONS):
             raise ValueError("Forbidden LLM action boundary must remain complete.")
         if any(
@@ -175,7 +187,9 @@ class CoordinationOperatorSpec:
         """Validate that the operator only declares shared-variable targets."""
 
         if self.target_scope is not OperatorTargetScope.SHARED_VARIABLES_ONLY:
-            raise ValueError("Coordination operator scope must be shared_variables_only.")
+            raise ValueError(
+                "Coordination operator scope must be shared_variables_only."
+            )
         if not self.name:
             raise ValueError("Coordination operator name is required.")
         if not self.ast:
@@ -183,7 +197,9 @@ class CoordinationOperatorSpec:
         if self.ast_schema != "typed_ast":
             raise ValueError("Coordination operator must use typed_ast schema.")
         if self.executable_code_allowed:
-            raise ValueError("Arbitrary executable code is forbidden outside typed AST.")
+            raise ValueError(
+                "Arbitrary executable code is forbidden outside typed AST."
+            )
 
         shared = set(self.shared_variable_indices)
         touched = set(self.touched_variable_indices)
@@ -194,7 +210,9 @@ class CoordinationOperatorSpec:
 
         forbidden_code_keys = {"code", "source", "python", "exec", "eval"}
         if forbidden_code_keys.intersection(self.ast):
-            raise ValueError("Coordination operator AST must not embed executable code.")
+            raise ValueError(
+                "Coordination operator AST must not embed executable code."
+            )
 
 
 @dataclass(frozen=True)
@@ -214,7 +232,9 @@ class GroupingReportContract:
         if not 0.0 <= self.overlap_density <= 1.0:
             raise ValueError("overlap_density must be in [0, 1].")
         if self.mode is GroupingMode.DETECTED and self.uses_oracle_only_labels:
-            raise ValueError("Detected grouping reports must not use oracle-only labels.")
+            raise ValueError(
+                "Detected grouping reports must not use oracle-only labels."
+            )
 
 
 def default_stage0_boundary() -> Stage0BoundaryConfig:

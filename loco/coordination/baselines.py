@@ -36,14 +36,17 @@ class CoordinationResult:
 class CoordinationOperator(Protocol):
     name: str
 
-    def coordinate(self, conflict_state: SharedVariableConflictState) -> CoordinationResult:
-        ...
+    def coordinate(
+        self, conflict_state: SharedVariableConflictState
+    ) -> CoordinationResult: ...
 
 
 class NoCoordination:
     name = "NoCoordination"
 
-    def coordinate(self, conflict_state: SharedVariableConflictState) -> CoordinationResult:
+    def coordinate(
+        self, conflict_state: SharedVariableConflictState
+    ) -> CoordinationResult:
         return CoordinationResult(
             variable_id=conflict_state.variable_id,
             coordinated_value=conflict_state.clip(conflict_state.current_value),
@@ -56,8 +59,14 @@ class NoCoordination:
 class AverageConsensus:
     name = "AverageConsensus"
 
-    def coordinate(self, conflict_state: SharedVariableConflictState) -> CoordinationResult:
-        value = float(np.mean(conflict_state.proposals)) if conflict_state.proposals else conflict_state.current_value
+    def coordinate(
+        self, conflict_state: SharedVariableConflictState
+    ) -> CoordinationResult:
+        value = (
+            float(np.mean(conflict_state.proposals))
+            if conflict_state.proposals
+            else conflict_state.current_value
+        )
         return CoordinationResult(
             variable_id=conflict_state.variable_id,
             coordinated_value=conflict_state.clip(value),
@@ -70,7 +79,9 @@ class AverageConsensus:
 class BestRewardSelection:
     name = "BestRewardSelection"
 
-    def coordinate(self, conflict_state: SharedVariableConflictState) -> CoordinationResult:
+    def coordinate(
+        self, conflict_state: SharedVariableConflictState
+    ) -> CoordinationResult:
         rewards = np.asarray(conflict_state.group_rewards, dtype=float)
         best_index = int(np.argmax(rewards))
         return CoordinationResult(
@@ -93,7 +104,9 @@ class WeightedConsensus:
             raise ValueError("temperature must be positive.")
         self.temperature = float(temperature)
 
-    def coordinate(self, conflict_state: SharedVariableConflictState) -> CoordinationResult:
+    def coordinate(
+        self, conflict_state: SharedVariableConflictState
+    ) -> CoordinationResult:
         rewards = np.asarray(conflict_state.group_rewards, dtype=float)
         values = np.asarray(conflict_state.proposals, dtype=float)
         scaled = rewards / self.temperature
@@ -126,11 +139,15 @@ class ConflictDampening:
         self.base_operator = base_operator or AverageConsensus()
         self.damping_strength = float(damping_strength)
 
-    def coordinate(self, conflict_state: SharedVariableConflictState) -> CoordinationResult:
+    def coordinate(
+        self, conflict_state: SharedVariableConflictState
+    ) -> CoordinationResult:
         base = self.base_operator.coordinate(conflict_state)
         intensity = conflict_intensity(conflict_state)
         damping = 1.0 / (1.0 + self.damping_strength * intensity)
-        value = conflict_state.current_value + damping * (base.coordinated_value - conflict_state.current_value)
+        value = conflict_state.current_value + damping * (
+            base.coordinated_value - conflict_state.current_value
+        )
         return CoordinationResult(
             variable_id=conflict_state.variable_id,
             coordinated_value=conflict_state.clip(value),

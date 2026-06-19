@@ -15,7 +15,9 @@ from loco.conflict.conflict_state import GroupProposal, SharedVariableConflictSt
 
 def _state(proposals=(0.8, -0.6), rewards=(1.0, -0.5), history=(0.2, -0.2, 0.3, -0.1)):
     group_proposals = [
-        GroupProposal(group_id=i, variable_id=2, proposed_value=value, reward=rewards[i])
+        GroupProposal(
+            group_id=i, variable_id=2, proposed_value=value, reward=rewards[i]
+        )
         for i, value in enumerate(proposals)
     ]
     return SharedVariableConflictState.from_group_proposals(

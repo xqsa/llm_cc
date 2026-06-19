@@ -28,6 +28,9 @@ def test_line_ring_and_random_graph_topologies_are_available() -> None:
 
     assert line.topology_graph["edges"][0] == (0, 1)
     assert (7, 0) in ring.topology_graph["edges"]
-    assert random_graph.topology_graph == generate_synthetic_overlap(
-        100, 8, 15, 0.10, "random_graph", seed=1
-    ).topology_graph
+    assert (
+        random_graph.topology_graph
+        == generate_synthetic_overlap(
+            100, 8, 15, 0.10, "random_graph", seed=1
+        ).topology_graph
+    )

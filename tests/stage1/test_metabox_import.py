@@ -1,7 +1,11 @@
 import numpy as np
 import pytest
 
-from loco.benchmarks.metabox_adapter import MetaBoxImportError, MetaBoxProblemAdapter, require_metaevobox
+from loco.benchmarks.metabox_adapter import (
+    MetaBoxImportError,
+    MetaBoxProblemAdapter,
+    require_metaevobox,
+)
 
 
 class FakeMetaBoxProblem:

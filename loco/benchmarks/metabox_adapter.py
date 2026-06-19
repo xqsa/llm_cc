@@ -35,7 +35,9 @@ def _as_bound_array(value: Any, dimension: int, name: str) -> np.ndarray:
         return np.full(dimension, float(array))
     if array.shape == (dimension,):
         return array.astype(float, copy=False)
-    raise ValueError(f"MetaBox {name} has shape {array.shape}, expected scalar or ({dimension},).")
+    raise ValueError(
+        f"MetaBox {name} has shape {array.shape}, expected scalar or ({dimension},)."
+    )
 
 
 class MetaBoxProblemAdapter(LSGOProblem):
@@ -45,23 +47,33 @@ class MetaBoxProblemAdapter(LSGOProblem):
         self.metabox_problem = metabox_problem
         self._metadata = dict(metadata or {})
         self.fe_count = int(getattr(metabox_problem, "numevals", 0) or 0)
-        self._groups = [list(map(int, group)) for group in grouping] if grouping is not None else None
+        self._groups = (
+            [list(map(int, group)) for group in grouping]
+            if grouping is not None
+            else None
+        )
         self._overlap_metadata: OverlapMetadata | None = None
         if self._groups is not None:
             self._overlap_metadata = build_overlap_metadata(
                 self._groups,
                 self.dimension(),
                 topology=self._metadata.get("topology", "metabox"),
-                grouping_source=self._metadata.get("grouping_source", "metabox_adapter"),
+                grouping_source=self._metadata.get(
+                    "grouping_source", "metabox_adapter"
+                ),
                 grouping_confidence=self._metadata.get("grouping_confidence", "medium"),
             )
 
     def evaluate(self, x: np.ndarray) -> float:
         vector = np.asarray(x, dtype=float)
         if vector.shape != (self.dimension(),):
-            raise ValueError(f"Expected x shape ({self.dimension()},), got {vector.shape}.")
+            raise ValueError(
+                f"Expected x shape ({self.dimension()},), got {vector.shape}."
+            )
 
-        before = int(getattr(self.metabox_problem, "numevals", self.fe_count) or self.fe_count)
+        before = int(
+            getattr(self.metabox_problem, "numevals", self.fe_count) or self.fe_count
+        )
         if hasattr(self.metabox_problem, "func"):
             value = self.metabox_problem.func(vector.reshape(1, -1))[0]
         elif hasattr(self.metabox_problem, "eval"):
@@ -77,8 +89,12 @@ class MetaBoxProblemAdapter(LSGOProblem):
 
     def bounds(self) -> tuple[np.ndarray, np.ndarray]:
         return (
-            _as_bound_array(getattr(self.metabox_problem, "lb", None), self.dimension(), "lb"),
-            _as_bound_array(getattr(self.metabox_problem, "ub", None), self.dimension(), "ub"),
+            _as_bound_array(
+                getattr(self.metabox_problem, "lb", None), self.dimension(), "lb"
+            ),
+            _as_bound_array(
+                getattr(self.metabox_problem, "ub", None), self.dimension(), "ub"
+            ),
         )
 
     def dimension(self) -> int:
@@ -102,7 +118,11 @@ class MetaBoxProblemAdapter(LSGOProblem):
         return None
 
     def grouping(self) -> list[list[int]] | None:
-        return [list(group) for group in self._groups] if self._groups is not None else None
+        return (
+            [list(group) for group in self._groups]
+            if self._groups is not None
+            else None
+        )
 
     def shared_variables(self) -> set[int]:
         if self._overlap_metadata is None:

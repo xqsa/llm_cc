@@ -39,8 +39,12 @@ def test_conflict_state_rejects_mixed_variable_proposals() -> None:
             current_value=0.0,
             bounds=(-1.0, 1.0),
             proposals=[
-                GroupProposal(group_id=0, variable_id=3, proposed_value=0.2, reward=1.0),
-                GroupProposal(group_id=1, variable_id=4, proposed_value=0.3, reward=1.0),
+                GroupProposal(
+                    group_id=0, variable_id=3, proposed_value=0.2, reward=1.0
+                ),
+                GroupProposal(
+                    group_id=1, variable_id=4, proposed_value=0.3, reward=1.0
+                ),
             ],
         )
 

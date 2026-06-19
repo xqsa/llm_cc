@@ -88,7 +88,11 @@ def assert_problem_contract(problem: LSGOProblem) -> None:
                 raise ValueError("Group index out of bounds.")
 
     operator_view = problem.operator_view()
-    forbidden_keys = {"metadata", "function_id", "benchmark_name", "true_optimum_location"}
+    forbidden_keys = {
+        "metadata",
+        "function_id",
+        "benchmark_name",
+        "true_optimum_location",
+    }
     if forbidden_keys.intersection(operator_view):
         raise ValueError("Operator view exposes forbidden benchmark metadata.")
-

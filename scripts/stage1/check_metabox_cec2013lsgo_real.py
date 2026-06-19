@@ -57,6 +57,7 @@ def _normal_import_probe() -> dict[str, Any]:
         "stderr_tail": completed.stderr[-3000:],
     }
 
+
 def _benchmark_only_import_probe() -> dict[str, Any]:
     try:
         module = _import_cec2013lsgo_numpy_benchmark_only()
@@ -82,20 +83,28 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
         item["checks"]["load"] = True
         item["checks"]["dimension"] = dimension
         item["checks"]["expected_dimension"] = 905 if function_id in (13, 14) else 1000
-        item["checks"]["dimension_ok"] = dimension == item["checks"]["expected_dimension"]
+        item["checks"]["dimension_ok"] = (
+            dimension == item["checks"]["expected_dimension"]
+        )
         item["checks"]["D_formula"] = metadata.get("D_formula")
         item["checks"]["D_api"] = metadata.get("D_api")
-        item["checks"]["dimension_metadata_recorded"] = (
-            isinstance(metadata.get("D_formula"), int) and isinstance(metadata.get("D_api"), int)
-        )
+        item["checks"]["dimension_metadata_recorded"] = isinstance(
+            metadata.get("D_formula"), int
+        ) and isinstance(metadata.get("D_api"), int)
 
         lower, upper = problem.bounds()
-        item["checks"]["bounds_shape_ok"] = lower.shape == (dimension,) and upper.shape == (dimension,)
-        item["checks"]["bounds_finite"] = bool(np.all(np.isfinite(lower)) and np.all(np.isfinite(upper)))
+        item["checks"]["bounds_shape_ok"] = lower.shape == (
+            dimension,
+        ) and upper.shape == (dimension,)
+        item["checks"]["bounds_finite"] = bool(
+            np.all(np.isfinite(lower)) and np.all(np.isfinite(upper))
+        )
 
         optimum = problem.optimum_value()
         item["checks"]["optimum_value"] = optimum
-        item["checks"]["optimum_readable_or_none"] = optimum is None or isinstance(optimum, float)
+        item["checks"]["optimum_readable_or_none"] = optimum is None or isinstance(
+            optimum, float
+        )
 
         raw = problem.metabox_problem
         item["checks"]["pvector_readable"] = getattr(raw, "Pvector", None) is not None
@@ -106,7 +115,10 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
         item["checks"]["groups_recovered"] = groups is not None
         item["checks"]["shared_variables_nonempty"] = bool(problem.shared_variables())
         item["checks"]["grouping_status"] = metadata.get("grouping_status")
-        item["checks"]["grouping_status_valid"] = metadata.get("grouping_status") in {"available", "unavailable"}
+        item["checks"]["grouping_status_valid"] = metadata.get("grouping_status") in {
+            "available",
+            "unavailable",
+        }
         item["checks"]["grouping_required"] = function_id in (13, 14)
         item["checks"]["group_count"] = len(groups) if groups is not None else 0
         item["checks"]["overlap_size"] = metadata.get("overlap_size")
@@ -137,7 +149,8 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
         item["checks"]["random_value_1"] = random_value_1
         item["checks"]["random_value_2"] = random_value_2
         item["checks"]["finite_values"] = all(
-            _finite_float(value) for value in (zero_value, random_value_1, random_value_2)
+            _finite_float(value)
+            for value in (zero_value, random_value_1, random_value_2)
         )
         item["checks"]["deterministic_random_eval"] = random_value_1 == random_value_2
 
@@ -167,11 +180,15 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
 
 
 def run_smoke(seed: int = 0, include_normal_import: bool = True) -> dict[str, Any]:
-    normal_import = _normal_import_probe() if include_normal_import else {
-        "ok": None,
-        "module": "metaevobox.environment.problem.SOO.CEC2013LSGO",
-        "error": "not run",
-    }
+    normal_import = (
+        _normal_import_probe()
+        if include_normal_import
+        else {
+            "ok": None,
+            "module": "metaevobox.environment.problem.SOO.CEC2013LSGO",
+            "error": "not run",
+        }
+    )
     benchmark_only_import = _benchmark_only_import_probe()
     result: dict[str, Any] = {
         "stage": "1.5",
@@ -185,13 +202,21 @@ def run_smoke(seed: int = 0, include_normal_import: bool = True) -> dict[str, An
 
     if not benchmark_only_import["ok"]:
         result["status"] = "SKIP"
-        result["summary"] = benchmark_only_import["error"] or "MetaBox benchmark-only import unavailable."
+        result["summary"] = (
+            benchmark_only_import["error"]
+            or "MetaBox benchmark-only import unavailable."
+        )
         return result
 
-    result["functions"] = [_smoke_one(function_id, seed + function_id) for function_id in OVERLAP_FUNCTION_IDS]
+    result["functions"] = [
+        _smoke_one(function_id, seed + function_id)
+        for function_id in OVERLAP_FUNCTION_IDS
+    ]
     if all(item["ok"] for item in result["functions"]):
         result["status"] = "PASS"
-        result["summary"] = "Real MetaBox F12/F13/F14 loaded and evaluated through LOCO adapter."
+        result["summary"] = (
+            "Real MetaBox F12/F13/F14 loaded and evaluated through LOCO adapter."
+        )
     else:
         result["status"] = "PARTIAL"
         blockers = [
@@ -210,7 +235,9 @@ def main() -> int:
     parser.add_argument("--skip-normal-import-probe", action="store_true")
     args = parser.parse_args()
 
-    result = run_smoke(seed=args.seed, include_normal_import=not args.skip_normal_import_probe)
+    result = run_smoke(
+        seed=args.seed, include_normal_import=not args.skip_normal_import_probe
+    )
     text = json.dumps(result, indent=2, sort_keys=True)
     print(text)
     if args.json_output is not None:

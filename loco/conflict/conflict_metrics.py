@@ -94,15 +94,24 @@ def aggregate_conflict_metrics(
         }
 
     per_variable = {
-        str(state.variable_id): metrics_for_state(state)
-        for state in batch.states
+        str(state.variable_id): metrics_for_state(state) for state in batch.states
     }
     return {
-        "mean_value_disagreement": float(np.mean([row["value_disagreement"] for row in rows])),
-        "mean_direction_disagreement": float(np.mean([row["direction_disagreement"] for row in rows])),
-        "mean_reward_disagreement": float(np.mean([row["reward_disagreement"] for row in rows])),
-        "mean_conflict_intensity": float(np.mean([row["conflict_intensity"] for row in rows])),
-        "mean_oscillation_score": float(np.mean([row["oscillation_score"] for row in rows])),
+        "mean_value_disagreement": float(
+            np.mean([row["value_disagreement"] for row in rows])
+        ),
+        "mean_direction_disagreement": float(
+            np.mean([row["direction_disagreement"] for row in rows])
+        ),
+        "mean_reward_disagreement": float(
+            np.mean([row["reward_disagreement"] for row in rows])
+        ),
+        "mean_conflict_intensity": float(
+            np.mean([row["conflict_intensity"] for row in rows])
+        ),
+        "mean_oscillation_score": float(
+            np.mean([row["oscillation_score"] for row in rows])
+        ),
         "number_of_shared_variables": len(batch.states),
         "overlap_ratio": float(overlap_ratio),
         "per_variable": per_variable,

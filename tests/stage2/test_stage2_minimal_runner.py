@@ -30,8 +30,16 @@ def test_stage2_synthetic_runner_outputs_all_baselines_and_metrics(tmp_path) -> 
     assert set(result["operators"]) == expected
     for operator_result in result["operators"].values():
         assert math.isfinite(operator_result["final_objective"])
-        assert operator_result["FE_total"] == operator_result["fe_accounting"]["fe_total"]
+        assert (
+            operator_result["FE_total"] == operator_result["fe_accounting"]["fe_total"]
+        )
         assert operator_result["FE_coordination_extra"] == 0
+        assert operator_result["FE_commit_evaluation"] == 1
+        assert operator_result["FE_analysis_only"] == 0
+        assert operator_result["budget_scope"] == "per_method_run"
+        assert operator_result["cross_baseline_evaluations_shared"] is False
+        assert "conflict_reduction_ratio" not in operator_result
+        assert "proposal_consensus_collapse_ratio" in operator_result
         assert operator_result["fe_accounting"]["fe_total"] == (
             operator_result["fe_accounting"]["fe_grouping"]
             + operator_result["fe_accounting"]["fe_proposal"]

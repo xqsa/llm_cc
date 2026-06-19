@@ -10,7 +10,10 @@ from loco.datasets.split_generator import manifest_from_dict
 
 from .cec2013lsgo_metabox import load_cec2013lsgo_problem
 from .problem_interface import LSGOProblem
-from .synthetic_overlap_generator import SyntheticOverlapProblem, generate_synthetic_overlap
+from .synthetic_overlap_generator import (
+    SyntheticOverlapProblem,
+    generate_synthetic_overlap,
+)
 
 
 class BenchmarkRegistry:
@@ -48,7 +51,9 @@ def problem_from_manifest_entry(entry: BenchmarkManifestEntry) -> LSGOProblem:
         return load_cec2013lsgo_problem(entry.function_id)
     if entry.source == "synthetic_overlap":
         num_groups = max(4, min(40, entry.dimension // 25))
-        base_group_size = max(8, min(entry.dimension, int(entry.dimension / max(num_groups, 1) * 1.5)))
+        base_group_size = max(
+            8, min(entry.dimension, int(entry.dimension / max(num_groups, 1) * 1.5))
+        )
         structure = generate_synthetic_overlap(
             dimension=entry.dimension,
             num_groups=num_groups,
@@ -79,4 +84,3 @@ def list_problems(split: str | None = None) -> list[str]:
     if _DEFAULT_REGISTRY is None:
         raise RuntimeError("No default benchmark registry configured.")
     return _DEFAULT_REGISTRY.list_problems(split=split)
-

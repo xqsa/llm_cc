@@ -67,7 +67,7 @@ synthetic benchmark 摘要：
 
 baseline 结果摘要：
 
-| Operator | Final objective | FE_total | FE_coordination_extra | Conflict reduction |
+| Operator | Final objective | FE_total | FE_coordination_extra | Proposal consensus collapse |
 |---|---:|---:|---:|---:|
 | NoCoordination | 93.22716979200077 | 10 | 0 | 0.0 |
 | AverageConsensus | 90.36194895668093 | 10 | 0 | 1.0 |
@@ -77,7 +77,9 @@ baseline 结果摘要：
 
 说明：
 
-- result JSON 中每个 baseline 都包含 `final_objective`、`final_error`、`FE_total`、`FE_coordination_extra`、`mean_conflict_before`、`mean_conflict_after`、`conflict_reduction_ratio`。
+- result JSON 中每个 baseline 都包含 `final_objective`、`final_error`、`FE_total`、`FE_coordination_extra`、`FE_commit_evaluation`、`FE_analysis_only`、`budget_scope`、`cross_baseline_evaluations_shared`、`mean_conflict_before`、`mean_conflict_after`、`proposal_consensus_collapse_ratio`。
+- `proposal_consensus_collapse_ratio` 只表示 Stage 2.0 中当前 proposal set 被 coordination collapse 成 consensus value 的比例；它不是 longitudinal conflict reduction 证据，也不能证明下一轮或重新生成 proposal 后冲突会下降。
+- 真正的 post-coordination conflict 下降指标应在 Stage 2.1 中单独定义，例如 `post_coordination_regenerated_conflict`，通过 coordination 后重新生成 group proposals 或进入下一轮再测量。
 - 当前 proposal generator 是 deterministic one-shot perturbation，不是 optimizer。
 - coordination operators 默认不产生额外 evaluate，因此 `FE_coordination_extra=0`。
 
@@ -93,8 +95,16 @@ FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair
 
 - `FE_grouping = 0`：使用已知 synthetic grouping metadata，不额外 evaluate。
 - `FE_proposal = 10`：1 次 initial solution evaluate + 8 次 group proposal evaluate + 1 次 coordinated solution evaluate。
+- `FE_commit_evaluation = 1`：每个 baseline 作为一次独立 method run，各自提交一个 coordinated solution evaluation。
+- `FE_analysis_only = 0`：Stage 2.0 未记录不进入 method budget 的 analysis-only evaluation。
 - `FE_coordination_extra = 0`：5 个 baseline operators 默认不调用 objective。
 - `FE_repair = 0`：Stage 2.0 未实现 repair evaluator。
+
+公平性口径：
+
+- 每个 baseline 被视为独立方法运行，`budget_scope = per_method_run`。
+- 跨 baseline 的 comparison evaluations 不共享，`cross_baseline_evaluations_shared = false`。
+- Stage 2.0 result JSON 的 `FE_total` 只解释单个 baseline method run 的预算，不把 5 个 baseline 的评测混成一个真实算法运行。
 
 `FEBudgetTracker` 会拒绝 unknown category，并在超过 `max_fe` 时拒绝继续记录。
 

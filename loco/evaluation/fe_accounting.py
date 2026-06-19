@@ -28,7 +28,12 @@ class FEBudgetTracker:
 
     @property
     def fe_total(self) -> int:
-        return self.fe_grouping + self.fe_proposal + self.fe_coordination_extra + self.fe_repair
+        return (
+            self.fe_grouping
+            + self.fe_proposal
+            + self.fe_coordination_extra
+            + self.fe_repair
+        )
 
     @property
     def remaining_fe(self) -> int:
@@ -44,7 +49,9 @@ class FEBudgetTracker:
         if count < 0:
             raise ValueError("FE count must be nonnegative.")
         if self.fe_total + count > self.max_fe:
-            raise RuntimeError("FE budget exhausted; refusing to record evaluations past max_fe.")
+            raise RuntimeError(
+                "FE budget exhausted; refusing to record evaluations past max_fe."
+            )
         field = _CATEGORY_TO_FIELD[category]
         setattr(self, field, getattr(self, field) + int(count))
 

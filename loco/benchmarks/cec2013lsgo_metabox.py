@@ -93,13 +93,19 @@ def _import_cec2013lsgo_numpy_benchmark_only():
     basic_problem = problem_root / "basic_problem.py"
     cec_numpy = cec_root / "cec2013lsgo_numpy.py"
     if not basic_problem.is_file() or not cec_numpy.is_file():
-        raise MetaBoxImportError("Installed metaevobox does not contain CEC2013LSGO numpy files.")
+        raise MetaBoxImportError(
+            "Installed metaevobox does not contain CEC2013LSGO numpy files."
+        )
 
     alias_root = Path(str(root))
     _ensure_alias_package("loco_external_metaevobox", alias_root)
-    _ensure_alias_package("loco_external_metaevobox.environment", alias_root / "environment")
+    _ensure_alias_package(
+        "loco_external_metaevobox.environment", alias_root / "environment"
+    )
     _ensure_alias_package("loco_external_metaevobox.environment.problem", problem_root)
-    _ensure_alias_package("loco_external_metaevobox.environment.problem.SOO", problem_root / "SOO")
+    _ensure_alias_package(
+        "loco_external_metaevobox.environment.problem.SOO", problem_root / "SOO"
+    )
     _ensure_alias_package(
         "loco_external_metaevobox.environment.problem.SOO.CEC2013LSGO",
         cec_root,
@@ -131,7 +137,9 @@ def _force_local_cec_datafiles():
         importlib.util.find_spec = original_find_spec
 
 
-def reconstruct_cec2013lsgo_grouping(problem) -> tuple[list[list[int]] | None, str, str]:
+def reconstruct_cec2013lsgo_grouping(
+    problem,
+) -> tuple[list[list[int]] | None, str, str]:
     """Reconstruct groups from CEC2013LSGO Pvector/s/overlap metadata."""
 
     pvector = getattr(problem, "Pvector", None)
@@ -158,7 +166,11 @@ def reconstruct_cec2013lsgo_grouping(problem) -> tuple[list[list[int]] | None, s
 
 def _dimension_metadata(problem, function_id: int) -> dict[str, int]:
     semantics = FUNCTION_SEMANTICS.get(function_id, {})
-    formula = int(semantics.get("D_formula", getattr(problem, "dimension", getattr(problem, "dim", 0))))
+    formula = int(
+        semantics.get(
+            "D_formula", getattr(problem, "dimension", getattr(problem, "dim", 0))
+        )
+    )
     api = int(getattr(problem, "dim", getattr(problem, "dimension", formula)))
     return {
         "D_formula": formula,
@@ -166,7 +178,9 @@ def _dimension_metadata(problem, function_id: int) -> dict[str, int]:
     }
 
 
-def _shared_count_and_ratio(groups: list[list[int]] | None, dimension: int) -> tuple[int, float]:
+def _shared_count_and_ratio(
+    groups: list[list[int]] | None, dimension: int
+) -> tuple[int, float]:
     if groups is None:
         return 0, 0.0
     metadata = build_overlap_metadata(
@@ -179,7 +193,9 @@ def _shared_count_and_ratio(groups: list[list[int]] | None, dimension: int) -> t
     return len(metadata.shared_variables), metadata.overlap_ratio
 
 
-def _extract_grouping_for_function(problem, function_id: int) -> tuple[list[list[int]] | None, dict[str, object]]:
+def _extract_grouping_for_function(
+    problem, function_id: int
+) -> tuple[list[list[int]] | None, dict[str, object]]:
     semantics = FUNCTION_SEMANTICS.get(function_id, {})
     metadata: dict[str, object] = {
         "overlap_semantics": semantics.get("overlap_semantics", "not_recorded"),
@@ -214,7 +230,9 @@ def _extract_grouping_for_function(problem, function_id: int) -> tuple[list[list
         )
         return None, metadata
 
-    shared_count, overlap_ratio = _shared_count_and_ratio(groups, int(metadata["D_formula"]))
+    shared_count, overlap_ratio = _shared_count_and_ratio(
+        groups, int(metadata["D_formula"])
+    )
     metadata.update(
         {
             "grouping_status": "available",
@@ -239,25 +257,38 @@ def load_cec2013lsgo_problem(function_id: int, version: str = "numpy") -> LSGOPr
     try:
         cls = getattr(module, class_name)
     except AttributeError as exc:
-        raise MetaBoxImportError(f"MetaBox CEC2013LSGO class {class_name} is unavailable.") from exc
+        raise MetaBoxImportError(
+            f"MetaBox CEC2013LSGO class {class_name} is unavailable."
+        ) from exc
 
     with _force_local_cec_datafiles():
         raw_problem = cls()
-    groups, semantics_metadata = _extract_grouping_for_function(raw_problem, function_id)
+    groups, semantics_metadata = _extract_grouping_for_function(
+        raw_problem, function_id
+    )
     metadata = {
         "name": f"cec2013lsgo_f{function_id}",
         "source": "metabox_cec2013lsgo",
         "function_id": function_id,
         "version": version,
         "license": "MetaBox BSD-3-Clause; CEC2013LSGO implementation noted as GPL-3.0 in MetaBox docs",
-        "topology": "cec2013lsgo_overlap" if function_id in OVERLAP_FUNCTION_IDS else "cec2013lsgo",
+        "topology": (
+            "cec2013lsgo_overlap"
+            if function_id in OVERLAP_FUNCTION_IDS
+            else "cec2013lsgo"
+        ),
     }
     metadata.update(semantics_metadata)
     return MetaBoxProblemAdapter(raw_problem, grouping=groups, metadata=metadata)
 
 
-def load_cec2013lsgo_suite(function_ids: list[int], version: str = "numpy") -> list[LSGOProblem]:
-    return [load_cec2013lsgo_problem(function_id, version=version) for function_id in function_ids]
+def load_cec2013lsgo_suite(
+    function_ids: list[int], version: str = "numpy"
+) -> list[LSGOProblem]:
+    return [
+        load_cec2013lsgo_problem(function_id, version=version)
+        for function_id in function_ids
+    ]
 
 
 def load_cec2013lsgo_overlap_suite() -> list[LSGOProblem]:

@@ -19,7 +19,9 @@ class SyntheticOverlapStructure:
     generation_config: dict[str, Any]
 
 
-def _topology_edges(num_groups: int, topology: str, rng: np.random.Generator) -> list[tuple[int, int]]:
+def _topology_edges(
+    num_groups: int, topology: str, rng: np.random.Generator
+) -> list[tuple[int, int]]:
     if topology == "line":
         return [(i, i + 1) for i in range(num_groups - 1)]
     if topology == "ring":
@@ -117,7 +119,9 @@ class SyntheticOverlapProblem(LSGOProblem):
     def evaluate(self, x: np.ndarray) -> float:
         vector = np.asarray(x, dtype=float)
         if vector.shape != (self.dimension(),):
-            raise ValueError(f"Expected x shape ({self.dimension()},), got {vector.shape}.")
+            raise ValueError(
+                f"Expected x shape ({self.dimension()},), got {vector.shape}."
+            )
         return float(np.sum(vector * vector))
 
     def bounds(self) -> tuple[np.ndarray, np.ndarray]:

@@ -1,2 +1,1 @@
 """LOCO-LSGO package."""
-

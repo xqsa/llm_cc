@@ -40,4 +40,3 @@ class BenchmarkManifest:
             "frozen": self.frozen,
             "entries": [entry.to_dict() for entry in self.entries],
         }
-

@@ -58,8 +58,12 @@ def test_weighted_consensus_softmax_weights_best_reward_more() -> None:
 def test_conflict_dampening_reduces_update_magnitude_under_high_conflict() -> None:
     state = _state()
     average = AverageConsensus().coordinate(state).coordinated_value
-    dampened = ConflictDampening(base_operator=AverageConsensus(), damping_strength=0.75).coordinate(state)
+    dampened = ConflictDampening(
+        base_operator=AverageConsensus(), damping_strength=0.75
+    ).coordinate(state)
 
-    assert abs(dampened.coordinated_value - state.current_value) < abs(average - state.current_value)
+    assert abs(dampened.coordinated_value - state.current_value) < abs(
+        average - state.current_value
+    )
     assert dampened.extra_fe == 0
     assert dampened.diagnostics["conflict_intensity"] > 0.0

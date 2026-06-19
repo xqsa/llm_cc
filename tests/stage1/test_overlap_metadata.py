@@ -22,7 +22,11 @@ def test_overlap_metadata_computes_shared_variables_degree_and_incidence() -> No
 
 def test_overlap_metadata_rejects_invalid_groups() -> None:
     with pytest.raises(ValueError, match="out of bounds"):
-        build_overlap_metadata([[0, 5]], dimension=5, topology="line", grouping_source="bad")
+        build_overlap_metadata(
+            [[0, 5]], dimension=5, topology="line", grouping_source="bad"
+        )
 
     with pytest.raises(ValueError, match="non-empty"):
-        build_overlap_metadata([[]], dimension=5, topology="line", grouping_source="bad")
+        build_overlap_metadata(
+            [[]], dimension=5, topology="line", grouping_source="bad"
+        )

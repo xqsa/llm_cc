@@ -21,10 +21,21 @@ if str(ROOT) not in sys.path:
 
 from loco.benchmarks.cec2013lsgo_metabox import load_cec2013lsgo_problem
 from loco.benchmarks.problem_interface import LSGOProblem
-from loco.benchmarks.synthetic_overlap_generator import SyntheticOverlapProblem, generate_synthetic_overlap
+from loco.benchmarks.synthetic_overlap_generator import (
+    SyntheticOverlapProblem,
+    generate_synthetic_overlap,
+)
 from loco.conflict.conflict_metrics import aggregate_conflict_metrics, metrics_for_state
-from loco.conflict.conflict_state import ConflictStateBatch, GroupProposal, SharedVariableConflictState
-from loco.coordination.baselines import CoordinationOperator, NoCoordination, default_baseline_operators
+from loco.conflict.conflict_state import (
+    ConflictStateBatch,
+    GroupProposal,
+    SharedVariableConflictState,
+)
+from loco.coordination.baselines import (
+    CoordinationOperator,
+    NoCoordination,
+    default_baseline_operators,
+)
 from loco.evaluation.fe_accounting import FEBudgetTracker
 
 
@@ -77,7 +88,9 @@ def _initial_solution(problem: LSGOProblem, seed: int) -> np.ndarray:
     return np.clip(raw, lower, upper)
 
 
-def _proposal_value(current_value: float, lower: float, upper: float, group_id: int, variable_id: int) -> float:
+def _proposal_value(
+    current_value: float, lower: float, upper: float, group_id: int, variable_id: int
+) -> float:
     sign = 1.0 if (group_id + variable_id) % 2 == 0 else -1.0
     magnitude = 0.20 + 0.05 * ((group_id + variable_id) % 3)
     proposed = 0.70 * current_value + sign * magnitude
@@ -96,7 +109,9 @@ def _build_group_proposals(
     shared = problem.shared_variables()
     lower, upper = problem.bounds()
 
-    grouped: dict[int, list[GroupProposal]] = {variable_id: [] for variable_id in sorted(shared)}
+    grouped: dict[int, list[GroupProposal]] = {
+        variable_id: [] for variable_id in sorted(shared)
+    }
     proposal_log: list[dict[str, Any]] = []
     for group_id, group in enumerate(groups):
         candidate = current.copy()
@@ -143,7 +158,11 @@ def _make_conflict_batch(
         upper_bounds=upper,
         grouped_proposals=grouped_proposals,
         consensus_history_by_variable={
-            variable_id: [float(current[variable_id]), float(current[variable_id]) * -0.5, float(current[variable_id]) * 0.25]
+            variable_id: [
+                float(current[variable_id]),
+                float(current[variable_id]) * -0.5,
+                float(current[variable_id]) * 0.25,
+            ]
             for variable_id in grouped_proposals
         },
     )
@@ -176,7 +195,9 @@ def _collapsed_after_batch(
                 proposed_value=coordinated,
                 reward=reward if reward is not None else original_reward,
             )
-            for group_id, original_reward in zip(state.related_group_ids, state.group_rewards)
+            for group_id, original_reward in zip(
+                state.related_group_ids, state.group_rewards
+            )
         ]
         current_values.append(state.current_value)
         lower.append(state.bounds[0])
@@ -206,7 +227,9 @@ def _run_problem(
     proposal_tracker = FEBudgetTracker(max_fe=max_fe)
     baseline_objective = problem.evaluate(current)
     proposal_tracker.record("proposal", 1)
-    grouped_proposals, proposal_log = _build_group_proposals(problem, current, baseline_objective, proposal_tracker)
+    grouped_proposals, proposal_log = _build_group_proposals(
+        problem, current, baseline_objective, proposal_tracker
+    )
     before_batch = _make_conflict_batch(problem, current, grouped_proposals)
     before_metrics = aggregate_conflict_metrics(
         before_batch,
@@ -224,7 +247,9 @@ def _run_problem(
         for state in before_batch:
             result = operator.coordinate(state)
             if result.variable_id not in shared:
-                raise RuntimeError("Coordination operator attempted to modify a non-shared variable.")
+                raise RuntimeError(
+                    "Coordination operator attempted to modify a non-shared variable."
+                )
             coordinated[result.variable_id] = result.coordinated_value
             coordination_results[str(result.variable_id)] = result.to_dict()
             extra_fe += result.extra_fe
@@ -236,7 +261,10 @@ def _run_problem(
         collapse = not isinstance(operator, NoCoordination)
         after_batch = _collapsed_after_batch(
             before_batch,
-            coordinated_values={int(key): value["coordinated_value"] for key, value in coordination_results.items()},
+            coordinated_values={
+                int(key): value["coordinated_value"]
+                for key, value in coordination_results.items()
+            },
             collapse_rewards=collapse,
         )
         after_metrics = aggregate_conflict_metrics(
@@ -244,23 +272,37 @@ def _run_problem(
             overlap_ratio=float(problem.metadata().get("overlap_ratio", 0.0)),
         )
         before_intensity = before_metrics["mean_conflict_intensity"]
-        after_intensity = after_metrics["mean_conflict_intensity"] if collapse else before_intensity
+        after_intensity = (
+            after_metrics["mean_conflict_intensity"] if collapse else before_intensity
+        )
         if before_intensity <= 1e-12:
-            reduction = 0.0
+            consensus_collapse = 0.0
         else:
-            reduction = max(0.0, (before_intensity - after_intensity) / before_intensity)
+            consensus_collapse = max(
+                0.0, (before_intensity - after_intensity) / before_intensity
+            )
 
         operator_results[operator.name] = {
             "final_objective": final_objective,
             "final_error": None if optimum is None else final_objective - optimum,
             "FE_total": tracker.fe_total,
             "FE_coordination_extra": tracker.fe_coordination_extra,
+            "FE_commit_evaluation": 1,
+            "FE_analysis_only": 0,
+            "budget_scope": "per_method_run",
+            "cross_baseline_evaluations_shared": False,
             "fe_accounting": tracker.to_dict(),
             "mean_conflict_before": before_intensity,
             "mean_conflict_after": after_intensity,
-            "conflict_reduction_ratio": reduction,
+            "proposal_consensus_collapse_ratio": consensus_collapse,
+            "metric_honesty_note": (
+                "This is a one-shot collapse of the current proposal set after coordination, "
+                "not evidence that regenerated future conflicts are reduced."
+            ),
             "coordination_results": coordination_results,
-            "changed_variables": sorted(int(variable_id) for variable_id in coordination_results),
+            "changed_variables": sorted(
+                int(variable_id) for variable_id in coordination_results
+            ),
         }
 
     result = {
@@ -286,7 +328,9 @@ def _run_problem(
     result = _json_ready(result)
     if output_path is not None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        output_path.write_text(
+            json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
     return result
 
 
@@ -316,8 +360,13 @@ def run_optional_f14_smoke(seed: int = 0, max_fe: int = 10_000) -> dict[str, Any
         "operator_count": len(result["operators"]),
         "summary": {
             "dimension": result["benchmark"]["dimension"],
-            "number_of_shared_variables": result["benchmark"]["number_of_shared_variables"],
-            "best_operator": min(result["operators"], key=lambda name: result["operators"][name]["final_objective"]),
+            "number_of_shared_variables": result["benchmark"][
+                "number_of_shared_variables"
+            ],
+            "best_operator": min(
+                result["operators"],
+                key=lambda name: result["operators"][name]["final_objective"],
+            ),
         },
     }
 

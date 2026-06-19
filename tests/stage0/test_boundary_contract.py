@@ -56,7 +56,9 @@ def test_default_boundary_keeps_stage0_non_runtime() -> None:
     assert set(boundary.grouping_modes) == {GroupingMode.ORACLE, GroupingMode.DETECTED}
     assert boundary.base_optimizer_policy == "fixed_baseopt"
     assert set(boundary.fe_budget_decomposition) == set(REQUIRED_FE_COMPONENTS)
-    assert set(boundary.forbidden_information_access) == set(FORBIDDEN_INFORMATION_ACCESS)
+    assert set(boundary.forbidden_information_access) == set(
+        FORBIDDEN_INFORMATION_ACCESS
+    )
     assert set(boundary.forbidden_llm_actions) == set(FORBIDDEN_LLM_ACTIONS)
     assert not boundary.calls_llm_in_tests
     assert not boundary.runs_evolution_in_tests
@@ -75,7 +77,9 @@ def test_forbidden_llm_outputs_cover_optimizer_controller_scheduler() -> None:
     assert "scheduler" in boundary.forbidden_llm_outputs
     assert "benchmark" in boundary.forbidden_llm_outputs
     assert "base_optimizer_replacement" in boundary.forbidden_llm_outputs
-    assert "arbitrary_executable_code_outside_typed_ast" in boundary.forbidden_llm_outputs
+    assert (
+        "arbitrary_executable_code_outside_typed_ast" in boundary.forbidden_llm_outputs
+    )
     assert "modify_baseopt" in boundary.forbidden_llm_actions
     assert "select_optimizer" in boundary.forbidden_llm_actions
     assert "access_test_feedback" in boundary.forbidden_llm_actions
@@ -158,7 +162,9 @@ def test_stage0_boundary_rejects_incomplete_fe_decomposition() -> None:
 
 
 def test_stage0_boundary_rejects_non_fixed_baseopt() -> None:
-    boundary = Stage0BoundaryConfig(base_optimizer_policy="adaptive_optimizer_selection")
+    boundary = Stage0BoundaryConfig(
+        base_optimizer_policy="adaptive_optimizer_selection"
+    )
 
     with pytest.raises(ValueError, match="BaseOpt"):
         boundary.validate()
@@ -175,7 +181,10 @@ def test_yaml_boundary_contains_hard_requirements() -> None:
     assert "shared_variables_only" in text
     assert "coordination_operator_ast" in text
     assert "count_all_extra_function_evaluations" in text
-    assert "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair" in text
+    assert (
+        "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+        in text
+    )
     assert "fixed_baseopt" in text
     assert "separate_oracle_and_detected: true" in text
     assert "function_id" in text

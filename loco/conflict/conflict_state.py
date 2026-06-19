@@ -80,7 +80,9 @@ class SharedVariableConflictState:
             proposal_directions=tuple(value - current for value in values),
             group_rewards=rewards,
             previous_consensus_value=(
-                None if previous_consensus_value is None else float(previous_consensus_value)
+                None
+                if previous_consensus_value is None
+                else float(previous_consensus_value)
             ),
             accepted_value=None if accepted_value is None else float(accepted_value),
             consensus_history=tuple(float(value) for value in consensus_history),
@@ -144,7 +146,9 @@ class ConflictStateBatch:
                     current_value=float(current[variable_id]),
                     bounds=(float(lower[variable_id]), float(upper[variable_id])),
                     proposals=grouped_proposals[variable_id],
-                    consensus_history=consensus_history_by_variable.get(variable_id, ()),
+                    consensus_history=consensus_history_by_variable.get(
+                        variable_id, ()
+                    ),
                     accepted_history=accepted_history_by_variable.get(variable_id, ()),
                 )
             )

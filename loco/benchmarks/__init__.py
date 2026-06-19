@@ -3,4 +3,3 @@
 from .problem_interface import LSGOProblem
 
 __all__ = ["LSGOProblem"]
-

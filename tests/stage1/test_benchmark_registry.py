@@ -6,7 +6,9 @@ from loco.datasets.split_generator import generate_default_manifest, write_manif
 
 def test_registry_lists_and_loads_synthetic_manifest_entries(tmp_path: Path) -> None:
     manifest = generate_default_manifest()
-    synthetic_entries = [entry for entry in manifest.entries if entry.source == "synthetic_overlap"][:3]
+    synthetic_entries = [
+        entry for entry in manifest.entries if entry.source == "synthetic_overlap"
+    ][:3]
     manifest.entries = synthetic_entries
     path = tmp_path / "manifest.json"
     write_manifest(manifest, path)

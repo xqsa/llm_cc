@@ -42,7 +42,9 @@ def build_overlap_metadata(
             raise ValueError("Duplicate indices inside a group are not allowed.")
         for index in group:
             if index < 0 or index >= dimension:
-                raise ValueError(f"Group index {index} out of bounds for D={dimension}.")
+                raise ValueError(
+                    f"Group index {index} out of bounds for D={dimension}."
+                )
             degree[index] += 1
         normalized.append(group)
 
@@ -65,4 +67,3 @@ def build_overlap_metadata(
         grouping_source=grouping_source,
         grouping_confidence=grouping_confidence,
     )
-

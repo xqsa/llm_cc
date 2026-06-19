@@ -8,7 +8,9 @@ from pathlib import Path
 from .benchmark_manifest import BenchmarkManifest, BenchmarkManifestEntry
 
 
-def _synthetic_name(split: str, dimension: int, ratio: float, topology: str, seed: int) -> str:
+def _synthetic_name(
+    split: str, dimension: int, ratio: float, topology: str, seed: int
+) -> str:
     ratio_tag = f"{ratio:.2f}".replace(".", "p")
     return f"synthetic_{split}_d{dimension}_rho{ratio_tag}_{topology}_s{seed}"
 
@@ -45,7 +47,9 @@ def generate_default_manifest() -> BenchmarkManifest:
                     for seed in seeds:
                         entries.append(
                             BenchmarkManifestEntry(
-                                name=_synthetic_name(split, dimension, ratio, topology, seed),
+                                name=_synthetic_name(
+                                    split, dimension, ratio, topology, seed
+                                ),
                                 source="synthetic_overlap",
                                 function_id=None,
                                 dimension=dimension,
@@ -58,7 +62,9 @@ def generate_default_manifest() -> BenchmarkManifest:
                         )
 
     entries.sort(key=lambda entry: (entry.split, entry.source, entry.name))
-    return BenchmarkManifest(name="stage1_loco_lsgo_benchmark_manifest", entries=entries)
+    return BenchmarkManifest(
+        name="stage1_loco_lsgo_benchmark_manifest", entries=entries
+    )
 
 
 def write_manifest(manifest: BenchmarkManifest, path: str | Path) -> None:
@@ -78,4 +84,3 @@ def manifest_from_dict(data: dict) -> BenchmarkManifest:
         frozen=bool(data.get("frozen", True)),
         version=int(data.get("version", 1)),
     )
-
