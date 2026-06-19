@@ -11,8 +11,10 @@ Recommended:
 Python >= 3.10
 numpy >= 1.24
 pytest >= 8.0
-black >= 24.0
+black == 24.8.0
 ```
+
+`black` is pinned because formatter output can drift across releases. Local checks and GitHub Actions must use the same formatter version before the repository can claim CI-level reproducibility.
 
 Install:
 
