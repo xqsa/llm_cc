@@ -1,0 +1,61 @@
+stage: "2.1B"
+name: "multi_round_post_coordination_regenerated_conflict_evidence"
+
+boundary:
+  llm_used: false
+  evolution_used: false
+  optimizer_implemented: false
+  base_optimizer_modified: false
+  benchmark_objective_modified: false
+  metabox_source_modified: false
+  f13_padding_used: false
+  metric_claim: "multiround_evidence_not_sota_claim"
+
+synthetic_panel:
+  topologies:
+    - line
+    - ring
+    - random_graph
+  dimensions:
+    - 100
+    - 500
+    - 1000
+  overlap_ratios:
+    - 0.05
+    - 0.10
+    - 0.20
+    - 0.30
+  seeds:
+    - 0
+    - 1
+    - 2
+  num_groups: 8
+  rounds: 5
+  baselines:
+    - NoCoordination
+    - AverageConsensus
+    - BestRewardSelection
+    - WeightedConsensus
+    - ConflictDampening
+  max_fe_per_method_run: 100000
+
+metrics:
+  proposal_consensus_collapse_ratio_mean:
+    source: "same_round_proposal_collapse"
+    not_claim: "longitudinal conflict reduction"
+  longitudinal_conflict_reduction_ratio:
+    source: "next_round_regenerated_conflict"
+    not_claim: "SOTA optimizer performance"
+  conflict_oscillation:
+    source: "regenerated conflict sequence over rounds"
+  conflict_persistence_over_rounds:
+    source: "regenerated_conflict_next / conflict_before by round"
+  consensus_instability_over_rounds:
+    source: "shared-variable committed consensus trajectory"
+  objective_improvement_per_fe:
+    source: "committed objective values divided by counted FE"
+
+outputs:
+  json: "docs/stage2/stage2_1b_multiround_result.json"
+  csv: "docs/stage2/stage2_1b_multiround_summary.csv"
+  report: "docs/stage2/stage2_1b_self_check_report.md"

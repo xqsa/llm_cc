@@ -33,7 +33,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Current expected local result:
 
 ```text
-47 passed, 1 skipped
+53 passed, 1 skipped
 ```
 
 The skipped test is allowed only when a real MetaBox smoke test is unavailable or not a complete PASS, and it must print a clear reason.
@@ -80,6 +80,34 @@ seed in {0, 1, 2}
 ```
 
 Stage 2.1 remains benchmark/evidence infrastructure. It does not call an LLM, run evolution, implement an optimizer, or generate new coordination operators.
+
+## Stage 2.1B Multi-round Evidence
+
+Run:
+
+```powershell
+python loco\experiments\stage2_multiround_runner.py
+```
+
+Outputs:
+
+```text
+docs/stage2/stage2_1b_multiround_result.json
+docs/stage2/stage2_1b_multiround_summary.csv
+docs/stage2/stage2_1b_self_check_report.md
+```
+
+The default Stage 2.1B panel runs 36 synthetic settings, 540 independent baseline-method runs, and 5 rounds per run:
+
+```text
+topology in {line, ring, random_graph}
+dimension in {100, 500, 1000}
+overlap_ratio in {0.05, 0.10, 0.20, 0.30}
+seed in {0, 1, 2}
+baseline in {NoCoordination, AverageConsensus, BestRewardSelection, WeightedConsensus, ConflictDampening}
+```
+
+`longitudinal_conflict_reduction_ratio` uses next-round regenerated conflict. It must not be substituted with same-round `proposal_consensus_collapse_ratio_mean`, and it is not a SOTA optimizer-loop performance claim.
 
 ## FE Accounting
 

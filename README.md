@@ -20,6 +20,7 @@ Implemented:
 - Stage 1: benchmark/data layer with MetaBox lazy adapter, synthetic overlap generator, manifest support, and CEC2013 LSGO semantics correction.
 - Stage 2.0: conflict state, conflict metrics, baseline coordination operators, FE accounting, and a minimal synthetic conflict-coordination runner.
 - Stage 2.1: multi-setting synthetic conflict evidence panel across topology, dimension, overlap ratio, and seed settings.
+- Stage 2.1B: multi-round post-coordination regenerated-conflict evidence gate.
 
 Known blocker:
 
@@ -63,7 +64,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected current local result:
 
 ```text
-47 passed, 1 skipped
+53 passed, 1 skipped
 ```
 
 The skip is the optional Stage 1 real MetaBox smoke when F12/F13/F14 are not all complete PASS. It must give a clear reason and must not fake a real benchmark success.
@@ -98,6 +99,22 @@ docs/stage2/stage2_1_self_check_report.md
 
 The default panel covers `line / ring / random_graph`, dimensions `100 / 500 / 1000`, overlap ratios `0.0 / 0.05 / 0.10 / 0.20 / 0.30`, and seeds `0 / 1 / 2`. It is an evidence gate for conflict-state behavior and metric sanity. It does not implement an optimizer, LLM search, evolution, or new coordination operators.
 
+## Run Stage 2.1B Multi-round Evidence
+
+```powershell
+python loco\experiments\stage2_multiround_runner.py
+```
+
+This writes:
+
+```text
+docs/stage2/stage2_1b_multiround_result.json
+docs/stage2/stage2_1b_multiround_summary.csv
+docs/stage2/stage2_1b_self_check_report.md
+```
+
+Stage 2.1B runs five deterministic rounds per baseline-method run. At each round it generates group proposals, measures conflict, applies one baseline coordination rule, commits the coordinated shared-variable values, regenerates next-round proposals from that committed solution, and measures regenerated conflict. The CSV is the main reading surface; the JSON is an audit artifact with per-round FE and shared-variable change logs.
+
 ## Benchmark And License Boundary
 
 LOCO-LSGO reuses external benchmark implementations through dependencies/adapters.
@@ -112,7 +129,7 @@ See [LICENSE_NOTICE.md](LICENSE_NOTICE.md) and [docs/reproducibility.md](docs/re
 
 Stage 2.0/2.1 report `proposal_consensus_collapse_ratio`, not a true longitudinal conflict reduction claim.
 
-This value measures how much the current set of proposals collapses after applying a coordination rule. It does **not** prove that future regenerated conflicts are reduced. Stage 2.1 also reports `post_coordination_regenerated_conflict`, but it is a deterministic regenerated-conflict proxy for evidence-gate auditing, not optimizer-loop longitudinal performance evidence.
+This value measures how much the current set of proposals collapses after applying a coordination rule. It does **not** prove that future regenerated conflicts are reduced. Stage 2.1 reports `post_coordination_regenerated_conflict` as a deterministic regenerated-conflict proxy. Stage 2.1B reports `longitudinal_conflict_reduction_ratio` using next-round regenerated conflict, not same-round collapse. These are evidence-gate diagnostics, not SOTA optimizer-loop performance claims.
 
 ## FE Accounting
 
