@@ -160,15 +160,16 @@ python scripts\stage1\check_metabox_cec2013lsgo_real.py --json-output docs\stage
 
 - benchmark-only bypass import 可加载 MetaBox CEC2013LSGO numpy module；
 - F12/F13/F14 class 可加载；
-- F13/F14 的 `dimension=905` 被保留；
+- F13/F14 的 `D_formula=905` 被保留，并与 wrapper/API 层 `D_api=1000` 分开记录；
 - F13/F14 的 `Pvector`、`s`、`overlap` 可读；
-- F13/F14 grouping 可重建；
-- F13/F14 shared variables 非空；
+- F13/F14 grouping 可重建，group count 为 20，overlap size 为 5；
+- F13/F14 shared variables 数量为 95，overlap ratio 为 `95/905`；
 - F13/F14 incidence matrix shape 为 `905 x 20`；
+- F12 不再要求 `Pvector/s/overlap`，当前 `grouping_status=unavailable` 是合法 metadata 状态；
 - F14 可以在 905 维输入上通过 LOCO adapter evaluate，且 zero/random eval finite、deterministic。
 
 当前 blocker：
 
 - 普通 direct import 仍触发 trainer/optimizer/agent 依赖链，失败于 `pettingzoo`。
-- F13 在 official `dimension=905` 输入下，MetaBox numpy implementation 内部执行 `x - Ovector` 时出现 `x(1,905)` 与 `Ovector(1000,)` shape mismatch。
-- F12 在当前 MetaBox implementation 中未暴露 `Pvector`、`s`、`overlap`，因此不能恢复 non-empty shared-variable metadata；这与 Stage 1.5 对 F12/F13/F14 同时要求 grouping/shared variables 的验收项存在冲突，需要后续确认 F12 是否应纳入 overlapping grouping hard gate。
+- F13 在 official `D_formula=905` 输入下，MetaBox numpy implementation 内部执行 `x - Ovector` 时出现 `x(1,905)` 与 `Ovector(1000,)` shape mismatch。这是 `D_formula/D_api` compatibility blocker。
+- F12 在当前 MetaBox implementation 中未暴露 `Pvector`、`s`、`overlap`，但 Stage 1.6 已确认 F12 不使用 F13/F14 的 `Pvector/s/overlap` grouping rule，因此不再把 F12 metadata unavailable 视为同类失败。

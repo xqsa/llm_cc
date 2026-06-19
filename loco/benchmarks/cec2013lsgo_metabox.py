@@ -11,11 +11,34 @@ from contextlib import contextmanager
 
 import numpy as np
 
+from .overlap_metadata import build_overlap_metadata
 from .metabox_adapter import MetaBoxImportError, MetaBoxProblemAdapter
 from .problem_interface import LSGOProblem
 
 
 OVERLAP_FUNCTION_IDS = [12, 13, 14]
+PVECTOR_GROUPING_FUNCTION_IDS = {13, 14}
+
+FUNCTION_SEMANTICS = {
+    12: {
+        "D_formula": 1000,
+        "overlap_semantics": "rosenbrock_chain_overlap",
+        "official_definition": "shifted_rosenbrock_chain",
+        "grouping_status": "unavailable",
+        "grouping_source": "unavailable",
+        "grouping_confidence": "none",
+    },
+    13: {
+        "D_formula": 905,
+        "overlap_semantics": "conforming_overlap",
+        "official_definition": "shifted_schwefel_conforming_overlapping_subcomponents",
+    },
+    14: {
+        "D_formula": 905,
+        "overlap_semantics": "conflicting_overlap",
+        "official_definition": "shifted_schwefel_conflicting_overlapping_subcomponents",
+    },
+}
 
 
 def _import_cec2013lsgo_module():
@@ -133,6 +156,78 @@ def reconstruct_cec2013lsgo_grouping(problem) -> tuple[list[list[int]] | None, s
     return groups, source, "high"
 
 
+def _dimension_metadata(problem, function_id: int) -> dict[str, int]:
+    semantics = FUNCTION_SEMANTICS.get(function_id, {})
+    formula = int(semantics.get("D_formula", getattr(problem, "dimension", getattr(problem, "dim", 0))))
+    api = int(getattr(problem, "dim", getattr(problem, "dimension", formula)))
+    return {
+        "D_formula": formula,
+        "D_api": api,
+    }
+
+
+def _shared_count_and_ratio(groups: list[list[int]] | None, dimension: int) -> tuple[int, float]:
+    if groups is None:
+        return 0, 0.0
+    metadata = build_overlap_metadata(
+        groups,
+        dimension,
+        topology="cec2013lsgo_overlap",
+        grouping_source="cec2013lsgo_semantics_probe",
+        grouping_confidence="high",
+    )
+    return len(metadata.shared_variables), metadata.overlap_ratio
+
+
+def _extract_grouping_for_function(problem, function_id: int) -> tuple[list[list[int]] | None, dict[str, object]]:
+    semantics = FUNCTION_SEMANTICS.get(function_id, {})
+    metadata: dict[str, object] = {
+        "overlap_semantics": semantics.get("overlap_semantics", "not_recorded"),
+        "official_definition": semantics.get("official_definition", "not_recorded"),
+    }
+    metadata.update(_dimension_metadata(problem, function_id))
+
+    if function_id not in PVECTOR_GROUPING_FUNCTION_IDS:
+        metadata.update(
+            {
+                "grouping_status": semantics.get("grouping_status", "unavailable"),
+                "grouping_source": semantics.get("grouping_source", "unavailable"),
+                "grouping_confidence": semantics.get("grouping_confidence", "none"),
+                "overlap_size": None,
+                "shared_variable_count": 0,
+                "overlap_ratio": 0.0,
+            }
+        )
+        return None, metadata
+
+    groups, _source, confidence = reconstruct_cec2013lsgo_grouping(problem)
+    if groups is None:
+        metadata.update(
+            {
+                "grouping_status": "unavailable",
+                "grouping_source": "unavailable",
+                "grouping_confidence": confidence,
+                "overlap_size": int(getattr(problem, "overlap", 0) or 0),
+                "shared_variable_count": 0,
+                "overlap_ratio": 0.0,
+            }
+        )
+        return None, metadata
+
+    shared_count, overlap_ratio = _shared_count_and_ratio(groups, int(metadata["D_formula"]))
+    metadata.update(
+        {
+            "grouping_status": "available",
+            "grouping_source": "cec2013lsgo_f13_f14_pvector_s_overlap",
+            "grouping_confidence": confidence,
+            "overlap_size": int(getattr(problem, "overlap", 0) or 0),
+            "shared_variable_count": shared_count,
+            "overlap_ratio": overlap_ratio,
+        }
+    )
+    return groups, metadata
+
+
 def load_cec2013lsgo_problem(function_id: int, version: str = "numpy") -> LSGOProblem:
     """Load a CEC2013LSGO problem through MetaBox and wrap it as LSGOProblem."""
 
@@ -148,17 +243,16 @@ def load_cec2013lsgo_problem(function_id: int, version: str = "numpy") -> LSGOPr
 
     with _force_local_cec_datafiles():
         raw_problem = cls()
-    groups, grouping_source, grouping_confidence = reconstruct_cec2013lsgo_grouping(raw_problem)
+    groups, semantics_metadata = _extract_grouping_for_function(raw_problem, function_id)
     metadata = {
         "name": f"cec2013lsgo_f{function_id}",
         "source": "metabox_cec2013lsgo",
         "function_id": function_id,
         "version": version,
         "license": "MetaBox BSD-3-Clause; CEC2013LSGO implementation noted as GPL-3.0 in MetaBox docs",
-        "grouping_source": grouping_source,
-        "grouping_confidence": grouping_confidence,
         "topology": "cec2013lsgo_overlap" if function_id in OVERLAP_FUNCTION_IDS else "cec2013lsgo",
     }
+    metadata.update(semantics_metadata)
     return MetaBoxProblemAdapter(raw_problem, grouping=groups, metadata=metadata)
 
 

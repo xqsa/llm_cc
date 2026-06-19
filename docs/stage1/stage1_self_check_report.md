@@ -2,8 +2,8 @@
 
 生成日期：2026-06-19  
 执行者：Codex  
-验证命令：`$env:PYTHONDONTWRITEBYTECODE='1'; python -m pytest -p no:cacheprovider tests/stage1 -q`  
-验证结果：`15 passed in 0.28s`
+验证命令：`python -m pytest -p no:cacheprovider tests -q -rs`
+验证结果：`29 passed, 1 skipped in 2.37s`
 
 ## 1. 是否复用了 MetaBox-v2？
 
@@ -94,13 +94,32 @@ Stage 2 不应直接 import MetaBox internal problem classes。
 - 已新增 optional pytest：`tests/stage1/test_metabox_real_optional.py`，真实 smoke 未 PASS 时 clean skip，不使用 fake module 伪造成功。
 - benchmark-only bypass import 可以加载已安装 MetaBox 的 CEC2013LSGO numpy module，不触发 `metaevobox.__init__`。
 - 普通 direct import `metaevobox.environment.problem.SOO.CEC2013LSGO` 仍触发 trainer / optimizer / agent 依赖链，当前失败于缺少 `pettingzoo`。
-- F13/F14 official decision dimension 按 `dimension=905` 保留，不改成 1000。
-- F14 真实 905 维 evaluate 当前可通过 LOCO adapter。
-- F13 真实 905 维 evaluate 当前被 MetaBox 内部 `x(1,905)` 与 `Ovector(1000,)` shape mismatch 阻塞。
-- F12 当前 MetaBox class 未暴露 `Pvector`、`s`、`overlap`，因此不能恢复 non-empty shared-variable metadata。
+- Stage 1.6 已修正 CEC2013 LSGO semantics：F13/F14 必须同时记录 `D_formula=905` 与 `D_api=1000`。
+- F13/F14 使用 `Pvector/s/overlap` extractor，group count 为 20，overlap size 为 5，shared variables 数量为 95，overlap ratio 为 `95/905`。
+- F12 不使用 F13/F14 的 `Pvector/s/overlap` grouping rule；当前 wrapper 未暴露对应 metadata 时，`grouping_status=unavailable` 是合法状态，不再视为 F13/F14 同类失败。
+- F13 真实 evaluate mismatch 是 `D_formula=905` 与 MetaBox implementation/API 内部 `Ovector(1000)` 的兼容问题。
+- F14 是当前唯一真实完整通过的 CEC2013 conflicting-overlap smoke case。
 
 判定：
 
-- 不是 `PASS`：F12/F13/F14 尚未全部完成真实 evaluate + grouping/shared metadata smoke。
-- 不是 `FAIL`：adapter contract、benchmark-only import、F14 smoke、F13/F14 grouping reconstruction 均有真实证据。
-- 因此 Stage 1.5 当前为 `PARTIAL`。
+- 不是 `PASS`：F13 尚未完成真实 905 维 evaluate，仍被 `x(1,905)` 与 `Ovector(1000,)` shape mismatch 阻塞。
+- 不是 `FAIL`：adapter contract、benchmark-only import、F12 legal-unavailable metadata、F14 smoke、F13/F14 grouping reconstruction 均有真实证据。
+- 因此 Stage 1.5/1.6 后当前仍为 `PARTIAL`，但主要 blocker 已收敛为 F13 `D_formula/D_api` compatibility。
+
+## Stage 1.6 CEC2013 LSGO Semantics Correction Status
+
+当前状态：`PASS`
+
+已修正：
+
+- 新增 `docs/stage1/cec2013lsgo_semantics.md`，记录 CEC2013 LSGO 15 functions 四类结构、F12/F13/F14 定义差异、`D_formula` 与 `D_api` 分离规则。
+- F13/F14 metadata 固定记录 `D_formula=905` 与 `D_api=1000`，不把 F13/F14 改成普通 1000D 逻辑。
+- F13/F14 使用 `Pvector/s/overlap` extractor，恢复 20 groups、overlap size 5、shared variables 95、overlap ratio `95/905`。
+- F13 标记为 `conforming_overlap`；F14 标记为 `conflicting_overlap`。
+- F12 不再要求 `Pvector/s/overlap`，不硬套 F13/F14 extractor；当前标记 `grouping_status=unavailable`、`grouping_source=unavailable`。
+- 若未来实现 F12 analytical Rosenbrock-chain grouping，必须单独标记 `grouping_source=analytical_rosenbrock_chain`。
+
+剩余风险：
+
+- F13 真实 evaluate 仍受 MetaBox implementation/API 维度兼容问题阻塞：LOCO 输入遵守 `D_formula=905`，但 MetaBox numpy implementation 内部仍读取 `Ovector(1000)`。
+- 不允许通过 padding 905 到 1000 伪造 PASS；若后续做 wrapper compatibility adapter，必须显式标记 `implementation_api_adapter` 并证明 official wrapper evaluate API 要求 1000D。

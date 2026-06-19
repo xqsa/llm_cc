@@ -78,10 +78,16 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
     try:
         problem = load_cec2013lsgo_problem(function_id, version="numpy")
         dimension = problem.dimension()
+        metadata = problem.metadata()
         item["checks"]["load"] = True
         item["checks"]["dimension"] = dimension
         item["checks"]["expected_dimension"] = 905 if function_id in (13, 14) else 1000
         item["checks"]["dimension_ok"] = dimension == item["checks"]["expected_dimension"]
+        item["checks"]["D_formula"] = metadata.get("D_formula")
+        item["checks"]["D_api"] = metadata.get("D_api")
+        item["checks"]["dimension_metadata_recorded"] = (
+            isinstance(metadata.get("D_formula"), int) and isinstance(metadata.get("D_api"), int)
+        )
 
         lower, upper = problem.bounds()
         item["checks"]["bounds_shape_ok"] = lower.shape == (dimension,) and upper.shape == (dimension,)
@@ -99,13 +105,28 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
         groups = problem.grouping()
         item["checks"]["groups_recovered"] = groups is not None
         item["checks"]["shared_variables_nonempty"] = bool(problem.shared_variables())
+        item["checks"]["grouping_status"] = metadata.get("grouping_status")
+        item["checks"]["grouping_status_valid"] = metadata.get("grouping_status") in {"available", "unavailable"}
+        item["checks"]["grouping_required"] = function_id in (13, 14)
+        item["checks"]["group_count"] = len(groups) if groups is not None else 0
+        item["checks"]["overlap_size"] = metadata.get("overlap_size")
+        item["checks"]["shared_variable_count"] = metadata.get("shared_variable_count")
+        item["checks"]["overlap_ratio"] = metadata.get("overlap_ratio")
+        item["checks"]["official_overlap_metadata_ok"] = bool(
+            metadata.get("D_formula") == 905
+            and metadata.get("D_api") == 1000
+            and item["checks"]["group_count"] == 20
+            and metadata.get("overlap_size") == 5
+            and metadata.get("shared_variable_count") == 95
+            and np.isclose(float(metadata.get("overlap_ratio", -1.0)), 95 / 905)
+        )
         if problem._overlap_metadata is not None:
             incidence = problem._overlap_metadata.incidence_matrix
             item["checks"]["incidence_shape"] = list(incidence.shape)
             item["checks"]["incidence_shape_ok"] = incidence.shape[0] == dimension
         else:
             item["checks"]["incidence_shape"] = None
-            item["checks"]["incidence_shape_ok"] = False
+            item["checks"]["incidence_shape_ok"] = function_id == 12
 
         zero_value = problem.evaluate(np.zeros(dimension))
         rng = np.random.default_rng(seed)
@@ -122,15 +143,23 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
 
         required = [
             "dimension_ok",
+            "dimension_metadata_recorded",
             "bounds_shape_ok",
             "bounds_finite",
             "optimum_readable_or_none",
-            "groups_recovered",
-            "shared_variables_nonempty",
+            "grouping_status_valid",
             "incidence_shape_ok",
             "finite_values",
             "deterministic_random_eval",
         ]
+        if function_id in (13, 14):
+            required.extend(
+                [
+                    "groups_recovered",
+                    "shared_variables_nonempty",
+                    "official_overlap_metadata_ok",
+                ]
+            )
         item["ok"] = all(bool(item["checks"].get(name)) for name in required)
     except Exception as exc:
         item["error"] = f"{type(exc).__name__}: {exc}"
