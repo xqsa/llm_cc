@@ -16,6 +16,8 @@ def test_stage2_synthetic_runner_outputs_all_baselines_and_metrics(tmp_path) -> 
     assert output_path.is_file()
     saved = json.loads(output_path.read_text(encoding="utf-8"))
     assert saved == result
+    raw_output = output_path.read_bytes()
+    assert b"\r\n" not in raw_output
     assert result["benchmark"]["source"] == "synthetic_overlap"
     assert result["aggregate_conflict_metrics"]["number_of_shared_variables"] > 0
     assert result["aggregate_conflict_metrics"]["overlap_ratio"] > 0.0

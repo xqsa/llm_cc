@@ -328,9 +328,8 @@ def _run_problem(
     result = _json_ready(result)
     if output_path is not None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(
-            json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
+        with output_path.open("w", encoding="utf-8", newline="\n") as output_file:
+            output_file.write(json.dumps(result, indent=2, sort_keys=True) + "\n")
     return result
 
 

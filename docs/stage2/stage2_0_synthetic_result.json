@@ -88,7 +88,7 @@
     "overlap_ratio": 0.1,
     "source": "synthetic_overlap"
   },
-  "git_commit": "0cce350",
+  "git_commit": "274a153",
   "initial_objective": 93.22716979200077,
   "operators": {
     "AverageConsensus": {
