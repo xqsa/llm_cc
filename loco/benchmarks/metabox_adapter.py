@@ -62,10 +62,10 @@ class MetaBoxProblemAdapter(LSGOProblem):
             raise ValueError(f"Expected x shape ({self.dimension()},), got {vector.shape}.")
 
         before = int(getattr(self.metabox_problem, "numevals", self.fe_count) or self.fe_count)
-        if hasattr(self.metabox_problem, "eval"):
-            value = self.metabox_problem.eval(vector)
-        elif hasattr(self.metabox_problem, "func"):
+        if hasattr(self.metabox_problem, "func"):
             value = self.metabox_problem.func(vector.reshape(1, -1))[0]
+        elif hasattr(self.metabox_problem, "eval"):
+            value = self.metabox_problem.eval(vector)
         else:
             raise ValueError("MetaBox problem exposes neither eval(x) nor func(x).")
 
@@ -120,4 +120,3 @@ class MetaBoxProblemAdapter(LSGOProblem):
         data.setdefault("adapter", "MetaBoxProblemAdapter")
         data["fe_count"] = self.fe_count
         return data
-

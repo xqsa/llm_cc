@@ -5,6 +5,11 @@ metabox:
   use_as_dependency: true
   copy_source_code: false
 
+metabox_real_smoke:
+  required_before_stage2: true
+  allow_skip_in_ci: true
+  require_real_environment_for_paper_results: true
+
 cec2013lsgo:
   enabled: true
   overlap_function_ids: [12, 13, 14]
@@ -41,4 +46,3 @@ stage1_boundary:
   require_reproducibility: true
   require_fe_accounting: true
   require_license_report: true
-

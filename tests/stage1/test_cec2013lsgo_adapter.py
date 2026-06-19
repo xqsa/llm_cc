@@ -9,7 +9,7 @@ from loco.benchmarks.metabox_adapter import MetaBoxImportError
 
 class FakeCECProblem:
     ID = 13
-    dim = 1000
+    dim = 10
     dimension = 10
     lb = -100.0
     ub = 100.0

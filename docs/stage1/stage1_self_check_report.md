@@ -83,3 +83,24 @@ Stage 2 可以直接依赖：
 
 Stage 2 不应直接 import MetaBox internal problem classes。
 
+## Stage 1.5 MetaBox Real Smoke Status
+
+当前状态：`PARTIAL`
+
+含义：
+
+- LOCO adapter contract 与 Stage 1 tests 通过。
+- 已新增真实 MetaBox smoke 脚本：`scripts/stage1/check_metabox_cec2013lsgo_real.py`。
+- 已新增 optional pytest：`tests/stage1/test_metabox_real_optional.py`，真实 smoke 未 PASS 时 clean skip，不使用 fake module 伪造成功。
+- benchmark-only bypass import 可以加载已安装 MetaBox 的 CEC2013LSGO numpy module，不触发 `metaevobox.__init__`。
+- 普通 direct import `metaevobox.environment.problem.SOO.CEC2013LSGO` 仍触发 trainer / optimizer / agent 依赖链，当前失败于缺少 `pettingzoo`。
+- F13/F14 official decision dimension 按 `dimension=905` 保留，不改成 1000。
+- F14 真实 905 维 evaluate 当前可通过 LOCO adapter。
+- F13 真实 905 维 evaluate 当前被 MetaBox 内部 `x(1,905)` 与 `Ovector(1000,)` shape mismatch 阻塞。
+- F12 当前 MetaBox class 未暴露 `Pvector`、`s`、`overlap`，因此不能恢复 non-empty shared-variable metadata。
+
+判定：
+
+- 不是 `PASS`：F12/F13/F14 尚未全部完成真实 evaluate + grouping/shared metadata smoke。
+- 不是 `FAIL`：adapter contract、benchmark-only import、F14 smoke、F13/F14 grouping reconstruction 均有真实证据。
+- 因此 Stage 1.5 当前为 `PARTIAL`。

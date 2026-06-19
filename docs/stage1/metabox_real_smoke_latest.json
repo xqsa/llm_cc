@@ -1,0 +1,100 @@
+{
+  "benchmark_only_import": {
+    "error": null,
+    "module": "loco_external_metaevobox.environment.problem.SOO.CEC2013LSGO.cec2013lsgo_numpy",
+    "ok": true
+  },
+  "functions": [
+    {
+      "checks": {
+        "bounds_finite": true,
+        "bounds_shape_ok": true,
+        "deterministic_random_eval": true,
+        "dimension": 1000,
+        "dimension_ok": true,
+        "expected_dimension": 1000,
+        "finite_values": true,
+        "groups_recovered": false,
+        "incidence_shape": null,
+        "incidence_shape_ok": false,
+        "load": true,
+        "optimum_readable_or_none": true,
+        "optimum_value": 0.0,
+        "overlap_readable": false,
+        "pvector_readable": false,
+        "random_value_1": 10466379187385.766,
+        "random_value_2": 10466379187385.766,
+        "s_readable": false,
+        "shared_variables_nonempty": false,
+        "zero_value": 1711354236949.7192
+      },
+      "function_id": 12,
+      "ok": false
+    },
+    {
+      "checks": {
+        "bounds_finite": true,
+        "bounds_shape_ok": true,
+        "dimension": 905,
+        "dimension_ok": true,
+        "expected_dimension": 905,
+        "groups_recovered": true,
+        "incidence_shape": [
+          905,
+          20
+        ],
+        "incidence_shape_ok": true,
+        "load": true,
+        "optimum_readable_or_none": true,
+        "optimum_value": 0.0,
+        "overlap_readable": true,
+        "pvector_readable": true,
+        "s_readable": true,
+        "shared_variables_nonempty": true
+      },
+      "error": "ValueError: operands could not be broadcast together with shapes (1,905) (1000,) ",
+      "function_id": 13,
+      "ok": false
+    },
+    {
+      "checks": {
+        "bounds_finite": true,
+        "bounds_shape_ok": true,
+        "deterministic_random_eval": true,
+        "dimension": 905,
+        "dimension_ok": true,
+        "expected_dimension": 905,
+        "finite_values": true,
+        "groups_recovered": true,
+        "incidence_shape": [
+          905,
+          20
+        ],
+        "incidence_shape_ok": true,
+        "load": true,
+        "optimum_readable_or_none": true,
+        "optimum_value": 0.0,
+        "overlap_readable": true,
+        "pvector_readable": true,
+        "random_value_1": 4.826642404122116e+18,
+        "random_value_2": 4.826642404122116e+18,
+        "s_readable": true,
+        "shared_variables_nonempty": true,
+        "zero_value": 4.4079796812096246e+18
+      },
+      "function_id": 14,
+      "ok": true
+    }
+  ],
+  "name": "metabox_cec2013lsgo_real_smoke",
+  "normal_import": {
+    "error": "returncode=1",
+    "module": "metaevobox.environment.problem.SOO.CEC2013LSGO",
+    "ok": false,
+    "stderr_tail": "ind_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1310, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1310, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1310, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"D:\\anaconda3\\Lib\\site-packages\\metaevobox\\__init__.py\", line 1, in <module>\n    from .trainer import Trainer\n  File \"D:\\anaconda3\\Lib\\site-packages\\metaevobox\\trainer.py\", line 5, in <module>\n    from .environment.basic_environment import PBO_Env\n  File \"D:\\anaconda3\\Lib\\site-packages\\metaevobox\\environment\\__init__.py\", line 1, in <module>\n    from .basic_environment import *\n  File \"D:\\anaconda3\\Lib\\site-packages\\metaevobox\\environment\\basic_environment.py\", line 3, in <module>\n    from .optimizer.learnable_optimizer import Learnable_Optimizer\n  File \"D:\\anaconda3\\Lib\\site-packages\\metaevobox\\environment\\optimizer\\__init__.py\", line 30, in <module>\n    from .madac_optimizer import MADAC_Optimizer\n  File \"D:\\anaconda3\\Lib\\site-packages\\metaevobox\\environment\\optimizer\\madac_optimizer.py\", line 6, in <module>\n    import tianshou\n  File \"D:\\anaconda3\\Lib\\site-packages\\tianshou\\__init__.py\", line 1, in <module>\n    from tianshou import data, env, exploration, policy, trainer, utils\n  File \"D:\\anaconda3\\Lib\\site-packages\\tianshou\\data\\__init__.py\", line 27, in <module>\n    from tianshou.data.collector import (\n  File \"D:\\anaconda3\\Lib\\site-packages\\tianshou\\data\\collector.py\", line 27, in <module>\n    from tianshou.env import BaseVectorEnv, DummyVectorEnv\n  File \"D:\\anaconda3\\Lib\\site-packages\\tianshou\\env\\__init__.py\", line 8, in <module>\n    from tianshou.env.pettingzoo_env import PettingZooEnv\n  File \"D:\\anaconda3\\Lib\\site-packages\\tianshou\\env\\pettingzoo_env.py\", line 5, in <module>\n    import pettingzoo\nModuleNotFoundError: No module named 'pettingzoo'\n",
+    "stdout_tail": ""
+  },
+  "stage": "1.5",
+  "status": "PARTIAL",
+  "summary": "F12: failed checks; F13: ValueError: operands could not be broadcast together with shapes (1,905) (1000,) "
+}
