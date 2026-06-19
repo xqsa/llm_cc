@@ -113,11 +113,14 @@ Stage 2 不应直接 import MetaBox internal problem classes。
 已修正：
 
 - 新增 `docs/stage1/cec2013lsgo_semantics.md`，记录 CEC2013 LSGO 15 functions 四类结构、F12/F13/F14 定义差异、`D_formula` 与 `D_api` 分离规则。
+- 已吸收用户提供的官方语义优先资料，补充 CEC2013 LSGO 相比 CEC2010 的扩展点：nonuniform subcomponent sizes、subcomponent contribution imbalance、overlapping subcomponents、nonlinear transformations。
+- 已补充官方 evaluation protocol：15 minimization problems、25 runs per function、`Max FE = 3 * 10^6`，并强调 LOCO 的 coordination / repair / probing 等额外 evaluations 必须计入 FE budget。
 - F13/F14 metadata 固定记录 `D_formula=905` 与 `D_api=1000`，不把 F13/F14 改成普通 1000D 逻辑。
 - F13/F14 使用 `Pvector/s/overlap` extractor，恢复 20 groups、overlap size 5、shared variables 95、overlap ratio `95/905`。
 - F13 标记为 `conforming_overlap`；F14 标记为 `conflicting_overlap`。
 - F12 不再要求 `Pvector/s/overlap`，不硬套 F13/F14 extractor；当前标记 `grouping_status=unavailable`、`grouping_source=unavailable`。
 - 若未来实现 F12 analytical Rosenbrock-chain grouping，必须单独标记 `grouping_source=analytical_rosenbrock_chain`。
+- 已固定 LOCO 使用角色：F14 是 primary real conflicting-overlap benchmark，F13 是 conforming-overlap sanity/stability benchmark，F12 是 Rosenbrock-chain special topology benchmark。
 
 剩余风险：
 
