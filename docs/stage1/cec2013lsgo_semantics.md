@@ -127,13 +127,20 @@ F13 D_formula = 905
 F14 D_formula = 905
 ```
 
-不允许把 F13/F14 简化成普通 `1000D` 逻辑；不允许把 905 维 padding 到 1000 后假装解决问题。若后续必须对某个 official wrapper 做 905->1000 adapter，必须显式标记：
+不允许把 F13/F14 简化成普通 `1000D` 逻辑；不允许把 905 维 padding 到 1000 后假装解决问题。若某个 official wrapper 或 dependency implementation 的 evaluate API 需要 1000D runtime input，必须显式标记：
 
 ```text
 grouping_source 或 adapter_mode = implementation_api_adapter
 ```
 
 并证明该 wrapper 的 evaluate API 确实要求 1000D input。该 adapter 只能作为 wrapper compatibility 层，不能改变 official formula semantics。
+
+当前 MetaBox F13 使用该规则：LOCO metadata 保留 `D_formula=905` 与 `D_api=1000`，但 adapter runtime surface 使用 `runtime_dimension=1000`，原因是 MetaBox F13 implementation/API 内部暴露 1000-length `Ovector`、`Pvector` 和 `s` construction data。该行为标记为：
+
+```text
+adapter_mode = implementation_api_adapter
+adapter_reason = metabox_f13_ovector_requires_D_api
+```
 
 ## 7. F13/F14 Grouping Recovery 公式
 
@@ -273,11 +280,12 @@ Synthetic overlap: controlled topology / rho / dimension generalization
 
 核心边界保持不变：LOCO-LSGO 不生成 optimizer，不选择 optimizer，不修改 BaseOpt；它只学习作用于 shared variables 的 coordination operators。
 
-## 12. Stage 1.5 PARTIAL 的语义修正
+## 12. Stage 1.5/1.9 的语义修正
 
-Stage 1.5 的 `PARTIAL` 不应再解释为“F12 metadata failure 与 F13/F14 同类”。修正后：
+Stage 1.5 的早期 `PARTIAL` 不应解释为“F12 metadata failure 与 F13/F14 同类”。修正后：
 
 - F12 metadata unavailable 是符合当前 wrapper 语义的合法状态。
-- F13 evaluate mismatch 是 `D_formula=905` 与某些 implementation/API 内部 `Ovector(1000)` 的兼容问题。
-- F14 是当前唯一真实完整通过的 CEC2013 conflicting-overlap smoke case。
-- Stage 2 前仍需解决 F13 wrapper evaluate API 的 `D_formula/D_api` 兼容问题，但不能通过 padding 伪造 PASS。
+- F13 evaluate mismatch 已定位为 `D_formula=905` 与 MetaBox implementation/API 内部 `Ovector(1000)` 的兼容问题，并通过显式 `implementation_api_adapter` 解决。
+- F13 的 grouping、shared-variable count 和 overlap ratio 仍按 official `D_formula=905` 报告，不因为 runtime input surface 为 1000 而改成普通 1000D 函数。
+- F14 是当前直接 905D 真实完整通过的 CEC2013 conflicting-overlap smoke case。
+- 任何后续 wrapper compatibility adapter 都不能暗中 padding 或伪造 PASS，必须像 F13 一样写入 metadata 并在报告中单独说明。

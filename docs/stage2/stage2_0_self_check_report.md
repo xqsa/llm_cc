@@ -14,7 +14,7 @@ Stage 2.0 当前判定：`PASS`
 - synthetic overlap benchmark 可完整跑通并输出 result JSON。
 - Stage 1 tests 继续通过。
 - Stage 2 tests 通过。
-- F14 real smoke 为 optional；当前本机实测 `PASS`，若其他环境不可用或 MetaBox compatibility blocker 触发，测试 clean skip，不伪造成功。
+- F14 real smoke 为 optional；当前本机实测 `PASS`，若其他环境不可用或 MetaBox benchmark-only path 不可用，测试 clean skip，不伪造成功。
 
 ## 2. 交付物
 
@@ -134,7 +134,7 @@ FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair
 | all five baselines | PASS | NoCoordination/Average/BestReward/Weighted/Dampening。 | 默认 extra FE 为 0。 |
 | conflict metrics implemented | PASS | aggregate + per-variable metrics。 | no NaN/no inf tests。 |
 | FE accounting implemented | PASS | FE identity 在 result JSON 中逐 operator 输出。 | No hidden FE in runner。 |
-| F14 real smoke | PASS | `run_optional_f14_smoke(seed=3)` 返回 PASS。 | F13 仍是 documented D_formula/D_api blocker。 |
+| F14 real smoke | PASS | `run_optional_f14_smoke(seed=3)` 返回 PASS。 | F13 已在 Stage 1.9 通过显式 `implementation_api_adapter` 处理 D_formula/D_api runtime surface 差异。 |
 | SOTA-plus multi-setting coverage | NOT_ATTEMPTED | 无 multi-setting summary table。 | 建议 Stage 2.1。 |
 | LLM/evolution operator discovery | NOT_ATTEMPTED | Stage 2.0 禁止项。 | Stage 3 再进入。 |
 

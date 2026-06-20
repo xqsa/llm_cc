@@ -80,14 +80,20 @@ def _smoke_one(function_id: int, seed: int) -> dict[str, Any]:
         problem = load_cec2013lsgo_problem(function_id, version="numpy")
         dimension = problem.dimension()
         metadata = problem.metadata()
+        expected_dimension = (
+            int(metadata["runtime_dimension"])
+            if metadata.get("adapter_mode") == "implementation_api_adapter"
+            else 905 if function_id in (13, 14) else 1000
+        )
         item["checks"]["load"] = True
         item["checks"]["dimension"] = dimension
-        item["checks"]["expected_dimension"] = 905 if function_id in (13, 14) else 1000
-        item["checks"]["dimension_ok"] = (
-            dimension == item["checks"]["expected_dimension"]
-        )
+        item["checks"]["expected_dimension"] = expected_dimension
+        item["checks"]["dimension_ok"] = dimension == expected_dimension
         item["checks"]["D_formula"] = metadata.get("D_formula")
         item["checks"]["D_api"] = metadata.get("D_api")
+        item["checks"]["runtime_dimension"] = metadata.get("runtime_dimension")
+        item["checks"]["adapter_mode"] = metadata.get("adapter_mode")
+        item["checks"]["adapter_reason"] = metadata.get("adapter_reason")
         item["checks"]["dimension_metadata_recorded"] = isinstance(
             metadata.get("D_formula"), int
         ) and isinstance(metadata.get("D_api"), int)

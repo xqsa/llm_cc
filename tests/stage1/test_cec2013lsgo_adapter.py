@@ -80,6 +80,16 @@ class FakeF14Problem(FakeOverlapProblem):
     ID = 14
 
 
+class FakeF13MetaBoxInternalProblem(FakeOverlapProblem):
+    ID = 13
+    Ovector = np.zeros(1000)
+    Pvector = np.arange(1000)
+
+    def func(self, x):
+        z = x - self.Ovector
+        return np.sum(z * z, axis=1)
+
+
 def test_reconstruct_cec2013lsgo_grouping_from_pvector_overlap() -> None:
     groups, source, confidence = reconstruct_cec2013lsgo_grouping(FakeCECProblem())
 
@@ -155,6 +165,31 @@ def test_f13_f14_metadata_records_formula_and_api_dimensions() -> None:
 
     assert f13.metadata()["overlap_semantics"] == "conforming_overlap"
     assert f14.metadata()["overlap_semantics"] == "conflicting_overlap"
+
+
+def test_f13_uses_explicit_metabox_implementation_api_adapter() -> None:
+    import loco.benchmarks.cec2013lsgo_metabox as module
+
+    class FakeModule:
+        F13 = FakeF13MetaBoxInternalProblem
+
+    original = module._import_cec2013lsgo_module
+    module._import_cec2013lsgo_module = lambda: FakeModule
+    try:
+        problem = load_cec2013lsgo_problem(13)
+    finally:
+        module._import_cec2013lsgo_module = original
+
+    metadata = problem.metadata()
+    assert problem.dimension() == 1000
+    assert metadata["D_formula"] == 905
+    assert metadata["D_api"] == 1000
+    assert metadata["runtime_dimension"] == 1000
+    assert metadata["adapter_mode"] == "implementation_api_adapter"
+    assert metadata["adapter_reason"] == "metabox_f13_ovector_requires_D_api"
+    assert metadata["overlap_ratio"] == 95 / 905
+    assert len(problem.shared_variables()) == 95
+    assert isinstance(problem.evaluate(np.zeros(problem.dimension())), float)
 
 
 def test_f12_metadata_does_not_require_f13_f14_pvector_rule() -> None:

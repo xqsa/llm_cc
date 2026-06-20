@@ -178,6 +178,40 @@ def _dimension_metadata(problem, function_id: int) -> dict[str, int]:
     }
 
 
+def _runtime_dimension_for_function(
+    problem, function_id: int
+) -> tuple[int | None, dict[str, object]]:
+    if function_id != 13:
+        return None, {
+            "runtime_dimension": int(
+                getattr(problem, "dimension", getattr(problem, "dim", 0))
+            ),
+            "adapter_mode": "direct_metabox_dimension",
+        }
+
+    api_dimension = int(getattr(problem, "dim", 0) or 0)
+    formula_dimension = int(
+        getattr(problem, "dimension", api_dimension) or api_dimension
+    )
+    ovector = getattr(problem, "Ovector", None)
+    ovector_size = int(np.asarray(ovector).size) if ovector is not None else 0
+    if (
+        api_dimension
+        and ovector_size == api_dimension
+        and api_dimension != formula_dimension
+    ):
+        return api_dimension, {
+            "runtime_dimension": api_dimension,
+            "adapter_mode": "implementation_api_adapter",
+            "adapter_reason": "metabox_f13_ovector_requires_D_api",
+            "adapter_preserves_D_formula": True,
+        }
+    return None, {
+        "runtime_dimension": formula_dimension,
+        "adapter_mode": "direct_metabox_dimension",
+    }
+
+
 def _shared_count_and_ratio(
     groups: list[list[int]] | None, dimension: int
 ) -> tuple[int, float]:
@@ -279,7 +313,16 @@ def load_cec2013lsgo_problem(function_id: int, version: str = "numpy") -> LSGOPr
         ),
     }
     metadata.update(semantics_metadata)
-    return MetaBoxProblemAdapter(raw_problem, grouping=groups, metadata=metadata)
+    runtime_dimension, runtime_metadata = _runtime_dimension_for_function(
+        raw_problem, function_id
+    )
+    metadata.update(runtime_metadata)
+    return MetaBoxProblemAdapter(
+        raw_problem,
+        grouping=groups,
+        metadata=metadata,
+        runtime_dimension=runtime_dimension,
+    )
 
 
 def load_cec2013lsgo_suite(

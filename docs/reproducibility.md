@@ -33,10 +33,10 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Current expected local result:
 
 ```text
-53 passed, 1 skipped
+tests pass; optional real MetaBox tests pass only when metaevobox is installed
 ```
 
-The skipped test is allowed only when a real MetaBox smoke test is unavailable or not a complete PASS, and it must print a clear reason.
+The optional real MetaBox tests are allowed to skip only when a real MetaBox smoke test is unavailable or not a complete PASS, and they must print a clear reason.
 
 ## Stage 2.0 Runner
 
@@ -139,12 +139,17 @@ where `FE_proposal=10` means:
 
 ## Real MetaBox Smoke
 
-F14 real conflicting-overlap smoke can be checked through:
+F12/F13/F14 real MetaBox smoke can be checked through:
 
 ```powershell
-python -c "from loco.experiments.stage2_minimal_runner import run_optional_f14_smoke; import json; print(json.dumps(run_optional_f14_smoke(seed=3), indent=2, sort_keys=True))"
+python scripts\stage1\check_metabox_cec2013lsgo_real.py --json-output docs\stage1\metabox_real_smoke_latest.json --seed 11
 ```
 
-F13 remains a known compatibility blocker in the current environment because the official formula dimension is `D_formula=905`, while the MetaBox numpy implementation may internally read an `Ovector(1000)`.
+Current local benchmark-only environment uses `metaevobox==2.0.2` and the LOCO lazy import adapter. In that environment:
 
-Do not pad F13/F14 to fake a pass unless a future wrapper compatibility adapter is explicitly labeled as `implementation_api_adapter` and justified separately.
+- F13 preserves official overlap semantics as `D_formula=905`, but evaluates through `runtime_dimension=1000` with `adapter_mode=implementation_api_adapter` because MetaBox F13 internally exposes 1000-length `Ovector`, `Pvector`, and `s` construction data.
+- F13 grouping, shared-variable count, and overlap ratio remain reported against `D_formula=905`: 20 groups, overlap size 5, 95 shared variables, and `95/905`.
+- F14 remains the direct `D_formula=905` real conflicting-overlap smoke case.
+- The top-level `metaevobox` import may still fail if trainer/agent dependencies such as `pettingzoo` are absent; LOCO uses a benchmark-only lazy import path for CEC2013LSGO.
+
+Do not silently pad F13/F14 to fake a pass. Any wrapper compatibility must be explicitly labeled as `implementation_api_adapter`, must preserve `D_formula`, and must not rewrite or copy the CEC objective.

@@ -9,6 +9,8 @@
       "checks": {
         "D_api": 1000,
         "D_formula": 1000,
+        "adapter_mode": "direct_metabox_dimension",
+        "adapter_reason": null,
         "bounds_finite": true,
         "bounds_shape_ok": true,
         "deterministic_random_eval": true,
@@ -34,6 +36,7 @@
         "pvector_readable": false,
         "random_value_1": 9708194771264.68,
         "random_value_2": 9708194771264.68,
+        "runtime_dimension": 1000,
         "s_readable": false,
         "shared_variable_count": 0,
         "shared_variables_nonempty": false,
@@ -46,19 +49,23 @@
       "checks": {
         "D_api": 1000,
         "D_formula": 905,
+        "adapter_mode": "implementation_api_adapter",
+        "adapter_reason": "metabox_f13_ovector_requires_D_api",
         "bounds_finite": true,
         "bounds_shape_ok": true,
-        "dimension": 905,
+        "deterministic_random_eval": true,
+        "dimension": 1000,
         "dimension_metadata_recorded": true,
         "dimension_ok": true,
-        "expected_dimension": 905,
+        "expected_dimension": 1000,
+        "finite_values": true,
         "group_count": 20,
         "grouping_required": true,
         "grouping_status": "available",
         "grouping_status_valid": true,
         "groups_recovered": true,
         "incidence_shape": [
-          905,
+          1000,
           20
         ],
         "incidence_shape_ok": true,
@@ -70,18 +77,23 @@
         "overlap_readable": true,
         "overlap_size": 5,
         "pvector_readable": true,
+        "random_value_1": 6.345019917167926e+20,
+        "random_value_2": 6.345019917167926e+20,
+        "runtime_dimension": 1000,
         "s_readable": true,
         "shared_variable_count": 95,
-        "shared_variables_nonempty": true
+        "shared_variables_nonempty": true,
+        "zero_value": 8.27380048985966e+16
       },
-      "error": "ValueError: operands could not be broadcast together with shapes (1,905) (1000,) ",
       "function_id": 13,
-      "ok": false
+      "ok": true
     },
     {
       "checks": {
         "D_api": 1000,
         "D_formula": 905,
+        "adapter_mode": "direct_metabox_dimension",
+        "adapter_reason": null,
         "bounds_finite": true,
         "bounds_shape_ok": true,
         "deterministic_random_eval": true,
@@ -110,6 +122,7 @@
         "pvector_readable": true,
         "random_value_1": 3.6581694068193083e+19,
         "random_value_2": 3.6581694068193083e+19,
+        "runtime_dimension": 905,
         "s_readable": true,
         "shared_variable_count": 95,
         "shared_variables_nonempty": true,
@@ -128,6 +141,6 @@
     "stdout_tail": ""
   },
   "stage": "1.5",
-  "status": "PARTIAL",
-  "summary": "F13: ValueError: operands could not be broadcast together with shapes (1,905) (1000,) "
+  "status": "PASS",
+  "summary": "Real MetaBox F12/F13/F14 loaded and evaluated through LOCO adapter."
 }

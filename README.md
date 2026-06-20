@@ -22,10 +22,10 @@ Implemented:
 - Stage 2.1: multi-setting synthetic conflict evidence panel across topology, dimension, overlap ratio, and seed settings.
 - Stage 2.1B: multi-round post-coordination regenerated-conflict evidence gate.
 
-Known blocker:
+Known benchmark boundary:
 
-- MetaBox F13 real evaluate remains a documented `D_formula=905` vs implementation/API `Ovector(1000)` compatibility blocker.
-- F14 real conflicting-overlap smoke currently passes in the local environment, but remains optional in CI-style tests.
+- MetaBox F13 is evaluated through an explicit `implementation_api_adapter`: LOCO preserves `D_formula=905` for official overlap semantics and uses `runtime_dimension=1000` because the MetaBox F13 implementation/API exposes 1000-length internal data (`Ovector`, `Pvector`, and `s` sum).
+- F14 real conflicting-overlap smoke currently passes in the local environment with direct `D_formula=905` evaluation, but remains optional in CI-style tests.
 
 ## Repository Layout
 

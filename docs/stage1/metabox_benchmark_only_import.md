@@ -133,7 +133,7 @@ from metaevobox.environment.problem.SOO.CEC2013LSGO.cec2013lsgo_numpy import F12
 
 2. `metaevobox.environment.problem.SOO.__init__` 不应 eager import HPO-B / xgboost / pandas / pyarrow 等非当前 benchmark 依赖。
 
-3. 检查 F13 official dimension=905 下，MetaBox numpy implementation 中 `x(905)` 与 `Ovector(1000)` 的 shape mismatch。
+3. 检查 F13 official `D_formula=905` 与 MetaBox numpy implementation/API 中 1000-length `Ovector` 的 runtime surface 差异，并确认 LOCO 是否需要显式 `implementation_api_adapter`。
 
 ## 9. LOCO 当前是否应该继续采用 lazy import adapter？
 
@@ -154,7 +154,7 @@ from metaevobox.environment.problem.SOO.CEC2013LSGO.cec2013lsgo_numpy import F12
 python scripts\stage1\check_metabox_cec2013lsgo_real.py --json-output docs\stage1\metabox_real_smoke_latest.json
 ```
 
-当前状态：`PARTIAL`
+当前状态：`PASS_WITH_BENCHMARK_ONLY_IMPORT`
 
 已通过：
 
@@ -164,12 +164,14 @@ python scripts\stage1\check_metabox_cec2013lsgo_real.py --json-output docs\stage
 - F13/F14 的 `Pvector`、`s`、`overlap` 可读；
 - F13/F14 grouping 可重建，group count 为 20，overlap size 为 5；
 - F13/F14 shared variables 数量为 95，overlap ratio 为 `95/905`；
-- F13/F14 incidence matrix shape 为 `905 x 20`；
+- F13 在 `implementation_api_adapter` 下 runtime incidence matrix shape 为 `1000 x 20`，但 shared-variable count 与 overlap ratio 仍按 `D_formula=905` 报告；
+- F14 direct runtime incidence matrix shape 为 `905 x 20`；
 - F12 不再要求 `Pvector/s/overlap`，当前 `grouping_status=unavailable` 是合法 metadata 状态；
+- F13 可以在显式 `runtime_dimension=1000` 的 MetaBox implementation/API surface 上通过 LOCO adapter evaluate，且 zero/random eval finite、deterministic。
 - F14 可以在 905 维输入上通过 LOCO adapter evaluate，且 zero/random eval finite、deterministic。
 
 当前 blocker：
 
-- 普通 direct import 仍触发 trainer/optimizer/agent 依赖链，失败于 `pettingzoo`。
-- F13 在 official `D_formula=905` 输入下，MetaBox numpy implementation 内部执行 `x - Ovector` 时出现 `x(1,905)` 与 `Ovector(1000,)` shape mismatch。这是 `D_formula/D_api` compatibility blocker。
+- 普通 direct import 仍触发 trainer/optimizer/agent 依赖链，可能失败于 `pettingzoo` 等非 benchmark-only 依赖；LOCO benchmark-only lazy import path 不依赖这条 top-level path。
+- F13 不再作为 LOCO real smoke blocker；其 `D_formula/D_api` compatibility 通过显式 `adapter_mode=implementation_api_adapter` 记录，避免暗中 padding 或改写 objective。
 - F12 在当前 MetaBox implementation 中未暴露 `Pvector`、`s`、`overlap`，但 Stage 1.6 已确认 F12 不使用 F13/F14 的 `Pvector/s/overlap` grouping rule，因此不再把 F12 metadata unavailable 视为同类失败。

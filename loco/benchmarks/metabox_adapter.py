@@ -43,9 +43,16 @@ def _as_bound_array(value: Any, dimension: int, name: str) -> np.ndarray:
 class MetaBoxProblemAdapter(LSGOProblem):
     """Wrap a MetaBox problem without mutating its objective implementation."""
 
-    def __init__(self, metabox_problem, grouping=None, metadata=None):
+    def __init__(
+        self,
+        metabox_problem,
+        grouping=None,
+        metadata=None,
+        runtime_dimension: int | None = None,
+    ):
         self.metabox_problem = metabox_problem
         self._metadata = dict(metadata or {})
+        self._runtime_dimension = runtime_dimension
         self.fe_count = int(getattr(metabox_problem, "numevals", 0) or 0)
         self._groups = (
             [list(map(int, group)) for group in grouping]
@@ -98,6 +105,8 @@ class MetaBoxProblemAdapter(LSGOProblem):
         )
 
     def dimension(self) -> int:
+        if self._runtime_dimension is not None:
+            return int(self._runtime_dimension)
         return int(
             getattr(
                 self.metabox_problem,

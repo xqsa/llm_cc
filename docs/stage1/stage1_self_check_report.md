@@ -3,7 +3,7 @@
 生成日期：2026-06-19  
 执行者：Codex  
 验证命令：`python -m pytest -p no:cacheprovider tests -q -rs`
-验证结果：`29 passed, 1 skipped in 2.37s`
+验证结果：见当前提交的本地验证记录；真实 MetaBox optional tests 在安装 `metaevobox` 的本机 benchmark-only 环境中为 PASS，在 CI 缺少 MetaBox 时应 clean skip。
 
 ## 1. 是否复用了 MetaBox-v2？
 
@@ -15,7 +15,7 @@
 
 ## 3. 是否能加载 F12/F13/F14？
 
-接口已实现：`load_cec2013lsgo_overlap_suite()` 固定加载 F12/F13/F14。当前本机真实 MetaBox import 仍失败于 top-level dependency chain，因此测试使用 fake MetaBox module 验证 loader contract；真实加载需要一个可正常 import `metaevobox.environment.problem.SOO.CEC2013LSGO` 的环境。
+接口已实现：`load_cec2013lsgo_overlap_suite()` 固定加载 F12/F13/F14。LOCO 使用 benchmark-only lazy import adapter 直接加载 MetaBox CEC2013LSGO numpy module，避免触发 top-level trainer / optimizer / agent 依赖链。
 
 ## 4. 是否所有 benchmark 都统一为 LSGOProblem interface？
 
@@ -85,26 +85,26 @@ Stage 2 不应直接 import MetaBox internal problem classes。
 
 ## Stage 1.5 MetaBox Real Smoke Status
 
-当前状态：`PARTIAL`
+当前状态：`PASS_WITH_BENCHMARK_ONLY_IMPORT`
 
 含义：
 
 - LOCO adapter contract 与 Stage 1 tests 通过。
-- 已新增真实 MetaBox smoke 脚本：`scripts/stage1/check_metabox_cec2013lsgo_real.py`。
-- 已新增 optional pytest：`tests/stage1/test_metabox_real_optional.py`，真实 smoke 未 PASS 时 clean skip，不使用 fake module 伪造成功。
+- 真实 MetaBox smoke 脚本：`scripts/stage1/check_metabox_cec2013lsgo_real.py`。
+- optional pytest：`tests/stage1/test_metabox_real_optional.py`，真实 smoke 不可用时 clean skip，不使用 fake module 伪造成功。
 - benchmark-only bypass import 可以加载已安装 MetaBox 的 CEC2013LSGO numpy module，不触发 `metaevobox.__init__`。
-- 普通 direct import `metaevobox.environment.problem.SOO.CEC2013LSGO` 仍触发 trainer / optimizer / agent 依赖链，当前失败于缺少 `pettingzoo`。
+- 普通 direct import `metaevobox.environment.problem.SOO.CEC2013LSGO` 仍触发 trainer / optimizer / agent 依赖链；这不是 benchmark-only smoke 的 blocker。
 - Stage 1.6 已修正 CEC2013 LSGO semantics：F13/F14 必须同时记录 `D_formula=905` 与 `D_api=1000`。
 - F13/F14 使用 `Pvector/s/overlap` extractor，group count 为 20，overlap size 为 5，shared variables 数量为 95，overlap ratio 为 `95/905`。
 - F12 不使用 F13/F14 的 `Pvector/s/overlap` grouping rule；当前 wrapper 未暴露对应 metadata 时，`grouping_status=unavailable` 是合法状态，不再视为 F13/F14 同类失败。
-- F13 真实 evaluate mismatch 是 `D_formula=905` 与 MetaBox implementation/API 内部 `Ovector(1000)` 的兼容问题。
-- F14 是当前唯一真实完整通过的 CEC2013 conflicting-overlap smoke case。
+- F13 真实 evaluate 已通过显式 `implementation_api_adapter` 适配：保留 `D_formula=905`，使用 `runtime_dimension=1000` 对齐 MetaBox F13 implementation/API 的 1000-length `Ovector`。
+- F14 是当前直接 `D_formula=905` 真实完整通过的 CEC2013 conflicting-overlap smoke case。
 
 判定：
 
-- 不是 `PASS`：F13 尚未完成真实 905 维 evaluate，仍被 `x(1,905)` 与 `Ovector(1000,)` shape mismatch 阻塞。
-- 不是 `FAIL`：adapter contract、benchmark-only import、F12 legal-unavailable metadata、F14 smoke、F13/F14 grouping reconstruction 均有真实证据。
-- 因此 Stage 1.5/1.6 后当前仍为 `PARTIAL`，但主要 blocker 已收敛为 F13 `D_formula/D_api` compatibility。
+- `PASS_WITH_BENCHMARK_ONLY_IMPORT`：F12/F13/F14 均可通过 LOCO adapter load/evaluate；F13 的 runtime surface 显式标记为 `implementation_api_adapter`。
+- 不是 full MetaBox top-level import PASS：普通 `metaevobox` import 仍可能被 trainer/agent 依赖链阻塞。
+- 不是语义改写：F13/F14 的 official grouping、shared variables 与 overlap ratio 仍按 `D_formula=905` 报告。
 
 ## Stage 1.6 CEC2013 LSGO Semantics Correction Status
 
@@ -124,5 +124,6 @@ Stage 2 不应直接 import MetaBox internal problem classes。
 
 剩余风险：
 
-- F13 真实 evaluate 仍受 MetaBox implementation/API 维度兼容问题阻塞：LOCO 输入遵守 `D_formula=905`，但 MetaBox numpy implementation 内部仍读取 `Ovector(1000)`。
-- 不允许通过 padding 905 到 1000 伪造 PASS；若后续做 wrapper compatibility adapter，必须显式标记 `implementation_api_adapter` 并证明 official wrapper evaluate API 要求 1000D。
+- F13 的 adapter 改变的是 LOCO 对 MetaBox implementation/API 的 runtime input surface：`problem.dimension()` 返回 1000，但 metadata 中继续保留 `D_formula=905`、`D_api=1000`、`adapter_mode=implementation_api_adapter`。
+- F13 incidence matrix 在 adapter runtime surface 下为 `1000 x 20`；shared-variable count 与 overlap ratio 仍按 official formula variables 报告为 `95` 与 `95/905`。
+- 不允许把该适配描述成 objective rewrite、benchmark copy 或普通 1000D semantics；它只是 MetaBox runtime compatibility layer。
