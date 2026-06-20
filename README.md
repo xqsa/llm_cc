@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.6 PASS` — the Stage 3.5 quality-pass candidate pool is frozen, and the Stage 4 train-only evolution/search protocol is prepared.
+Current repository state: `Stage 3.7 PASS` — the Stage 3.6 frozen candidate pool remains the Stage 4 train-only search input, and the Coordination Family Literature Grounding and Allowed Vocabulary Lock is now in place before any Stage 4 evolution/search run.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
@@ -24,6 +24,7 @@ Current repository state: `Stage 3.6 PASS` — the Stage 3.5 quality-pass candid
 - Stage 3.4 audited the Stage 3.3 candidate corpus with static quality and diversity filters, finding that the current corpus is boundary-valid but structurally narrow.
 - Stage 3.5 hardened the prompt space to force broader family coverage, producing candidates that include projection, dampening, reweighting, repair, and best_reward_select under the existing typed-AST boundary.
 - Stage 3.6 froze the Stage 3.5 quality-pass candidate pool as immutable train-only input for future search and prepared the Stage 4 protocol boundary without running evolution, objective evaluation, AST execution, or test feedback.
+- Stage 3.7 locked the literature-grounded coordination family space for Stage 4, covering F0-F9 families, allowed typed-AST vocabulary, forbidden vocabulary, shared-variable-only scope, legal train-time signals, full FE accounting, and the not a performance claim boundary.
 
 The Stage 2 readiness artifact currently records:
 
@@ -138,6 +139,26 @@ no_test_feedback = true
 not_performance_claim = true
 ```
 
+The Stage 3.7 coordination family lock currently records:
+
+```text
+status = READY_FOR_STAGE4_TRAIN_ONLY_SEARCH_AFTER_FAMILY_LOCK
+families = F0..F9
+target_scope = shared_variables_only
+allowed_split = train
+validation_usage = selection only after train search
+test_usage = sealed final reporting only
+fe_accounting_policy = count_all_extra_function_evaluations
+no_llm_call = true
+no_evolution_run = true
+no_ast_execution = true
+no_objective_evaluation = true
+no_test_feedback = true
+not_performance_claim = true
+```
+
+Do not run Stage 4 evolution/search before the Stage 3.7 family lock is preserved. The next executable phase is Stage 4 train-only evolution/search, still under the frozen-pool, family-lock, and split-firewall boundaries.
+
 Known benchmark boundary:
 
 - MetaBox F13 is evaluated through an explicit `implementation_api_adapter`: LOCO preserves `D_formula=905` for official overlap semantics and uses `runtime_dimension=1000` because the MetaBox F13 implementation/API exposes 1000-length internal data (`Ovector`, `Pvector`, and `s` sum).
@@ -183,6 +204,7 @@ docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2 reports, result JSON, CSV summaries, and audits
 docs/stage3/          Stage 3 protocol lock, search-space, selection, and firewall docs
+docs/stage4/          Stage 4 pre-search family-space grounding and vocabulary lock
 loco/benchmarks/      LSGOProblem interface, MetaBox adapter, synthetic overlap generator
 loco/conflict/        Shared-variable conflict state and metrics
 loco/coordination/    Baseline coordination rules, typed AST boundary, artifact helpers
@@ -190,7 +212,7 @@ loco/evaluation/      FE accounting
 loco/experiments/     Stage 2 diagnostic runners
 loco/llm/             Stage 3 prompt contract, provider client, candidate wrappers, and batch audit helpers
 scripts/stage1/       Real MetaBox CEC2013 LSGO smoke script
-tests/                Stage 0/1/2/3 tests
+tests/                Stage 0/1/2/3/4 tests
 ```
 
 ## Installation
@@ -213,10 +235,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 3.6:
+Expected latest local result after Stage 3.7:
 
 ```text
-161 passed
+164 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -267,6 +289,12 @@ Run the Stage 3.6 frozen candidate pool gate directly:
 python -m pytest tests\stage3\test_stage3_6_freeze_candidate_pool.py -q
 ```
 
+Run the Stage 3.7 coordination family lock gate directly:
+
+```powershell
+python -m pytest tests\stage4\test_coordination_family_space.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -308,5 +336,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 4.0: train-only evolution/search over the frozen coordination-candidate pool
+Stage 4.0: train-only evolution/search over the frozen coordination-candidate pool, using the Stage 3.7 Coordination Family Literature Grounding and Allowed Vocabulary Lock
 ```
+
+This next stage remains a train-only search step, not a performance claim.

@@ -1,0 +1,178 @@
+stage: "3.7"
+name: "Coordination Family Literature Grounding and Allowed Vocabulary Lock"
+created_by: "Codex"
+created_date: "2026-06-20"
+status: "READY_FOR_STAGE4_TRAIN_ONLY_SEARCH_AFTER_FAMILY_LOCK"
+
+purpose:
+  summary: "Lock the literature-grounded coordination-family vocabulary before Stage 4 train-only evolution/search."
+  stage_boundary: "documentation/config/test gate only"
+  not_performance_claim: true
+
+protocol_boundary:
+  target_scope: "shared_variables_only"
+  search_target: "typed coordination operator AST"
+  allowed_split: "train"
+  validation_usage: "selection only after train search"
+  test_usage: "sealed final reporting only"
+  base_optimizer_policy: "BaseOpt must remain fixed"
+  fe_accounting_policy: "count_all_extra_function_evaluations"
+  no_llm_call: true
+  no_evolution_run: true
+  no_ast_execution: true
+  no_objective_evaluation: true
+  no_validation_feedback: true
+  no_test_feedback: true
+  not_performance_claim: true
+
+legal_train_time_signals:
+  - "shared_variable_indices"
+  - "proposal_values"
+  - "proposal_deltas"
+  - "proposal_rewards_or_contributions"
+  - "proposal_conflict_magnitude"
+  - "proposal_disagreement"
+  - "historical_coordination_trace_on_train_split"
+  - "budget_ledger_state"
+  - "fe_overhead"
+  - "low_overlap_or_no_overlap_guard_state"
+
+forbidden_vocabulary:
+  - "optimizer"
+  - "controller"
+  - "scheduler"
+  - "optimizer_selection"
+  - "BaseOpt modification"
+  - "function_id"
+  - "benchmark_name"
+  - "true_optimum"
+  - "test_metadata"
+  - "future_evaluations"
+  - "hidden_test_information"
+  - "DE"
+  - "CMA-ES"
+  - "PSO"
+  - "SHADE"
+  - "L-SHADE"
+  - "benchmark objective rewrite"
+
+allowed_primitives:
+  - "no_coord"
+  - "consensus"
+  - "weighted_consensus"
+  - "robust_consensus"
+  - "best_reward_select"
+  - "soft_select"
+  - "dampening"
+  - "clip"
+  - "projection"
+  - "repair"
+  - "reweighting"
+  - "residual_balance"
+  - "dual_memory_balance"
+  - "temporal_hysteresis"
+  - "anti_oscillation"
+  - "conditional"
+
+families:
+  - id: "F0"
+    name: "identity_no_coord_low_overlap_safeguard"
+    source_lineage:
+      - "no-overlap and low-overlap regression guards in cooperative coevolution"
+      - "CEC2013 LSGO overlap categories"
+    loco_meaning: "Preserve BaseOpt proposals when shared-variable conflict is absent or unsafe to coordinate."
+    allowed_primitives: ["no_coord", "conditional"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["low_overlap_or_no_overlap_guard_state", "proposal_conflict_magnitude", "budget_ledger_state"]
+    not_performance_claim: true
+  - id: "F1"
+    name: "consensus"
+    source_lineage:
+      - "ADMM and distributed consensus"
+      - "shared-variable proposal aggregation"
+    loco_meaning: "Aggregate multiple shared-variable proposals into one consensus update."
+    allowed_primitives: ["consensus", "weighted_consensus", "clip"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_values", "proposal_deltas", "proposal_disagreement", "budget_ledger_state"]
+    not_performance_claim: true
+  - id: "F2"
+    name: "robust_consensus"
+    source_lineage:
+      - "robust aggregation"
+      - "median trimmed-mean and geometric-median style aggregation"
+    loco_meaning: "Reduce outlier proposal influence before producing a shared-variable consensus."
+    allowed_primitives: ["robust_consensus", "clip", "conditional"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_values", "proposal_deltas", "proposal_disagreement", "budget_ledger_state"]
+    not_performance_claim: true
+  - id: "F3"
+    name: "reward_or_contribution_weighting"
+    source_lineage:
+      - "contribution-based cooperative coevolution"
+      - "credit assignment for component proposals"
+    loco_meaning: "Use train-split reward or contribution traces to weight competing proposals without becoming a scheduler."
+    allowed_primitives: ["reweighting", "weighted_consensus", "clip"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_rewards_or_contributions", "proposal_values", "budget_ledger_state", "fe_overhead"]
+    not_performance_claim: true
+  - id: "F4"
+    name: "winner_or_soft_selection"
+    source_lineage:
+      - "winner selection among competing local proposals"
+      - "soft selection and rank aggregation"
+    loco_meaning: "Choose or softly mix shared-variable proposals based on legal train-time evidence."
+    allowed_primitives: ["best_reward_select", "soft_select", "clip"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_rewards_or_contributions", "proposal_conflict_magnitude", "budget_ledger_state"]
+    not_performance_claim: true
+  - id: "F5"
+    name: "dampening_trust_region_like_step_control"
+    source_lineage:
+      - "trust-region step control"
+      - "conservative update dampening"
+    loco_meaning: "Constrain shared-variable update size to avoid unstable conflict amplification."
+    allowed_primitives: ["dampening", "clip", "conditional"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_deltas", "proposal_conflict_magnitude", "historical_coordination_trace_on_train_split", "budget_ledger_state"]
+    not_performance_claim: true
+  - id: "F6"
+    name: "projection_repair"
+    source_lineage:
+      - "projection"
+      - "feasibility repair"
+    loco_meaning: "Project or repair coordinated shared-variable updates back into legal bounds or safe proposal ranges."
+    allowed_primitives: ["projection", "repair", "clip"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_values", "proposal_deltas", "budget_ledger_state", "fe_overhead"]
+    not_performance_claim: true
+  - id: "F7"
+    name: "residual_dual_memory_conflict_balancing"
+    source_lineage:
+      - "ADMM residual balancing analogy"
+      - "train-split memory of coordination residuals"
+    loco_meaning: "Track train-only residual imbalance among shared-variable proposals and adjust future coordination conservatively."
+    allowed_primitives: ["residual_balance", "dual_memory_balance", "dampening", "conditional"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["historical_coordination_trace_on_train_split", "proposal_disagreement", "budget_ledger_state", "fe_overhead"]
+    not_performance_claim: true
+  - id: "F8"
+    name: "temporal_hysteresis_anti_oscillation"
+    source_lineage:
+      - "anti-oscillation safeguards"
+      - "temporal hysteresis in iterative coordination"
+    loco_meaning: "Avoid rapid flip-flop updates on shared variables using train-only trace memory."
+    allowed_primitives: ["temporal_hysteresis", "anti_oscillation", "dampening", "conditional"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["historical_coordination_trace_on_train_split", "proposal_deltas", "proposal_conflict_magnitude", "budget_ledger_state"]
+    not_performance_claim: true
+  - id: "F9"
+    name: "conditional_composition_within_typed_ast"
+    source_lineage:
+      - "typed AST composition"
+      - "conditioned hyper-heuristic style rule composition without optimizer generation"
+    loco_meaning: "Compose legal shared-variable coordination primitives under explicit conditions while staying inside the typed AST boundary."
+    allowed_primitives: ["conditional", "no_coord", "weighted_consensus", "robust_consensus", "best_reward_select", "dampening", "projection", "repair", "reweighting", "temporal_hysteresis"]
+    target_scope: "shared_variables_only"
+    legal_train_time_signals: ["proposal_conflict_magnitude", "proposal_disagreement", "historical_coordination_trace_on_train_split", "budget_ledger_state", "fe_overhead"]
+    not_performance_claim: true
+
