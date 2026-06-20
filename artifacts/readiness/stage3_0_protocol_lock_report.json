@@ -1,0 +1,27 @@
+{
+  "allowed_search_target": "typed coordination operator AST",
+  "config_mentions_test_firewall": true,
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "not_performance_claim": true,
+  "protocol_config": "configs/stage3_search_protocol.yaml",
+  "readiness_decision": "READY_FOR_STAGE3_BOUNDARY_ONLY",
+  "required_before_generation": [
+    "READY_FOR_STAGE3_BOUNDARY_ONLY",
+    "prompt_contract_locked",
+    "candidate_schema_locked",
+    "test_feedback_firewall_locked"
+  ],
+  "schema_version": "loco.stage3_protocol_lock.v1",
+  "split_protocol": {
+    "test": "sealed final reporting only",
+    "train": "candidate generation and evolution selection only",
+    "validation": "model/operator selection only"
+  },
+  "stage": "3.0",
+  "stage3_allowed": true,
+  "status": "PASS",
+  "target_scope": "shared_variables_only"
+}

@@ -12,11 +12,12 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: pre-Stage-3 readiness gate passed at the Stage 2 boundary.
+Current repository state: Stage 3.0 protocol lock is in place after the Stage 2 readiness gate.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
 - Stage 2 built the conflict-coordination infrastructure and readiness gates needed before any LLM/evolution search is allowed.
+- Stage 3.0 locked the boundary-constrained typed-AST search protocol, including the LLM candidate wrapper schema, prompt contract, train/validation/test firewall, and protocol-lock report.
 
 The Stage 2 readiness artifact currently records:
 
@@ -27,6 +28,16 @@ not_performance_claim = true
 ```
 
 This means Stage 3 may begin only as boundary-constrained typed coordination-operator AST search. It is **not** a claim that LOCO has learned final operators, beaten baselines, or achieved SOTA optimizer performance.
+
+The Stage 3.0 protocol lock artifact currently records:
+
+```text
+status = PASS
+stage3_allowed = true
+no_llm_call = true
+no_evolution_run = true
+not_performance_claim = true
+```
 
 Known benchmark boundary:
 
@@ -72,13 +83,15 @@ artifacts/readiness/  Pre-Stage-3 readiness decision artifacts
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2 reports, result JSON, CSV summaries, and audits
+docs/stage3/          Stage 3 protocol lock, search-space, selection, and firewall docs
 loco/benchmarks/      LSGOProblem interface, MetaBox adapter, synthetic overlap generator
 loco/conflict/        Shared-variable conflict state and metrics
 loco/coordination/    Baseline coordination rules, typed AST boundary, artifact helpers
 loco/evaluation/      FE accounting
 loco/experiments/     Stage 2 diagnostic runners
+loco/llm/             Stage 3 prompt contract and LLM candidate wrapper schema
 scripts/stage1/       Real MetaBox CEC2013 LSGO smoke script
-tests/                Stage 0/1/2 tests
+tests/                Stage 0/1/2/3 tests
 ```
 
 ## Installation
@@ -101,16 +114,22 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local Stage 2 boundary result:
+Expected latest local result after Stage 3.0:
 
 ```text
-126 passed
+138 passed
 ```
 
 Run the Stage 2 readiness gate directly:
 
 ```powershell
 python -m pytest tests\stage2\test_stage2_10_readiness_gate.py -q
+```
+
+Run the Stage 3.0 protocol lock gate directly:
+
+```powershell
+python -m pytest tests\stage3\test_stage3_0_protocol_lock.py -q
 ```
 
 Run Stage 2 diagnostic runners when regenerating reports:
@@ -154,5 +173,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 3.0: protocol lock for boundary-constrained typed-AST LLM/evolution search
+Stage 3.1: first small-batch LLM candidate generation, train-only, audit-heavy
 ```

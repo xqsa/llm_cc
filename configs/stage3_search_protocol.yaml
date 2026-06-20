@@ -1,0 +1,85 @@
+stage: "3.0"
+name: "Boundary-Constrained Operator Search Protocol Lock"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Lock Stage 3 search protocol before any LLM call or evolution run."
+  readiness_dependency: "artifacts/readiness/stage2_10_readiness_decision.json"
+  required_readiness_decision: "READY_FOR_STAGE3_BOUNDARY_ONLY"
+  protocol_module: "loco.llm.ast_candidate_schema"
+  prompt_contract_module: "loco.llm.operator_prompt_contract"
+
+allowed_scope:
+  search_target: "typed coordination operator AST"
+  target_variables: "shared_variables_only"
+  original_problem: "single-objective LSGO: minimize f(x), x in Omega"
+  llm_role: "propose candidate AST structures only"
+  evolution_role: "select among validated candidate ASTs using train/validation operator metrics only"
+
+forbidden_scope:
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no scheduler/controller generation"
+  - "no optimizer selection"
+  - "no benchmark objective rewrite"
+  - "no arbitrary executable code"
+  - "no test feedback"
+  - "no test-set tuning"
+  - "no benchmark-specific metadata"
+
+stage3_0_forbidden_actions:
+  - "no LLM call"
+  - "no evolution run"
+  - "no candidate generation"
+  - "no objective evaluation"
+  - "no optimizer implementation"
+  - "no controller/scheduler implementation"
+  - "no benchmark modification"
+
+candidate_schema:
+  wrapper_schema_version: "loco.llm_candidate.v1"
+  ast_schema_version: "loco.dsl.v1"
+  validation_schema_version: "loco.llm_candidate_validation.v1"
+  required_declared_scope:
+    target: "shared_variables_only"
+    not_optimizer: true
+    not_controller: true
+    not_scheduler: true
+    not_optimizer_selection: true
+    not_benchmark_specific: true
+    no_test_feedback: true
+
+test_feedback_firewall:
+  train: "candidate generation and evolution selection may use train-only operator metrics"
+  validation: "operator selection and early stopping may use validation metrics"
+  test: "sealed final reporting only after freeze"
+  prohibited:
+    - "LLM prompt cannot include test metrics"
+    - "evolution selection cannot use test metrics"
+    - "candidate rejection cannot be tuned from test failures"
+    - "operator library cannot be modified after test evaluation"
+
+operator_evaluation_metrics:
+  allowed_outer_metrics:
+    - "final error"
+    - "proposal_consensus_collapse_ratio"
+    - "post_coordination_regenerated_conflict"
+    - "oscillation"
+    - "FE overhead"
+    - "generalization"
+  original_problem_remains_single_objective: true
+
+fe_accounting:
+  identity: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+  all_extra_function_evaluations_count: true
+  cross_method_evaluations_not_shared: true
+
+stage3_0_acceptance:
+  - "Stage 2.10 readiness decision is READY_FOR_STAGE3_BOUNDARY_ONLY"
+  - "Prompt contract is locked"
+  - "Candidate wrapper schema is locked"
+  - "Stage 2 typed AST boundary is reused"
+  - "Test feedback firewall is documented"
+  - "Stage 3.0 tests pass without importing LLM/evolution clients"
+  - "No LLM call, no evolution run, no objective evaluation"
