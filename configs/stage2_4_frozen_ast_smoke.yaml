@@ -1,0 +1,60 @@
+stage: "2.4"
+name: "Frozen AST Smoke Integration"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Integrate one handwritten frozen typed AST smoke operator into the existing synthetic conflict runner."
+  runner: "loco.experiments.stage2_minimal_runner"
+  output_artifact: "docs/stage2/stage2_4_frozen_ast_smoke_result.json"
+  stage2_4_is_not:
+    - "LLM search"
+    - "evolution search"
+    - "operator discovery"
+    - "optimizer implementation"
+    - "controller/scheduler implementation"
+    - "SOTA evidence"
+
+frozen_ast_smoke:
+  operator_name: "FrozenASTSmoke"
+  source: "handwritten_frozen_ast_template"
+  template_id: "stage2_4_weighted_dampened_clip_template"
+  template_nodes:
+    - "weighted_consensus"
+    - "dampening"
+    - "clip"
+  no_LLM: true
+  no_evolution: true
+  no_optimizer: true
+  no_objective_evaluation_inside_runtime: true
+  runtime_extra_fe: 0
+
+runner_contract:
+  baseline_method_runs:
+    - "NoCoordination"
+    - "AverageConsensus"
+    - "BestRewardSelection"
+    - "WeightedConsensus"
+    - "ConflictDampening"
+    - "FrozenASTSmoke"
+  budget_scope: "per_method_run"
+  cross_baseline_evaluations_shared: false
+  commit_evaluation_per_method: 1
+  frozen_ast_runtime_trace_required: true
+
+acceptance_checks:
+  - "existing synthetic runner includes FrozenASTSmoke"
+  - "FrozenASTSmoke emits DSLRuntime coordination results"
+  - "FrozenASTSmoke runtime extra_fe is 0"
+  - "FrozenASTSmoke has deterministic template fingerprint"
+  - "runner remains seed reproducible"
+  - "runner imports no LLM/evolution modules"
+
+reporting_contract:
+  required_claim: "Stage 2.4 integrates a handwritten frozen AST smoke operator into the synthetic conflict runner."
+  forbidden_claims:
+    - "learned reusable operator"
+    - "LLM-generated operator success"
+    - "evolution search success"
+    - "optimizer performance improvement"
+    - "SOTA result"

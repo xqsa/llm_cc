@@ -36,6 +36,7 @@ from loco.coordination.baselines import (
     NoCoordination,
     default_baseline_operators,
 )
+from loco.coordination.frozen_ast_smoke import FrozenASTSmokeOperator
 from loco.evaluation.fe_accounting import FEBudgetTracker
 
 
@@ -210,11 +211,16 @@ def _collapsed_after_batch(
     )
 
 
+def _stage2_4_smoke_operators() -> list[CoordinationOperator]:
+    return [*default_baseline_operators(), FrozenASTSmokeOperator()]
+
+
 def _run_problem(
     problem: LSGOProblem,
     seed: int,
     max_fe: int,
     output_path: Path | None = None,
+    include_frozen_ast_smoke: bool = False,
 ) -> dict[str, Any]:
     groups = problem.grouping()
     if groups is None:
@@ -233,9 +239,14 @@ def _run_problem(
         overlap_ratio=float(problem.metadata().get("overlap_ratio", 0.0)),
     )
 
+    operators = (
+        _stage2_4_smoke_operators()
+        if include_frozen_ast_smoke
+        else default_baseline_operators()
+    )
     operator_results: dict[str, Any] = {}
     optimum = problem.optimum_value()
-    for operator in default_baseline_operators():
+    for operator in operators:
         tracker = FEBudgetTracker(max_fe=max_fe)
         tracker.record("proposal", proposal_tracker.fe_proposal)
         coordinated = current.copy()
@@ -282,7 +293,7 @@ def _run_problem(
                 0.0, (before_intensity - after_intensity) / before_intensity
             )
 
-        operator_results[operator.name] = {
+        operator_payload = {
             "final_objective": final_objective,
             "final_error": None if optimum is None else final_objective - optimum,
             "FE_total": tracker.fe_total,
@@ -304,9 +315,12 @@ def _run_problem(
                 int(variable_id) for variable_id in coordination_results
             ),
         }
+        if hasattr(operator, "runtime_metadata"):
+            operator_payload["frozen_ast_runtime"] = operator.runtime_metadata()
+        operator_results[operator.name] = operator_payload
 
     result = {
-        "stage": "2.0",
+        "stage": "2.4" if include_frozen_ast_smoke else "2.0",
         "seed": seed,
         "git_commit": _git_commit_hash(),
         "benchmark": {
@@ -325,6 +339,15 @@ def _run_problem(
         },
         "operators": operator_results,
     }
+    if include_frozen_ast_smoke:
+        result["frozen_ast_smoke"] = {
+            "enabled": True,
+            "source": "handwritten_frozen_ast_template",
+            "no_llm": True,
+            "no_evolution": True,
+            "no_optimizer": True,
+            "no_objective_evaluation": True,
+        }
     result = _json_ready(result)
     if output_path is not None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -340,13 +363,24 @@ def run_stage2_synthetic_minimal(
 ) -> dict[str, Any]:
     problem = _make_synthetic_problem(seed)
     path = Path(output_path) if output_path is not None else None
-    return _run_problem(problem=problem, seed=seed, max_fe=max_fe, output_path=path)
+    return _run_problem(
+        problem=problem,
+        seed=seed,
+        max_fe=max_fe,
+        output_path=path,
+        include_frozen_ast_smoke=True,
+    )
 
 
 def run_optional_f14_smoke(seed: int = 0, max_fe: int = 10_000) -> dict[str, Any]:
     try:
         problem = load_cec2013lsgo_problem(14, version="numpy")
-        result = _run_problem(problem=problem, seed=seed, max_fe=max_fe)
+        result = _run_problem(
+            problem=problem,
+            seed=seed,
+            max_fe=max_fe,
+            include_frozen_ast_smoke=True,
+        )
     except Exception as exc:
         return {
             "status": "SKIP",
@@ -371,7 +405,7 @@ def run_optional_f14_smoke(seed: int = 0, max_fe: int = 10_000) -> dict[str, Any
 
 
 def main() -> int:
-    output_path = Path("docs/stage2/stage2_0_synthetic_result.json")
+    output_path = Path("docs/stage2/stage2_4_frozen_ast_smoke_result.json")
     result = run_stage2_synthetic_minimal(seed=0, output_path=output_path)
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0

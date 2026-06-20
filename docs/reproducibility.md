@@ -150,6 +150,33 @@ The tested surface includes:
 
 Stage 2.3 does not call objective functions, generate ASTs, call an LLM, run evolution, implement an optimizer, or claim learned operators.
 
+## Stage 2.4 Frozen AST Smoke Integration
+
+Stage 2.4 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_4_frozen_ast_runner.py -q
+python loco\experiments\stage2_minimal_runner.py
+```
+
+The runner writes:
+
+```text
+docs/stage2/stage2_4_frozen_ast_smoke_result.json
+```
+
+The tested and logged surface includes:
+
+- existing synthetic conflict runner integration;
+- handwritten `FrozenASTSmoke` method run;
+- deterministic frozen AST template fingerprint;
+- per-shared-variable DSLRuntime trace diagnostics;
+- `FE_coordination_extra = 0`;
+- per-method budget accounting;
+- no LLM / no evolution imports.
+
+Stage 2.4 is a smoke integration gate. It does not claim learned operators, LLM-generated operator success, evolution search success, optimizer improvement, or SOTA results.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:

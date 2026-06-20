@@ -1,0 +1,1493 @@
+{
+  "aggregate_conflict_metrics": {
+    "mean_conflict_intensity": 0.4327262889253841,
+    "mean_direction_disagreement": 0.7,
+    "mean_oscillation_score": 1.0,
+    "mean_reward_disagreement": 0.5957038667761523,
+    "mean_value_disagreement": 0.0024750000000000006,
+    "number_of_shared_variables": 10,
+    "overlap_ratio": 0.1,
+    "per_variable": {
+      "0": {
+        "conflict_intensity": 0.5673771706546219,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.6998815119638656,
+        "value_disagreement": 0.0022500000000000003
+      },
+      "1": {
+        "conflict_intensity": 0.5634231549928493,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.6877694649785481,
+        "value_disagreement": 0.0025
+      },
+      "2": {
+        "conflict_intensity": 0.4772480070845644,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.428994021253693,
+        "value_disagreement": 0.0027500000000000003
+      },
+      "3": {
+        "conflict_intensity": 0.4218091358910192,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.2631774076730575,
+        "value_disagreement": 0.0022500000000000003
+      },
+      "4": {
+        "conflict_intensity": 0.6029678229525979,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.8064034688577937,
+        "value_disagreement": 0.0025000000000000005
+      },
+      "5": {
+        "conflict_intensity": 0.5750901151241841,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.7225203453725522,
+        "value_disagreement": 0.0027500000000000003
+      },
+      "6": {
+        "conflict_intensity": 0.1779658164886351,
+        "direction_disagreement": 0.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.5316474494659054,
+        "value_disagreement": 0.00225
+      },
+      "7": {
+        "conflict_intensity": 0.5675438373212885,
+        "direction_disagreement": 1.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.6998815119638656,
+        "value_disagreement": 0.0027500000000000003
+      },
+      "8": {
+        "conflict_intensity": 0.23000648832618267,
+        "direction_disagreement": 0.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.6877694649785481,
+        "value_disagreement": 0.0022500000000000003
+      },
+      "9": {
+        "conflict_intensity": 0.14383134041789766,
+        "direction_disagreement": 0.0,
+        "oscillation_score": 1.0,
+        "reward_disagreement": 0.428994021253693,
+        "value_disagreement": 0.002500000000000001
+      }
+    }
+  },
+  "benchmark": {
+    "dimension": 100,
+    "name": "stage2_synthetic_line_seed_0",
+    "num_groups": 8,
+    "number_of_shared_variables": 10,
+    "overlap_ratio": 0.1,
+    "source": "synthetic_overlap"
+  },
+  "frozen_ast_smoke": {
+    "enabled": true,
+    "no_evolution": true,
+    "no_llm": true,
+    "no_objective_evaluation": true,
+    "no_optimizer": true,
+    "source": "handwritten_frozen_ast_template"
+  },
+  "git_commit": "c9a7bcd",
+  "initial_objective": 93.22716979200077,
+  "operators": {
+    "AverageConsensus": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
+      "FE_coordination_extra": 0,
+      "FE_total": 10,
+      "budget_scope": "per_method_run",
+      "changed_variables": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "coordination_results": {
+        "0": {
+          "coordinated_value": 0.0630111547653753,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 0
+        },
+        "1": {
+          "coordinated_value": -0.042473404303911305,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 1
+        },
+        "2": {
+          "coordinated_value": 0.42329585531029734,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 2
+        },
+        "3": {
+          "coordinated_value": 0.04843008200712781,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 3
+        },
+        "4": {
+          "coordinated_value": -0.3249685612127777,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 4
+        },
+        "5": {
+          "coordinated_value": 0.22811653843663926,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 5
+        },
+        "6": {
+          "coordinated_value": 0.887800031591096,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 6
+        },
+        "7": {
+          "coordinated_value": 0.6879566741904695,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 7
+        },
+        "8": {
+          "coordinated_value": -0.4676146650648948,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 8
+        },
+        "9": {
+          "coordinated_value": -0.9357950297322367,
+          "diagnostics": {
+            "proposal_count": 2
+          },
+          "extra_fe": 0,
+          "operator_name": "AverageConsensus",
+          "variable_id": 9
+        }
+      },
+      "cross_baseline_evaluations_shared": false,
+      "fe_accounting": {
+        "exhausted": false,
+        "fe_coordination_extra": 0,
+        "fe_grouping": 0,
+        "fe_proposal": 10,
+        "fe_repair": 0,
+        "fe_total": 10,
+        "max_fe": 10000,
+        "remaining_fe": 9990
+      },
+      "final_error": 90.36194895668093,
+      "final_objective": 90.36194895668093,
+      "mean_conflict_after": 0.0,
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
+    },
+    "BestRewardSelection": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
+      "FE_coordination_extra": 0,
+      "FE_total": 10,
+      "budget_scope": "per_method_run",
+      "changed_variables": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "coordination_results": {
+        "0": {
+          "coordinated_value": 0.2880111547653753,
+          "diagnostics": {
+            "selected_group_id": 0,
+            "selected_reward": 8.864581918095723
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 0
+        },
+        "1": {
+          "coordinated_value": -0.29247340430391133,
+          "diagnostics": {
+            "selected_group_id": 2,
+            "selected_reward": 8.520707054319843
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 1
+        },
+        "2": {
+          "coordinated_value": 0.14829585531029738,
+          "diagnostics": {
+            "selected_group_id": 3,
+            "selected_reward": 14.922272920903197
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 2
+        },
+        "3": {
+          "coordinated_value": 0.2734300820071278,
+          "diagnostics": {
+            "selected_group_id": 3,
+            "selected_reward": 14.922272920903197
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 3
+        },
+        "4": {
+          "coordinated_value": -0.07496856121277762,
+          "diagnostics": {
+            "selected_group_id": 4,
+            "selected_reward": 10.99506781699003
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 4
+        },
+        "5": {
+          "coordinated_value": 0.5031165384366393,
+          "diagnostics": {
+            "selected_group_id": 5,
+            "selected_reward": 2.1286069890425807
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 5
+        },
+        "6": {
+          "coordinated_value": 0.662800031591096,
+          "diagnostics": {
+            "selected_group_id": 7,
+            "selected_reward": 1.261112235822253
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 6
+        },
+        "7": {
+          "coordinated_value": 0.41295667419046944,
+          "diagnostics": {
+            "selected_group_id": 0,
+            "selected_reward": 8.864581918095723
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 7
+        },
+        "8": {
+          "coordinated_value": -0.24261466506489476,
+          "diagnostics": {
+            "selected_group_id": 2,
+            "selected_reward": 8.520707054319843
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 8
+        },
+        "9": {
+          "coordinated_value": -0.6857950297322366,
+          "diagnostics": {
+            "selected_group_id": 3,
+            "selected_reward": 14.922272920903197
+          },
+          "extra_fe": 0,
+          "operator_name": "BestRewardSelection",
+          "variable_id": 9
+        }
+      },
+      "cross_baseline_evaluations_shared": false,
+      "fe_accounting": {
+        "exhausted": false,
+        "fe_coordination_extra": 0,
+        "fe_grouping": 0,
+        "fe_proposal": 10,
+        "fe_repair": 0,
+        "fe_total": 10,
+        "max_fe": 10000,
+        "remaining_fe": 9990
+      },
+      "final_error": 89.32416601132753,
+      "final_objective": 89.32416601132753,
+      "mean_conflict_after": 0.0,
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
+    },
+    "ConflictDampening": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
+      "FE_coordination_extra": 0,
+      "FE_total": 10,
+      "budget_scope": "per_method_run",
+      "changed_variables": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "coordination_results": {
+        "0": {
+          "coordinated_value": 0.07687174634733479,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.5673771706546219,
+            "damping_factor": 0.7790051352252408,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 0
+        },
+        "1": {
+          "coordinated_value": -0.06217379567742555,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.5634231549928493,
+            "damping_factor": 0.7802067310286034,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 1
+        },
+        "2": {
+          "coordinated_value": 0.4651258739299624,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.4772480070845644,
+            "damping_factor": 0.8073475058937557,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 2
+        },
+        "3": {
+          "coordinated_value": 0.05826552955566842,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.4218091358910192,
+            "damping_factor": 0.8258289104455668,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 3
+        },
+        "4": {
+          "coordinated_value": -0.3737766212873431,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.6029678229525979,
+            "damping_factor": 0.7683537162327886,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 4
+        },
+        "5": {
+          "coordinated_value": 0.25792604877343467,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.5750901151241841,
+            "damping_factor": 0.7766718485902578,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 5
+        },
+        "6": {
+          "coordinated_value": 0.9218085429604217,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.1779658164886351,
+            "damping_factor": 0.9182880579936944,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 6
+        },
+        "7": {
+          "coordinated_value": 0.7452349146433738,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.5675438373212885,
+            "damping_factor": 0.778954567757875,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 7
+        },
+        "8": {
+          "coordinated_value": -0.49196852393582924,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.23000648832618267,
+            "damping_factor": 0.8968583770808565,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 8
+        },
+        "9": {
+          "coordinated_value": -0.9579099284173664,
+          "diagnostics": {
+            "base_operator": "AverageConsensus",
+            "conflict_intensity": 0.14383134041789766,
+            "damping_factor": 0.932909208991291,
+            "damping_strength": 0.5
+          },
+          "extra_fe": 0,
+          "operator_name": "ConflictDampening",
+          "variable_id": 9
+        }
+      },
+      "cross_baseline_evaluations_shared": false,
+      "fe_accounting": {
+        "exhausted": false,
+        "fe_coordination_extra": 0,
+        "fe_grouping": 0,
+        "fe_proposal": 10,
+        "fe_repair": 0,
+        "fe_total": 10,
+        "max_fe": 10000,
+        "remaining_fe": 9990
+      },
+      "final_error": 90.66163602524843,
+      "final_objective": 90.66163602524843,
+      "mean_conflict_after": 0.0,
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
+    },
+    "FrozenASTSmoke": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
+      "FE_coordination_extra": 0,
+      "FE_total": 10,
+      "budget_scope": "per_method_run",
+      "changed_variables": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "coordination_results": {
+        "0": {
+          "coordinated_value": 0.25144086035099633,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "d936847ed7186fa03874c39f273fca98d4912e2442c3c76f1af4ff3d91e8a249",
+            "operator_id": "stage2_4_frozen_ast_shared_0",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.9979830644382274,
+                    0.0020169355617726636
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": 0.28710353376257763
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.5673771706546219,
+                  "damping_factor": 0.7790051352252408,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": 0.25144086035099633
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": 0.25144086035099633
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_0)",
+          "variable_id": 0
+        },
+        "1": {
+          "coordinated_value": -0.2561166730260864,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "17939c27707097bb24f37f2f199809bb04a0a56f64d96033267cbfb5bbe60353",
+            "operator_id": "stage2_4_frozen_ast_shared_1",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.002842337458504398,
+                    0.9971576625414955
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": -0.2910522355746591
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.5634231549928493,
+                  "damping_factor": 0.7802067310286034,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": -0.2561166730260864
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": -0.2561166730260864
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_1)",
+          "variable_id": 1
+        },
+        "2": {
+          "coordinated_value": 0.2438407351440478,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "dc7d88a44e1f2eafd004c0ea99cd9ce5b8397d5df6f98176c1765d9be1c7bb76",
+            "operator_id": "stage2_4_frozen_ast_shared_2",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.0016562099501469985,
+                    0.998343790049853
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": 0.14920677078287822
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.4772480070845644,
+                  "damping_factor": 0.8073475058937557,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": 0.2438407351440478
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": 0.2438407351440478
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_2)",
+          "variable_id": 2
+        },
+        "3": {
+          "coordinated_value": 0.2368979799866165,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "d936b8b945effc2f1b949cc145c94b43f30305064a05309fff8fd122a00b98fb",
+            "operator_id": "stage2_4_frozen_ast_shared_3",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.9806818893558552,
+                    0.019318110644144744
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": 0.26473693221726263
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.4218091358910192,
+                  "damping_factor": 0.8258289104455668,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": 0.2368979799866165
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": 0.2368979799866165
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_3)",
+          "variable_id": 3
+        },
+        "4": {
+          "coordinated_value": -0.18174236922754983,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "49c399302147a9dd1ff5f215960a3b40ea749ea7ff6a42daa0b884e583f428f7",
+            "operator_id": "stage2_4_frozen_ast_shared_4",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.9998589790164106,
+                    0.00014102098358943665
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": -0.07503907170457234
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.6029678229525979,
+                  "damping_factor": 0.7683537162327886,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": -0.18174236922754983
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": -0.18174236922754983
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_4)",
+          "variable_id": 4
+        },
+        "5": {
+          "coordinated_value": 0.39597367131257083,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "29d9e161e115b68fbaf5e5df3870fb6a808249d86e7846efda6265731e312952",
+            "operator_id": "stage2_4_frozen_ast_shared_5",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.8231682438335673,
+                    0.17683175616643262
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": 0.4058590725451013
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.5750901151241841,
+                  "damping_factor": 0.7766718485902578,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": 0.39597367131257083
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": 0.39597367131257083
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_5)",
+          "variable_id": 5
+        },
+        "6": {
+          "coordinated_value": 0.8550274354831445,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "b6d9b4557ab384434ec6fcbae0cb0405b80bd67d948d77d9319e3503a175af6f",
+            "operator_id": "stage2_4_frozen_ast_shared_6",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.33839225636359616,
+                    0.6616077436364038
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": 0.8150765469547143
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.1779658164886351,
+                  "damping_factor": 0.9182880579936944,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": 0.8550274354831445
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": 0.8550274354831445
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_6)",
+          "variable_id": 6
+        },
+        "7": {
+          "coordinated_value": 0.531886514152752,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "e3bbbf0d0d5a09fe15f37e341981d65fdb0601c3fecdae7367237ec3eee12f61",
+            "operator_id": "stage2_4_frozen_ast_shared_7",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.9979830644382274,
+                    0.0020169355617726636
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": 0.4140659887494444
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.5675438373212885,
+                  "damping_factor": 0.778954567757875,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": 0.531886514152752
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": 0.531886514152752
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_7)",
+          "variable_id": 7
+        },
+        "8": {
+          "coordinated_value": -0.29132251746470417,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "eefd71b37b2c64d688a9db60fbd3febcd064c317881372fdebc3f871440aabd5",
+            "operator_id": "stage2_4_frozen_ast_shared_8",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.002842337458504398,
+                    0.9971576625414955
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": -0.24389371692122172
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.23000648832618267,
+                  "damping_factor": 0.8968583770808565,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": -0.29132251746470417
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": -0.29132251746470417
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_8)",
+          "variable_id": 8
+        },
+        "9": {
+          "coordinated_value": -0.7254551729268011,
+          "diagnostics": {
+            "accepted_fingerprint_sha256": "b3179fa1e188517ee8875712138294ca37d5b6176fd3accd69a47fee8d2dd18b",
+            "operator_id": "stage2_4_frozen_ast_shared_9",
+            "output_node": "bounded",
+            "schema_version": "loco.dsl.v1",
+            "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+            "template_id": "stage2_4_weighted_dampened_clip_template",
+            "trace": [
+              {
+                "diagnostics": {
+                  "temperature": 1.0,
+                  "weights": [
+                    0.0016562099501469985,
+                    0.998343790049853
+                  ]
+                },
+                "kind": "weighted_consensus",
+                "node_id": "weighted",
+                "value": -0.6866231347073101
+              },
+              {
+                "diagnostics": {
+                  "conflict_intensity": 0.14383134041789766,
+                  "damping_factor": 0.932909208991291,
+                  "damping_strength": 0.5
+                },
+                "kind": "dampening",
+                "node_id": "dampened",
+                "value": -0.7254551729268011
+              },
+              {
+                "diagnostics": {
+                  "lower": -100.0,
+                  "upper": 100.0
+                },
+                "kind": "clip",
+                "node_id": "bounded",
+                "value": -0.7254551729268011
+              }
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "DSLRuntime(stage2_4_frozen_ast_shared_9)",
+          "variable_id": 9
+        }
+      },
+      "cross_baseline_evaluations_shared": false,
+      "fe_accounting": {
+        "exhausted": false,
+        "fe_coordination_extra": 0,
+        "fe_grouping": 0,
+        "fe_proposal": 10,
+        "fe_repair": 0,
+        "fe_total": 10,
+        "max_fe": 10000,
+        "remaining_fe": 9990
+      },
+      "final_error": 89.72051073893333,
+      "final_objective": 89.72051073893333,
+      "frozen_ast_runtime": {
+        "accepted_by_preflight": true,
+        "no_evolution": true,
+        "no_llm": true,
+        "no_objective_evaluation": true,
+        "schema_version": "loco.dsl.v1",
+        "source": "handwritten_frozen_ast_template",
+        "template_fingerprint_sha256": "3acf21f0cad04c876d183811032d0a4649f351aa8a3825bd411be3773fa66633",
+        "template_id": "stage2_4_weighted_dampened_clip_template"
+      },
+      "mean_conflict_after": 0.0,
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
+    },
+    "NoCoordination": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
+      "FE_coordination_extra": 0,
+      "FE_total": 10,
+      "budget_scope": "per_method_run",
+      "changed_variables": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "coordination_results": {
+        "0": {
+          "coordinated_value": 0.1257302210933933,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 0
+        },
+        "1": {
+          "coordinated_value": -0.1321048632913019,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 1
+        },
+        "2": {
+          "coordinated_value": 0.6404226504432821,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 2
+        },
+        "3": {
+          "coordinated_value": 0.10490011715303971,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 3
+        },
+        "4": {
+          "coordinated_value": -0.535669373161111,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 4
+        },
+        "5": {
+          "coordinated_value": 0.36159505490948474,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 5
+        },
+        "6": {
+          "coordinated_value": 1.3040000451301372,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 6
+        },
+        "7": {
+          "coordinated_value": 0.9470809631292422,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 7
+        },
+        "8": {
+          "coordinated_value": -0.7037352358069926,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 8
+        },
+        "9": {
+          "coordinated_value": -1.2654214710460525,
+          "diagnostics": {
+            "policy": "current_value"
+          },
+          "extra_fe": 0,
+          "operator_name": "NoCoordination",
+          "variable_id": 9
+        }
+      },
+      "cross_baseline_evaluations_shared": false,
+      "fe_accounting": {
+        "exhausted": false,
+        "fe_coordination_extra": 0,
+        "fe_grouping": 0,
+        "fe_proposal": 10,
+        "fe_repair": 0,
+        "fe_total": 10,
+        "max_fe": 10000,
+        "remaining_fe": 9990
+      },
+      "final_error": 93.22716979200077,
+      "final_objective": 93.22716979200077,
+      "mean_conflict_after": 0.4327262889253841,
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 0.0
+    },
+    "WeightedConsensus": {
+      "FE_analysis_only": 0,
+      "FE_commit_evaluation": 1,
+      "FE_coordination_extra": 0,
+      "FE_total": 10,
+      "budget_scope": "per_method_run",
+      "changed_variables": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "coordination_results": {
+        "0": {
+          "coordinated_value": 0.28710353376257763,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.9979830644382274,
+              0.0020169355617726636
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 0
+        },
+        "1": {
+          "coordinated_value": -0.2910522355746591,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.002842337458504398,
+              0.9971576625414955
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 1
+        },
+        "2": {
+          "coordinated_value": 0.14920677078287822,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.0016562099501469985,
+              0.998343790049853
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 2
+        },
+        "3": {
+          "coordinated_value": 0.26473693221726263,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.9806818893558552,
+              0.019318110644144744
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 3
+        },
+        "4": {
+          "coordinated_value": -0.07503907170457234,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.9998589790164106,
+              0.00014102098358943665
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 4
+        },
+        "5": {
+          "coordinated_value": 0.4058590725451013,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.8231682438335673,
+              0.17683175616643262
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 5
+        },
+        "6": {
+          "coordinated_value": 0.8150765469547143,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.33839225636359616,
+              0.6616077436364038
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 6
+        },
+        "7": {
+          "coordinated_value": 0.4140659887494444,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.9979830644382274,
+              0.0020169355617726636
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 7
+        },
+        "8": {
+          "coordinated_value": -0.24389371692122172,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.002842337458504398,
+              0.9971576625414955
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 8
+        },
+        "9": {
+          "coordinated_value": -0.6866231347073101,
+          "diagnostics": {
+            "temperature": 1.0,
+            "weights": [
+              0.0016562099501469985,
+              0.998343790049853
+            ]
+          },
+          "extra_fe": 0,
+          "operator_name": "WeightedConsensus",
+          "variable_id": 9
+        }
+      },
+      "cross_baseline_evaluations_shared": false,
+      "fe_accounting": {
+        "exhausted": false,
+        "fe_coordination_extra": 0,
+        "fe_grouping": 0,
+        "fe_proposal": 10,
+        "fe_repair": 0,
+        "fe_total": 10,
+        "max_fe": 10000,
+        "remaining_fe": 9990
+      },
+      "final_error": 89.45773538223243,
+      "final_objective": 89.45773538223243,
+      "mean_conflict_after": 0.0,
+      "mean_conflict_before": 0.4327262889253841,
+      "metric_honesty_note": "This is a one-shot collapse of the current proposal set after coordination, not evidence that regenerated future conflicts are reduced.",
+      "proposal_consensus_collapse_ratio": 1.0
+    }
+  },
+  "per_variable_conflict_metrics": {
+    "0": {
+      "conflict_intensity": 0.5673771706546219,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.6998815119638656,
+      "value_disagreement": 0.0022500000000000003
+    },
+    "1": {
+      "conflict_intensity": 0.5634231549928493,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.6877694649785481,
+      "value_disagreement": 0.0025
+    },
+    "2": {
+      "conflict_intensity": 0.4772480070845644,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.428994021253693,
+      "value_disagreement": 0.0027500000000000003
+    },
+    "3": {
+      "conflict_intensity": 0.4218091358910192,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.2631774076730575,
+      "value_disagreement": 0.0022500000000000003
+    },
+    "4": {
+      "conflict_intensity": 0.6029678229525979,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.8064034688577937,
+      "value_disagreement": 0.0025000000000000005
+    },
+    "5": {
+      "conflict_intensity": 0.5750901151241841,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.7225203453725522,
+      "value_disagreement": 0.0027500000000000003
+    },
+    "6": {
+      "conflict_intensity": 0.1779658164886351,
+      "direction_disagreement": 0.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.5316474494659054,
+      "value_disagreement": 0.00225
+    },
+    "7": {
+      "conflict_intensity": 0.5675438373212885,
+      "direction_disagreement": 1.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.6998815119638656,
+      "value_disagreement": 0.0027500000000000003
+    },
+    "8": {
+      "conflict_intensity": 0.23000648832618267,
+      "direction_disagreement": 0.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.6877694649785481,
+      "value_disagreement": 0.0022500000000000003
+    },
+    "9": {
+      "conflict_intensity": 0.14383134041789766,
+      "direction_disagreement": 0.0,
+      "oscillation_score": 1.0,
+      "reward_disagreement": 0.428994021253693,
+      "value_disagreement": 0.002500000000000001
+    }
+  },
+  "proposal_log": [
+    {
+      "group_id": 0,
+      "objective": 84.36258787390504,
+      "reward": 8.864581918095723,
+      "shared_variables": [
+        0,
+        7
+      ]
+    },
+    {
+      "group_id": 1,
+      "objective": 90.56674486966942,
+      "reward": 2.6604249223313445,
+      "shared_variables": [
+        0,
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "group_id": 2,
+      "objective": 84.70646273768092,
+      "reward": 8.520707054319843,
+      "shared_variables": [
+        1,
+        2,
+        8,
+        9
+      ]
+    },
+    {
+      "group_id": 3,
+      "objective": 78.30489687109757,
+      "reward": 14.922272920903197,
+      "shared_variables": [
+        2,
+        3,
+        9
+      ]
+    },
+    {
+      "group_id": 4,
+      "objective": 82.23210197501074,
+      "reward": 10.99506781699003,
+      "shared_variables": [
+        3,
+        4
+      ]
+    },
+    {
+      "group_id": 5,
+      "objective": 91.09856280295818,
+      "reward": 2.1286069890425807,
+      "shared_variables": [
+        4,
+        5
+      ]
+    },
+    {
+      "group_id": 6,
+      "objective": 92.63652465984366,
+      "reward": 0.5906451321571069,
+      "shared_variables": [
+        5,
+        6
+      ]
+    },
+    {
+      "group_id": 7,
+      "objective": 91.96605755617851,
+      "reward": 1.261112235822253,
+      "shared_variables": [
+        6
+      ]
+    }
+  ],
+  "seed": 0,
+  "stage": "2.4"
+}

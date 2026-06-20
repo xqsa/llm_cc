@@ -28,6 +28,7 @@ def test_stage2_synthetic_runner_outputs_all_baselines_and_metrics(tmp_path) -> 
         "BestRewardSelection",
         "WeightedConsensus",
         "ConflictDampening",
+        "FrozenASTSmoke",
     }
     assert set(result["operators"]) == expected
     for operator_result in result["operators"].values():
@@ -66,4 +67,4 @@ def test_optional_f14_smoke_passes_or_skips_honestly() -> None:
 
     assert result["function_id"] == 14
     assert result["status"] == "PASS"
-    assert result["operator_count"] == 5
+    assert result["operator_count"] == 6
