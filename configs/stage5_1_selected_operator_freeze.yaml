@@ -1,0 +1,53 @@
+stage: "5.1"
+name: "Selected Operator Freeze"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Freeze the single Stage 5.0 selected operator as the only candidate eligible for sealed-test final reporting."
+  runner: "loco.coordination.selected_operator_freeze"
+  cli_entrypoint: "scripts/stage5/run_stage5_1_selected_operator_freeze.py"
+  not_performance_claim: true
+
+input:
+  selection_decision: "artifacts/validation/stage5_0/selection_decision.json"
+  validation_report: "artifacts/validation/stage5_0/validation_report.json"
+  frozen_candidate_pool: "artifacts/candidates/stage3_6/frozen_candidate_pool.jsonl"
+  selected_candidate_id: "stage3_5_batch_1_weighted_consensus_projection"
+  source_selection_status: "SELECTED_FOR_SEALED_TEST_NOT_FINAL"
+
+artifacts:
+  output_dir: "artifacts/selected/stage5_1"
+  selected_operator: "artifacts/selected/stage5_1/selected_operator.json"
+  selected_operator_ast: "artifacts/selected/stage5_1/selected_operator_ast.json"
+  selected_operator_manifest: "artifacts/selected/stage5_1/selected_operator_manifest.json"
+  sealed_test_readiness_protocol: "artifacts/selected/stage5_1/sealed_test_readiness_protocol.json"
+  freeze_report: "artifacts/selected/stage5_1/freeze_report.json"
+
+freeze_policy:
+  freeze_status: "FROZEN_FOR_SEALED_TEST_NOT_FINAL"
+  candidate_count: 1
+  allowed_next_use: "sealed test final reporting only"
+  test_usage: "sealed final reporting only"
+  validation_usage: "already used only for Stage 5.0 selection"
+  base_optimizer_policy: "BaseOpt must remain fixed"
+  fe_accounting_policy: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+
+allowed_scope:
+  - "freeze the Stage 5.0 selected operator payload"
+  - "copy selected typed AST as an immutable sealed-test-ready artifact"
+  - "record provenance and fingerprints for audit"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no prompt revision"
+  - "no train-search revision"
+  - "no promotion-rule revision"
+  - "no validation-rule revision"
+  - "no test feedback"
+  - "no sealed-test access"
+  - "no objective evaluation"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "no performance claim"

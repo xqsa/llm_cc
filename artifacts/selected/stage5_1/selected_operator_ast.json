@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    {
+      "id": "w_consensus",
+      "inputs": {
+        "temperature": 0.5
+      },
+      "kind": "weighted_consensus",
+      "target": {
+        "variable_id": 6
+      }
+    },
+    {
+      "id": "proj",
+      "inputs": {
+        "projection": "simplex",
+        "source": "w_consensus"
+      },
+      "kind": "projection",
+      "target": {
+        "variable_id": 6
+      }
+    }
+  ],
+  "operator_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "output": {
+    "source": "proj"
+  },
+  "schema_version": "loco.dsl.v1"
+}

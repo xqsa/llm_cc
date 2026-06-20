@@ -1,0 +1,33 @@
+{
+  "ast_fingerprint_sha256": "b58413c0b00460aa8d116bb201a82beb1692979412dd7ddc69805398dfc39711",
+  "baseopt_modified": false,
+  "candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "candidate_payload_sha256": "a1c643ce86a86ac90ee4e113ffdecf5b24967c64be8cee960d61b3bb92bba86b",
+  "controller_scheduler_generation_used": false,
+  "freeze_status": "FROZEN_FOR_SEALED_TEST_NOT_FINAL",
+  "kind_sequence": "weighted_consensus->projection",
+  "llm_call_used": false,
+  "new_candidate_generation_used": false,
+  "node_count": 2,
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "operator_family": "weighted_consensus+projection",
+  "optimizer_generation_used": false,
+  "promotion_rule_revision_used": false,
+  "prompt_revision_used": false,
+  "schema_version": "loco.stage5_1_selected_operator.v1",
+  "sealed_test_access_used": false,
+  "selected_validation_score": 0.300902808172,
+  "selection_status": "SELECTED_FOR_SEALED_TEST_NOT_FINAL",
+  "source_stage": "5.0",
+  "stage": "5.1",
+  "stage3_6_freeze_fingerprint_sha256": "b86072da40ddf34e9a751512489e86eec17fbd7876249f57d56cda83fed379d7",
+  "target_scope": "shared_variables_only",
+  "target_variable_set": [
+    6
+  ],
+  "test_feedback_used": false,
+  "train_search_revision_used": false,
+  "validation_feedback_used": false,
+  "validation_rule_revision_used": false
+}

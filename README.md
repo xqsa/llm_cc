@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 5.0 PASS` — Stage 5.0 has selected one candidate from the Stage 4.1 tie-hardened validation-ready set using validation-only conflict diagnostics. The selected candidate is `stage3_5_batch_1_weighted_consensus_projection`, with status `SELECTED_FOR_SEALED_TEST_NOT_FINAL`.
+Current repository state: `Stage 5.1 PASS` — Stage 5.1 has frozen the Stage 5.0 selected candidate, `stage3_5_batch_1_weighted_consensus_projection`, as the only operator eligible for sealed-test final reporting. The selected operator now has status `FROZEN_FOR_SEALED_TEST_NOT_FINAL`.
 
-Stage 5.0 is not a performance claim. It uses validation feedback only after train search for selection, and it does not use sealed-test feedback, benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 5.1 is not a performance claim. It freezes a previously selected typed coordination operator and does not use sealed-test feedback, benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, validation-rule revision, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Current stage map:
 
@@ -26,10 +26,11 @@ Stage 3      LLM candidate supply, audit, freeze, family lock      PASS
 Stage 4.0    deterministic train-only search over frozen pool      PASS
 Stage 4.1    train-search audit and tie-hardened promotion rule    PASS
 Stage 5.0    validation-only selection                            PASS
-Stage 5.1    selected operator freeze                             NEXT
+Stage 5.1    selected operator freeze                             PASS
+Stage 6.0    sealed test final reporting                          NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, and validation-only selection. The next executable frontier is selected-operator freeze before sealed-test final reporting.
+The project is now past candidate generation, train-search promotion, validation-only selection, and selected-operator freeze. The next executable frontier is sealed-test final reporting.
 
 ## What Stage 3 Established
 
@@ -199,28 +200,32 @@ artifacts/search/stage4_1/promotion_decision.json
 
 ## Current Frontier And Next Step
 
-The current frontier is no longer candidate generation, train search, or
-validation selection. LOCO-LSGO has completed the candidate-supply chain,
-frozen train-only candidate pool, train-only search trace, promotion-rule
-hardening, and validation-only selection. The active research frontier is now
-freezing the selected operator before sealed-test reporting.
+The current frontier is no longer candidate generation, train search,
+validation selection, or selected-operator freeze. LOCO-LSGO has completed the
+candidate-supply chain, frozen train-only candidate pool, train-only search
+trace, promotion-rule hardening, validation-only selection, and selected
+operator freeze. The active research frontier is now sealed-test final
+reporting.
 
 Next recommended step:
 
 ```text
-Stage 5.1: selected operator freeze
+Stage 6.0: sealed test final reporting
 ```
 
-Stage 5.1 should read only the Stage 5.0 selection decision:
+Stage 6.0 should read only the Stage 5.1 sealed-test readiness protocol and
+selected operator artifacts:
 
 ```text
-artifacts/validation/stage5_0/selection_decision.json
+artifacts/selected/stage5_1/sealed_test_readiness_protocol.json
+artifacts/selected/stage5_1/selected_operator.json
+artifacts/selected/stage5_1/selected_operator_ast.json
 ```
 
-It should freeze `stage3_5_batch_1_weighted_consensus_projection` as the only
-candidate eligible for sealed-test reporting. Stage 5.1 should not revise the
-Stage 5.0 validation rule, rerun train search, add new candidates, or use sealed
-test feedback.
+It should report sealed-test behavior for the single frozen selected operator,
+`stage3_5_batch_1_weighted_consensus_projection`. Stage 6.0 must not revise the
+Stage 5.0 validation rule, rerun train search, add new candidates, or use test
+feedback to tune the method.
 
 Stage 5.0 produced:
 
@@ -232,7 +237,17 @@ artifacts/validation/stage5_0/fe_ledger.json
 artifacts/validation/stage5_0/validation_report.json
 ```
 
-Stage 5.1 must still preserve:
+Stage 5.1 produced:
+
+```text
+artifacts/selected/stage5_1/selected_operator.json
+artifacts/selected/stage5_1/selected_operator_ast.json
+artifacts/selected/stage5_1/selected_operator_manifest.json
+artifacts/selected/stage5_1/sealed_test_readiness_protocol.json
+artifacts/selected/stage5_1/freeze_report.json
+```
+
+Stage 6.0 must still preserve:
 
 ```text
 no LLM call
@@ -241,11 +256,12 @@ no prompt revision
 no train-search revision
 no promotion-rule revision
 no validation-rule revision
-no test feedback
-no sealed-test access
+no test-feedback tuning
 no BaseOpt modification
 no optimizer/controller/scheduler generation
-not a performance claim
+full FE accounting
+oracle grouping and detected grouping reported separately
+performance claim only as sealed-test final reporting, not as SOTA overclaim
 ```
 
 ## Completion Distance
@@ -264,15 +280,16 @@ Engineering prototype:                  75%
 Candidate generation and audit chain:   90%
 Train-only search and promotion audit:  80%
 Validation evidence:                    55%
+Selected-operator freeze:               90%
 Sealed-test evidence:                   10%
-Paper-ready empirical case:             55-65%
+Paper-ready empirical case:             60-70%
 ```
 
 In plain terms:
 
 ```text
-Distance to a completed innovation prototype: about 75-80% done
-Distance to a credible short paper: about 55-65% done
+Distance to a completed innovation prototype: about 80-85% done
+Distance to a credible short paper: about 60-70% done
 Distance to a strong final performance claim: about 25-35% done
 ```
 
@@ -280,8 +297,7 @@ The main remaining gap is not more LLM generation. The main remaining gap is
 evidence:
 
 ```text
-Stage 5.1 selected operator freeze
--> Stage 6.0 sealed test final reporting
+Stage 6.0 sealed test final reporting
 -> Stage 6.1 baseline comparison, ablation, and failure analysis
 -> paper claim polishing
 ```
@@ -329,6 +345,7 @@ artifacts/candidates/ Candidate AST accepted/rejected logs and replay reports
 artifacts/readiness/  Pre-Stage-3 readiness decision artifacts
 artifacts/search/     Stage 4 train-only search and promotion audit artifacts
 artifacts/validation/ Stage 5 validation-only selection artifacts
+artifacts/selected/   Stage 5 selected-operator freeze artifacts
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2 reports, result JSON, CSV summaries, and audits
@@ -368,10 +385,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 5.0:
+Expected latest local result after Stage 5.1:
 
 ```text
-171 passed
+173 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -446,6 +463,12 @@ Run the Stage 5.0 validation-only selection gate directly:
 python -m pytest tests\stage5\test_stage5_0_validation_selection.py -q
 ```
 
+Run the Stage 5.1 selected operator freeze gate directly:
+
+```powershell
+python -m pytest tests\stage5\test_stage5_1_selected_operator_freeze.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -487,7 +510,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 5.1: selected operator freeze
+Stage 6.0: sealed test final reporting
 ```
 
-This next stage must freeze only the Stage 5.0 selected candidate, `stage3_5_batch_1_weighted_consensus_projection`, for sealed-test reporting. It must not feed validation results back into prompt generation, candidate generation, frozen pool contents, train-search scores, or promotion-rule design.
+This next stage must use only the Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`, for sealed-test final reporting. It must not feed test results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
