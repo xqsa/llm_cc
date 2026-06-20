@@ -1,0 +1,143 @@
+{
+  "claim_boundary": {
+    "adapter_modified": false,
+    "objective_reimplemented": false,
+    "optimizer_implemented": false,
+    "padding_applied": false
+  },
+  "diagnosis": {
+    "f13_internal_ovector_dim_mismatch": true,
+    "f14_905_eval_compatible": true,
+    "f14_dual_input_eval_compatible": true,
+    "recommended_next_action": "Treat F13 as a MetaBox internal dimension-semantics probe before adding any implementation_api_adapter."
+  },
+  "functions": {
+    "F13": {
+      "class_name": "F13",
+      "construction_ok": true,
+      "dim": 1000,
+      "dimension": 905,
+      "evaluate_1000": {
+        "dimension": 1000,
+        "finite": true,
+        "ok": true,
+        "value": 5.798763454695426e+21
+      },
+      "evaluate_905": {
+        "dimension": 905,
+        "error": "ValueError: operands could not be broadcast together with shapes (1,905) (1000,) ",
+        "ok": false
+      },
+      "label": "F13",
+      "ovector_shape": [
+        1000
+      ],
+      "ovector_vec_len": null,
+      "ovector_vec_shapes": [],
+      "overlap": 5,
+      "pvector_shape": [
+        1000
+      ],
+      "s_shape": [
+        20
+      ],
+      "s_sum": 1000
+    },
+    "F14": {
+      "class_name": "F14",
+      "construction_ok": true,
+      "dim": 1000,
+      "dimension": 905,
+      "evaluate_1000": {
+        "dimension": 1000,
+        "finite": true,
+        "ok": true,
+        "value": 3.819838762691793e+19
+      },
+      "evaluate_905": {
+        "dimension": 905,
+        "finite": true,
+        "ok": true,
+        "value": 5.7359298438132806e+20
+      },
+      "label": "F14",
+      "ovector_shape": null,
+      "ovector_vec_len": 20,
+      "ovector_vec_shapes": [
+        [
+          50
+        ],
+        [
+          50
+        ],
+        [
+          25
+        ],
+        [
+          25
+        ],
+        [
+          100
+        ],
+        [
+          100
+        ],
+        [
+          25
+        ],
+        [
+          25
+        ],
+        [
+          50
+        ],
+        [
+          25
+        ],
+        [
+          100
+        ],
+        [
+          25
+        ],
+        [
+          100
+        ],
+        [
+          50
+        ],
+        [
+          25
+        ],
+        [
+          25
+        ],
+        [
+          25
+        ],
+        [
+          100
+        ],
+        [
+          50
+        ],
+        [
+          25
+        ]
+      ],
+      "overlap": 5,
+      "pvector_shape": [
+        1000
+      ],
+      "s_shape": [
+        20
+      ],
+      "s_sum": 1000
+    }
+  },
+  "module": "loco_external_metaevobox.environment.problem.SOO.CEC2013LSGO.cec2013lsgo_numpy",
+  "name": "metabox_f13_internal_dimension_probe",
+  "stage": "1.8",
+  "status": "PARTIAL",
+  "summary": "F13 constructs with dimension=905 and dim=1000, but its Ovector is 1000-long; F14 evaluates at 905 through OvectorVec."
+}
