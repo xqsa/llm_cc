@@ -1,0 +1,71 @@
+{
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "schema_version": "loco.stage4_1_promotion_decision.v1",
+  "stage": "4.1",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": false,
+  "validation_ready_candidates": [
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "promotion_status": "VALIDATION_READY_TIE_HARDENED_NOT_FINAL",
+      "rank": 1,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_1_projection_dampening",
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "promotion_status": "VALIDATION_READY_TIE_HARDENED_NOT_FINAL",
+      "rank": 2,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_1_reweighting_repair",
+      "kind_sequence": "reweighting->repair",
+      "not_performance_claim": true,
+      "operator_family": "reweighting+repair",
+      "promotion_status": "VALIDATION_READY_TIE_HARDENED_NOT_FINAL",
+      "rank": 3,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+      "kind_sequence": "weighted_consensus->projection",
+      "not_performance_claim": true,
+      "operator_family": "weighted_consensus+projection",
+      "promotion_status": "VALIDATION_READY_TIE_HARDENED_NOT_FINAL",
+      "rank": 4,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_2_projection_dampening",
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "promotion_status": "VALIDATION_READY_TIE_HARDENED_NOT_FINAL",
+      "rank": 5,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_2_reweighting_repair",
+      "kind_sequence": "reweighting->repair",
+      "not_performance_claim": true,
+      "operator_family": "reweighting+repair",
+      "promotion_status": "VALIDATION_READY_TIE_HARDENED_NOT_FINAL",
+      "rank": 6,
+      "train_proxy_score": 1.0
+    }
+  ]
+}

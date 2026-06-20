@@ -1,0 +1,19 @@
+{
+  "FE_total": 12,
+  "ast_execution_used": false,
+  "boundary_tie_detected": true,
+  "candidate_count": 12,
+  "hardened_promotion_candidate_count": 6,
+  "next_status": "READY_FOR_STAGE5_VALIDATION_SELECTION",
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "original_promotion_top_k": 3,
+  "promotion_rule_hardened": true,
+  "schema_version": "loco.stage4_1_train_search_audit_report.v1",
+  "source_stage": "4.0",
+  "stage": "4.1",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "top_score_tie_count": 6,
+  "validation_feedback_used": false
+}

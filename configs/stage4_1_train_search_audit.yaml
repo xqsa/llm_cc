@@ -1,0 +1,38 @@
+stage: "4.1"
+name: "Train Search Audit and Promotion-rule Hardening"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Audit the Stage 4.0 train-only search trace and harden promotion when top-k cuts through tied train scores."
+  runner: "loco.coordination.train_search_audit"
+  cli_entrypoint: "scripts/stage4/run_stage4_1_train_search_audit.py"
+  not_performance_claim: true
+
+input:
+  search_trace: "artifacts/search/stage4_0/search_trace.jsonl"
+  promotion_candidates: "artifacts/search/stage4_0/promotion_candidates.json"
+  fe_ledger: "artifacts/search/stage4_0/fe_ledger.json"
+  search_report: "artifacts/search/stage4_0/search_report.json"
+
+artifacts:
+  output_dir: "artifacts/search/stage4_1"
+  train_search_audit_report: "artifacts/search/stage4_1/train_search_audit_report.json"
+  tie_audit: "artifacts/search/stage4_1/tie_audit.json"
+  hardened_promotion_rule: "artifacts/search/stage4_1/hardened_promotion_rule.json"
+  promotion_decision: "artifacts/search/stage4_1/promotion_decision.json"
+
+promotion_rule:
+  rule_name: "include_all_candidates_tied_at_cutoff"
+  original_top_k: 3
+  validation_usage: "selection only after train search"
+  test_usage: "sealed final reporting only"
+
+forbidden_scope:
+  - "no validation feedback"
+  - "no test feedback"
+  - "no objective evaluation"
+  - "no AST execution"
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no performance claim"

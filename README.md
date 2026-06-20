@@ -12,13 +12,16 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 4.0 PASS` — Stage 4 has begun with a train-only search over the Stage 3.6 frozen candidate pool under the Stage 3.7 Coordination Family Literature Grounding and Allowed Vocabulary Lock. Stage 4.0 produced search trace, promotion-candidate, FE-ledger, and report artifacts without validation/test feedback or performance claims.
+Current repository state: `Stage 4.1 PASS` — Stage 4 has audited the Stage 4.0 train-only search trace and hardened the promotion rule. The original top-3 cutoff split a six-candidate tie at score 1.0, so Stage 4.1 now promotes the full tied validation-ready set while preserving the no-validation-feedback, no-test-feedback, no-objective-evaluation, and not-performance-claim boundaries.
+
+Stage 4.1 is not a performance claim.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
 - Stage 2 built the conflict-coordination infrastructure and readiness gates needed before any LLM/evolution search is allowed.
 - Stage 3 completed the LLM candidate-supply chain and the pre-Stage-4 search boundary. It locked the typed-AST protocol, captured real train-only LLM candidate batches, audited candidate quality and diversity, hardened family coverage, froze the quality-pass pool, and locked the literature-grounded Stage 4 family vocabulary.
 - Stage 4.0 ran deterministic train-only search over the frozen coordination-candidate pool, produced a ranked search trace and promotion candidates, and recorded an FE ledger while preserving the no-validation-feedback, no-test-feedback, no-objective-evaluation, and not-performance-claim boundaries.
+- Stage 4.1 audited the Stage 4.0 search trace, detected that the top-k cutoff split a six-candidate score tie, and hardened the promotion rule to `include_all_candidates_tied_at_cutoff`.
 
 The Stage 2 readiness artifact currently records:
 
@@ -150,6 +153,26 @@ baseopt_modified = false
 not_performance_claim = true
 ```
 
+The Stage 4.1 train search audit currently records:
+
+```text
+status = PASS
+source_stage = 4.0
+candidate_count = 12
+original_promotion_top_k = 3
+top_score_tie_count = 6
+boundary_tie_detected = true
+promotion_rule_hardened = true
+hardened_promotion_candidate_count = 6
+rule_name = include_all_candidates_tied_at_cutoff
+next_status = READY_FOR_STAGE5_VALIDATION_SELECTION
+validation_feedback_used = false
+test_feedback_used = false
+objective_evaluation_used = false
+ast_execution_used = false
+not_performance_claim = true
+```
+
 Known benchmark boundary:
 
 - MetaBox F13 is evaluated through an explicit `implementation_api_adapter`: LOCO preserves `D_formula=905` for official overlap semantics and uses `runtime_dimension=1000` because the MetaBox F13 implementation/API exposes 1000-length internal data (`Ovector`, `Pvector`, and `s` sum).
@@ -229,7 +252,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected latest local result after Stage 4.0:
 
 ```text
-166 passed
+168 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -292,6 +315,12 @@ Run the Stage 4.0 train-only search gate directly:
 python -m pytest tests\stage4\test_stage4_0_train_only_search.py -q
 ```
 
+Run the Stage 4.1 train search audit gate directly:
+
+```powershell
+python -m pytest tests\stage4\test_stage4_1_train_search_audit.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -333,7 +362,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 4.1: train search audit and promotion-rule hardening
+Stage 5.0: validation-only selection over tie-hardened validation-ready candidates
 ```
 
-This next stage remains an audit/promotion-rule step, not a performance claim.
+This next stage must use validation only for selection after train search; validation results must not feed back into prompt generation, candidate generation, frozen pool contents, or promotion-rule design.

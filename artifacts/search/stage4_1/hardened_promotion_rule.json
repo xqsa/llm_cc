@@ -1,0 +1,13 @@
+{
+  "boundary_tie_detected": true,
+  "cutoff_score": 1.0,
+  "hardened_candidate_count": 6,
+  "not_performance_claim": true,
+  "original_top_k": 3,
+  "rule_name": "include_all_candidates_tied_at_cutoff",
+  "schema_version": "loco.stage4_1_hardened_promotion_rule.v1",
+  "stage": "4.1",
+  "status": "PASS",
+  "test_usage": "sealed final reporting only",
+  "validation_usage": "selection only after train search"
+}
