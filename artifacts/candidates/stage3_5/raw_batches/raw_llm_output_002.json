@@ -1,0 +1,241 @@
+{
+  "candidates": [
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "proj",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "damp",
+            "inputs": {
+              "damping_strength": 0.3,
+              "source": "proj"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_2_projection_dampening",
+        "output": {
+          "source": "damp"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_2_projection_dampening",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "rw",
+            "inputs": {
+              "weights": [
+                0.6,
+                0.4
+              ]
+            },
+            "kind": "reweighting",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "rep",
+            "inputs": {
+              "mode": "conflict_safe",
+              "source": "rw"
+            },
+            "kind": "repair",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_2_reweighting_repair",
+        "output": {
+          "source": "rep"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_2_reweighting_repair",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "brs",
+            "inputs": {
+              "reward_key": "reward"
+            },
+            "kind": "best_reward_select",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "damp2",
+            "inputs": {
+              "damping_strength": 0.5,
+              "source": "brs"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "clip",
+            "inputs": {
+              "lower": 0.0,
+              "source": "damp2",
+              "upper": 1.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_2_best_reward_dampening_clip",
+        "output": {
+          "source": "clip"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_2_best_reward_dampening_clip",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "rw2",
+            "inputs": {
+              "weights": [
+                0.3,
+                0.7
+              ]
+            },
+            "kind": "reweighting",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "wc",
+            "inputs": {
+              "sources": [
+                "rw2"
+              ],
+              "temperature": 0.1
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "clip2",
+            "inputs": {
+              "lower": -1.0,
+              "source": "wc",
+              "upper": 1.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_2_reweighting_consensus_clip",
+        "output": {
+          "source": "clip2"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_2_reweighting_consensus_clip",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    }
+  ],
+  "prompt_contract_version": "loco.operator_prompt_contract.v1",
+  "schema_version": "loco.stage3_1_raw_llm_batch.v1",
+  "source": {
+    "captured_by": "Stage 3.5 batch 2",
+    "model": "deepseek-v4-pro",
+    "provider": "deepseek"
+  },
+  "split": "train",
+  "stage": "3.1"
+}

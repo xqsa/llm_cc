@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.4 PASS` — Stage 3.3 candidates pass static quality/diversity audit, with an explicit low-diversity warning.
+Current repository state: `Stage 3.5 PASS` — prompt-space hardening produced a broader train-only candidate corpus that passes the family coverage gate.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
@@ -22,6 +22,7 @@ Current repository state: `Stage 3.4 PASS` — Stage 3.3 candidates pass static 
 - Stage 3.2 called a real DeepSeek-compatible chat API once, saved sanitized response artifacts, parsed the returned train-only candidate batch, and replayed it through the Stage 3.1 audit chain.
 - Stage 3.3 called the real DeepSeek-compatible chat API multiple times, saved sanitized per-batch artifacts, merged train-only candidate batches, replayed them through Stage 3.1, and wrote AST-fingerprint dedup plus rejection-taxonomy reports.
 - Stage 3.4 audited the Stage 3.3 candidate corpus with static quality and diversity filters, finding that the current corpus is boundary-valid but structurally narrow.
+- Stage 3.5 hardened the prompt space to force broader family coverage, producing candidates that include projection, dampening, reweighting, repair, and best_reward_select under the existing typed-AST boundary.
 
 The Stage 2 readiness artifact currently records:
 
@@ -99,6 +100,25 @@ not_performance_claim = true
 
 This means the current candidate supply chain works, but the first real multi-batch corpus is mostly `weighted_consensus->clip` variants. It should not be treated as a diverse reusable operator library yet.
 
+The Stage 3.5 prompt-space hardening gate currently records:
+
+```text
+status = PASS
+api_call_count = 3
+raw_candidate_count = 12
+accepted_count = 12
+quality_pass_count = 12
+unique_kind_sequence_count = 8
+operator_family_count = 8
+dominant_ratio = 0.25
+must_include_projection = true
+must_include_dampening = true
+must_include_reweighting = true
+must_include_repair = true
+must_include_best_reward_select = true
+not_performance_claim = true
+```
+
 Known benchmark boundary:
 
 - MetaBox F13 is evaluated through an explicit `implementation_api_adapter`: LOCO preserves `D_formula=905` for official overlap semantics and uses `runtime_dimension=1000` because the MetaBox F13 implementation/API exposes 1000-length internal data (`Ovector`, `Pvector`, and `s` sum).
@@ -174,7 +194,7 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 3.4:
+Expected latest local result after Stage 3.5:
 
 ```text
 149 passed
@@ -214,6 +234,12 @@ Run the Stage 3.4 static candidate audit gate directly:
 
 ```powershell
 python -m pytest tests\stage3\test_stage3_4_static_candidate_audit.py -q
+```
+
+Run the Stage 3.5 prompt-space hardening gate directly:
+
+```powershell
+python -m pytest tests\stage3\test_stage3_5_prompt_space_hardening.py -q
 ```
 
 Run Stage 2 diagnostic runners when regenerating reports:
@@ -257,5 +283,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 3.5: prompt-space hardening for broader coordination operator family coverage
+Stage 3.6: freeze the quality-pass candidate pool and prepare train-only evolution/search protocol
 ```

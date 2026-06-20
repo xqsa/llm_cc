@@ -1,0 +1,22 @@
+{
+  "candidate_count": 12,
+  "dominant_kind_sequence": "projection->dampening",
+  "dominant_kind_sequence_count": 3,
+  "low_diversity_warning": false,
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "quality_filter_report_path": "quality_filter_report.json",
+  "quality_pass_count": 12,
+  "quality_reject_count": 0,
+  "schema_version": "loco.stage3_4_summary.v1",
+  "source_accepted_log": "E:\\llm_cc\\artifacts\\candidates\\stage3_5\\accepted_candidates.jsonl",
+  "stage": "3.4",
+  "static_diversity_audit_path": "static_diversity_audit.json",
+  "status": "PASS",
+  "unique_kind_sequence_count": 8
+}

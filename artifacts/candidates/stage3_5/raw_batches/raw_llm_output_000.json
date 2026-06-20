@@ -1,0 +1,283 @@
+{
+  "candidates": [
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "proj1",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "damp1",
+            "inputs": {
+              "damping_strength": 0.3,
+              "source": "proj1"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_0_projection_dampening",
+        "output": {
+          "source": "damp1"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "proj2",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "reweight2",
+            "inputs": {
+              "source": "proj2",
+              "weights": [
+                0.7,
+                0.3
+              ]
+            },
+            "kind": "reweighting",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "repair2",
+            "inputs": {
+              "mode": "conflict_safe",
+              "source": "reweight2"
+            },
+            "kind": "repair",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_0_reweighting_repair",
+        "output": {
+          "source": "repair2"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_0_reweighting_repair",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "proj_a",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "proj_b",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "best",
+            "inputs": {
+              "reward_key": "reward",
+              "sources": [
+                "proj_a",
+                "proj_b"
+              ]
+            },
+            "kind": "best_reward_select",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "damp3",
+            "inputs": {
+              "damping_strength": 0.2,
+              "source": "best"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "clip3",
+            "inputs": {
+              "lower": -1.0,
+              "source": "damp3",
+              "upper": 1.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_0_bestreward_dampening_clip",
+        "output": {
+          "source": "clip3"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_0_bestreward_dampening_clip",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "proj_x",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "proj_y",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "wcons",
+            "inputs": {
+              "sources": [
+                "proj_x",
+                "proj_y"
+              ],
+              "temperature": 0.5
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "proj_out",
+            "inputs": {
+              "projection": "box",
+              "source": "wcons"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_0_weighted_consensus_projection",
+        "output": {
+          "source": "proj_out"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_0_weighted_consensus_projection",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    }
+  ],
+  "prompt_contract_version": "loco.operator_prompt_contract.v1",
+  "schema_version": "loco.stage3_1_raw_llm_batch.v1",
+  "source": {
+    "captured_by": "Stage 3.5 batch 0",
+    "model": "deepseek-v4-pro",
+    "provider": "deepseek"
+  },
+  "split": "train",
+  "stage": "3.1"
+}

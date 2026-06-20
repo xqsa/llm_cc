@@ -1,0 +1,73 @@
+{
+  "accepted_count": 12,
+  "api_call_count": 3,
+  "api_called": true,
+  "coverage_gate_report_path": "coverage_gate_report.json",
+  "dominant_kind_sequence": "projection->dampening",
+  "dominant_kind_sequence_count": 3,
+  "dominant_ratio": 0.25,
+  "must_include_best_reward_select": true,
+  "must_include_dampening": true,
+  "must_include_projection": true,
+  "must_include_repair": true,
+  "must_include_reweighting": true,
+  "no_evolution_run": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "operator_family_count": 8,
+  "provenance": [
+    {
+      "base_url_host": "api.deepseek.com",
+      "batch_index": 0,
+      "model": "deepseek-v4-pro",
+      "raw_output_path": "raw_batches/raw_llm_output_000.json",
+      "raw_response_path": "raw_batches/raw_response_000.json",
+      "reasoning_effort": "high",
+      "wire_api": "chat"
+    },
+    {
+      "base_url_host": "api.deepseek.com",
+      "batch_index": 1,
+      "model": "deepseek-v4-pro",
+      "raw_output_path": "raw_batches/raw_llm_output_001.json",
+      "raw_response_path": "raw_batches/raw_response_001.json",
+      "reasoning_effort": "high",
+      "wire_api": "chat"
+    },
+    {
+      "base_url_host": "api.deepseek.com",
+      "batch_index": 2,
+      "model": "deepseek-v4-pro",
+      "raw_output_path": "raw_batches/raw_llm_output_002.json",
+      "raw_response_path": "raw_batches/raw_response_002.json",
+      "reasoning_effort": "high",
+      "wire_api": "chat"
+    }
+  ],
+  "provider": "deepseek",
+  "quality_filter_report_path": "quality_filter_report.json",
+  "quality_pass_count": 12,
+  "quality_reject_count": 0,
+  "raw_candidate_count": 12,
+  "raw_output_paths": [
+    "raw_batches/raw_llm_output_000.json",
+    "raw_batches/raw_llm_output_001.json",
+    "raw_batches/raw_llm_output_002.json"
+  ],
+  "raw_response_paths": [
+    "raw_batches/raw_response_000.json",
+    "raw_batches/raw_response_001.json",
+    "raw_batches/raw_response_002.json"
+  ],
+  "rejected_count": 0,
+  "schema_version": "loco.stage3_5_summary.v1",
+  "secret_redacted": true,
+  "split": "train",
+  "stage": "3.5",
+  "static_diversity_audit_path": "static_diversity_audit.json",
+  "status": "PASS",
+  "unique_kind_sequence_count": 8
+}

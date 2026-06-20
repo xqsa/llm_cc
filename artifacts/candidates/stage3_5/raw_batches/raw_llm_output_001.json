@@ -1,0 +1,224 @@
+{
+  "candidates": [
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "project",
+            "inputs": {
+              "projection": "box"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "dampen",
+            "inputs": {
+              "damping_strength": 0.3,
+              "source": "project"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_1_projection_dampening",
+        "output": {
+          "source": "dampen"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_1_projection_dampening",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "rew",
+            "inputs": {
+              "weights": [
+                0.6,
+                0.4
+              ]
+            },
+            "kind": "reweighting",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "repair",
+            "inputs": {
+              "mode": "clamp",
+              "source": "rew"
+            },
+            "kind": "repair",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_1_reweighting_repair",
+        "output": {
+          "source": "repair"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_1_reweighting_repair",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "best",
+            "inputs": {
+              "reward_key": "fitness"
+            },
+            "kind": "best_reward_select",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "damp",
+            "inputs": {
+              "damping_strength": 0.5,
+              "source": "best"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "clip",
+            "inputs": {
+              "lower": -1.0,
+              "source": "damp",
+              "upper": 1.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_1_best_reward_select_dampening_clip",
+        "output": {
+          "source": "clip"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_1_best_reward_select_dampening_clip",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "w_consensus",
+            "inputs": {
+              "temperature": 0.5
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "proj",
+            "inputs": {
+              "projection": "simplex",
+              "source": "w_consensus"
+            },
+            "kind": "projection",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_5_batch_1_weighted_consensus_projection",
+        "output": {
+          "source": "proj"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    }
+  ],
+  "prompt_contract_version": "loco.operator_prompt_contract.v1",
+  "schema_version": "loco.stage3_1_raw_llm_batch.v1",
+  "source": {
+    "captured_by": "Stage 3.5 batch 1",
+    "model": "deepseek-v4-pro",
+    "provider": "deepseek"
+  },
+  "split": "train",
+  "stage": "3.1"
+}

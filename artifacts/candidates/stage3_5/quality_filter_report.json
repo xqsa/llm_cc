@@ -1,0 +1,174 @@
+{
+  "candidate_count": 12,
+  "issue_counts": {},
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "quality_pass_count": 12,
+  "quality_reject_count": 0,
+  "quality_rows": [
+    {
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "decision": "pass",
+      "has_transform_after_consensus": false,
+      "is_single_node": false,
+      "kind_sequence": "projection->dampening",
+      "node_count": 2,
+      "operator_family": "projection+dampening",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_0_reweighting_repair",
+      "decision": "pass",
+      "has_transform_after_consensus": false,
+      "is_single_node": false,
+      "kind_sequence": "projection->reweighting->repair",
+      "node_count": 3,
+      "operator_family": "projection+reweighting+repair",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_0_bestreward_dampening_clip",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "projection->projection->best_reward_select->dampening->clip",
+      "node_count": 5,
+      "operator_family": "projection+projection+best_reward_select+dampening+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_0_weighted_consensus_projection",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "projection->projection->weighted_consensus->projection",
+      "node_count": 4,
+      "operator_family": "projection+projection+weighted_consensus+projection",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_1_projection_dampening",
+      "decision": "pass",
+      "has_transform_after_consensus": false,
+      "is_single_node": false,
+      "kind_sequence": "projection->dampening",
+      "node_count": 2,
+      "operator_family": "projection+dampening",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_1_reweighting_repair",
+      "decision": "pass",
+      "has_transform_after_consensus": false,
+      "is_single_node": false,
+      "kind_sequence": "reweighting->repair",
+      "node_count": 2,
+      "operator_family": "reweighting+repair",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_1_best_reward_select_dampening_clip",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "best_reward_select->dampening->clip",
+      "node_count": 3,
+      "operator_family": "best_reward_select+dampening+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->projection",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+projection",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_2_projection_dampening",
+      "decision": "pass",
+      "has_transform_after_consensus": false,
+      "is_single_node": false,
+      "kind_sequence": "projection->dampening",
+      "node_count": 2,
+      "operator_family": "projection+dampening",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_2_reweighting_repair",
+      "decision": "pass",
+      "has_transform_after_consensus": false,
+      "is_single_node": false,
+      "kind_sequence": "reweighting->repair",
+      "node_count": 2,
+      "operator_family": "reweighting+repair",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_2_best_reward_dampening_clip",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "best_reward_select->dampening->clip",
+      "node_count": 3,
+      "operator_family": "best_reward_select+dampening+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_5_batch_2_reweighting_consensus_clip",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "reweighting->weighted_consensus->clip",
+      "node_count": 3,
+      "operator_family": "reweighting+weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    }
+  ],
+  "schema_version": "loco.stage3_4_quality_filter_report.v1",
+  "stage": "3.4",
+  "status": "PASS"
+}

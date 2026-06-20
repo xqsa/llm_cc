@@ -1,0 +1,392 @@
+{
+  "candidate_count": 12,
+  "candidate_features": [
+    {
+      "ast_fingerprint_sha256": "bebdf3d7b38ac56c6f98c2e3905f56e3f695febfe6ecd366356c28cfaf49b209",
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "damping_strength",
+        "projection",
+        "source"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "projection",
+        "dampening"
+      ],
+      "kind_sequence_signature": "projection->dampening",
+      "node_count": 2,
+      "operator_family": "projection+dampening",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "91ccf898c2dfcf14fa4e0eb88fcd51f795adfcb548317223be28f490914ec7a6",
+      "candidate_id": "stage3_5_batch_0_reweighting_repair",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "mode",
+        "projection",
+        "source",
+        "weights"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "projection",
+        "reweighting",
+        "repair"
+      ],
+      "kind_sequence_signature": "projection->reweighting->repair",
+      "node_count": 3,
+      "operator_family": "projection+reweighting+repair",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "405626b46c9517ea4dcebc6c6133dd5bd48bda863891ea8bfa8363b9e6f34681",
+      "candidate_id": "stage3_5_batch_0_bestreward_dampening_clip",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "damping_strength",
+        "lower",
+        "projection",
+        "reward_key",
+        "source",
+        "sources",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "projection",
+        "projection",
+        "best_reward_select",
+        "dampening",
+        "clip"
+      ],
+      "kind_sequence_signature": "projection->projection->best_reward_select->dampening->clip",
+      "node_count": 5,
+      "operator_family": "projection+projection+best_reward_select+dampening+clip",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "b637e48a60e0d8b2573ace363a2492fc011825a118386557a4d696fb55b40a75",
+      "candidate_id": "stage3_5_batch_0_weighted_consensus_projection",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "projection",
+        "source",
+        "sources",
+        "temperature"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "projection",
+        "projection",
+        "weighted_consensus",
+        "projection"
+      ],
+      "kind_sequence_signature": "projection->projection->weighted_consensus->projection",
+      "node_count": 4,
+      "operator_family": "projection+projection+weighted_consensus+projection",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "d68f5cf79be8d4dfb0b13df6744a8b91cb5adcb392e38fc7ac1e910f93930167",
+      "candidate_id": "stage3_5_batch_1_projection_dampening",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "damping_strength",
+        "projection",
+        "source"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "projection",
+        "dampening"
+      ],
+      "kind_sequence_signature": "projection->dampening",
+      "node_count": 2,
+      "operator_family": "projection+dampening",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "c6831efc8d7ea55f80f6d1da14b639190e8e8f340b38f2ec77d31132b1e67400",
+      "candidate_id": "stage3_5_batch_1_reweighting_repair",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "mode",
+        "source",
+        "weights"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "reweighting",
+        "repair"
+      ],
+      "kind_sequence_signature": "reweighting->repair",
+      "node_count": 2,
+      "operator_family": "reweighting+repair",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "9ccef6548746f8b3d3ba947c3dd5525dbc5c6f46bf3c211ede8abdaaa10ae846",
+      "candidate_id": "stage3_5_batch_1_best_reward_select_dampening_clip",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "damping_strength",
+        "lower",
+        "reward_key",
+        "source",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "best_reward_select",
+        "dampening",
+        "clip"
+      ],
+      "kind_sequence_signature": "best_reward_select->dampening->clip",
+      "node_count": 3,
+      "operator_family": "best_reward_select+dampening+clip",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "b58413c0b00460aa8d116bb201a82beb1692979412dd7ddc69805398dfc39711",
+      "candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "projection",
+        "source",
+        "temperature"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "projection"
+      ],
+      "kind_sequence_signature": "weighted_consensus->projection",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+projection",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "656f54750ad2dd0680b5511d7af2e8f342c72fb9e225b8520a1a9162867ee0f4",
+      "candidate_id": "stage3_5_batch_2_projection_dampening",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "damping_strength",
+        "projection",
+        "source"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "projection",
+        "dampening"
+      ],
+      "kind_sequence_signature": "projection->dampening",
+      "node_count": 2,
+      "operator_family": "projection+dampening",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "7e07548d616c6e930bec673538865b8d2d41232d915709e74e1344b1ac522961",
+      "candidate_id": "stage3_5_batch_2_reweighting_repair",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "mode",
+        "source",
+        "weights"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "reweighting",
+        "repair"
+      ],
+      "kind_sequence_signature": "reweighting->repair",
+      "node_count": 2,
+      "operator_family": "reweighting+repair",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "b48b543d36be8ce2a7a36485edbf66a40b92f4df78c2697bb9bbf823c107bf0c",
+      "candidate_id": "stage3_5_batch_2_best_reward_dampening_clip",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "damping_strength",
+        "lower",
+        "reward_key",
+        "source",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "best_reward_select",
+        "dampening",
+        "clip"
+      ],
+      "kind_sequence_signature": "best_reward_select->dampening->clip",
+      "node_count": 3,
+      "operator_family": "best_reward_select+dampening+clip",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "873f8c53d16052dff7a04828aec42efe0350beb7e9699cae7b33b6776f9e4368",
+      "candidate_id": "stage3_5_batch_2_reweighting_consensus_clip",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "sources",
+        "temperature",
+        "upper",
+        "weights"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "reweighting",
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "reweighting->weighted_consensus->clip",
+      "node_count": 3,
+      "operator_family": "reweighting+weighted_consensus+clip",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6,
+        6
+      ]
+    }
+  ],
+  "dominant_kind_sequence": "projection->dampening",
+  "dominant_kind_sequence_count": 3,
+  "interpretation": "Static structure diversity is not low under the configured kind-sequence threshold; dominant sequence is projection->dampening (3/12).",
+  "kind_sequence_counts": {
+    "best_reward_select->dampening->clip": 2,
+    "projection->dampening": 3,
+    "projection->projection->best_reward_select->dampening->clip": 1,
+    "projection->projection->weighted_consensus->projection": 1,
+    "projection->reweighting->repair": 1,
+    "reweighting->repair": 2,
+    "reweighting->weighted_consensus->clip": 1,
+    "weighted_consensus->projection": 1
+  },
+  "low_diversity_unique_kind_sequence_threshold": 5,
+  "low_diversity_warning": false,
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "node_count_counts": {
+    "2": 6,
+    "3": 4,
+    "4": 1,
+    "5": 1
+  },
+  "node_kind_counts": {
+    "best_reward_select": 3,
+    "clip": 4,
+    "dampening": 6,
+    "projection": 10,
+    "repair": 3,
+    "reweighting": 4,
+    "weighted_consensus": 3
+  },
+  "not_performance_claim": true,
+  "operator_family_counts": {
+    "best_reward_select+dampening+clip": 2,
+    "projection+dampening": 3,
+    "projection+projection+best_reward_select+dampening+clip": 1,
+    "projection+projection+weighted_consensus+projection": 1,
+    "projection+reweighting+repair": 1,
+    "reweighting+repair": 2,
+    "reweighting+weighted_consensus+clip": 1,
+    "weighted_consensus+projection": 1
+  },
+  "schema_version": "loco.stage3_4_static_diversity_audit.v1",
+  "stage": "3.4",
+  "status": "PASS",
+  "target_variable_counts": {
+    "5": 16,
+    "6": 17
+  },
+  "unique_ast_fingerprint_count": 12,
+  "unique_kind_sequence_count": 8
+}
