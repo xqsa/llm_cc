@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository stage: `Stage 2.7 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
+Current repository stage: `Stage 2.8 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
 
 Implemented:
 
@@ -27,6 +27,7 @@ Implemented:
 - Stage 2.5: frozen AST artifact registry and train/validation/test split boundary hardening.
 - Stage 2.6: candidate artifact logging schema, rejection corpus, and replay verifier.
 - Stage 2.7: sealed split replay audit for candidate logs.
+- Stage 2.8: frozen candidate promotion contract.
 
 Known benchmark boundary:
 
@@ -72,7 +73,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected current local result:
 
 ```text
-108 passed
+115 passed
 ```
 
 Optional real MetaBox tests are allowed to skip only when F12/F13/F14 are not all complete PASS. They must give a clear reason and must not fake a real benchmark success.
@@ -122,6 +123,22 @@ artifacts/candidates/stage2_7/split_replay_audit_report.json
 ```
 
 Stage 2.7 binds the Stage 2.6 accepted/rejected candidate logs and replay report to a sealed split manifest, checks their file fingerprints, and audits no-test-feedback boundaries. It does not call an LLM, run evolution, generate candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
+
+## Run Stage 2.8 Frozen Candidate Promotion
+
+```powershell
+python -m pytest tests\stage2\test_stage2_8_candidate_promotion.py -q
+```
+
+This verifies:
+
+```text
+artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5.json
+artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5_promotion_receipt.json
+artifacts/operators/stage2_8_registry.jsonl
+```
+
+Stage 2.8 promotes an already accepted Stage 2.6 candidate into a frozen operator artifact only after the Stage 2.7 sealed split replay audit passes. It does not call an LLM, run evolution, generate candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
 
 ## Run Stage 2.1 Multi-setting Panel
 
@@ -186,5 +203,5 @@ Stage 2.x evaluates each baseline or frozen artifact-backed operator as a separa
 Do not jump directly to Stage 3. Recommended next step:
 
 ```text
-Stage 2.8: frozen candidate promotion contract
+Stage 2.9: promotion replay and registry audit
 ```

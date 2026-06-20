@@ -1,0 +1,68 @@
+{
+  "artifact_id": "stage2_8.promoted.stage2_6_corpus_valid_weighted_clip_shared_5",
+  "artifact_schema_version": "loco.operator_artifact.v1",
+  "ast_template": {
+    "nodes": [
+      {
+        "id": "weighted",
+        "inputs": {
+          "temperature": 1.0
+        },
+        "kind": "weighted_consensus",
+        "target": {
+          "variable_id": "$shared_variable"
+        }
+      },
+      {
+        "id": "bounded",
+        "inputs": {
+          "lower": -1.0,
+          "source": "weighted",
+          "upper": 1.0
+        },
+        "kind": "clip",
+        "target": {
+          "variable_id": "$shared_variable"
+        }
+      }
+    ],
+    "operator_id_template": "stage2_8_promoted_stage2_6_corpus_valid_weighted_clip_shared_5_shared_{variable_id}",
+    "output": {
+      "source": "bounded"
+    }
+  },
+  "dsl_schema_version": "loco.dsl.v1",
+  "operator_name": "PromotedCandidateWeightedClip",
+  "promotion_contract": {
+    "schema_version": "loco.candidate_promotion_receipt.v1",
+    "source_candidate_payload_sha256": "ad6866257797a6373679ec30f1fac4a8c7313c6ec21361d972a622a025deb71c",
+    "source_log_schema_version": "loco.candidate_log.v1",
+    "source_stage": "stage2_6_rejection_corpus",
+    "stage": "2.8"
+  },
+  "provenance": {
+    "frozen": true,
+    "no_arbitrary_executable_code": true,
+    "no_candidate_generation": true,
+    "no_evolution": true,
+    "no_llm": true,
+    "no_objective_evaluation": true,
+    "no_optimizer": true,
+    "source_ast_fingerprint_sha256": "ad6866257797a6373679ec30f1fac4a8c7313c6ec21361d972a622a025deb71c",
+    "source_candidate_id": "stage2_6_corpus_valid_weighted_clip_shared_5",
+    "source_candidate_log_stage": "2.6"
+  },
+  "source": "stage2_6_accepted_candidate_promotion",
+  "split_policy": {
+    "no_test_feedback": true,
+    "no_tuning_on_test": true,
+    "source_split": "pre_stage3_schema_only",
+    "split_boundary": "promoted_from_pre_stage3_schema_only_after_sealed_audit",
+    "test_mode_allowed": true,
+    "train_feedback_allowed": false,
+    "validation_feedback_allowed": false
+  },
+  "stage_created": "2.8",
+  "target_scope": "shared_variables_only",
+  "template_id": "stage2_8_promoted_stage2_6_corpus_valid_weighted_clip_shared_5"
+}

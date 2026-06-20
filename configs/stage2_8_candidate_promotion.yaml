@@ -1,0 +1,48 @@
+stage: "2.8"
+name: "Frozen Candidate Promotion Contract"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Promote an accepted Stage 2.6 candidate into a frozen operator artifact only after the Stage 2.7 sealed split replay audit passes."
+  promotion_module: "loco.coordination.candidate_promotion"
+  input_candidate_log: "artifacts/candidates/stage2_6/accepted_candidates.jsonl"
+  sealed_manifest: "artifacts/candidates/stage2_7/sealed_split_manifest.json"
+  audit_report: "artifacts/candidates/stage2_7/split_replay_audit_report.json"
+  promoted_artifact: "artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5.json"
+  promotion_receipt: "artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5_promotion_receipt.json"
+  promotion_registry: "artifacts/operators/stage2_8_registry.jsonl"
+
+promotion_gate:
+  required_candidate_decision: "accepted"
+  required_candidate_split: "pre_stage3_schema_only"
+  required_sealed_audit_status: "PASS"
+  required_target_scope: "shared_variables_only"
+  required_artifact_schema: "loco.operator_artifact.v1"
+  required_receipt_schema: "loco.candidate_promotion_receipt.v1"
+  required_registry_schema: "loco.promoted_operator_registry.v1"
+
+forbidden_actions:
+  - "LLM search"
+  - "evolution search"
+  - "candidate generation"
+  - "runtime AST execution"
+  - "objective evaluation"
+  - "optimizer implementation"
+  - "controller/scheduler implementation"
+  - "test-set tuning"
+  - "SOTA evidence"
+
+audit_fields:
+  - "source_ast_fingerprint_sha256"
+  - "source_candidate_log_sha256"
+  - "sealed_manifest_fingerprint_sha256"
+  - "audit_report_fingerprint_sha256"
+  - "artifact_fingerprint_sha256"
+  - "promotion_fingerprint_sha256"
+  - "no_llm"
+  - "no_evolution"
+  - "no_optimizer"
+  - "no_candidate_generation"
+  - "no_test_feedback"
+  - "no_objective_evaluation"

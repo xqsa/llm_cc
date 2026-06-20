@@ -265,6 +265,39 @@ The tested and logged surface includes:
 
 Stage 2.7 is a sealed split replay audit gate. It does not call an LLM, run evolution, generate candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators.
 
+## Stage 2.8 Frozen Candidate Promotion Contract
+
+Stage 2.8 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_8_candidate_promotion.py -q
+```
+
+The committed artifacts are:
+
+```text
+artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5.json
+artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5_promotion_receipt.json
+artifacts/operators/stage2_8_registry.jsonl
+```
+
+The tested and logged surface includes:
+
+- accepted-only promotion from Stage 2.6 candidate logs;
+- required Stage 2.7 sealed split replay audit `PASS`;
+- frozen operator artifact schema `loco.operator_artifact.v1`;
+- promotion receipt schema `loco.candidate_promotion_receipt.v1`;
+- promoted operator registry schema `loco.promoted_operator_registry.v1`;
+- source candidate log fingerprint binding;
+- sealed manifest and audit report fingerprint binding;
+- artifact and promotion fingerprint generation;
+- rejection of rejected candidates;
+- rejection of failed/tampered audit reports;
+- no LLM / no evolution imports;
+- no candidate generation, no runtime AST execution, no objective evaluation, and no test feedback boundary.
+
+Stage 2.8 is a frozen candidate promotion contract gate. It does not call an LLM, run evolution, generate candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:
