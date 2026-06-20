@@ -1,0 +1,99 @@
+stage: "2.2"
+name: "Typed Coordination Operator DSL Boundary"
+schema_version: "loco.dsl.v1"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Define the typed coordination operator AST boundary before LLM/evolution stages."
+  allowed_output: "typed coordination operator AST"
+  input_scope: "shared-variable conflict state only"
+  target_scope: "shared variables only"
+  stage2_2_is_not:
+    - "operator discovery"
+    - "operator execution runtime"
+    - "optimizer implementation"
+    - "benchmark implementation"
+    - "LLM search"
+    - "evolution search"
+
+allowed_node_kinds:
+  - "consensus"
+  - "weighted_consensus"
+  - "best_reward_select"
+  - "projection"
+  - "dampening"
+  - "reweighting"
+  - "clip"
+  - "repair"
+
+allowed_top_level_fields:
+  - "schema_version"
+  - "operator_id"
+  - "nodes"
+  - "output"
+
+allowed_node_fields:
+  - "id"
+  - "kind"
+  - "target"
+  - "inputs"
+
+allowed_target_fields:
+  - "variable_id"
+
+allowed_input_fields:
+  - "source"
+  - "sources"
+  - "temperature"
+  - "damping_strength"
+  - "weights"
+  - "lower"
+  - "upper"
+  - "projection"
+  - "mode"
+  - "reward_key"
+
+safety_limits:
+  max_nodes: 32
+  max_depth: 8
+  deterministic_serialization: true
+  validation_extra_fe: 0
+  arbitrary_executable_code_allowed: false
+
+forbidden_node_kinds:
+  - "optimizer"
+  - "de_optimizer"
+  - "cma_es_optimizer"
+  - "pso_optimizer"
+  - "shade_optimizer"
+  - "lshade_optimizer"
+  - "controller"
+  - "scheduler"
+  - "optimizer_selection"
+  - "base_optimizer_replacement"
+
+forbidden_metadata_access:
+  - "function_id"
+  - "benchmark_name"
+  - "true_optimum_location"
+  - "test_set_metadata"
+  - "future_evaluations"
+  - "hidden_test_information"
+
+test_phase_boundary:
+  no_LLM: true
+  no_evolution: true
+  no_optimizer: true
+  no_controller_scheduler: true
+  no_benchmark_objective_mutation: true
+  no_metabox_source_mutation: true
+  no_baseopt_modification: true
+
+reporting_contract:
+  required_claim: "Stage 2.2 validates a typed coordination operator AST boundary."
+  forbidden_claims:
+    - "learned reusable operator"
+    - "optimizer performance improvement"
+    - "longitudinal conflict reduction"
+    - "SOTA result"
