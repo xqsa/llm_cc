@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository stage: `Stage 2.5 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
+Current repository stage: `Stage 2.6 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
 
 Implemented:
 
@@ -25,6 +25,7 @@ Implemented:
 - Stage 2.3: DSL interpreter/runtime shell for frozen typed ASTs.
 - Stage 2.4: handwritten frozen AST smoke integration with the existing synthetic conflict runner.
 - Stage 2.5: frozen AST artifact registry and train/validation/test split boundary hardening.
+- Stage 2.6: candidate artifact logging schema, rejection corpus, and replay verifier.
 
 Known benchmark boundary:
 
@@ -36,6 +37,7 @@ Known benchmark boundary:
 ```text
 configs/              Stage boundary and benchmark configuration drafts
 artifacts/operators/  Frozen coordination-operator artifacts and registries
+artifacts/candidates/ Candidate AST accepted/rejected logs and replay reports
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2.0/2.1 result JSON, CSV summaries, and self-check reports
@@ -69,7 +71,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected current local result:
 
 ```text
-96 passed
+102 passed
 ```
 
 Optional real MetaBox tests are allowed to skip only when F12/F13/F14 are not all complete PASS. They must give a clear reason and must not fake a real benchmark success.
@@ -87,6 +89,23 @@ docs/stage2/stage2_5_artifact_registry_result.json
 ```
 
 The runner uses a deterministic one-shot perturbation proposal generator. It is not an optimizer and should not be interpreted as performance evidence. Its current Stage 2.5 surface verifies that shared-variable conflict states, baseline coordination operators, a frozen AST artifact registry, DSL runtime interpretation, provenance logging, and FE accounting work end to end.
+
+## Run Stage 2.6 Candidate Logging Replay
+
+```powershell
+python -m pytest tests\stage2\test_stage2_6_candidate_logging.py -q
+```
+
+This verifies:
+
+```text
+artifacts/candidates/stage2_6/accepted_candidates.jsonl
+artifacts/candidates/stage2_6/rejected_candidates.jsonl
+artifacts/candidates/stage2_6/rejection_corpus.jsonl
+artifacts/candidates/stage2_6/replay_report.json
+```
+
+Stage 2.6 is a logging and replay gate for future candidate ASTs. It does not call an LLM, run evolution, generate candidates, execute operators, or evaluate objective functions.
 
 ## Run Stage 2.1 Multi-setting Panel
 
@@ -151,5 +170,5 @@ Stage 2.x evaluates each baseline or frozen artifact-backed operator as a separa
 Do not jump directly to Stage 3. Recommended next step:
 
 ```text
-Stage 2.6: candidate artifact logging schema and rejection corpus
+Stage 2.7: sealed split replay audit for candidate logs
 ```

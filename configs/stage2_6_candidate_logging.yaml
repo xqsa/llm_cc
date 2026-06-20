@@ -1,0 +1,80 @@
+stage: "2.6"
+name: "Candidate Artifact Logging Schema and Rejection Corpus"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Define auditable accepted/rejected candidate artifact logs and a replayable rejection corpus before Stage 3 candidate generation."
+  logging_module: "loco.coordination.candidate_logging"
+  rejection_corpus: "artifacts/candidates/stage2_6/rejection_corpus.jsonl"
+  accepted_log: "artifacts/candidates/stage2_6/accepted_candidates.jsonl"
+  rejected_log: "artifacts/candidates/stage2_6/rejected_candidates.jsonl"
+  replay_report: "artifacts/candidates/stage2_6/replay_report.json"
+  stage2_6_is_not:
+    - "LLM search"
+    - "evolution search"
+    - "candidate generation"
+    - "operator discovery"
+    - "optimizer implementation"
+    - "controller/scheduler implementation"
+    - "test-set tuning"
+    - "SOTA evidence"
+
+candidate_log_schema:
+  schema_version: "loco.candidate_log.v1"
+  required_common_fields:
+    - "log_schema_version"
+    - "stage"
+    - "source_stage"
+    - "candidate_id"
+    - "decision"
+    - "split"
+    - "ast_payload"
+    - "candidate_payload_sha256"
+    - "no_llm"
+    - "no_evolution"
+    - "no_optimizer"
+    - "no_test_feedback"
+    - "no_objective_evaluation"
+  accepted_only_fields:
+    - "serialized_ast"
+    - "ast_fingerprint_sha256"
+  rejected_only_fields:
+    - "reject_reason"
+    - "reject_reason_category"
+
+reject_reason_taxonomy:
+  - "non_shared_target"
+  - "forbidden_optimizer_or_controller"
+  - "executable_code"
+  - "forbidden_metadata"
+  - "invalid_schema"
+  - "schema_or_validation"
+
+split_boundary:
+  split: "pre_stage3_schema_only"
+  no_LLM: true
+  no_evolution: true
+  no_optimizer: true
+  no_test_feedback: true
+  no_objective_evaluation: true
+  no_runtime_execution: true
+
+acceptance_checks:
+  - "accepted candidate log uses schema loco.candidate_log.v1"
+  - "rejected candidate log uses schema loco.candidate_log.v1"
+  - "accepted candidates include deterministic AST fingerprint"
+  - "rejected candidates include categorized reject reasons"
+  - "rejection corpus covers required rejection categories"
+  - "replay verifier detects tampered accepted AST payloads"
+  - "replay verifier reports PASS on committed rejection corpus"
+  - "logging imports no LLM/evolution modules"
+
+reporting_contract:
+  required_claim: "Stage 2.6 defines candidate artifact logging schema, rejection corpus, and replay verifier."
+  forbidden_claims:
+    - "LLM-generated operator success"
+    - "evolution search success"
+    - "learned reusable operator"
+    - "optimizer performance improvement"
+    - "SOTA result"

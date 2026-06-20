@@ -1,0 +1,22 @@
+{
+  "accepted_count": 1,
+  "category_mismatch_count": 0,
+  "claim": "candidate artifact logging schema replay verifier",
+  "decision_mismatch_count": 0,
+  "fingerprint_mismatch_count": 0,
+  "no_evolution": true,
+  "no_llm": true,
+  "no_test_feedback": true,
+  "reject_reason_categories": [
+    "executable_code",
+    "forbidden_metadata",
+    "forbidden_optimizer_or_controller",
+    "invalid_schema",
+    "non_shared_target"
+  ],
+  "rejected_count": 5,
+  "schema_version": "loco.candidate_replay_report.v1",
+  "stage": "2.6",
+  "status": "PASS",
+  "total_count": 6
+}

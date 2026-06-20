@@ -207,6 +207,36 @@ The tested and logged surface includes:
 
 Stage 2.5 is an artifact provenance and split-boundary hardening gate. It does not claim learned operators, LLM-generated operator success, evolution search success, optimizer improvement, or SOTA results.
 
+## Stage 2.6 Candidate Artifact Logging
+
+Stage 2.6 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_6_candidate_logging.py -q
+```
+
+The committed artifacts are:
+
+```text
+artifacts/candidates/stage2_6/rejection_corpus.jsonl
+artifacts/candidates/stage2_6/accepted_candidates.jsonl
+artifacts/candidates/stage2_6/rejected_candidates.jsonl
+artifacts/candidates/stage2_6/replay_report.json
+```
+
+The tested and logged surface includes:
+
+- candidate artifact logging schema `loco.candidate_log.v1`;
+- accepted candidate deterministic `ast_fingerprint_sha256`;
+- rejected candidate `reject_reason_category`;
+- replay verifier for accepted/rejected decisions;
+- tamper detection through fingerprint mismatch;
+- rejection corpus coverage for non-shared target, optimizer/controller node, executable code, forbidden metadata, and invalid schema;
+- no LLM / no evolution imports;
+- no test feedback boundary.
+
+Stage 2.6 is a candidate artifact logging schema and replay verifier gate. It does not call an LLM, run evolution, generate candidates, execute AST runtime, implement an optimizer, or claim learned operators.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:
