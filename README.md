@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 5.1 PASS` — Stage 5.1 has frozen the Stage 5.0 selected candidate, `stage3_5_batch_1_weighted_consensus_projection`, as the only operator eligible for sealed-test final reporting. The selected operator now has status `FROZEN_FOR_SEALED_TEST_NOT_FINAL`.
+Current repository state: `Stage 6.0 PASS` — Stage 6.0 has locked the sealed-test reporting protocol and run a minimal sealed-test coordination diagnostics panel using only the Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`.
 
-Stage 5.1 is not a performance claim. It freezes a previously selected typed coordination operator and does not use sealed-test feedback, benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, validation-rule revision, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 6.0 is not a performance claim, not a SOTA claim, and still not an objective-value performance claim. It reports sealed-test coordination diagnostics only. It does not use benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, validation-rule revision, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Current stage map:
 
@@ -27,10 +27,11 @@ Stage 4.0    deterministic train-only search over frozen pool      PASS
 Stage 4.1    train-search audit and tie-hardened promotion rule    PASS
 Stage 5.0    validation-only selection                            PASS
 Stage 5.1    selected operator freeze                             PASS
-Stage 6.0    sealed test final reporting                          NEXT
+Stage 6.0    sealed test reporting protocol and minimal runner     PASS
+Stage 6.1    baseline ablation and failure analysis                NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, and selected-operator freeze. The next executable frontier is sealed-test final reporting.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, and the first sealed-test reporting surface. The next executable frontier is deeper baseline ablation and failure analysis.
 
 ## What Stage 3 Established
 
@@ -201,31 +202,40 @@ artifacts/search/stage4_1/promotion_decision.json
 ## Current Frontier And Next Step
 
 The current frontier is no longer candidate generation, train search,
-validation selection, or selected-operator freeze. LOCO-LSGO has completed the
-candidate-supply chain, frozen train-only candidate pool, train-only search
-trace, promotion-rule hardening, validation-only selection, and selected
-operator freeze. The active research frontier is now sealed-test final
-reporting.
+validation selection, selected-operator freeze, or protocol-only sealed-test
+setup. LOCO-LSGO has completed the candidate-supply chain, frozen train-only
+candidate pool, train-only search trace, promotion-rule hardening,
+validation-only selection, selected operator freeze, and a minimal sealed-test
+coordination diagnostics runner. The active research frontier is now deeper
+baseline ablation and failure analysis.
 
 Next recommended step:
 
 ```text
-Stage 6.0: sealed test final reporting
+Stage 6.1: baseline comparison, ablation, and failure analysis
 ```
 
-Stage 6.0 should read only the Stage 5.1 sealed-test readiness protocol and
-selected operator artifacts:
+Stage 6.1 should read only the Stage 6.0 sealed-test reporting artifacts:
 
 ```text
-artifacts/selected/stage5_1/sealed_test_readiness_protocol.json
-artifacts/selected/stage5_1/selected_operator.json
-artifacts/selected/stage5_1/selected_operator_ast.json
+artifacts/sealed_test/stage6_0/sealed_test_trace.jsonl
+artifacts/sealed_test/stage6_0/sealed_test_metrics.json
+artifacts/sealed_test/stage6_0/fe_ledger.json
+artifacts/sealed_test/stage6_0/final_reporting_boundary.json
+artifacts/sealed_test/stage6_0/sealed_test_report.json
 ```
 
-It should report sealed-test behavior for the single frozen selected operator,
-`stage3_5_batch_1_weighted_consensus_projection`. Stage 6.0 must not revise the
-Stage 5.0 validation rule, rerun train search, add new candidates, or use test
-feedback to tune the method.
+It should deepen the baseline and ablation analysis for the fixed method set:
+
+```text
+identity_no_coord
+simple_consensus
+weighted_consensus
+selected_loco_operator
+```
+
+Stage 6.1 must not revise the Stage 5.0 validation rule, rerun train search,
+add new candidates, or use test feedback to tune the method.
 
 Stage 5.0 produced:
 
@@ -247,7 +257,17 @@ artifacts/selected/stage5_1/sealed_test_readiness_protocol.json
 artifacts/selected/stage5_1/freeze_report.json
 ```
 
-Stage 6.0 must still preserve:
+Stage 6.0 produced:
+
+```text
+artifacts/sealed_test/stage6_0/sealed_test_trace.jsonl
+artifacts/sealed_test/stage6_0/sealed_test_metrics.json
+artifacts/sealed_test/stage6_0/fe_ledger.json
+artifacts/sealed_test/stage6_0/final_reporting_boundary.json
+artifacts/sealed_test/stage6_0/sealed_test_report.json
+```
+
+Stage 6.1 must still preserve:
 
 ```text
 no LLM call
@@ -261,7 +281,7 @@ no BaseOpt modification
 no optimizer/controller/scheduler generation
 full FE accounting
 oracle grouping and detected grouping reported separately
-performance claim only as sealed-test final reporting, not as SOTA overclaim
+no SOTA overclaim
 ```
 
 ## Completion Distance
@@ -281,15 +301,15 @@ Candidate generation and audit chain:   90%
 Train-only search and promotion audit:  80%
 Validation evidence:                    55%
 Selected-operator freeze:               90%
-Sealed-test evidence:                   10%
-Paper-ready empirical case:             60-70%
+Sealed-test diagnostics surface:        45%
+Paper-ready empirical case:             65-72%
 ```
 
 In plain terms:
 
 ```text
-Distance to a completed innovation prototype: about 80-85% done
-Distance to a credible short paper: about 60-70% done
+Distance to a completed innovation prototype: about 85% done
+Distance to a credible short paper: about 65-72% done
 Distance to a strong final performance claim: about 25-35% done
 ```
 
@@ -297,8 +317,7 @@ The main remaining gap is not more LLM generation. The main remaining gap is
 evidence:
 
 ```text
-Stage 6.0 sealed test final reporting
--> Stage 6.1 baseline comparison, ablation, and failure analysis
+Stage 6.1 baseline comparison, ablation, and failure analysis
 -> paper claim polishing
 ```
 
@@ -346,12 +365,14 @@ artifacts/readiness/  Pre-Stage-3 readiness decision artifacts
 artifacts/search/     Stage 4 train-only search and promotion audit artifacts
 artifacts/validation/ Stage 5 validation-only selection artifacts
 artifacts/selected/   Stage 5 selected-operator freeze artifacts
+artifacts/sealed_test/ Stage 6 sealed-test reporting artifacts
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2 reports, result JSON, CSV summaries, and audits
 docs/stage3/          Stage 3 protocol lock, search-space, selection, and firewall docs
 docs/stage4/          Stage 4 family-space grounding, train-only search, and audit docs
 docs/stage5/          Stage 5 validation-only selection docs
+docs/stage6/          Stage 6 sealed-test reporting docs
 loco/benchmarks/      LSGOProblem interface, MetaBox adapter, synthetic overlap generator
 loco/conflict/        Shared-variable conflict state and metrics
 loco/coordination/    Baseline coordination rules, typed AST boundary, artifact helpers
@@ -362,7 +383,8 @@ scripts/stage1/       Real MetaBox CEC2013 LSGO smoke script
 scripts/stage3/       Stage 3 candidate generation, audit, and freeze runners
 scripts/stage4/       Stage 4 train-only search and audit runners
 scripts/stage5/       Stage 5 validation-only selection runner
-tests/                Stage 0/1/2/3/4/5 tests
+scripts/stage6/       Stage 6 sealed-test reporting runner
+tests/                Stage 0/1/2/3/4/5/6 tests
 ```
 
 ## Installation
@@ -385,10 +407,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 5.1:
+Expected latest local result after Stage 6.0:
 
 ```text
-173 passed
+175 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -469,6 +491,12 @@ Run the Stage 5.1 selected operator freeze gate directly:
 python -m pytest tests\stage5\test_stage5_1_selected_operator_freeze.py -q
 ```
 
+Run the Stage 6.0 sealed-test reporting gate directly:
+
+```powershell
+python -m pytest tests\stage6\test_stage6_0_sealed_test_reporting.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -510,7 +538,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 6.0: sealed test final reporting
+Stage 6.1: baseline comparison, ablation, and failure analysis
 ```
 
-This next stage must use only the Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`, for sealed-test final reporting. It must not feed test results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
+This next stage must use only the Stage 6.0 sealed-test reporting artifacts and the fixed Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`. It must not feed test results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.

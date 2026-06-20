@@ -1,0 +1,53 @@
+stage: "6.0"
+name: "Sealed Test Final Reporting Protocol Lock and Minimal Runner"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Lock legal inputs, forbidden behavior, FE ledger, output schema, and run a minimal sealed-test final reporting coordination diagnostics panel."
+  runner: "loco.coordination.sealed_test_reporting"
+  cli_entrypoint: "scripts/stage6/run_stage6_0_sealed_test_reporting.py"
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  - "artifacts/selected/stage5_1/sealed_test_readiness_protocol.json"
+  - "artifacts/selected/stage5_1/selected_operator.json"
+  - "artifacts/selected/stage5_1/selected_operator_ast.json"
+
+artifacts:
+  output_dir: "artifacts/sealed_test/stage6_0"
+  sealed_test_trace: "artifacts/sealed_test/stage6_0/sealed_test_trace.jsonl"
+  sealed_test_metrics: "artifacts/sealed_test/stage6_0/sealed_test_metrics.json"
+  fe_ledger: "artifacts/sealed_test/stage6_0/fe_ledger.json"
+  final_reporting_boundary: "artifacts/sealed_test/stage6_0/final_reporting_boundary.json"
+  sealed_test_report: "artifacts/sealed_test/stage6_0/sealed_test_report.json"
+
+minimal_runner:
+  split: "sealed_test"
+  selected_candidate_id: "stage3_5_batch_1_weighted_consensus_projection"
+  selected_operator_status: "FROZEN_FOR_SEALED_TEST_NOT_FINAL"
+  claim_scope: "sealed-test coordination diagnostics only"
+  method_set:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "selected_loco_operator"
+
+fe_accounting:
+  policy: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+  cross_method_evaluations_shared: false
+  all_extra_fe_counted: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no prompt revision"
+  - "no train-search revision"
+  - "no promotion-rule revision"
+  - "no validation-rule revision"
+  - "no test-feedback tuning"
+  - "no objective evaluation"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a SOTA claim"

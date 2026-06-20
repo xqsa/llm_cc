@@ -1,0 +1,32 @@
+{
+  "baseline_ablation_methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "selected_loco_operator"
+  ],
+  "claim_scope": "sealed-test coordination diagnostics only",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "objective_evaluation": false,
+    "optimizer_generation": false,
+    "promotion_rule_revision": false,
+    "prompt_revision": false,
+    "test_feedback_tuning": false,
+    "train_search_revision": false,
+    "validation_rule_revision": false
+  },
+  "legal_inputs": [
+    "artifacts/selected/stage5_1/sealed_test_readiness_protocol.json",
+    "artifacts/selected/stage5_1/selected_operator.json",
+    "artifacts/selected/stage5_1/selected_operator_ast.json"
+  ],
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage6_0_final_reporting_boundary.v1",
+  "stage": "6.0",
+  "status": "PASS"
+}

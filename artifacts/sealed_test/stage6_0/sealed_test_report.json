@@ -1,0 +1,32 @@
+{
+  "FE_total": 12,
+  "baseopt_modified": false,
+  "controller_scheduler_generation_used": false,
+  "llm_call_used": false,
+  "method_count": 4,
+  "method_names": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "selected_loco_operator"
+  ],
+  "new_candidate_generation_used": false,
+  "next_status": "READY_FOR_STAGE6_1_BASELINE_ABLATION_ANALYSIS",
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_evaluation_used": false,
+  "optimizer_generation_used": false,
+  "promotion_rule_revision_used": false,
+  "prompt_revision_used": false,
+  "schema_version": "loco.stage6_0_sealed_test_report.v1",
+  "sealed_state_count": 3,
+  "sealed_test_reporting_executed": true,
+  "selected_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "source_stage": "5.1",
+  "stage": "6.0",
+  "status": "PASS",
+  "test_feedback_tuning_used": false,
+  "trace_row_count": 12,
+  "train_search_revision_used": false,
+  "validation_rule_revision_used": false
+}

@@ -1,0 +1,57 @@
+{
+  "claim_scope": "sealed-test coordination diagnostics only",
+  "method_count": 4,
+  "method_metrics": [
+    {
+      "FE_total": 3,
+      "is_selected_loco_operator": false,
+      "mean_normalized_distance_to_best_reward_proposal": 0.381666666667,
+      "mean_normalized_update_size": 0.0,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "identity_no_coord",
+      "sealed_test_case_count": 3
+    },
+    {
+      "FE_total": 3,
+      "is_selected_loco_operator": false,
+      "mean_normalized_distance_to_best_reward_proposal": 0.397222222222,
+      "mean_normalized_update_size": 0.017777777778,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "simple_consensus",
+      "sealed_test_case_count": 3
+    },
+    {
+      "FE_total": 3,
+      "is_selected_loco_operator": false,
+      "mean_normalized_distance_to_best_reward_proposal": 0.320517354245,
+      "mean_normalized_update_size": 0.061149312421,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "weighted_consensus",
+      "sealed_test_case_count": 3
+    },
+    {
+      "FE_total": 3,
+      "is_selected_loco_operator": true,
+      "mean_normalized_distance_to_best_reward_proposal": 0.244558083651,
+      "mean_normalized_update_size": 0.137108583016,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "selected_loco_operator",
+      "sealed_test_case_count": 3
+    }
+  ],
+  "methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "selected_loco_operator"
+  ],
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_evaluation_used": false,
+  "schema_version": "loco.stage6_0_sealed_test_metrics.v1",
+  "selected_loco_operator_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "source_stage": "5.1",
+  "stage": "6.0",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}
