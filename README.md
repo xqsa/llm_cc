@@ -12,13 +12,14 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.1 PASS` — the first train-only small-batch LLM candidate generation audit is in place after the Stage 3.0 protocol lock.
+Current repository state: `Stage 3.2 PASS` — the real LLM API adapter smoke passes through the train-only candidate audit chain.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
 - Stage 2 built the conflict-coordination infrastructure and readiness gates needed before any LLM/evolution search is allowed.
 - Stage 3.0 locked the boundary-constrained typed-AST search protocol, including the LLM candidate wrapper schema, prompt contract, train/validation/test firewall, and protocol-lock report.
 - Stage 3.1 captured a first small-batch LLM candidate output as train-only typed-AST wrappers, then wrote accepted/rejected logs and a replay report without evolution, objective evaluation, test feedback, or performance claims.
+- Stage 3.2 called a real DeepSeek-compatible chat API once, saved sanitized response artifacts, parsed the returned train-only candidate batch, and replayed it through the Stage 3.1 audit chain.
 
 The Stage 2 readiness artifact currently records:
 
@@ -49,6 +50,19 @@ accepted_count = 1
 rejected_count = 2
 no_evolution_run = true
 no_objective_evaluation = true
+not_performance_claim = true
+```
+
+The Stage 3.2 real LLM API smoke currently records:
+
+```text
+status = PASS
+api_called = true
+provider = deepseek
+split = train
+accepted_count = 1
+rejected_count = 0
+secret_redacted = true
 not_performance_claim = true
 ```
 
@@ -102,7 +116,7 @@ loco/conflict/        Shared-variable conflict state and metrics
 loco/coordination/    Baseline coordination rules, typed AST boundary, artifact helpers
 loco/evaluation/      FE accounting
 loco/experiments/     Stage 2 diagnostic runners
-loco/llm/             Stage 3 prompt contract, LLM candidate wrapper schema, and batch audit helpers
+loco/llm/             Stage 3 prompt contract, provider client, candidate wrappers, and batch audit helpers
 scripts/stage1/       Real MetaBox CEC2013 LSGO smoke script
 tests/                Stage 0/1/2/3 tests
 ```
@@ -127,10 +141,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 3.1:
+Expected latest local result after Stage 3.2:
 
 ```text
-144 passed
+149 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -149,6 +163,12 @@ Run the Stage 3.1 candidate batch gate directly:
 
 ```powershell
 python -m pytest tests\stage3\test_stage3_1_llm_candidate_batch.py -q
+```
+
+Run the Stage 3.2 LLM API smoke gate directly:
+
+```powershell
+python -m pytest tests\stage3\test_stage3_2_llm_api_smoke.py -q
 ```
 
 Run Stage 2 diagnostic runners when regenerating reports:
@@ -192,5 +212,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 3.2: train-only candidate replay hardening and validation-gated selection protocol
+Stage 3.3: train-only multi-batch LLM candidate generation and rejection-corpus hardening
 ```

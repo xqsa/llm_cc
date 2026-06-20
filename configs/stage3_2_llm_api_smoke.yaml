@@ -1,0 +1,59 @@
+stage: "3.2"
+name: "Real LLM API Adapter Smoke"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Call a real chat-compatible LLM API once and pass the returned train-only candidate batch through Stage 3.1 replay."
+  provider_client: "loco.llm.provider_client"
+  smoke_runner: "loco.llm.api_candidate_generator"
+  env_example: ".env.example"
+
+environment:
+  required_variables:
+    - "LLM_API_KEY"
+    - "LLM_BASE_URL"
+    - "LLM_MODEL"
+    - "LLM_REASONING_EFFORT"
+    - "LLM_WIRE_API"
+  default_base_url: "https://api.deepseek.com"
+  default_wire_api: "chat"
+  secret_policy: "LLM_API_KEY must never be committed, printed, or written to artifacts."
+
+allowed_scope:
+  action: "real LLM API adapter smoke"
+  split: "train"
+  output_schema: "loco.stage3_1_raw_llm_batch.v1"
+  candidate_schema: "loco.llm_candidate.v1"
+  ast_schema: "loco.dsl.v1"
+  target_variables: "shared_variables_only"
+
+artifacts:
+  output_dir: "artifacts/candidates/stage3_2"
+  raw_response: "artifacts/candidates/stage3_2/raw_response.json"
+  raw_llm_output: "artifacts/candidates/stage3_2/raw_llm_output.json"
+  accepted_log: "artifacts/candidates/stage3_2/accepted_candidates.jsonl"
+  rejected_log: "artifacts/candidates/stage3_2/rejected_candidates.jsonl"
+  replay_report: "artifacts/candidates/stage3_2/replay_report.json"
+  smoke_report: "artifacts/candidates/stage3_2/smoke_report.json"
+
+forbidden_scope:
+  - "no evolution run"
+  - "no objective evaluation"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no scheduler/controller generation"
+  - "no optimizer selection"
+  - "no benchmark objective rewrite"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no performance claim"
+
+acceptance:
+  - ".env is ignored by git"
+  - ".env.example is committed without secrets"
+  - "real LLM API smoke writes sanitized raw_response.json"
+  - "raw_llm_output.json is train-only"
+  - "Stage 3.1 replay report is PASS"
+  - "no API key appears in committed artifacts"
+  - "no evolution run, no objective evaluation, no test feedback"
