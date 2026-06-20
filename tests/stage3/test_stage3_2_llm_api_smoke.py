@@ -1,4 +1,5 @@
 import json
+import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -259,7 +260,16 @@ def test_stage3_2_docs_state_real_api_boundary() -> None:
 
 
 def test_stage3_2_env_file_is_ignored() -> None:
-    assert (ROOT / ".env").is_file()
-    assert ".env" not in {
-        str(path) for path in ROOT.joinpath(".git").glob("**/*") if path.name == ".env"
-    }
+    assert ENV_EXAMPLE.is_file()
+    assert "LLM_API_KEY=" in ENV_EXAMPLE.read_text(encoding="utf-8")
+
+    result = subprocess.run(
+        ["git", "check-ignore", ".env"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    assert result.stdout.strip() == ".env"
