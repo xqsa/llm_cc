@@ -131,6 +131,25 @@ The tested surface includes:
 
 Stage 2.2 does not execute ASTs, call an LLM, run evolution, implement an optimizer, or claim learned operators.
 
+## Stage 2.3 DSL Runtime Shell
+
+Stage 2.3 is verified through the frozen-AST runtime tests:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_3_dsl_runtime.py -q
+```
+
+The tested surface includes:
+
+- `FrozenASTRuntime`;
+- interpretation of a frozen typed AST into `CoordinationResult`;
+- shared-variable target matching against `SharedVariableConflictState`;
+- deterministic runtime trace diagnostics;
+- zero additional function evaluations during runtime interpretation;
+- no LLM/evolution module imports.
+
+Stage 2.3 does not call objective functions, generate ASTs, call an LLM, run evolution, implement an optimizer, or claim learned operators.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:

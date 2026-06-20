@@ -1,0 +1,65 @@
+stage: "2.3"
+name: "DSL Interpreter Runtime Shell"
+schema_version: "loco.dsl.v1"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Interpret frozen typed ASTs into shared-variable coordination behavior."
+  input: "validated frozen typed AST + one SharedVariableConflictState"
+  output: "CoordinationResult"
+  target_scope: "shared variables only"
+  stage2_3_is_not:
+    - "LLM search"
+    - "evolution search"
+    - "operator discovery"
+    - "optimizer implementation"
+    - "controller/scheduler implementation"
+    - "benchmark objective evaluation"
+
+runtime_contract:
+  class: "FrozenASTRuntime"
+  allowed_ast_status: "frozen typed AST already accepted by Stage 2.2 preflight"
+  one_call_scope: "single shared-variable conflict state"
+  no_objective_evaluation: true
+  extra_fe: 0
+  deterministic_trace: true
+  result_type: "CoordinationResult"
+
+supported_node_kinds:
+  - "consensus"
+  - "weighted_consensus"
+  - "best_reward_select"
+  - "projection"
+  - "dampening"
+  - "reweighting"
+  - "clip"
+  - "repair"
+
+runtime_forbidden:
+  no_LLM: true
+  no_evolution: true
+  no_optimizer: true
+  no_controller_scheduler: true
+  no_optimizer_selection: true
+  no_baseopt_modification: true
+  no_benchmark_objective_mutation: true
+  no_metabox_source_mutation: true
+  no_arbitrary_executable_code: true
+
+acceptance_checks:
+  - "runtime interprets a frozen typed AST into CoordinationResult"
+  - "runtime target variable must match conflict_state.variable_id"
+  - "runtime changes only shared variables"
+  - "runtime emits deterministic trace diagnostics"
+  - "runtime extra_fe remains 0"
+  - "runtime imports no LLM/evolution modules"
+
+reporting_contract:
+  required_claim: "Stage 2.3 provides a DSL interpreter runtime shell for frozen typed ASTs."
+  forbidden_claims:
+    - "learned reusable operator"
+    - "LLM-generated operator success"
+    - "evolution search success"
+    - "optimizer performance improvement"
+    - "SOTA result"
