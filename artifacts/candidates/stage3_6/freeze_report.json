@@ -1,0 +1,18 @@
+{
+  "candidate_pool_frozen": true,
+  "family_count": 8,
+  "frozen_candidate_count": 12,
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "quality_pass_only": true,
+  "schema_version": "loco.stage3_6_freeze_report.v1",
+  "source_stage": "3.5",
+  "stage": "3.6",
+  "status": "PASS",
+  "train_only_search_protocol_prepared": true
+}

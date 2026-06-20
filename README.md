@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.5 PASS` — prompt-space hardening produced a broader train-only candidate corpus that passes the family coverage gate.
+Current repository state: `Stage 3.6 PASS` — the Stage 3.5 quality-pass candidate pool is frozen, and the Stage 4 train-only evolution/search protocol is prepared.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
@@ -23,6 +23,7 @@ Current repository state: `Stage 3.5 PASS` — prompt-space hardening produced a
 - Stage 3.3 called the real DeepSeek-compatible chat API multiple times, saved sanitized per-batch artifacts, merged train-only candidate batches, replayed them through Stage 3.1, and wrote AST-fingerprint dedup plus rejection-taxonomy reports.
 - Stage 3.4 audited the Stage 3.3 candidate corpus with static quality and diversity filters, finding that the current corpus is boundary-valid but structurally narrow.
 - Stage 3.5 hardened the prompt space to force broader family coverage, producing candidates that include projection, dampening, reweighting, repair, and best_reward_select under the existing typed-AST boundary.
+- Stage 3.6 froze the Stage 3.5 quality-pass candidate pool as immutable train-only input for future search and prepared the Stage 4 protocol boundary without running evolution, objective evaluation, AST execution, or test feedback.
 
 The Stage 2 readiness artifact currently records:
 
@@ -119,6 +120,24 @@ must_include_best_reward_select = true
 not_performance_claim = true
 ```
 
+The Stage 3.6 frozen candidate pool currently records:
+
+```text
+status = PASS
+source_stage = 3.5
+frozen_candidate_count = 12
+quality_pass_only = true
+family_count = 8
+candidate_pool_frozen = true
+train_only_search_protocol_prepared = true
+next_status = READY_FOR_STAGE4_TRAIN_ONLY_SEARCH
+no_llm_call = true
+no_evolution_run = true
+no_objective_evaluation = true
+no_test_feedback = true
+not_performance_claim = true
+```
+
 Known benchmark boundary:
 
 - MetaBox F13 is evaluated through an explicit `implementation_api_adapter`: LOCO preserves `D_formula=905` for official overlap semantics and uses `runtime_dimension=1000` because the MetaBox F13 implementation/API exposes 1000-length internal data (`Ovector`, `Pvector`, and `s` sum).
@@ -194,10 +213,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 3.5:
+Expected latest local result after Stage 3.6:
 
 ```text
-149 passed
+161 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -242,6 +261,12 @@ Run the Stage 3.5 prompt-space hardening gate directly:
 python -m pytest tests\stage3\test_stage3_5_prompt_space_hardening.py -q
 ```
 
+Run the Stage 3.6 frozen candidate pool gate directly:
+
+```powershell
+python -m pytest tests\stage3\test_stage3_6_freeze_candidate_pool.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -283,5 +308,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 3.6: freeze the quality-pass candidate pool and prepare train-only evolution/search protocol
+Stage 4: train-only evolution/search over the frozen coordination-candidate pool
 ```

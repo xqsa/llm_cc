@@ -1,0 +1,21 @@
+{
+  "allowed_split": "train",
+  "base_optimizer_policy": "BaseOpt must remain fixed across LOCO and baselines",
+  "candidate_pool_frozen": true,
+  "fe_accounting_policy": "all extra function evaluations must be counted",
+  "frozen_candidate_count": 12,
+  "no_evolution_executed_in_stage3_6": true,
+  "no_llm_call_in_stage3_6": true,
+  "no_objective_evaluation_in_stage3_6": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "oracle_detected_grouping_policy": "oracle grouping and detected grouping must be reported separately",
+  "schema_version": "loco.stage3_6_train_only_search_protocol.v1",
+  "stage": "3.6",
+  "status": "READY_FOR_STAGE4_TRAIN_ONLY_SEARCH",
+  "test_usage": "sealed final reporting only",
+  "train_usage": "evolution/search may use train-only evaluation in Stage 4",
+  "validation_usage": "selection only after train search"
+}

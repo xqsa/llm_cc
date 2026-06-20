@@ -1,0 +1,54 @@
+stage: "3.6"
+name: "Freeze Quality-pass Candidate Pool and Prepare Train-only Evolution/Search Protocol"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Freeze the Stage 3.5 quality-pass candidate pool and prepare the Stage 4 train-only evolution/search protocol without running evolution or objective evaluation."
+  freezer: "loco.llm.freeze_candidate_pool"
+  cli_entrypoint: "scripts/stage3/run_stage3_6_freeze_candidate_pool.py"
+
+input:
+  accepted_log: "artifacts/candidates/stage3_5/accepted_candidates.jsonl"
+  quality_report: "artifacts/candidates/stage3_5/quality_filter_report.json"
+  diversity_report: "artifacts/candidates/stage3_5/static_diversity_audit.json"
+  coverage_report: "artifacts/candidates/stage3_5/coverage_gate_report.json"
+
+artifacts:
+  output_dir: "artifacts/candidates/stage3_6"
+  frozen_candidate_pool: "artifacts/candidates/stage3_6/frozen_candidate_pool.jsonl"
+  frozen_pool_manifest: "artifacts/candidates/stage3_6/frozen_pool_manifest.json"
+  candidate_family_descriptors: "artifacts/candidates/stage3_6/candidate_family_descriptors.json"
+  train_only_search_protocol: "artifacts/candidates/stage3_6/train_only_search_protocol.json"
+  freeze_report: "artifacts/candidates/stage3_6/freeze_report.json"
+
+current_result:
+  status: "PASS"
+  source_stage: "3.5"
+  frozen_candidate_count: 12
+  quality_pass_only: true
+  family_count: 8
+  candidate_pool_frozen: true
+  train_only_search_protocol_prepared: true
+  next_status: "READY_FOR_STAGE4_TRAIN_ONLY_SEARCH"
+
+stage4_protocol_boundary:
+  allowed_split: "train"
+  validation_usage: "selection only after train search"
+  test_usage: "sealed final reporting only"
+  base_optimizer_policy: "BaseOpt must remain fixed across LOCO and baselines"
+  fe_accounting_policy: "all extra function evaluations must be counted"
+  grouping_policy: "oracle grouping and detected grouping must be reported separately"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no evolution run"
+  - "no objective evaluation"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no scheduler/controller generation"
+  - "no optimizer selection"
+  - "no benchmark objective rewrite"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no performance claim"

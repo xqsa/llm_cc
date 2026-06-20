@@ -1,0 +1,112 @@
+{
+  "families": {
+    "best_reward_select+dampening+clip": {
+      "candidate_count": 2,
+      "candidate_ids": [
+        "stage3_5_batch_1_best_reward_select_dampening_clip",
+        "stage3_5_batch_2_best_reward_dampening_clip"
+      ],
+      "kind_sequences": [
+        "best_reward_select->dampening->clip"
+      ],
+      "node_counts": {
+        "3": 2
+      }
+    },
+    "projection+dampening": {
+      "candidate_count": 3,
+      "candidate_ids": [
+        "stage3_5_batch_0_projection_dampening",
+        "stage3_5_batch_1_projection_dampening",
+        "stage3_5_batch_2_projection_dampening"
+      ],
+      "kind_sequences": [
+        "projection->dampening"
+      ],
+      "node_counts": {
+        "2": 3
+      }
+    },
+    "projection+projection+best_reward_select+dampening+clip": {
+      "candidate_count": 1,
+      "candidate_ids": [
+        "stage3_5_batch_0_bestreward_dampening_clip"
+      ],
+      "kind_sequences": [
+        "projection->projection->best_reward_select->dampening->clip"
+      ],
+      "node_counts": {
+        "5": 1
+      }
+    },
+    "projection+projection+weighted_consensus+projection": {
+      "candidate_count": 1,
+      "candidate_ids": [
+        "stage3_5_batch_0_weighted_consensus_projection"
+      ],
+      "kind_sequences": [
+        "projection->projection->weighted_consensus->projection"
+      ],
+      "node_counts": {
+        "4": 1
+      }
+    },
+    "projection+reweighting+repair": {
+      "candidate_count": 1,
+      "candidate_ids": [
+        "stage3_5_batch_0_reweighting_repair"
+      ],
+      "kind_sequences": [
+        "projection->reweighting->repair"
+      ],
+      "node_counts": {
+        "3": 1
+      }
+    },
+    "reweighting+repair": {
+      "candidate_count": 2,
+      "candidate_ids": [
+        "stage3_5_batch_1_reweighting_repair",
+        "stage3_5_batch_2_reweighting_repair"
+      ],
+      "kind_sequences": [
+        "reweighting->repair"
+      ],
+      "node_counts": {
+        "2": 2
+      }
+    },
+    "reweighting+weighted_consensus+clip": {
+      "candidate_count": 1,
+      "candidate_ids": [
+        "stage3_5_batch_2_reweighting_consensus_clip"
+      ],
+      "kind_sequences": [
+        "reweighting->weighted_consensus->clip"
+      ],
+      "node_counts": {
+        "3": 1
+      }
+    },
+    "weighted_consensus+projection": {
+      "candidate_count": 1,
+      "candidate_ids": [
+        "stage3_5_batch_1_weighted_consensus_projection"
+      ],
+      "kind_sequences": [
+        "weighted_consensus->projection"
+      ],
+      "node_counts": {
+        "2": 1
+      }
+    }
+  },
+  "family_count": 8,
+  "no_evolution_run": true,
+  "no_objective_evaluation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "schema_version": "loco.stage3_6_family_descriptors.v1",
+  "stage": "3.6",
+  "status": "PASS"
+}
