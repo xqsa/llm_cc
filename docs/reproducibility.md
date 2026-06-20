@@ -330,6 +330,34 @@ The tested and logged surface includes:
 
 Stage 2.9 is a promotion replay and registry audit gate. It does not call an LLM, run evolution, generate candidates, re-promote candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators.
 
+## Stage 2.10 Pre-Stage-3 Readiness Gate
+
+Stage 2.10 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_10_readiness_gate.py -q
+```
+
+The committed artifact is:
+
+```text
+artifacts/readiness/stage2_10_readiness_decision.json
+```
+
+The tested and logged surface includes:
+
+- Stage 2.7 sealed split replay audit status;
+- Stage 2.8 frozen promotion registry readiness;
+- Stage 2.9 promotion replay and registry audit status;
+- readiness decision `READY_FOR_STAGE3_BOUNDARY_ONLY`;
+- blocking decision `BLOCK_STAGE3` when a required gate fails;
+- explicit Stage 3 allowed scope: typed coordination operator AST search only;
+- explicit Stage 3 forbidden scope: optimizer generation, BaseOpt modification, scheduler/controller generation, optimizer selection, benchmark objective rewrite, test feedback access, test-set tuning, and untyped executable code generation;
+- no LLM / no evolution imports;
+- no candidate generation, no candidate promotion, no runtime AST execution, no objective evaluation, and no test feedback boundary.
+
+Stage 2.10 is a pre-Stage-3 readiness gate. It does not call an LLM, run evolution, generate candidates, promote candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators. The decision is not a performance claim.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:

@@ -1,0 +1,45 @@
+stage: "2.10"
+name: "Pre-Stage-3 Readiness Gate"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Read-only readiness decision for entering Stage 3 under strict boundary constraints."
+  readiness_module: "loco.coordination.pre_stage3_readiness"
+  decision_artifact: "artifacts/readiness/stage2_10_readiness_decision.json"
+  source_evidence:
+    stage2_7_audit: "artifacts/candidates/stage2_7/split_replay_audit_report.json"
+    stage2_8_registry: "artifacts/operators/stage2_8_registry.jsonl"
+    stage2_9_audit: "artifacts/operators/stage2_9/promotion_replay_audit_report.json"
+    metabox_smoke: "docs/stage1/metabox_real_smoke_latest.json"
+
+readiness_decision:
+  ready_value: "READY_FOR_STAGE3_BOUNDARY_ONLY"
+  blocked_value: "BLOCK_STAGE3"
+  required_pass_gates:
+    - "stage2_7_sealed_split_replay_audit"
+    - "stage2_8_frozen_candidate_promotion_contract"
+    - "stage2_9_promotion_replay_and_registry_audit"
+  allowed_stage3_scope: "LLM/evolution search over typed coordination operator ASTs only"
+  not_a_performance_claim: true
+
+forbidden_stage3_scope:
+  - "optimizer generation"
+  - "BaseOpt modification"
+  - "scheduler/controller generation"
+  - "optimizer selection"
+  - "benchmark objective rewrite"
+  - "test feedback access"
+  - "test-set tuning"
+  - "untyped executable code generation"
+
+stage2_10_forbidden_actions:
+  - "LLM call"
+  - "evolution run"
+  - "candidate generation"
+  - "candidate promotion"
+  - "runtime AST execution"
+  - "objective evaluation"
+  - "optimizer implementation"
+  - "controller/scheduler implementation"
+  - "test feedback access"

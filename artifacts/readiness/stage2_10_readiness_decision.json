@@ -1,0 +1,65 @@
+{
+  "blocking_gates": [],
+  "decision": "READY_FOR_STAGE3_BOUNDARY_ONLY",
+  "evidence": {
+    "stage2_7": {
+      "accepted_count": 1,
+      "file_fingerprint_mismatch_count": 0,
+      "path": "artifacts/candidates/stage2_7/split_replay_audit_report.json",
+      "rejected_count": 5,
+      "split_violation_count": 0,
+      "status": "PASS",
+      "test_feedback_violation_count": 0
+    },
+    "stage2_8": {
+      "frozen_entry_count": 1,
+      "has_receipt_fingerprint": true,
+      "no_test_feedback": true,
+      "path": "artifacts/operators/stage2_8_registry.jsonl",
+      "registry_entry_count": 1,
+      "target_scope_values": [
+        "shared_variables_only"
+      ]
+    },
+    "stage2_9": {
+      "artifact_fingerprint_mismatch_count": 0,
+      "boundary_violation_count": 0,
+      "path": "artifacts/operators/stage2_9/promotion_replay_audit_report.json",
+      "promotion_fingerprint_mismatch_count": 0,
+      "receipt_fingerprint_mismatch_count": 0,
+      "registry_entry_count": 1,
+      "status": "PASS"
+    }
+  },
+  "known_risks": {
+    "metabox_top_level_import_status": "not_required_for_stage3_readiness",
+    "real_metabox_smoke_status": "PASS",
+    "stage3_still_requires_sealed_train_validation_test_protocol": true
+  },
+  "no_candidate_generation": true,
+  "no_evolution": true,
+  "no_llm": true,
+  "no_objective_evaluation": true,
+  "no_optimizer": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "required_pass_gates": [
+    "stage2_7_sealed_split_replay_audit",
+    "stage2_8_frozen_candidate_promotion_contract",
+    "stage2_9_promotion_replay_and_registry_audit"
+  ],
+  "schema_version": "loco.pre_stage3_readiness.v1",
+  "stage": "2.10",
+  "stage3_allowed": true,
+  "stage3_allowed_scope": "LLM/evolution search over typed coordination operator ASTs only",
+  "stage3_forbidden_scope": [
+    "optimizer generation",
+    "BaseOpt modification",
+    "scheduler/controller generation",
+    "optimizer selection",
+    "benchmark objective rewrite",
+    "test feedback access",
+    "test-set tuning",
+    "untyped executable code generation"
+  ]
+}
