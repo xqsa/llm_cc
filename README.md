@@ -308,5 +308,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 4: train-only evolution/search over the frozen coordination-candidate pool
+Stage 4.0: train-only evolution/search over the frozen coordination-candidate pool
 ```
