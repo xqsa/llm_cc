@@ -144,7 +144,37 @@ Stage 3 仍应继续保持：
 - 测试阶段 frozen：no LLM / no evolution / no tuning；
 - 所有额外 function evaluations 必须纳入 FE accounting。
 
-## 10. 当前结论
+## 10. Stage 3 preflight
+
+Stage 2.2 同时提供 Stage 3 preflight：在任何 LLM/evolution runtime 被允许进入实验前，先对一批 candidate typed coordination operator AST payloads 做静态准入检查。
+
+Stage 3 preflight 的输入是候选 AST payload list，输出是：
+
+- accepted candidates：`candidate_id`、deterministic `serialized_ast`、`fingerprint_sha256`；
+- rejected candidates：`candidate_id`、`reject_reason`。
+
+Stage 3 preflight 只做 schema / boundary / scope checking：
+
+- 不执行 operator；
+- 不解释 AST 为 runtime behavior；
+- 不调用 LLM；
+- 不运行 evolution；
+- 不调用 objective function；
+- 不产生额外 function evaluations，`validation_extra_fe = 0`。
+
+accepted candidate 必须已经通过：
+
+- schema version check；
+- allowed node kind check；
+- shared variables target check；
+- forbidden metadata check；
+- arbitrary executable code rejection；
+- `max_nodes` / `max_depth` check；
+- deterministic serialization / fingerprint。
+
+这一步的作用是把 Stage 3 的入口从“LLM 说了什么”变成“一个可审计、可 hash、可冻结的 typed AST artifact”。它仍然不是 operator discovery，也不是性能证据。
+
+## 11. 当前结论
 
 Stage 2.2 的完成标准不是发现更好 coordination operator，而是证明项目已经有一个可测试、可审计、可冻结的 typed AST boundary。
 

@@ -58,8 +58,33 @@ safety_limits:
   max_nodes: 32
   max_depth: 8
   deterministic_serialization: true
+  deterministic_fingerprint_sha256: true
   validation_extra_fe: 0
   arbitrary_executable_code_allowed: false
+
+stage3_preflight:
+  name: "Stage 3 preflight"
+  purpose: "Batch-check candidate typed coordination operator AST payloads before any LLM/evolution runtime is allowed to affect experiments."
+  input: "candidate typed coordination operator AST payloads"
+  output:
+    accepted:
+      - "candidate_id"
+      - "serialized_ast"
+      - "fingerprint_sha256"
+    rejected:
+      - "candidate_id"
+      - "reject_reason"
+  no_operator_execution: true
+  no_objective_evaluation: true
+  validation_extra_fe: 0
+  accepted_candidates_must_pass:
+    - "schema_version check"
+    - "allowed node kind check"
+    - "shared variables target check"
+    - "forbidden metadata check"
+    - "arbitrary executable code rejection"
+    - "max_nodes and max_depth check"
+  rejected_candidates_must_report_reason: true
 
 forbidden_node_kinds:
   - "optimizer"

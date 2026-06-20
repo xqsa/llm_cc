@@ -202,6 +202,54 @@ def test_stage2_2_import_does_not_load_llm_or_evolution_modules() -> None:
     assert forbidden_loaded_after == forbidden_loaded_before
 
 
+def test_stage3_preflight_accepts_and_rejects_candidate_asts_without_execution() -> (
+    None
+):
+    from loco.coordination.dsl import (
+        serialize_coordination_ast,
+        stage3_preflight_check,
+    )
+
+    valid_payload = _valid_ast()
+    non_shared_payload = _valid_ast()
+    non_shared_payload["operator_id"] = "targets_non_shared_7"
+    non_shared_payload["nodes"][0]["target"]["variable_id"] = 7
+    non_shared_payload["nodes"][1]["target"]["variable_id"] = 7
+    forbidden_payload = _valid_ast()
+    forbidden_payload["operator_id"] = "tries_optimizer"
+    forbidden_payload["nodes"][0]["kind"] = "optimizer"
+
+    tracker = FEBudgetTracker(max_fe=100)
+    tracker.record("proposal", 2)
+    before = tracker.to_dict()
+
+    report = stage3_preflight_check(
+        [valid_payload, non_shared_payload, forbidden_payload],
+        shared_variables={5},
+    )
+
+    assert tracker.to_dict() == before
+    assert report.total_count == 3
+    assert report.accepted_count == 1
+    assert report.rejected_count == 2
+
+    accepted = report.accepted[0]
+    assert accepted.candidate_id == "weighted_clip_shared_5"
+    assert accepted.serialized_ast == serialize_coordination_ast(accepted.ast)
+    assert len(accepted.fingerprint_sha256) == 64
+
+    rejected_by_id = {item.candidate_id: item for item in report.rejected}
+    assert "targets_non_shared_7" in rejected_by_id
+    assert (
+        "non-shared variables" in rejected_by_id["targets_non_shared_7"].reject_reason
+    )
+    assert "tries_optimizer" in rejected_by_id
+    assert "Forbidden DSL node kind" in rejected_by_id["tries_optimizer"].reject_reason
+
+    rerun = stage3_preflight_check([valid_payload], shared_variables={5})
+    assert rerun.accepted[0].fingerprint_sha256 == accepted.fingerprint_sha256
+
+
 def test_stage2_2_boundary_artifacts_exist_and_state_research_limits() -> None:
     root = Path(__file__).resolve().parents[2]
     config_text = (root / "configs" / "stage2_2_dsl_boundary.yaml").read_text(
@@ -225,3 +273,4 @@ def test_stage2_2_boundary_artifacts_exist_and_state_research_limits() -> None:
     assert "function_id" in config_text
     assert "benchmark_name" in config_text
     assert "future_evaluations" in config_text
+    assert "Stage 3 preflight" in combined

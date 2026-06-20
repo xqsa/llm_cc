@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository stage: `Stage 2.1 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
+Current repository stage: `Stage 2.2 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
 
 Implemented:
 
@@ -21,6 +21,7 @@ Implemented:
 - Stage 2.0: conflict state, conflict metrics, baseline coordination operators, FE accounting, and a minimal synthetic conflict-coordination runner.
 - Stage 2.1: multi-setting synthetic conflict evidence panel across topology, dimension, overlap ratio, and seed settings.
 - Stage 2.1B: multi-round post-coordination regenerated-conflict evidence gate.
+- Stage 2.2: typed coordination operator DSL boundary and Stage 3 candidate-AST preflight.
 
 Known benchmark boundary:
 
@@ -146,5 +147,5 @@ Stage 2.0 evaluates each baseline as a separate method run. Cross-baseline compa
 Do not jump directly to Stage 3. Recommended next step:
 
 ```text
-Stage 2.2: typed coordination operator DSL boundary + Stage 3 preflight for LLM-generated AST constraints
+Stage 2.3: DSL interpreter / operator runtime shell for frozen typed ASTs
 ```

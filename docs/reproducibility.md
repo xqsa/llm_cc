@@ -109,6 +109,28 @@ baseline in {NoCoordination, AverageConsensus, BestRewardSelection, WeightedCons
 
 `longitudinal_conflict_reduction_ratio` uses next-round regenerated conflict. It must not be substituted with same-round `proposal_consensus_collapse_ratio_mean`, and it is not a SOTA optimizer-loop performance claim.
 
+## Stage 2.2 DSL Boundary And Stage 3 Preflight
+
+Stage 2.2 is verified through the DSL boundary tests:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_2_dsl_boundary.py -q
+```
+
+The tested surface includes:
+
+- typed coordination operator AST loading;
+- shared-variable-only target validation;
+- forbidden optimizer/controller/scheduler node rejection;
+- forbidden metadata rejection;
+- arbitrary executable code rejection;
+- deterministic AST serialization;
+- Stage 3 preflight accepted/rejected candidate reports;
+- deterministic accepted-candidate `fingerprint_sha256`;
+- zero additional function evaluations during validation.
+
+Stage 2.2 does not execute ASTs, call an LLM, run evolution, implement an optimizer, or claim learned operators.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:

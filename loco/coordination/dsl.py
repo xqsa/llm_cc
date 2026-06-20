@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import re
+import hashlib
 from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Mapping, Sequence
@@ -132,6 +133,35 @@ class DSLValidationReport:
     target_variables: frozenset[int]
 
 
+@dataclass(frozen=True)
+class Stage3AcceptedCandidate:
+    candidate_id: str
+    ast: CoordinationOperatorAST
+    serialized_ast: str
+    fingerprint_sha256: str
+
+
+@dataclass(frozen=True)
+class Stage3RejectedCandidate:
+    candidate_id: str
+    reject_reason: str
+
+
+@dataclass(frozen=True)
+class Stage3PreflightReport:
+    total_count: int
+    accepted: tuple[Stage3AcceptedCandidate, ...]
+    rejected: tuple[Stage3RejectedCandidate, ...]
+
+    @property
+    def accepted_count(self) -> int:
+        return len(self.accepted)
+
+    @property
+    def rejected_count(self) -> int:
+        return len(self.rejected)
+
+
 def load_coordination_ast(payload: Mapping[str, Any]) -> CoordinationOperatorAST:
     """Load and validate the static AST schema without executing anything."""
 
@@ -219,6 +249,61 @@ def serialize_coordination_ast(ast: CoordinationOperatorAST) -> str:
     """Return deterministic JSON for review, hashing, and frozen artifacts."""
 
     return json.dumps(ast.to_dict(), sort_keys=True, separators=(",", ":"))
+
+
+def stage3_preflight_check(
+    candidate_payloads: Sequence[Mapping[str, Any]],
+    shared_variables: set[int] | frozenset[int],
+    *,
+    max_nodes: int = DEFAULT_MAX_NODES,
+    max_depth: int = DEFAULT_MAX_DEPTH,
+) -> Stage3PreflightReport:
+    """Check Stage 3 candidate AST payloads before any LLM/evolution runtime.
+
+    The preflight is schema-only and data-only: it loads candidate ASTs,
+    validates boundary constraints, and emits deterministic fingerprints for
+    accepted candidates. It does not execute operators or evaluate objectives.
+    """
+
+    accepted: list[Stage3AcceptedCandidate] = []
+    rejected: list[Stage3RejectedCandidate] = []
+
+    for index, payload in enumerate(candidate_payloads):
+        candidate_id = _candidate_id_from_payload(payload, index)
+        try:
+            ast = load_coordination_ast(payload)
+            validate_coordination_ast(
+                ast,
+                shared_variables=shared_variables,
+                max_nodes=max_nodes,
+                max_depth=max_depth,
+            )
+        except ValueError as exc:
+            rejected.append(
+                Stage3RejectedCandidate(
+                    candidate_id=candidate_id,
+                    reject_reason=str(exc),
+                )
+            )
+            continue
+
+        serialized = serialize_coordination_ast(ast)
+        accepted.append(
+            Stage3AcceptedCandidate(
+                candidate_id=ast.operator_id,
+                ast=ast,
+                serialized_ast=serialized,
+                fingerprint_sha256=hashlib.sha256(
+                    serialized.encode("utf-8")
+                ).hexdigest(),
+            )
+        )
+
+    return Stage3PreflightReport(
+        total_count=len(candidate_payloads),
+        accepted=tuple(accepted),
+        rejected=tuple(rejected),
+    )
 
 
 def _load_node(payload: Any) -> DSLNode:
@@ -352,3 +437,11 @@ def _canonicalize_value(value: Any) -> Any:
     if isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
         return [_canonicalize_value(item) for item in value]
     return value
+
+
+def _candidate_id_from_payload(payload: Any, index: int) -> str:
+    if isinstance(payload, Mapping):
+        candidate_id = payload.get("operator_id")
+        if isinstance(candidate_id, str) and candidate_id:
+            return candidate_id
+    return f"candidate_{index}"

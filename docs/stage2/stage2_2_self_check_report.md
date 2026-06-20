@@ -41,6 +41,7 @@
 | deterministic serialization | PASS | 同一 AST 的 JSON serialization 稳定。 |
 | FE accounting unchanged by validation | PASS | validation 不记录额外 FE。 |
 | no LLM/evolution imports | PASS | DSL import/validation 不加载 OpenAI/Anthropic/Google/deap 模块。 |
+| Stage 3 preflight | PASS | candidate AST batch 会输出 accepted/rejected、deterministic fingerprint 和 reject reason；不执行 operator、不调用 objective、不改变 FE accounting。 |
 
 ## 4. Claim Boundary
 
@@ -48,6 +49,7 @@ Stage 2.2 可以声明：
 
 ```text
 LOCO now has a tested typed coordination operator AST boundary.
+LOCO has a Stage 3 preflight for candidate AST admission, deterministic fingerprinting, and reject reasons.
 ```
 
 Stage 2.2 不能声明：
