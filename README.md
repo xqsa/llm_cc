@@ -12,19 +12,12 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.7 PASS` — the Stage 3.6 frozen candidate pool remains the Stage 4 train-only search input, and the Coordination Family Literature Grounding and Allowed Vocabulary Lock is now in place before any Stage 4 evolution/search run.
+Current repository state: `Stage 3.7 PASS` — Stage 3 is complete as a candidate-supply and pre-search protocol phase. The Stage 3.6 frozen candidate pool remains the Stage 4 train-only search input, and the Coordination Family Literature Grounding and Allowed Vocabulary Lock is now in place before any Stage 4 evolution/search run.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
 - Stage 2 built the conflict-coordination infrastructure and readiness gates needed before any LLM/evolution search is allowed.
-- Stage 3.0 locked the boundary-constrained typed-AST search protocol, including the LLM candidate wrapper schema, prompt contract, train/validation/test firewall, and protocol-lock report.
-- Stage 3.1 captured a first small-batch LLM candidate output as train-only typed-AST wrappers, then wrote accepted/rejected logs and a replay report without evolution, objective evaluation, test feedback, or performance claims.
-- Stage 3.2 called a real DeepSeek-compatible chat API once, saved sanitized response artifacts, parsed the returned train-only candidate batch, and replayed it through the Stage 3.1 audit chain.
-- Stage 3.3 called the real DeepSeek-compatible chat API multiple times, saved sanitized per-batch artifacts, merged train-only candidate batches, replayed them through Stage 3.1, and wrote AST-fingerprint dedup plus rejection-taxonomy reports.
-- Stage 3.4 audited the Stage 3.3 candidate corpus with static quality and diversity filters, finding that the current corpus is boundary-valid but structurally narrow.
-- Stage 3.5 hardened the prompt space to force broader family coverage, producing candidates that include projection, dampening, reweighting, repair, and best_reward_select under the existing typed-AST boundary.
-- Stage 3.6 froze the Stage 3.5 quality-pass candidate pool as immutable train-only input for future search and prepared the Stage 4 protocol boundary without running evolution, objective evaluation, AST execution, or test feedback.
-- Stage 3.7 locked the literature-grounded coordination family space for Stage 4, covering F0-F9 families, allowed typed-AST vocabulary, forbidden vocabulary, shared-variable-only scope, legal train-time signals, full FE accounting, and the not a performance claim boundary.
+- Stage 3 completed the LLM candidate-supply chain and the pre-Stage-4 search boundary. It locked the typed-AST protocol, captured real train-only LLM candidate batches, audited candidate quality and diversity, hardened family coverage, froze the quality-pass pool, and locked the literature-grounded Stage 4 family vocabulary.
 
 The Stage 2 readiness artifact currently records:
 
@@ -36,7 +29,13 @@ not_performance_claim = true
 
 This means Stage 3 may begin only as boundary-constrained typed coordination-operator AST search. It is **not** a claim that LOCO has learned final operators, beaten baselines, or achieved SOTA optimizer performance.
 
-The Stage 3.0 protocol lock artifact currently records:
+## What Stage 3 Established
+
+Stage 3 should be read as a candidate-generation, audit, and pre-search locking phase. It did not run evolution, execute candidate ASTs in an optimization loop, evaluate objectives for performance, or use validation/test feedback.
+
+1. Protocol and firewall lock
+
+   Stage 3.0 locked the boundary-constrained typed-AST search protocol, including the LLM candidate wrapper schema, prompt contract, train/validation/test firewall, and protocol-lock report.
 
 ```text
 status = PASS
@@ -46,72 +45,37 @@ no_evolution_run = true
 not_performance_claim = true
 ```
 
-The Stage 3.1 candidate batch replay currently records:
+2. Train-only LLM candidate supply
+
+   Stage 3.1 to Stage 3.3 proved that typed-AST candidate wrappers can be captured, parsed, logged, rejected or accepted, deduplicated, and replayed through the audit chain. Stage 3.2 made one real DeepSeek-compatible chat API smoke call, and Stage 3.3 made three real train-only API calls. Sanitized response artifacts were saved with secret redaction.
 
 ```text
-status = PASS
 split = train
-accepted_count = 1
-rejected_count = 2
+stage3_1_accepted_count = 1
+stage3_1_rejected_count = 2
+stage3_2_api_called = true
+stage3_2_accepted_count = 1
+stage3_3_api_call_count = 3
+stage3_3_raw_candidate_count = 9
+stage3_3_unique_accepted_count = 9
 no_evolution_run = true
 no_objective_evaluation = true
-not_performance_claim = true
-```
-
-The Stage 3.2 real LLM API smoke currently records:
-
-```text
-status = PASS
-api_called = true
-provider = deepseek
-split = train
-accepted_count = 1
-rejected_count = 0
 secret_redacted = true
 not_performance_claim = true
 ```
 
-The Stage 3.3 multi-batch LLM candidate generation currently records:
+3. Candidate audit and prompt-space hardening
+
+   Stage 3.4 showed that the first real multi-batch corpus was boundary-valid but structurally narrow, mostly `weighted_consensus->clip`. Stage 3.5 then hardened the prompt space and produced a broader quality-pass pool with projection, dampening, reweighting, repair, and best_reward_select coverage.
 
 ```text
 status = PASS
-api_call_count = 3
-split = train
-raw_candidate_count = 9
-accepted_count = 9
-unique_accepted_count = 9
-duplicate_accepted_count = 0
-rejected_count = 0
-secret_redacted = true
-not_performance_claim = true
-```
-
-The Stage 3.4 static candidate audit currently records:
-
-```text
-status = PASS
-candidate_count = 9
-quality_pass_count = 7
-quality_reject_count = 2
-unique_kind_sequence_count = 2
-dominant_kind_sequence = weighted_consensus->clip
-dominant_kind_sequence_count = 7
-low_diversity_warning = true
-not_performance_claim = true
-```
-
-This means the current candidate supply chain works, but the first real multi-batch corpus is mostly `weighted_consensus->clip` variants. It should not be treated as a diverse reusable operator library yet.
-
-The Stage 3.5 prompt-space hardening gate currently records:
-
-```text
-status = PASS
-api_call_count = 3
-raw_candidate_count = 12
-accepted_count = 12
-quality_pass_count = 12
-unique_kind_sequence_count = 8
-operator_family_count = 8
+stage3_4_quality_pass_count = 7
+stage3_4_low_diversity_warning = true
+stage3_5_raw_candidate_count = 12
+stage3_5_quality_pass_count = 12
+stage3_5_unique_kind_sequence_count = 8
+stage3_5_operator_family_count = 8
 dominant_ratio = 0.25
 must_include_projection = true
 must_include_dampening = true
@@ -121,7 +85,9 @@ must_include_best_reward_select = true
 not_performance_claim = true
 ```
 
-The Stage 3.6 frozen candidate pool currently records:
+4. Frozen train-only input for Stage 4
+
+   Stage 3.6 froze the Stage 3.5 quality-pass candidate pool as immutable train-only input and prepared the Stage 4 search protocol boundary.
 
 ```text
 status = PASS
@@ -139,7 +105,9 @@ no_test_feedback = true
 not_performance_claim = true
 ```
 
-The Stage 3.7 coordination family lock currently records:
+5. Literature-grounded family vocabulary lock
+
+   Stage 3.7 added the Coordination Family Literature Grounding and Allowed Vocabulary Lock. It defines the allowed F0-F9 coordination families, legal train-time signals, forbidden vocabulary, shared-variable-only scope, split firewall, and FE accounting boundary that Stage 4 must preserve.
 
 ```text
 status = READY_FOR_STAGE4_TRAIN_ONLY_SEARCH_AFTER_FAMILY_LOCK
