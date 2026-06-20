@@ -12,30 +12,28 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 4.1 PASS` — Stage 4 has audited the Stage 4.0 train-only search trace and hardened the promotion rule. The original top-3 cutoff split a six-candidate tie at score 1.0, so Stage 4.1 now promotes the full tied validation-ready set while preserving the no-validation-feedback, no-test-feedback, no-objective-evaluation, and not-performance-claim boundaries.
+Current repository state: `Stage 5.0 PASS` — Stage 5.0 has selected one candidate from the Stage 4.1 tie-hardened validation-ready set using validation-only conflict diagnostics. The selected candidate is `stage3_5_batch_1_weighted_consensus_projection`, with status `SELECTED_FOR_SEALED_TEST_NOT_FINAL`.
 
-Stage 4.1 is not a performance claim.
+Stage 5.0 is not a performance claim. It uses validation feedback only after train search for selection, and it does not use sealed-test feedback, benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, BaseOpt modification, or optimizer/controller/scheduler generation.
 
-- Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
-- Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
-- Stage 2 built the conflict-coordination infrastructure and readiness gates needed before any LLM/evolution search is allowed.
-- Stage 3 completed the LLM candidate-supply chain and the pre-Stage-4 search boundary. It locked the typed-AST protocol, captured real train-only LLM candidate batches, audited candidate quality and diversity, hardened family coverage, froze the quality-pass pool, and locked the literature-grounded Stage 4 family vocabulary.
-- Stage 4.0 ran deterministic train-only search over the frozen coordination-candidate pool, produced a ranked search trace and promotion candidates, and recorded an FE ledger while preserving the no-validation-feedback, no-test-feedback, no-objective-evaluation, and not-performance-claim boundaries.
-- Stage 4.1 audited the Stage 4.0 search trace, detected that the top-k cutoff split a six-candidate score tie, and hardened the promotion rule to `include_all_candidates_tied_at_cutoff`.
-
-The Stage 2 readiness artifact currently records:
+Current stage map:
 
 ```text
-decision = READY_FOR_STAGE3_BOUNDARY_ONLY
-stage3_allowed = true
-not_performance_claim = true
+Stage 0      research contract and boundary lock                 PASS
+Stage 1      benchmark/data layer and CEC2013 LSGO semantics      PASS
+Stage 2      conflict-state, metrics, FE accounting, readiness    PASS
+Stage 3      LLM candidate supply, audit, freeze, family lock      PASS
+Stage 4.0    deterministic train-only search over frozen pool      PASS
+Stage 4.1    train-search audit and tie-hardened promotion rule    PASS
+Stage 5.0    validation-only selection                            PASS
+Stage 5.1    selected operator freeze                             NEXT
 ```
 
-This means Stage 3 may begin only as boundary-constrained typed coordination-operator AST search. It is **not** a claim that LOCO has learned final operators, beaten baselines, or achieved SOTA optimizer performance.
+The project is now past candidate generation, train-search promotion, and validation-only selection. The next executable frontier is selected-operator freeze before sealed-test final reporting.
 
 ## What Stage 3 Established
 
-Stage 3 should be read as a candidate-generation, audit, and pre-search locking phase. It did not run evolution, execute candidate ASTs in an optimization loop, evaluate objectives for performance, or use validation/test feedback.
+Stage 3 should be read as a candidate-generation, audit, freeze, and search-boundary locking phase. It did not run evolution, execute candidate ASTs in an optimization loop, evaluate objectives for performance, or use validation/test feedback.
 
 1. Protocol and firewall lock
 
@@ -129,7 +127,25 @@ no_test_feedback = true
 not_performance_claim = true
 ```
 
-Do not run Stage 4 evolution/search before the Stage 3.7 family lock is preserved. The next executable phase is Stage 4 train-only evolution/search, still under the frozen-pool, family-lock, and split-firewall boundaries.
+In compact form, Stage 3 completed the following chain:
+
+```text
+typed-AST protocol lock
+-> train-only LLM candidate capture
+-> replay and wrapper audit
+-> static quality/diversity audit
+-> prompt-space hardening
+-> frozen quality-pass pool
+-> literature-grounded family vocabulary lock
+```
+
+Stage 3 therefore proves supply-chain legality and vocabulary coverage. It does **not** prove operator utility, benchmark improvement, or SOTA performance.
+
+## What Stage 4 Established
+
+Historical Stage 4 gate: Do not run Stage 4 evolution/search before the Stage 3.7 family lock is preserved.
+
+Stage 4 train-only evolution/search became allowed only after the Stage 3.7 family lock was preserved. Stage 4 then converted the frozen Stage 3 candidate pool into a deterministic train-only ranking and audited the promotion decision. It still did not use validation feedback, sealed-test feedback, objective evaluation, or AST execution.
 
 The Stage 4.0 train-only search currently records:
 
@@ -153,6 +169,8 @@ baseopt_modified = false
 not_performance_claim = true
 ```
 
+Stage 4.1 found that the original top-k promotion rule would cut through a score tie. The hardened rule now includes every candidate tied at the cutoff instead of selecting an arbitrary subset.
+
 The Stage 4.1 train search audit currently records:
 
 ```text
@@ -171,6 +189,101 @@ test_feedback_used = false
 objective_evaluation_used = false
 ast_execution_used = false
 not_performance_claim = true
+```
+
+Stage 4 therefore establishes a validation-ready set, not a final operator. The direct Stage 5.0 input is:
+
+```text
+artifacts/search/stage4_1/promotion_decision.json
+```
+
+## Current Frontier And Next Step
+
+The current frontier is no longer candidate generation, train search, or
+validation selection. LOCO-LSGO has completed the candidate-supply chain,
+frozen train-only candidate pool, train-only search trace, promotion-rule
+hardening, and validation-only selection. The active research frontier is now
+freezing the selected operator before sealed-test reporting.
+
+Next recommended step:
+
+```text
+Stage 5.1: selected operator freeze
+```
+
+Stage 5.1 should read only the Stage 5.0 selection decision:
+
+```text
+artifacts/validation/stage5_0/selection_decision.json
+```
+
+It should freeze `stage3_5_batch_1_weighted_consensus_projection` as the only
+candidate eligible for sealed-test reporting. Stage 5.1 should not revise the
+Stage 5.0 validation rule, rerun train search, add new candidates, or use sealed
+test feedback.
+
+Stage 5.0 produced:
+
+```text
+artifacts/validation/stage5_0/validation_trace.jsonl
+artifacts/validation/stage5_0/validation_metrics.json
+artifacts/validation/stage5_0/selection_decision.json
+artifacts/validation/stage5_0/fe_ledger.json
+artifacts/validation/stage5_0/validation_report.json
+```
+
+Stage 5.1 must still preserve:
+
+```text
+no LLM call
+no new candidate generation
+no prompt revision
+no train-search revision
+no promotion-rule revision
+no validation-rule revision
+no test feedback
+no sealed-test access
+no BaseOpt modification
+no optimizer/controller/scheduler generation
+not a performance claim
+```
+
+## Completion Distance
+
+This project is already a concrete research prototype rather than a loose idea:
+the research boundary, benchmark/data layer, conflict-coordination
+infrastructure, typed-AST candidate supply, frozen candidate pool, train-only
+search trace, and promotion-rule audit are all in place.
+
+Current estimated completion:
+
+```text
+Concept and contribution framing:       90%
+Protocol and leakage-control boundary:  85%
+Engineering prototype:                  75%
+Candidate generation and audit chain:   90%
+Train-only search and promotion audit:  80%
+Validation evidence:                    55%
+Sealed-test evidence:                   10%
+Paper-ready empirical case:             55-65%
+```
+
+In plain terms:
+
+```text
+Distance to a completed innovation prototype: about 75-80% done
+Distance to a credible short paper: about 55-65% done
+Distance to a strong final performance claim: about 25-35% done
+```
+
+The main remaining gap is not more LLM generation. The main remaining gap is
+evidence:
+
+```text
+Stage 5.1 selected operator freeze
+-> Stage 6.0 sealed test final reporting
+-> Stage 6.1 baseline comparison, ablation, and failure analysis
+-> paper claim polishing
 ```
 
 Known benchmark boundary:
@@ -214,11 +327,14 @@ configs/              Stage boundary and benchmark configuration drafts
 artifacts/operators/  Frozen coordination-operator artifacts and registries
 artifacts/candidates/ Candidate AST accepted/rejected logs and replay reports
 artifacts/readiness/  Pre-Stage-3 readiness decision artifacts
+artifacts/search/     Stage 4 train-only search and promotion audit artifacts
+artifacts/validation/ Stage 5 validation-only selection artifacts
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2 reports, result JSON, CSV summaries, and audits
 docs/stage3/          Stage 3 protocol lock, search-space, selection, and firewall docs
 docs/stage4/          Stage 4 family-space grounding, train-only search, and audit docs
+docs/stage5/          Stage 5 validation-only selection docs
 loco/benchmarks/      LSGOProblem interface, MetaBox adapter, synthetic overlap generator
 loco/conflict/        Shared-variable conflict state and metrics
 loco/coordination/    Baseline coordination rules, typed AST boundary, artifact helpers
@@ -226,7 +342,10 @@ loco/evaluation/      FE accounting
 loco/experiments/     Stage 2 diagnostic runners
 loco/llm/             Stage 3 prompt contract, provider client, candidate wrappers, and batch audit helpers
 scripts/stage1/       Real MetaBox CEC2013 LSGO smoke script
-tests/                Stage 0/1/2/3/4 tests
+scripts/stage3/       Stage 3 candidate generation, audit, and freeze runners
+scripts/stage4/       Stage 4 train-only search and audit runners
+scripts/stage5/       Stage 5 validation-only selection runner
+tests/                Stage 0/1/2/3/4/5 tests
 ```
 
 ## Installation
@@ -249,10 +368,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 4.0:
+Expected latest local result after Stage 5.0:
 
 ```text
-168 passed
+171 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -321,6 +440,12 @@ Run the Stage 4.1 train search audit gate directly:
 python -m pytest tests\stage4\test_stage4_1_train_search_audit.py -q
 ```
 
+Run the Stage 5.0 validation-only selection gate directly:
+
+```powershell
+python -m pytest tests\stage5\test_stage5_0_validation_selection.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -362,7 +487,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 5.0: validation-only selection over tie-hardened validation-ready candidates
+Stage 5.1: selected operator freeze
 ```
 
-This next stage must use validation only for selection after train search; validation results must not feed back into prompt generation, candidate generation, frozen pool contents, or promotion-rule design.
+This next stage must freeze only the Stage 5.0 selected candidate, `stage3_5_batch_1_weighted_consensus_projection`, for sealed-test reporting. It must not feed validation results back into prompt generation, candidate generation, frozen pool contents, train-search scores, or promotion-rule design.

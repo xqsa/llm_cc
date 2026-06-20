@@ -110,6 +110,37 @@ def test_frozen_ast_runtime_matches_weighted_consensus_when_ast_has_single_node(
     assert runtime_result.extra_fe == 0
 
 
+def test_frozen_ast_runtime_supports_root_projection_without_source() -> None:
+    from loco.coordination.dsl import load_coordination_ast
+    from loco.coordination.dsl_runtime import FrozenASTRuntime
+
+    payload = {
+        "schema_version": "loco.dsl.v1",
+        "operator_id": "root_projection_shared_5",
+        "nodes": [
+            {
+                "id": "project",
+                "kind": "projection",
+                "target": {"variable_id": 5},
+                "inputs": {"projection": "box"},
+            }
+        ],
+        "output": {"source": "project"},
+    }
+
+    result = FrozenASTRuntime(load_coordination_ast(payload)).coordinate(
+        _state(), shared_variables={5}
+    )
+
+    assert result.variable_id == 5
+    assert result.extra_fe == 0
+    assert result.coordinated_value == 0.3333333333333333
+    assert result.diagnostics["trace"][0]["diagnostics"] == {
+        "projection": "bounds",
+        "source": "proposal_mean",
+    }
+
+
 def test_frozen_ast_runtime_rejects_wrong_variable_state() -> None:
     from loco.coordination.dsl import load_coordination_ast
     from loco.coordination.dsl_runtime import FrozenASTRuntime

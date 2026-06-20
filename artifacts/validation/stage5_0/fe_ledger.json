@@ -1,0 +1,17 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 18,
+  "FE_repair": 0,
+  "FE_total": 18,
+  "budget_scope": "validation_only_selection",
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "schema_version": "loco.stage5_0_fe_ledger.v1",
+  "sealed_test_access_used": false,
+  "stage": "5.0",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": true,
+  "validation_trace_row_count": 18
+}

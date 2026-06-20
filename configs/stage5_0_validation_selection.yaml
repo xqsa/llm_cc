@@ -1,0 +1,55 @@
+stage: "5.0"
+name: "Validation-only Selection over Tie-hardened Candidates"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Select one candidate for sealed-test freeze from the Stage 4.1 tie-hardened validation-ready candidates using validation-only conflict diagnostics."
+  runner: "loco.coordination.validation_selection"
+  cli_entrypoint: "scripts/stage5/run_stage5_0_validation_selection.py"
+  not_performance_claim: true
+
+input:
+  promotion_decision: "artifacts/search/stage4_1/promotion_decision.json"
+  frozen_candidate_pool: "artifacts/candidates/stage3_6/frozen_candidate_pool.jsonl"
+  source_status: "VALIDATION_READY_TIE_HARDENED_NOT_FINAL"
+
+artifacts:
+  output_dir: "artifacts/validation/stage5_0"
+  validation_trace: "artifacts/validation/stage5_0/validation_trace.jsonl"
+  validation_metrics: "artifacts/validation/stage5_0/validation_metrics.json"
+  selection_decision: "artifacts/validation/stage5_0/selection_decision.json"
+  fe_ledger: "artifacts/validation/stage5_0/fe_ledger.json"
+  validation_report: "artifacts/validation/stage5_0/validation_report.json"
+
+selection_policy:
+  split: "validation"
+  selection_scope: "validation_only_after_train_search"
+  candidate_status_out: "SELECTED_FOR_SEALED_TEST_NOT_FINAL"
+  primary_metric: "minimize_selection_score"
+  tie_breakers:
+    - "lower_FE_total"
+    - "lower_node_count"
+    - "lexicographic_candidate_id"
+  validation_usage: "selection only after train search"
+  test_usage: "sealed final reporting only"
+  base_optimizer_policy: "BaseOpt must remain fixed"
+  fe_accounting_policy: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+
+allowed_scope:
+  - "execute already-frozen typed ASTs on validation conflict states"
+  - "use validation feedback only for post-train-search selection"
+  - "produce a selected candidate for Stage 5.1 freeze"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no prompt revision"
+  - "no train-search revision"
+  - "no promotion-rule revision"
+  - "no test feedback"
+  - "no sealed-test access"
+  - "no objective evaluation"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "no performance claim"

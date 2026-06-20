@@ -167,8 +167,16 @@ class FrozenASTRuntime:
             value = float(np.clip(base, lower, upper))
             return value, {"lower": lower, "upper": upper}
         if node.kind is CoordinationNodeKind.PROJECTION:
-            base = _require_source_value(source_value, node.id)
-            return conflict_state.clip(base), {"projection": "bounds"}
+            if source_value is None:
+                base = _average_consensus(conflict_state)
+                source = "proposal_mean"
+            else:
+                base = _require_source_value(source_value, node.id)
+                source = "input_source"
+            return conflict_state.clip(base), {
+                "projection": "bounds",
+                "source": source,
+            }
         if node.kind is CoordinationNodeKind.REWEIGHTING:
             temperature = _positive_float(
                 node.inputs.get("temperature", 1.0), "temperature"

@@ -1,0 +1,41 @@
+{
+  "baseopt_modified": false,
+  "controller_scheduler_generation_used": false,
+  "llm_call_used": false,
+  "new_candidate_generation_used": false,
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "optimizer_generation_used": false,
+  "promotion_rule_revision_used": false,
+  "prompt_revision_used": false,
+  "schema_version": "loco.stage5_0_selection_decision.v1",
+  "sealed_test_access_used": false,
+  "selected_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "selected_kind_sequence": "weighted_consensus->projection",
+  "selected_operator_family": "weighted_consensus+projection",
+  "selected_validation_score": 0.300902808172,
+  "selection_pool_candidate_ids": [
+    "stage3_5_batch_1_weighted_consensus_projection",
+    "stage3_5_batch_2_reweighting_repair",
+    "stage3_5_batch_1_reweighting_repair",
+    "stage3_5_batch_0_projection_dampening",
+    "stage3_5_batch_1_projection_dampening",
+    "stage3_5_batch_2_projection_dampening"
+  ],
+  "selection_rule": {
+    "primary": "minimize_selection_score",
+    "selection_score_formula": "mean(0.50*normalized_distance_to_best_reward_proposal + 0.35*normalized_update_size + 0.15*oscillation_score)",
+    "tie_breakers": [
+      "lower_FE_total",
+      "lower_node_count",
+      "lexicographic_candidate_id"
+    ]
+  },
+  "selection_status": "SELECTED_FOR_SEALED_TEST_NOT_FINAL",
+  "source_stage": "4.1",
+  "stage": "5.0",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "train_search_revision_used": false,
+  "validation_feedback_used": true
+}
