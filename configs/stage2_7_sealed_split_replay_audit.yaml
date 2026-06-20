@@ -1,0 +1,58 @@
+stage: "2.7"
+name: "Sealed Split Replay Audit for Candidate Logs"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Bind Stage 2.6 candidate logs to a sealed split manifest and audit no-test-feedback replay invariants."
+  audit_module: "loco.coordination.split_replay_audit"
+  sealed_manifest: "artifacts/candidates/stage2_7/sealed_split_manifest.json"
+  audit_report: "artifacts/candidates/stage2_7/split_replay_audit_report.json"
+  source_candidate_logs:
+    accepted: "artifacts/candidates/stage2_6/accepted_candidates.jsonl"
+    rejected: "artifacts/candidates/stage2_6/rejected_candidates.jsonl"
+    replay_report: "artifacts/candidates/stage2_6/replay_report.json"
+  stage2_7_is_not:
+    - "LLM search"
+    - "evolution search"
+    - "candidate generation"
+    - "operator discovery"
+    - "optimizer implementation"
+    - "controller/scheduler implementation"
+    - "test-set tuning"
+    - "SOTA evidence"
+
+sealed_split_manifest:
+  schema_version: "loco.sealed_split_manifest.v1"
+  sealed: true
+  split_ids:
+    train: "stage2_7_train_not_used"
+    validation: "stage2_7_validation_not_used"
+    test: "stage2_7_test_locked"
+  allowed_candidate_log_splits:
+    - "pre_stage3_schema_only"
+  test_split_locked: true
+  no_LLM: true
+  no_evolution: true
+  no_optimizer: true
+  no_candidate_generation: true
+  no_test_feedback: true
+
+audit_checks:
+  - "sealed manifest schema and stage are valid"
+  - "accepted/rejected/replay report file sha256 values match manifest"
+  - "Stage 2.6 replay report status remains PASS"
+  - "candidate log split values are allowed"
+  - "no candidate log row uses test split"
+  - "no candidate log row records test feedback"
+  - "no candidate log row violates no-LLM/no-evolution boundary"
+  - "tampered candidate log is detected"
+
+reporting_contract:
+  required_claim: "Stage 2.7 performs sealed split replay audit for candidate logs."
+  forbidden_claims:
+    - "LLM-generated operator success"
+    - "evolution search success"
+    - "learned reusable operator"
+    - "optimizer performance improvement"
+    - "SOTA result"

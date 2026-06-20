@@ -1,0 +1,35 @@
+{
+  "allowed_candidate_log_splits": [
+    "pre_stage3_schema_only"
+  ],
+  "candidate_logs": {
+    "accepted": {
+      "path": "artifacts/candidates/stage2_6/accepted_candidates.jsonl",
+      "sha256": "4f91215267db34be0b8bc45b32e05805d1f0f4e69d54bf04c8db30c28d5e6e95"
+    },
+    "rejected": {
+      "path": "artifacts/candidates/stage2_6/rejected_candidates.jsonl",
+      "sha256": "a6e3ee4ecf2e4869e907b73c70d594f14f0dfea22e90bb72045cd81994d326b0"
+    },
+    "replay_report": {
+      "path": "artifacts/candidates/stage2_6/replay_report.json",
+      "sha256": "af5f64e08e7ae43ba33fb8e4b8fe4cfa6240f3fd7459b454bc2e1e17a242553a"
+    }
+  },
+  "created_by": "Codex",
+  "created_date": "2026-06-20",
+  "no_candidate_generation": true,
+  "no_evolution": true,
+  "no_llm": true,
+  "no_optimizer": true,
+  "no_test_feedback": true,
+  "schema_version": "loco.sealed_split_manifest.v1",
+  "sealed": true,
+  "split_ids": {
+    "test": "stage2_7_test_locked",
+    "train": "stage2_7_train_not_used",
+    "validation": "stage2_7_validation_not_used"
+  },
+  "stage": "2.7",
+  "test_split_locked": true
+}

@@ -237,6 +237,34 @@ The tested and logged surface includes:
 
 Stage 2.6 is a candidate artifact logging schema and replay verifier gate. It does not call an LLM, run evolution, generate candidates, execute AST runtime, implement an optimizer, or claim learned operators.
 
+## Stage 2.7 Sealed Split Replay Audit
+
+Stage 2.7 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_7_sealed_split_replay_audit.py -q
+```
+
+The committed artifacts are:
+
+```text
+artifacts/candidates/stage2_7/sealed_split_manifest.json
+artifacts/candidates/stage2_7/split_replay_audit_report.json
+```
+
+The tested and logged surface includes:
+
+- sealed split manifest schema `loco.sealed_split_manifest.v1`;
+- sha256 binding for Stage 2.6 accepted/rejected candidate logs and replay report;
+- replay report status audit;
+- candidate log split restriction to `pre_stage3_schema_only`;
+- explicit rejection of `test` split rows;
+- no-test-feedback audit for candidate log rows;
+- no LLM / no evolution boundary flags;
+- tamper detection for file fingerprint, split, and test-feedback violations.
+
+Stage 2.7 is a sealed split replay audit gate. It does not call an LLM, run evolution, generate candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:
