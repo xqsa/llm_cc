@@ -1,39 +1,24 @@
-"""Handwritten frozen-AST smoke operator for Stage 2.4.
+"""Handwritten frozen-AST smoke operator for Stage 2.5.
 
 This module bridges the Stage 2.3 DSL runtime into the existing synthetic
-runner. It uses a fixed typed-AST template and does not generate candidates,
+runner through a frozen Stage 2.5 artifact. It does not generate candidates,
 call LLMs, run evolution, or evaluate objectives.
 """
 
 from __future__ import annotations
 
-import hashlib
-import json
+from pathlib import Path
 from typing import Any
 
 from loco.conflict.conflict_state import SharedVariableConflictState
 from loco.coordination.baselines import CoordinationResult
 from loco.coordination.dsl import load_coordination_ast, stage3_preflight_check
 from loco.coordination.dsl_runtime import FrozenASTRuntime
-
-
-FROZEN_AST_SMOKE_TEMPLATE_ID = "stage2_4_weighted_dampened_clip_template"
-FROZEN_AST_SMOKE_TEMPLATE = {
-    "schema_version": "loco.dsl.v1",
-    "operator_id": FROZEN_AST_SMOKE_TEMPLATE_ID,
-    "target_variable": "$shared_variable",
-    "nodes": [
-        {"id": "weighted", "kind": "weighted_consensus"},
-        {"id": "dampened", "kind": "dampening", "source": "weighted"},
-        {"id": "bounded", "kind": "clip", "source": "dampened"},
-    ],
-    "output": {"source": "bounded"},
-}
-FROZEN_AST_SMOKE_TEMPLATE_FINGERPRINT = hashlib.sha256(
-    json.dumps(FROZEN_AST_SMOKE_TEMPLATE, sort_keys=True, separators=(",", ":")).encode(
-        "utf-8"
-    )
-).hexdigest()
+from loco.coordination.operator_artifacts import (
+    DEFAULT_STAGE2_5_ARTIFACT_PATH,
+    FrozenOperatorArtifact,
+    load_frozen_operator_artifact,
+)
 
 
 class FrozenASTSmokeOperator:
@@ -41,10 +26,17 @@ class FrozenASTSmokeOperator:
 
     name = "FrozenASTSmoke"
 
+    def __init__(
+        self,
+        artifact_path: Path | str = DEFAULT_STAGE2_5_ARTIFACT_PATH,
+        artifact: FrozenOperatorArtifact | None = None,
+    ):
+        self.artifact = artifact or load_frozen_operator_artifact(artifact_path)
+
     def coordinate(
         self, conflict_state: SharedVariableConflictState
     ) -> CoordinationResult:
-        payload = frozen_ast_smoke_payload(conflict_state)
+        payload = self.artifact.instantiate_for_conflict_state(conflict_state)
         preflight = stage3_preflight_check(
             [payload], shared_variables={conflict_state.variable_id}
         )
@@ -61,10 +53,7 @@ class FrozenASTSmokeOperator:
             conflict_state, shared_variables={conflict_state.variable_id}
         )
         diagnostics = dict(result.diagnostics)
-        diagnostics["template_id"] = FROZEN_AST_SMOKE_TEMPLATE_ID
-        diagnostics["template_fingerprint_sha256"] = (
-            FROZEN_AST_SMOKE_TEMPLATE_FINGERPRINT
-        )
+        diagnostics.update(self.artifact.metadata())
         diagnostics["accepted_fingerprint_sha256"] = preflight.accepted[
             0
         ].fingerprint_sha256
@@ -77,49 +66,6 @@ class FrozenASTSmokeOperator:
         )
 
     def runtime_metadata(self) -> dict[str, Any]:
-        return {
-            "template_id": FROZEN_AST_SMOKE_TEMPLATE_ID,
-            "schema_version": "loco.dsl.v1",
-            "template_fingerprint_sha256": FROZEN_AST_SMOKE_TEMPLATE_FINGERPRINT,
-            "accepted_by_preflight": True,
-            "source": "handwritten_frozen_ast_template",
-            "no_llm": True,
-            "no_evolution": True,
-            "no_objective_evaluation": True,
-        }
-
-
-def frozen_ast_smoke_payload(
-    conflict_state: SharedVariableConflictState,
-) -> dict[str, Any]:
-    variable_id = int(conflict_state.variable_id)
-    lower, upper = conflict_state.bounds
-    return {
-        "schema_version": "loco.dsl.v1",
-        "operator_id": f"stage2_4_frozen_ast_shared_{variable_id}",
-        "nodes": [
-            {
-                "id": "weighted",
-                "kind": "weighted_consensus",
-                "target": {"variable_id": variable_id},
-                "inputs": {"temperature": 1.0},
-            },
-            {
-                "id": "dampened",
-                "kind": "dampening",
-                "target": {"variable_id": variable_id},
-                "inputs": {"source": "weighted", "damping_strength": 0.5},
-            },
-            {
-                "id": "bounded",
-                "kind": "clip",
-                "target": {"variable_id": variable_id},
-                "inputs": {
-                    "source": "dampened",
-                    "lower": float(lower),
-                    "upper": float(upper),
-                },
-            },
-        ],
-        "output": {"source": "bounded"},
-    }
+        metadata = self.artifact.metadata()
+        metadata["accepted_by_preflight"] = True
+        return metadata

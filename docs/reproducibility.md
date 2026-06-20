@@ -177,6 +177,36 @@ The tested and logged surface includes:
 
 Stage 2.4 is a smoke integration gate. It does not claim learned operators, LLM-generated operator success, evolution search success, optimizer improvement, or SOTA results.
 
+## Stage 2.5 Frozen AST Artifact Registry
+
+Stage 2.5 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_5_artifact_registry.py -q
+python loco\experiments\stage2_minimal_runner.py
+```
+
+The runner writes:
+
+```text
+docs/stage2/stage2_5_artifact_registry_result.json
+```
+
+The tested and logged surface includes:
+
+- `artifacts/operators/stage2_5_registry.jsonl`;
+- frozen operator artifact loading;
+- deterministic artifact fingerprinting;
+- artifact mutation changing the fingerprint;
+- rejection of unfrozen artifacts;
+- rejection of artifacts with test feedback enabled;
+- shared-variable-only target scope;
+- `FrozenASTSmoke` provenance emitted through `frozen_ast_runtime`;
+- `FE_coordination_extra = 0`;
+- no LLM / no evolution imports.
+
+Stage 2.5 is an artifact provenance and split-boundary hardening gate. It does not claim learned operators, LLM-generated operator success, evolution search success, optimizer improvement, or SOTA results.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:

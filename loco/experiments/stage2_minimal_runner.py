@@ -37,6 +37,7 @@ from loco.coordination.baselines import (
     default_baseline_operators,
 )
 from loco.coordination.frozen_ast_smoke import FrozenASTSmokeOperator
+from loco.coordination.operator_artifacts import DEFAULT_STAGE2_5_REGISTRY_PATH
 from loco.evaluation.fe_accounting import FEBudgetTracker
 
 
@@ -320,7 +321,7 @@ def _run_problem(
         operator_results[operator.name] = operator_payload
 
     result = {
-        "stage": "2.4" if include_frozen_ast_smoke else "2.0",
+        "stage": "2.5" if include_frozen_ast_smoke else "2.0",
         "seed": seed,
         "git_commit": _git_commit_hash(),
         "benchmark": {
@@ -342,11 +343,19 @@ def _run_problem(
     if include_frozen_ast_smoke:
         result["frozen_ast_smoke"] = {
             "enabled": True,
-            "source": "handwritten_frozen_ast_template",
+            "source": "frozen_artifact_registry",
             "no_llm": True,
             "no_evolution": True,
             "no_optimizer": True,
             "no_objective_evaluation": True,
+        }
+        result["artifact_registry"] = {
+            "enabled": True,
+            "registry_path": DEFAULT_STAGE2_5_REGISTRY_PATH.relative_to(
+                ROOT
+            ).as_posix(),
+            "frozen_only": True,
+            "no_test_feedback": True,
         }
     result = _json_ready(result)
     if output_path is not None:
@@ -405,7 +414,7 @@ def run_optional_f14_smoke(seed: int = 0, max_fe: int = 10_000) -> dict[str, Any
 
 
 def main() -> int:
-    output_path = Path("docs/stage2/stage2_4_frozen_ast_smoke_result.json")
+    output_path = Path("docs/stage2/stage2_5_artifact_registry_result.json")
     result = run_stage2_synthetic_minimal(seed=0, output_path=output_path)
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0

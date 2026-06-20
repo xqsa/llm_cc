@@ -1,0 +1,73 @@
+stage: "2.5"
+name: "Frozen AST Artifact Registry and Split Boundary Hardening"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Promote the Stage 2.4 handwritten frozen AST smoke operator into an auditable frozen operator artifact."
+  runner: "loco.experiments.stage2_minimal_runner"
+  registry: "artifacts/operators/stage2_5_registry.jsonl"
+  output_artifact: "docs/stage2/stage2_5_artifact_registry_result.json"
+  stage2_5_is_not:
+    - "LLM search"
+    - "evolution search"
+    - "operator discovery"
+    - "optimizer implementation"
+    - "controller/scheduler implementation"
+    - "test-set tuning"
+    - "SOTA evidence"
+
+artifact_registry:
+  schema_version: "loco.operator_artifact.v1"
+  registry_path: "artifacts/operators/stage2_5_registry.jsonl"
+  frozen_artifacts:
+    - artifact_id: "stage2_5.frozen_ast_smoke.weighted_dampened_clip"
+      path: "artifacts/operators/stage2_5/frozen_ast_smoke_weighted_dampened_clip.json"
+      operator_name: "FrozenASTSmoke"
+      source: "handwritten_frozen_ast_template"
+      target_scope: "shared_variables_only"
+      frozen: true
+      no_LLM: true
+      no_evolution: true
+      no_test_feedback: true
+
+split_boundary:
+  train_feedback_allowed_for_this_artifact: false
+  validation_feedback_allowed_for_this_artifact: false
+  test_mode_allowed: true
+  no_test_feedback: true
+  no_tuning_on_test: true
+  note: "This artifact may be evaluated on test settings only because it is already frozen and cannot receive test feedback."
+
+runner_contract:
+  method_runs:
+    - "NoCoordination"
+    - "AverageConsensus"
+    - "BestRewardSelection"
+    - "WeightedConsensus"
+    - "ConflictDampening"
+    - "FrozenASTSmoke"
+  frozen_ast_source: "frozen_artifact_registry"
+  budget_scope: "per_method_run"
+  cross_baseline_evaluations_shared: false
+  commit_evaluation_per_method: 1
+  runtime_extra_fe: 0
+
+acceptance_checks:
+  - "frozen AST artifact exists and is registered"
+  - "artifact fingerprint is deterministic"
+  - "artifact mutation changes fingerprint"
+  - "unfrozen artifacts are rejected"
+  - "artifacts with test feedback enabled are rejected"
+  - "runner reports artifact provenance"
+  - "Stage 2.1 panel remains baseline-only"
+  - "runner imports no LLM/evolution modules"
+
+reporting_contract:
+  required_claim: "Stage 2.5 hardens frozen AST artifact provenance and split boundary."
+  forbidden_claims:
+    - "learned reusable operator"
+    - "LLM-generated operator success"
+    - "evolution search success"
+    - "optimizer performance improvement"
+    - "SOTA result"

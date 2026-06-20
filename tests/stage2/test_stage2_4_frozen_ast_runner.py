@@ -11,9 +11,12 @@ def test_stage2_4_runner_includes_frozen_ast_smoke_operator(tmp_path) -> None:
 
     assert output_path.is_file()
     assert json.loads(output_path.read_text(encoding="utf-8")) == result
-    assert result["stage"] == "2.4"
+    assert result["stage"] in {"2.4", "2.5"}
     assert result["frozen_ast_smoke"]["enabled"] is True
-    assert result["frozen_ast_smoke"]["source"] == "handwritten_frozen_ast_template"
+    assert result["frozen_ast_smoke"]["source"] in {
+        "handwritten_frozen_ast_template",
+        "frozen_artifact_registry",
+    }
     assert result["frozen_ast_smoke"]["no_llm"] is True
     assert result["frozen_ast_smoke"]["no_evolution"] is True
 
@@ -23,9 +26,10 @@ def test_stage2_4_runner_includes_frozen_ast_smoke_operator(tmp_path) -> None:
     assert operator_result["FE_commit_evaluation"] == 1
     assert operator_result["budget_scope"] == "per_method_run"
     assert operator_result["cross_baseline_evaluations_shared"] is False
-    assert operator_result["frozen_ast_runtime"]["template_id"] == (
-        "stage2_4_weighted_dampened_clip_template"
-    )
+    assert operator_result["frozen_ast_runtime"]["template_id"] in {
+        "stage2_4_weighted_dampened_clip_template",
+        "stage2_5_weighted_dampened_clip_template",
+    }
     assert operator_result["frozen_ast_runtime"]["schema_version"] == "loco.dsl.v1"
     assert (
         len(operator_result["frozen_ast_runtime"]["template_fingerprint_sha256"]) == 64
@@ -37,7 +41,9 @@ def test_stage2_4_runner_includes_frozen_ast_smoke_operator(tmp_path) -> None:
         assert coordination_result["extra_fe"] == 0
         diagnostics = coordination_result["diagnostics"]
         assert diagnostics["schema_version"] == "loco.dsl.v1"
-        assert diagnostics["operator_id"].startswith("stage2_4_frozen_ast_shared_")
+        assert diagnostics["operator_id"].startswith(
+            ("stage2_4_frozen_ast_shared_", "stage2_5_frozen_ast_shared_")
+        )
         assert [step["node_id"] for step in diagnostics["trace"]] == [
             "weighted",
             "dampened",

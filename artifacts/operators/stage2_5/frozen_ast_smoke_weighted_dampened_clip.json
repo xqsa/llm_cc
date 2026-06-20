@@ -1,0 +1,67 @@
+{
+  "artifact_schema_version": "loco.operator_artifact.v1",
+  "artifact_id": "stage2_5.frozen_ast_smoke.weighted_dampened_clip",
+  "operator_name": "FrozenASTSmoke",
+  "source": "handwritten_frozen_ast_template",
+  "stage_created": "2.5",
+  "template_id": "stage2_5_weighted_dampened_clip_template",
+  "target_scope": "shared_variables_only",
+  "dsl_schema_version": "loco.dsl.v1",
+  "provenance": {
+    "frozen": true,
+    "no_llm": true,
+    "no_evolution": true,
+    "no_optimizer": true,
+    "no_objective_evaluation": true,
+    "no_arbitrary_executable_code": true
+  },
+  "split_policy": {
+    "split_boundary": "frozen_artifact_may_run_on_test_without_feedback",
+    "train_feedback_allowed": false,
+    "validation_feedback_allowed": false,
+    "test_mode_allowed": true,
+    "no_test_feedback": true,
+    "no_tuning_on_test": true
+  },
+  "ast_template": {
+    "operator_id_template": "stage2_5_frozen_ast_shared_{variable_id}",
+    "nodes": [
+      {
+        "id": "weighted",
+        "kind": "weighted_consensus",
+        "target": {
+          "variable_id": "$shared_variable"
+        },
+        "inputs": {
+          "temperature": 1.0
+        }
+      },
+      {
+        "id": "dampened",
+        "kind": "dampening",
+        "target": {
+          "variable_id": "$shared_variable"
+        },
+        "inputs": {
+          "source": "weighted",
+          "damping_strength": 0.5
+        }
+      },
+      {
+        "id": "bounded",
+        "kind": "clip",
+        "target": {
+          "variable_id": "$shared_variable"
+        },
+        "inputs": {
+          "source": "dampened",
+          "lower": "$lower_bound",
+          "upper": "$upper_bound"
+        }
+      }
+    ],
+    "output": {
+      "source": "bounded"
+    }
+  }
+}

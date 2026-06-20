@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository stage: `Stage 2.4 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
+Current repository stage: `Stage 2.5 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
 
 Implemented:
 
@@ -24,6 +24,7 @@ Implemented:
 - Stage 2.2: typed coordination operator DSL boundary and Stage 3 candidate-AST preflight.
 - Stage 2.3: DSL interpreter/runtime shell for frozen typed ASTs.
 - Stage 2.4: handwritten frozen AST smoke integration with the existing synthetic conflict runner.
+- Stage 2.5: frozen AST artifact registry and train/validation/test split boundary hardening.
 
 Known benchmark boundary:
 
@@ -34,6 +35,7 @@ Known benchmark boundary:
 
 ```text
 configs/              Stage boundary and benchmark configuration drafts
+artifacts/operators/  Frozen coordination-operator artifacts and registries
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
 docs/stage2/          Stage 2.0/2.1 result JSON, CSV summaries, and self-check reports
@@ -67,12 +69,12 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected current local result:
 
 ```text
-53 passed, 1 skipped
+96 passed
 ```
 
-The skip is the optional Stage 1 real MetaBox smoke when F12/F13/F14 are not all complete PASS. It must give a clear reason and must not fake a real benchmark success.
+Optional real MetaBox tests are allowed to skip only when F12/F13/F14 are not all complete PASS. They must give a clear reason and must not fake a real benchmark success.
 
-## Run Stage 2.0 Minimal Runner
+## Run Current Minimal Runner
 
 ```powershell
 python loco\experiments\stage2_minimal_runner.py
@@ -81,10 +83,10 @@ python loco\experiments\stage2_minimal_runner.py
 This writes:
 
 ```text
-docs/stage2/stage2_0_synthetic_result.json
+docs/stage2/stage2_5_artifact_registry_result.json
 ```
 
-The runner uses a deterministic one-shot perturbation proposal generator. It is not an optimizer and should not be interpreted as performance evidence. Its purpose is to verify that shared-variable conflict states, baseline coordination operators, metrics, and FE accounting work end to end.
+The runner uses a deterministic one-shot perturbation proposal generator. It is not an optimizer and should not be interpreted as performance evidence. Its current Stage 2.5 surface verifies that shared-variable conflict states, baseline coordination operators, a frozen AST artifact registry, DSL runtime interpretation, provenance logging, and FE accounting work end to end.
 
 ## Run Stage 2.1 Multi-setting Panel
 
@@ -142,12 +144,12 @@ The project keeps this accounting identity:
 FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair
 ```
 
-Stage 2.0 evaluates each baseline as a separate method run. Cross-baseline comparison evaluations are not shared across methods.
+Stage 2.x evaluates each baseline or frozen artifact-backed operator as a separate method run. Cross-baseline comparison evaluations are not shared across methods.
 
 ## Next Recommended Stage
 
 Do not jump directly to Stage 3. Recommended next step:
 
 ```text
-Stage 2.5: frozen AST artifact registry and train/validation/test boundary hardening
+Stage 2.6: candidate artifact logging schema and rejection corpus
 ```
