@@ -1,0 +1,141 @@
+{
+  "candidate_count": 9,
+  "issue_counts": {
+    "single_consensus_only": 2
+  },
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "quality_pass_count": 7,
+  "quality_reject_count": 2,
+  "quality_rows": [
+    {
+      "candidate_id": "stage3_3_batch_0_weighted_clip_5",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_0_weighted_clip_6",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_0_weighted_5",
+      "decision": "reject",
+      "has_transform_after_consensus": false,
+      "is_single_node": true,
+      "kind_sequence": "weighted_consensus",
+      "node_count": 1,
+      "operator_family": "weighted_consensus",
+      "quality_issues": [
+        "single_consensus_only"
+      ],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_1_weighted_clip_shared_5_1",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_1_weighted_clip_shared_6",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_1_weighted_clip_shared_5_2",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_2_wc_clip_v5",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        5
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_2_wc_clip_v6_t0.5_b2",
+      "decision": "pass",
+      "has_transform_after_consensus": true,
+      "is_single_node": false,
+      "kind_sequence": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "quality_issues": [],
+      "target_variable_set": [
+        6
+      ]
+    },
+    {
+      "candidate_id": "stage3_3_batch_2_wc_v5_t2",
+      "decision": "reject",
+      "has_transform_after_consensus": false,
+      "is_single_node": true,
+      "kind_sequence": "weighted_consensus",
+      "node_count": 1,
+      "operator_family": "weighted_consensus",
+      "quality_issues": [
+        "single_consensus_only"
+      ],
+      "target_variable_set": [
+        5
+      ]
+    }
+  ],
+  "schema_version": "loco.stage3_4_quality_filter_report.v1",
+  "stage": "3.4",
+  "status": "PASS"
+}

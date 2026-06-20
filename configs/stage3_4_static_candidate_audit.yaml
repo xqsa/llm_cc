@@ -1,0 +1,68 @@
+stage: "3.4"
+name: "Candidate Quality Filter and Static Diversity Audit"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Audit Stage 3.3 accepted LLM candidates using static AST quality and diversity features only."
+  auditor: "loco.llm.static_candidate_audit"
+  cli_entrypoint: "scripts/stage3/run_stage3_4_static_candidate_audit.py"
+
+input:
+  accepted_log: "artifacts/candidates/stage3_3/accepted_candidates.jsonl"
+  candidate_count: 9
+  split: "train"
+
+allowed_scope:
+  action: "candidate quality filter and static diversity audit"
+  feature_source: "typed coordination operator AST only"
+  quality_checks:
+    - "empty AST"
+    - "missing target variable"
+    - "single consensus-only candidate"
+  diversity_checks:
+    - "AST fingerprint count"
+    - "node kind sequence distribution"
+    - "operator family distribution"
+    - "node kind counts"
+    - "target variable counts"
+  low_diversity_unique_kind_sequence_threshold: 3
+
+artifacts:
+  output_dir: "artifacts/candidates/stage3_4"
+  quality_filter_report: "artifacts/candidates/stage3_4/quality_filter_report.json"
+  static_diversity_audit: "artifacts/candidates/stage3_4/static_diversity_audit.json"
+  summary: "artifacts/candidates/stage3_4/stage3_4_summary.json"
+
+current_result:
+  status: "PASS"
+  candidate_count: 9
+  quality_pass_count: 7
+  quality_reject_count: 2
+  issue_counts:
+    single_consensus_only: 2
+  unique_kind_sequence_count: 2
+  dominant_kind_sequence: "weighted_consensus->clip"
+  dominant_kind_sequence_count: 7
+  low_diversity_warning: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no evolution run"
+  - "no objective evaluation"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no scheduler/controller generation"
+  - "no optimizer selection"
+  - "no benchmark objective rewrite"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no performance claim"
+
+acceptance:
+  - "quality_filter_report.json records pass/reject decisions and reasons"
+  - "static_diversity_audit.json records kind sequence and operator family distribution"
+  - "stage3_4_summary.json honestly reports low diversity if detected"
+  - "no objective function or optimizer is called"
+  - "no evolution or candidate selection by performance is performed"
+  - "reports state that this is not a performance claim"

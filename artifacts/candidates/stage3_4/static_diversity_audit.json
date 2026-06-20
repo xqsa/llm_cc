@@ -1,0 +1,266 @@
+{
+  "candidate_count": 9,
+  "candidate_features": [
+    {
+      "ast_fingerprint_sha256": "f069e439917b944fd34895c4d5eed92ea475da331c95160881764c2af2cfe43c",
+      "candidate_id": "stage3_3_batch_0_weighted_clip_5",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "52323438763e0e1b37da2ab060e07a4c7ead68531bb398df4541932d8296d231",
+      "candidate_id": "stage3_3_batch_0_weighted_clip_6",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "06cac01b19bd415ab2c5080fc73707b4655b958f2c0cd4c668118f1de8184382",
+      "candidate_id": "stage3_3_batch_0_weighted_5",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "temperature"
+      ],
+      "is_single_node": true,
+      "kind_sequence": [
+        "weighted_consensus"
+      ],
+      "kind_sequence_signature": "weighted_consensus",
+      "node_count": 1,
+      "operator_family": "weighted_consensus",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "5bc872be2752e96f12f6b7e8d083709cbf2edc1feb48d222c9a15ec763d314df",
+      "candidate_id": "stage3_3_batch_1_weighted_clip_shared_5_1",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "7b43b24d5e6a877176511b1f814c44afbf1cf2442d09adfa55b959141d6acb1b",
+      "candidate_id": "stage3_3_batch_1_weighted_clip_shared_6",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "6efb4828416f50a69c742b3b867aa1f59b697a0c6bbe47c5d253855df9337018",
+      "candidate_id": "stage3_3_batch_1_weighted_clip_shared_5_2",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "f0d3b51a8c19d0ba077858be118bfb166fff145544ef0667052677b7d5bf4b7a",
+      "candidate_id": "stage3_3_batch_2_wc_clip_v5",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5,
+        5
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "0bfb13ff03436c8a469c8db2019c679e3b0743e63db01f53227717ff6f46c6cc",
+      "candidate_id": "stage3_3_batch_2_wc_clip_v6_t0.5_b2",
+      "has_transform_after_consensus": true,
+      "input_keys": [
+        "lower",
+        "source",
+        "temperature",
+        "upper"
+      ],
+      "is_single_node": false,
+      "kind_sequence": [
+        "weighted_consensus",
+        "clip"
+      ],
+      "kind_sequence_signature": "weighted_consensus->clip",
+      "node_count": 2,
+      "operator_family": "weighted_consensus+clip",
+      "target_variable_set": [
+        6
+      ],
+      "target_variables": [
+        6,
+        6
+      ]
+    },
+    {
+      "ast_fingerprint_sha256": "4a6a2d939090deb158298d361e815d376c4cf09c050aa3a526c74529cd6ecc41",
+      "candidate_id": "stage3_3_batch_2_wc_v5_t2",
+      "has_transform_after_consensus": false,
+      "input_keys": [
+        "temperature"
+      ],
+      "is_single_node": true,
+      "kind_sequence": [
+        "weighted_consensus"
+      ],
+      "kind_sequence_signature": "weighted_consensus",
+      "node_count": 1,
+      "operator_family": "weighted_consensus",
+      "target_variable_set": [
+        5
+      ],
+      "target_variables": [
+        5
+      ]
+    }
+  ],
+  "dominant_kind_sequence": "weighted_consensus->clip",
+  "dominant_kind_sequence_count": 7,
+  "interpretation": "Static structure diversity is low: the accepted corpus is dominated by weighted_consensus->clip (7/9).",
+  "kind_sequence_counts": {
+    "weighted_consensus": 2,
+    "weighted_consensus->clip": 7
+  },
+  "low_diversity_unique_kind_sequence_threshold": 3,
+  "low_diversity_warning": true,
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "node_count_counts": {
+    "1": 2,
+    "2": 7
+  },
+  "node_kind_counts": {
+    "clip": 7,
+    "weighted_consensus": 9
+  },
+  "not_performance_claim": true,
+  "operator_family_counts": {
+    "weighted_consensus": 2,
+    "weighted_consensus+clip": 7
+  },
+  "schema_version": "loco.stage3_4_static_diversity_audit.v1",
+  "stage": "3.4",
+  "status": "PASS",
+  "target_variable_counts": {
+    "5": 10,
+    "6": 6
+  },
+  "unique_ast_fingerprint_count": 9,
+  "unique_kind_sequence_count": 2
+}

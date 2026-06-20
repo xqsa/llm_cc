@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.3 PASS` — train-only multi-batch real LLM candidate generation passes through replay, dedup, and rejection-taxonomy hardening.
+Current repository state: `Stage 3.4 PASS` — Stage 3.3 candidates pass static quality/diversity audit, with an explicit low-diversity warning.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
@@ -21,6 +21,7 @@ Current repository state: `Stage 3.3 PASS` — train-only multi-batch real LLM c
 - Stage 3.1 captured a first small-batch LLM candidate output as train-only typed-AST wrappers, then wrote accepted/rejected logs and a replay report without evolution, objective evaluation, test feedback, or performance claims.
 - Stage 3.2 called a real DeepSeek-compatible chat API once, saved sanitized response artifacts, parsed the returned train-only candidate batch, and replayed it through the Stage 3.1 audit chain.
 - Stage 3.3 called the real DeepSeek-compatible chat API multiple times, saved sanitized per-batch artifacts, merged train-only candidate batches, replayed them through Stage 3.1, and wrote AST-fingerprint dedup plus rejection-taxonomy reports.
+- Stage 3.4 audited the Stage 3.3 candidate corpus with static quality and diversity filters, finding that the current corpus is boundary-valid but structurally narrow.
 
 The Stage 2 readiness artifact currently records:
 
@@ -81,6 +82,22 @@ rejected_count = 0
 secret_redacted = true
 not_performance_claim = true
 ```
+
+The Stage 3.4 static candidate audit currently records:
+
+```text
+status = PASS
+candidate_count = 9
+quality_pass_count = 7
+quality_reject_count = 2
+unique_kind_sequence_count = 2
+dominant_kind_sequence = weighted_consensus->clip
+dominant_kind_sequence_count = 7
+low_diversity_warning = true
+not_performance_claim = true
+```
+
+This means the current candidate supply chain works, but the first real multi-batch corpus is mostly `weighted_consensus->clip` variants. It should not be treated as a diverse reusable operator library yet.
 
 Known benchmark boundary:
 
@@ -157,7 +174,7 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 3.3:
+Expected latest local result after Stage 3.4:
 
 ```text
 149 passed
@@ -191,6 +208,12 @@ Run the Stage 3.3 multi-batch candidate generation gate directly:
 
 ```powershell
 python -m pytest tests\stage3\test_stage3_3_multi_batch_candidate_generation.py -q
+```
+
+Run the Stage 3.4 static candidate audit gate directly:
+
+```powershell
+python -m pytest tests\stage3\test_stage3_4_static_candidate_audit.py -q
 ```
 
 Run Stage 2 diagnostic runners when regenerating reports:
@@ -234,5 +257,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 3.4: candidate quality filter and static diversity audit
+Stage 3.5: prompt-space hardening for broader coordination operator family coverage
 ```
