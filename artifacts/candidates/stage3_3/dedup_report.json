@@ -1,0 +1,15 @@
+{
+  "accepted_count": 9,
+  "dedup_key": "ast_fingerprint_sha256",
+  "duplicate_accepted_count": 0,
+  "duplicate_groups": [],
+  "no_evolution_run": true,
+  "no_objective_evaluation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "schema_version": "loco.stage3_3_dedup_report.v1",
+  "split": "train",
+  "stage": "3.3",
+  "status": "PASS",
+  "unique_accepted_count": 9
+}

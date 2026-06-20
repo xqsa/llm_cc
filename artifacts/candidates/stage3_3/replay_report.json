@@ -1,0 +1,18 @@
+{
+  "accepted_count": 9,
+  "execution_violation_count": 0,
+  "fingerprint_mismatch_count": 0,
+  "no_evolution_run": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "reject_reason_categories": [],
+  "rejected_count": 0,
+  "schema_version": "loco.stage3_1_candidate_replay.v1",
+  "split": "train",
+  "split_violation_count": 0,
+  "stage": "3.1",
+  "status": "PASS",
+  "test_feedback_violation_count": 0
+}

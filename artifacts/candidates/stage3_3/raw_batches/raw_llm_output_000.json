@@ -1,0 +1,151 @@
+{
+  "candidates": [
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "weighted",
+            "inputs": {
+              "temperature": 0.5
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "bounded",
+            "inputs": {
+              "lower": -0.5,
+              "source": "weighted",
+              "upper": 0.5
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_3_batch_0_weighted_clip_5",
+        "output": {
+          "source": "bounded"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_3_batch_0_weighted_clip_5",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "weighted",
+            "inputs": {
+              "temperature": 2.0
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "bounded",
+            "inputs": {
+              "lower": -2.0,
+              "source": "weighted",
+              "upper": 2.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_3_batch_0_weighted_clip_6",
+        "output": {
+          "source": "bounded"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_3_batch_0_weighted_clip_6",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "weighted",
+            "inputs": {
+              "temperature": 0.1
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_3_batch_0_weighted_5",
+        "output": {
+          "source": "weighted"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_3_batch_0_weighted_5",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    }
+  ],
+  "prompt_contract_version": "loco.operator_prompt_contract.v1",
+  "schema_version": "loco.stage3_1_raw_llm_batch.v1",
+  "source": {
+    "captured_by": "Stage 3.3 batch 0",
+    "model": "deepseek-v4-pro",
+    "provider": "deepseek"
+  },
+  "split": "train",
+  "stage": "3.1"
+}

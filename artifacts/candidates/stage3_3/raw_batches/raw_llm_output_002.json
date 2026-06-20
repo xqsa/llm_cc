@@ -1,0 +1,151 @@
+{
+  "candidates": [
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "wc_v5",
+            "inputs": {
+              "temperature": 1.0
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "clip_v5",
+            "inputs": {
+              "lower": -1.0,
+              "source": "wc_v5",
+              "upper": 1.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_3_batch_2_wc_clip_v5",
+        "output": {
+          "source": "clip_v5"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_3_batch_2_wc_clip_v5",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "wc_v6",
+            "inputs": {
+              "temperature": 0.5
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 6
+            }
+          },
+          {
+            "id": "clip_v6",
+            "inputs": {
+              "lower": -2.0,
+              "source": "wc_v6",
+              "upper": 2.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 6
+            }
+          }
+        ],
+        "operator_id": "stage3_3_batch_2_wc_clip_v6_t0.5_b2",
+        "output": {
+          "source": "clip_v6"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_3_batch_2_wc_clip_v6_t0.5_b2",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "wc_v5_t2",
+            "inputs": {
+              "temperature": 2.0
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_3_batch_2_wc_v5_t2",
+        "output": {
+          "source": "wc_v5_t2"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_3_batch_2_wc_v5_t2",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "deepseek-v4-pro",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "deepseek",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    }
+  ],
+  "prompt_contract_version": "loco.operator_prompt_contract.v1",
+  "schema_version": "loco.stage3_1_raw_llm_batch.v1",
+  "source": {
+    "captured_by": "Stage 3.3 batch 2",
+    "model": "deepseek-v4-pro",
+    "provider": "deepseek"
+  },
+  "split": "train",
+  "stage": "3.1"
+}

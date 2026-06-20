@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 3.2 PASS` — the real LLM API adapter smoke passes through the train-only candidate audit chain.
+Current repository state: `Stage 3.3 PASS` — train-only multi-batch real LLM candidate generation passes through replay, dedup, and rejection-taxonomy hardening.
 
 - Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
 - Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
@@ -20,6 +20,7 @@ Current repository state: `Stage 3.2 PASS` — the real LLM API adapter smoke pa
 - Stage 3.0 locked the boundary-constrained typed-AST search protocol, including the LLM candidate wrapper schema, prompt contract, train/validation/test firewall, and protocol-lock report.
 - Stage 3.1 captured a first small-batch LLM candidate output as train-only typed-AST wrappers, then wrote accepted/rejected logs and a replay report without evolution, objective evaluation, test feedback, or performance claims.
 - Stage 3.2 called a real DeepSeek-compatible chat API once, saved sanitized response artifacts, parsed the returned train-only candidate batch, and replayed it through the Stage 3.1 audit chain.
+- Stage 3.3 called the real DeepSeek-compatible chat API multiple times, saved sanitized per-batch artifacts, merged train-only candidate batches, replayed them through Stage 3.1, and wrote AST-fingerprint dedup plus rejection-taxonomy reports.
 
 The Stage 2 readiness artifact currently records:
 
@@ -61,6 +62,21 @@ api_called = true
 provider = deepseek
 split = train
 accepted_count = 1
+rejected_count = 0
+secret_redacted = true
+not_performance_claim = true
+```
+
+The Stage 3.3 multi-batch LLM candidate generation currently records:
+
+```text
+status = PASS
+api_call_count = 3
+split = train
+raw_candidate_count = 9
+accepted_count = 9
+unique_accepted_count = 9
+duplicate_accepted_count = 0
 rejected_count = 0
 secret_redacted = true
 not_performance_claim = true
@@ -141,7 +157,7 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 3.2:
+Expected latest local result after Stage 3.3:
 
 ```text
 149 passed
@@ -169,6 +185,12 @@ Run the Stage 3.2 LLM API smoke gate directly:
 
 ```powershell
 python -m pytest tests\stage3\test_stage3_2_llm_api_smoke.py -q
+```
+
+Run the Stage 3.3 multi-batch candidate generation gate directly:
+
+```powershell
+python -m pytest tests\stage3\test_stage3_3_multi_batch_candidate_generation.py -q
 ```
 
 Run Stage 2 diagnostic runners when regenerating reports:
@@ -212,5 +234,5 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 3.3: train-only multi-batch LLM candidate generation and rejection-corpus hardening
+Stage 3.4: candidate quality filter and static diversity audit
 ```

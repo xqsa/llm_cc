@@ -1,0 +1,69 @@
+stage: "3.3"
+name: "Train-only Multi-batch LLM Candidate Generation and Rejection-corpus Hardening"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Call a real chat-compatible LLM API multiple times, save sanitized per-batch artifacts, merge train-only candidate batches, and harden accepted/rejected candidate logs with dedup and rejection taxonomy reports."
+  provider_client: "loco.llm.provider_client"
+  multi_batch_runner: "loco.llm.multibatch_candidate_generator"
+  cli_entrypoint: "scripts/stage3/run_stage3_3_multi_batch.py"
+
+environment:
+  required_variables:
+    - "LLM_API_KEY"
+    - "LLM_BASE_URL"
+    - "LLM_MODEL"
+    - "LLM_REASONING_EFFORT"
+    - "LLM_WIRE_API"
+  default_base_url: "https://api.deepseek.com"
+  default_wire_api: "chat"
+  secret_policy: "LLM_API_KEY must never be committed, printed, or written to artifacts."
+
+allowed_scope:
+  action: "train-only multi-batch LLM candidate generation"
+  split: "train"
+  batch_count: 3
+  candidates_per_batch: 3
+  output_schema: "loco.stage3_1_raw_llm_batch.v1"
+  candidate_schema: "loco.llm_candidate.v1"
+  ast_schema: "loco.dsl.v1"
+  target_variables: "shared_variables_only"
+  audit_chain:
+    - "Stage 3.1 candidate batch replay"
+    - "AST fingerprint dedup"
+    - "rejection reason taxonomy"
+
+artifacts:
+  output_dir: "artifacts/candidates/stage3_3"
+  raw_batch_dir: "artifacts/candidates/stage3_3/raw_batches"
+  merged_raw_llm_output: "artifacts/candidates/stage3_3/merged_raw_llm_output.json"
+  accepted_log: "artifacts/candidates/stage3_3/accepted_candidates.jsonl"
+  rejected_log: "artifacts/candidates/stage3_3/rejected_candidates.jsonl"
+  replay_report: "artifacts/candidates/stage3_3/replay_report.json"
+  dedup_report: "artifacts/candidates/stage3_3/dedup_report.json"
+  rejection_taxonomy: "artifacts/candidates/stage3_3/rejection_taxonomy.json"
+  multi_batch_report: "artifacts/candidates/stage3_3/multi_batch_report.json"
+
+forbidden_scope:
+  - "no evolution run"
+  - "no objective evaluation"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no scheduler/controller generation"
+  - "no optimizer selection"
+  - "no benchmark objective rewrite"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no performance claim"
+
+acceptance:
+  - "real LLM API is called more than once"
+  - "all raw outputs are train-only"
+  - "raw responses are sanitized"
+  - "merged Stage 3.1 replay report is PASS"
+  - "accepted and rejected JSONL logs are reproducible"
+  - "dedup_report.json records unique and duplicate accepted AST fingerprints"
+  - "rejection_taxonomy.json records rejection categories, including zero-rejection runs"
+  - "no API key appears in committed artifacts"
+  - "no evolution run, no objective evaluation, no test feedback"

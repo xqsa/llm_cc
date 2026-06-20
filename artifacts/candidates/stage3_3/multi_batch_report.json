@@ -1,0 +1,70 @@
+{
+  "accepted_count": 9,
+  "accepted_log_path": "accepted_candidates.jsonl",
+  "api_call_count": 3,
+  "api_called": true,
+  "base_url_host": "api.deepseek.com",
+  "dedup_report_path": "dedup_report.json",
+  "duplicate_accepted_count": 0,
+  "merged_raw_output_path": "merged_raw_llm_output.json",
+  "model": "deepseek-v4-pro",
+  "no_evolution_run": true,
+  "no_objective_evaluation": true,
+  "no_optimizer_generation": true,
+  "no_scheduler_controller_generation": true,
+  "no_test_feedback": true,
+  "not_performance_claim": true,
+  "provenance": [
+    {
+      "base_url_host": "api.deepseek.com",
+      "batch_index": 0,
+      "model": "deepseek-v4-pro",
+      "raw_output_path": "raw_batches/raw_llm_output_000.json",
+      "raw_response_path": "raw_batches/raw_response_000.json",
+      "reasoning_effort": "high",
+      "wire_api": "chat"
+    },
+    {
+      "base_url_host": "api.deepseek.com",
+      "batch_index": 1,
+      "model": "deepseek-v4-pro",
+      "raw_output_path": "raw_batches/raw_llm_output_001.json",
+      "raw_response_path": "raw_batches/raw_response_001.json",
+      "reasoning_effort": "high",
+      "wire_api": "chat"
+    },
+    {
+      "base_url_host": "api.deepseek.com",
+      "batch_index": 2,
+      "model": "deepseek-v4-pro",
+      "raw_output_path": "raw_batches/raw_llm_output_002.json",
+      "raw_response_path": "raw_batches/raw_response_002.json",
+      "reasoning_effort": "high",
+      "wire_api": "chat"
+    }
+  ],
+  "provider": "deepseek",
+  "raw_candidate_count": 9,
+  "raw_output_paths": [
+    "raw_batches/raw_llm_output_000.json",
+    "raw_batches/raw_llm_output_001.json",
+    "raw_batches/raw_llm_output_002.json"
+  ],
+  "raw_response_paths": [
+    "raw_batches/raw_response_000.json",
+    "raw_batches/raw_response_001.json",
+    "raw_batches/raw_response_002.json"
+  ],
+  "reasoning_effort": "high",
+  "rejected_count": 0,
+  "rejected_log_path": "rejected_candidates.jsonl",
+  "rejection_categories": {},
+  "rejection_taxonomy_path": "rejection_taxonomy.json",
+  "schema_version": "loco.stage3_3_multi_batch_report.v1",
+  "secret_redacted": true,
+  "split": "train",
+  "stage": "3.3",
+  "status": "PASS",
+  "unique_accepted_count": 9,
+  "wire_api": "chat"
+}
