@@ -2,39 +2,65 @@
 
 LLM-Evolved Coordination Operators for Overlapping Large-Scale Global Optimization.
 
-LOCO-LSGO studies a narrow problem in overlapping LSGO:
+LOCO-LSGO studies a deliberately narrow problem in overlapping LSGO:
 
 ```text
 shared-variable conflict -> coordination operator -> more stable cooperative coevolution
 ```
 
-The project does **not** use LLMs to generate a new optimizer. It does not generate DE, CMA-ES, PSO, SHADE, schedulers, controllers, or optimizer selectors. The intended Stage 3 role of LLM + evolution is only to discover reusable coordination operators that act on shared variables in overlapping subcomponents.
+The project does **not** use LLMs to generate a new optimizer. It does not generate DE, CMA-ES, PSO, SHADE, schedulers, controllers, optimizer selectors, or benchmark objectives. The intended Stage 3 role of LLM + evolution is only to discover reusable **coordination operator ASTs** that act on shared variables in overlapping subcomponents.
 
 ## Current Status
 
-Current repository stage: `Stage 2.10 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
+Current repository state: pre-Stage-3 readiness gate passed at the Stage 2 boundary.
 
-Implemented:
+- Stage 0 locked the research problem, mathematical contract, allowed/forbidden behavior, and acceptance boundary.
+- Stage 1 built the benchmark/data layer, including the `LSGOProblem` interface, MetaBox lazy adapter, synthetic overlap generator, split manifests, and CEC2013 LSGO semantics correction.
+- Stage 2 built the conflict-coordination infrastructure and readiness gates needed before any LLM/evolution search is allowed.
 
-- Stage 0: research problem lock and system boundary definition.
-- Stage 1: benchmark/data layer with MetaBox lazy adapter, synthetic overlap generator, manifest support, and CEC2013 LSGO semantics correction.
-- Stage 2.0: conflict state, conflict metrics, baseline coordination operators, FE accounting, and a minimal synthetic conflict-coordination runner.
-- Stage 2.1: multi-setting synthetic conflict evidence panel across topology, dimension, overlap ratio, and seed settings.
-- Stage 2.1B: multi-round post-coordination regenerated-conflict evidence gate.
-- Stage 2.2: typed coordination operator DSL boundary and Stage 3 candidate-AST preflight.
-- Stage 2.3: DSL interpreter/runtime shell for frozen typed ASTs.
-- Stage 2.4: handwritten frozen AST smoke integration with the existing synthetic conflict runner.
-- Stage 2.5: frozen AST artifact registry and train/validation/test split boundary hardening.
-- Stage 2.6: candidate artifact logging schema, rejection corpus, and replay verifier.
-- Stage 2.7: sealed split replay audit for candidate logs.
-- Stage 2.8: frozen candidate promotion contract.
-- Stage 2.9: promotion replay and registry audit.
-- Stage 2.10: pre-Stage-3 readiness gate.
+The Stage 2 readiness artifact currently records:
+
+```text
+decision = READY_FOR_STAGE3_BOUNDARY_ONLY
+stage3_allowed = true
+not_performance_claim = true
+```
+
+This means Stage 3 may begin only as boundary-constrained typed coordination-operator AST search. It is **not** a claim that LOCO has learned final operators, beaten baselines, or achieved SOTA optimizer performance.
 
 Known benchmark boundary:
 
 - MetaBox F13 is evaluated through an explicit `implementation_api_adapter`: LOCO preserves `D_formula=905` for official overlap semantics and uses `runtime_dimension=1000` because the MetaBox F13 implementation/API exposes 1000-length internal data (`Ovector`, `Pvector`, and `s` sum).
-- F14 real conflicting-overlap smoke currently passes in the local environment with direct `D_formula=905` evaluation, but remains optional in CI-style tests.
+- F14 real conflicting-overlap smoke can pass in a properly prepared local MetaBox environment with direct `D_formula=905` evaluation, but real MetaBox smoke tests remain optional and may skip in CI-style environments when MetaBox is unavailable.
+
+## What Stage 2 Established
+
+Stage 2 should be read as an infrastructure and evidence-gate phase, not as an optimizer-performance phase. It established four pieces.
+
+1. Conflict-state and baseline coordination evidence
+
+   Stage 2 introduced shared-variable conflict-state construction, conflict metrics, deterministic baseline coordination rules, FE accounting, and synthetic runners. These runners are diagnostic harnesses: they create proposal conflicts, apply coordination rules, and record what happened under controlled synthetic overlap settings.
+
+2. Metric honesty and regenerated-conflict separation
+
+   Stage 2 separates same-round proposal collapse from longitudinal conflict behavior. `proposal_consensus_collapse_ratio` only measures how much the current proposal set collapses after coordination; it is not longitudinal conflict reduction. Regenerated-conflict reports and multi-round evidence are recorded separately as diagnostics, still without claiming SOTA optimizer performance.
+
+3. Typed operator boundary
+
+   Stage 2 defined a typed coordination-operator AST boundary for future Stage 3 work. The boundary is shared-variable-only and rejects attempts to generate optimizers, controllers, schedulers, arbitrary executable code, test-set metadata access, or benchmark-specific shortcuts. Frozen AST smoke paths exercise the runtime shell without calling an LLM or running evolution.
+
+4. Artifact, replay, and readiness chain
+
+   Stage 2 added candidate logging schemas, rejection corpus handling, sealed split replay audits, frozen candidate promotion, promotion replay, artifact registry checks, and the pre-Stage-3 readiness decision. This chain exists so future Stage 3 candidates can be audited by provenance, split discipline, fingerprint stability, and boundary legality.
+
+Detailed Stage 2 records remain under:
+
+```text
+docs/stage2/
+configs/
+artifacts/
+tests/stage2/
+```
 
 ## Repository Layout
 
@@ -42,14 +68,15 @@ Known benchmark boundary:
 configs/              Stage boundary and benchmark configuration drafts
 artifacts/operators/  Frozen coordination-operator artifacts and registries
 artifacts/candidates/ Candidate AST accepted/rejected logs and replay reports
+artifacts/readiness/  Pre-Stage-3 readiness decision artifacts
 docs/stage0/          Research boundary and mathematical contracts
 docs/stage1/          Benchmark/data-layer reports and CEC2013 LSGO semantics
-docs/stage2/          Stage 2.0/2.1 result JSON, CSV summaries, and self-check reports
+docs/stage2/          Stage 2 reports, result JSON, CSV summaries, and audits
 loco/benchmarks/      LSGOProblem interface, MetaBox adapter, synthetic overlap generator
 loco/conflict/        Shared-variable conflict state and metrics
-loco/coordination/    Baseline coordination operators
+loco/coordination/    Baseline coordination rules, typed AST boundary, artifact helpers
 loco/evaluation/      FE accounting
-loco/experiments/     Minimal Stage 2.0 runner
+loco/experiments/     Stage 2 diagnostic runners
 scripts/stage1/       Real MetaBox CEC2013 LSGO smoke script
 tests/                Stage 0/1/2 tests
 ```
@@ -64,144 +91,37 @@ python -m pip install -r requirements.txt
 
 MetaBox is optional for the core test suite. The project uses MetaBox as a dependency/adapter for CEC2013 LSGO and does not copy or rewrite CEC2013 objective code.
 
-For real MetaBox CEC2013 LSGO smoke tests, install `metaevobox` in an isolated environment following MetaBox's own requirements. Missing trainer/agent dependencies should not affect the synthetic Stage 2.0 runner.
+For real MetaBox CEC2013 LSGO smoke tests, install `metaevobox` in an isolated environment following MetaBox's own requirements. Missing trainer/agent dependencies should not affect LOCO's synthetic Stage 2 diagnostic runners.
 
-## Run Tests
+## Key Verification Commands
+
+Run the full local test suite:
 
 ```powershell
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected current local result:
+Expected latest local Stage 2 boundary result:
 
 ```text
 126 passed
 ```
 
-Optional real MetaBox tests are allowed to skip only when F12/F13/F14 are not all complete PASS. They must give a clear reason and must not fake a real benchmark success.
-
-## Run Current Minimal Runner
-
-```powershell
-python loco\experiments\stage2_minimal_runner.py
-```
-
-This writes:
-
-```text
-docs/stage2/stage2_5_artifact_registry_result.json
-```
-
-The runner uses a deterministic one-shot perturbation proposal generator. It is not an optimizer and should not be interpreted as performance evidence. Its current Stage 2.5 surface verifies that shared-variable conflict states, baseline coordination operators, a frozen AST artifact registry, DSL runtime interpretation, provenance logging, and FE accounting work end to end.
-
-## Run Stage 2.6 Candidate Logging Replay
-
-```powershell
-python -m pytest tests\stage2\test_stage2_6_candidate_logging.py -q
-```
-
-This verifies:
-
-```text
-artifacts/candidates/stage2_6/accepted_candidates.jsonl
-artifacts/candidates/stage2_6/rejected_candidates.jsonl
-artifacts/candidates/stage2_6/rejection_corpus.jsonl
-artifacts/candidates/stage2_6/replay_report.json
-```
-
-Stage 2.6 is a logging and replay gate for future candidate ASTs. It does not call an LLM, run evolution, generate candidates, execute operators, or evaluate objective functions.
-
-## Run Stage 2.7 Sealed Split Replay Audit
-
-```powershell
-python -m pytest tests\stage2\test_stage2_7_sealed_split_replay_audit.py -q
-```
-
-This verifies:
-
-```text
-artifacts/candidates/stage2_7/sealed_split_manifest.json
-artifacts/candidates/stage2_7/split_replay_audit_report.json
-```
-
-Stage 2.7 binds the Stage 2.6 accepted/rejected candidate logs and replay report to a sealed split manifest, checks their file fingerprints, and audits no-test-feedback boundaries. It does not call an LLM, run evolution, generate candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
-
-## Run Stage 2.8 Frozen Candidate Promotion
-
-```powershell
-python -m pytest tests\stage2\test_stage2_8_candidate_promotion.py -q
-```
-
-This verifies:
-
-```text
-artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5.json
-artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5_promotion_receipt.json
-artifacts/operators/stage2_8_registry.jsonl
-```
-
-Stage 2.8 promotes an already accepted Stage 2.6 candidate into a frozen operator artifact only after the Stage 2.7 sealed split replay audit passes. It does not call an LLM, run evolution, generate candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
-
-## Run Stage 2.9 Promotion Replay Audit
-
-```powershell
-python -m pytest tests\stage2\test_stage2_9_promotion_replay_audit.py -q
-```
-
-This verifies:
-
-```text
-artifacts/operators/stage2_8_registry.jsonl
-artifacts/operators/stage2_9/promotion_replay_audit_report.json
-```
-
-Stage 2.9 cold-start replays the Stage 2.8 promoted artifact registry, loads the promoted artifact and promotion receipt, recomputes fingerprints, and audits Stage 2.6 / Stage 2.7 provenance. It does not call an LLM, run evolution, generate candidates, re-promote candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
-
-## Run Stage 2.10 Pre-Stage-3 Readiness Gate
+Run the Stage 2 readiness gate directly:
 
 ```powershell
 python -m pytest tests\stage2\test_stage2_10_readiness_gate.py -q
 ```
 
-This verifies:
-
-```text
-artifacts/readiness/stage2_10_readiness_decision.json
-```
-
-Stage 2.10 reads the Stage 2.7 sealed split audit, Stage 2.8 promotion registry, and Stage 2.9 promotion replay audit to decide whether Stage 3 may begin under strict boundaries. `READY_FOR_STAGE3_BOUNDARY_ONLY` means only typed coordination-operator AST LLM/evolution search is allowed. It does not call an LLM, run evolution, generate candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
-
-## Run Stage 2.1 Multi-setting Panel
+Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
+python loco\experiments\stage2_minimal_runner.py
 python loco\experiments\stage2_panel_runner.py
-```
-
-This writes:
-
-```text
-docs/stage2/stage2_1_synthetic_panel_result.json
-docs/stage2/stage2_1_synthetic_panel_summary.csv
-docs/stage2/stage2_1_self_check_report.md
-```
-
-The default panel covers `line / ring / random_graph`, dimensions `100 / 500 / 1000`, overlap ratios `0.0 / 0.05 / 0.10 / 0.20 / 0.30`, and seeds `0 / 1 / 2`. It is an evidence gate for conflict-state behavior and metric sanity. It does not implement an optimizer, LLM search, evolution, or new coordination operators.
-
-## Run Stage 2.1B Multi-round Evidence
-
-```powershell
 python loco\experiments\stage2_multiround_runner.py
 ```
 
-This writes:
-
-```text
-docs/stage2/stage2_1b_multiround_result.json
-docs/stage2/stage2_1b_multiround_summary.csv
-docs/stage2/stage2_1b_self_check_report.md
-```
-
-Stage 2.1B runs five deterministic rounds per baseline-method run. At each round it generates group proposals, measures conflict, applies one baseline coordination rule, commits the coordinated shared-variable values, regenerates next-round proposals from that committed solution, and measures regenerated conflict. The CSV is the main reading surface; the JSON is an audit artifact with per-round FE and shared-variable change logs.
+Optional real MetaBox tests are allowed to skip only when F12/F13/F14 are not all complete PASS. They must give a clear reason and must not fake a real benchmark success.
 
 ## Benchmark And License Boundary
 
@@ -215,9 +135,9 @@ See [LICENSE_NOTICE.md](LICENSE_NOTICE.md) and [docs/reproducibility.md](docs/re
 
 ## Metric Honesty Note
 
-Stage 2.0/2.1 report `proposal_consensus_collapse_ratio`, not a true longitudinal conflict reduction claim.
+Stage 2 reports `proposal_consensus_collapse_ratio`, not a true longitudinal conflict reduction claim.
 
-This value measures how much the current set of proposals collapses after applying a coordination rule. It does **not** prove that future regenerated conflicts are reduced. Stage 2.1 reports `post_coordination_regenerated_conflict` as a deterministic regenerated-conflict proxy. Stage 2.1B reports `longitudinal_conflict_reduction_ratio` using next-round regenerated conflict, not same-round collapse. These are evidence-gate diagnostics, not SOTA optimizer-loop performance claims.
+This value measures how much the current set of proposals collapses after applying a coordination rule. It does **not** prove that future regenerated conflicts are reduced. Regenerated-conflict and multi-round reports are diagnostic evidence gates, not final optimizer-loop performance claims.
 
 ## FE Accounting
 
@@ -227,7 +147,7 @@ The project keeps this accounting identity:
 FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair
 ```
 
-Stage 2.x evaluates each baseline or frozen artifact-backed operator as a separate method run. Cross-baseline comparison evaluations are not shared across methods.
+Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate method run. Cross-baseline comparison evaluations are not shared across methods.
 
 ## Next Recommended Stage
 
