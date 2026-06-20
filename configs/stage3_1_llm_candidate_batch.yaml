@@ -1,0 +1,62 @@
+stage: "3.1"
+name: "Small-Batch LLM Candidate Generation"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Capture and audit a first small batch of LLM candidate typed-AST wrappers under train-only boundaries."
+  dependency:
+    stage3_0_protocol_report: "artifacts/readiness/stage3_0_protocol_lock_report.json"
+    required_status: "PASS"
+  implementation_module: "loco.llm.candidate_batch"
+
+allowed_scope:
+  action: "small-batch LLM candidate generation"
+  split: "train"
+  output_schema: "loco.llm_candidate.v1"
+  ast_schema: "loco.dsl.v1"
+  target_variables: "shared_variables_only"
+  raw_output_artifact: "artifacts/candidates/stage3_1/raw_llm_output.json"
+
+forbidden_scope:
+  - "no evolution run"
+  - "no objective evaluation"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no scheduler/controller generation"
+  - "no optimizer selection"
+  - "no benchmark objective rewrite"
+  - "no test feedback"
+  - "no validation feedback"
+  - "no test-set tuning"
+  - "no performance claim"
+
+candidate_batch:
+  raw_batch_schema_version: "loco.stage3_1_raw_llm_batch.v1"
+  accepted_log: "artifacts/candidates/stage3_1/accepted_candidates.jsonl"
+  rejected_log: "artifacts/candidates/stage3_1/rejected_candidates.jsonl"
+  replay_report: "artifacts/candidates/stage3_1/replay_report.json"
+  shared_variables_for_smoke: [5]
+  require_at_least_one_accepted: true
+  require_at_least_one_rejected: true
+
+train_only_firewall:
+  train: "candidate generation and schema/boundary replay only"
+  validation: "not used in Stage 3.1"
+  test: "locked and unused in Stage 3.1"
+  no_test_feedback: true
+  no_validation_selection: true
+
+fe_accounting:
+  objective_evaluations: 0
+  all_extra_function_evaluations_count: true
+  note: "Stage 3.1 parses and validates AST schemas only; no objective function is called."
+
+acceptance:
+  - "Stage 3.0 protocol lock report is PASS"
+  - "raw LLM candidate batch is recorded"
+  - "accepted/rejected train-only candidate logs are replayable"
+  - "all candidates use typed coordination operator AST wrappers"
+  - "accepted candidates target shared variables only"
+  - "rejected candidates preserve explicit reject reasons"
+  - "no evolution run, no objective evaluation, no test feedback"

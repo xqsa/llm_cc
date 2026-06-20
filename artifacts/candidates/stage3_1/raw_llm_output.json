@@ -1,0 +1,148 @@
+{
+  "candidates": [
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "consensus",
+            "inputs": {
+              "temperature": 0.75
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "damped",
+            "inputs": {
+              "damping_strength": 0.35,
+              "source": "consensus"
+            },
+            "kind": "dampening",
+            "target": {
+              "variable_id": 5
+            }
+          },
+          {
+            "id": "bounded",
+            "inputs": {
+              "lower": -1.0,
+              "source": "damped",
+              "upper": 1.0
+            },
+            "kind": "clip",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_1_codex_weighted_dampened_clip_shared_5",
+        "output": {
+          "source": "bounded"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_1_codex_weighted_dampened_clip_shared_5",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "gpt-5-codex",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "codex",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "consensus",
+            "inputs": {
+              "temperature": 1.0
+            },
+            "kind": "weighted_consensus",
+            "target": {
+              "variable_id": 9
+            }
+          }
+        ],
+        "operator_id": "stage3_1_reject_non_shared_target_9",
+        "output": {
+          "source": "consensus"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_1_reject_non_shared_target_9",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": true,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "gpt-5-codex",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "codex",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    },
+    {
+      "ast": {
+        "nodes": [
+          {
+            "id": "bad",
+            "inputs": {},
+            "kind": "optimizer",
+            "target": {
+              "variable_id": 5
+            }
+          }
+        ],
+        "operator_id": "stage3_1_reject_optimizer_node",
+        "output": {
+          "source": "bad"
+        },
+        "schema_version": "loco.dsl.v1"
+      },
+      "candidate_id": "stage3_1_reject_optimizer_node",
+      "declared_scope": {
+        "no_test_feedback": true,
+        "not_benchmark_specific": true,
+        "not_controller": true,
+        "not_optimizer": false,
+        "not_optimizer_selection": true,
+        "not_scheduler": true,
+        "target": "shared_variables_only"
+      },
+      "generator": {
+        "model": "gpt-5-codex",
+        "prompt_contract_version": "loco.operator_prompt_contract.v1",
+        "provider": "codex",
+        "type": "llm"
+      },
+      "schema_version": "loco.llm_candidate.v1"
+    }
+  ],
+  "prompt_contract_version": "loco.operator_prompt_contract.v1",
+  "schema_version": "loco.stage3_1_raw_llm_batch.v1",
+  "source": {
+    "captured_by": "Codex",
+    "model": "gpt-5-codex",
+    "provider": "codex"
+  },
+  "split": "train",
+  "stage": "3.1"
+}
