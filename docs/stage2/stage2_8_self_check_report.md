@@ -44,6 +44,7 @@
 | failed audit blocked | PASS | failed/tampered audit report 不能晋升。 |
 | artifact schema | PASS | 输出 artifact 使用 `loco.operator_artifact.v1`。 |
 | target scope | PASS | artifact 保持 `shared_variables_only`。 |
+| receipt fingerprint | PASS | registry 记录 `promotion_receipt_fingerprint_sha256`，用于 Stage 2.9 receipt tamper detection。 |
 | no test feedback | PASS | artifact、receipt、registry 均保留 no-test-feedback flag。 |
 | no LLM/evolution imports | PASS | tests 覆盖 no LLM / no evolution imports。 |
 

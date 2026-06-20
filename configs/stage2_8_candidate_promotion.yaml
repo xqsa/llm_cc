@@ -39,6 +39,7 @@ audit_fields:
   - "sealed_manifest_fingerprint_sha256"
   - "audit_report_fingerprint_sha256"
   - "artifact_fingerprint_sha256"
+  - "promotion_receipt_fingerprint_sha256"
   - "promotion_fingerprint_sha256"
   - "no_llm"
   - "no_evolution"

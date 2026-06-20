@@ -1,0 +1,43 @@
+stage: "2.9"
+name: "Promotion Replay and Registry Audit"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Cold-start replay audit for Stage 2.8 promoted operator artifacts, promotion receipts, and registry rows."
+  audit_module: "loco.coordination.promotion_replay_audit"
+  source_registry: "artifacts/operators/stage2_8_registry.jsonl"
+  audit_report: "artifacts/operators/stage2_9/promotion_replay_audit_report.json"
+  stage2_9_is_not:
+    - "LLM search"
+    - "evolution search"
+    - "candidate generation"
+    - "candidate promotion"
+    - "runtime AST execution"
+    - "objective evaluation"
+    - "optimizer implementation"
+    - "controller/scheduler implementation"
+    - "test-set tuning"
+    - "SOTA evidence"
+
+audit_contract:
+  required_schema: "loco.promotion_replay_audit.v1"
+  required_registry_schema: "loco.promoted_operator_registry.v1"
+  required_artifact_schema: "loco.operator_artifact.v1"
+  required_receipt_schema: "loco.candidate_promotion_receipt.v1"
+  required_status: "PASS"
+  checks:
+    - "artifact fingerprint matches registry"
+    - "promotion receipt fingerprint matches registry"
+    - "promotion fingerprint replays from artifact and receipt provenance"
+    - "source candidate log fingerprint matches receipt"
+    - "Stage 2.7 sealed manifest fingerprint matches receipt"
+    - "Stage 2.7 audit report fingerprint matches receipt"
+    - "artifact remains frozen"
+    - "target scope remains shared_variables_only"
+    - "no LLM / no evolution / no optimizer / no candidate generation / no test feedback / no objective evaluation flags remain true"
+
+tamper_detection:
+  artifact_tamper_expected_status: "FAIL"
+  receipt_tamper_expected_status: "FAIL"
+  registry_fingerprint_is_authoritative: true

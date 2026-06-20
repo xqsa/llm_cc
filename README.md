@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository stage: `Stage 2.8 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
+Current repository stage: `Stage 2.9 PASS` locally; latest GitHub Actions should be checked for the current commit before publication claims.
 
 Implemented:
 
@@ -28,6 +28,7 @@ Implemented:
 - Stage 2.6: candidate artifact logging schema, rejection corpus, and replay verifier.
 - Stage 2.7: sealed split replay audit for candidate logs.
 - Stage 2.8: frozen candidate promotion contract.
+- Stage 2.9: promotion replay and registry audit.
 
 Known benchmark boundary:
 
@@ -73,7 +74,7 @@ python -m pytest -p no:cacheprovider tests -q -rs
 Expected current local result:
 
 ```text
-115 passed
+121 passed
 ```
 
 Optional real MetaBox tests are allowed to skip only when F12/F13/F14 are not all complete PASS. They must give a clear reason and must not fake a real benchmark success.
@@ -140,6 +141,21 @@ artifacts/operators/stage2_8_registry.jsonl
 
 Stage 2.8 promotes an already accepted Stage 2.6 candidate into a frozen operator artifact only after the Stage 2.7 sealed split replay audit passes. It does not call an LLM, run evolution, generate candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
 
+## Run Stage 2.9 Promotion Replay Audit
+
+```powershell
+python -m pytest tests\stage2\test_stage2_9_promotion_replay_audit.py -q
+```
+
+This verifies:
+
+```text
+artifacts/operators/stage2_8_registry.jsonl
+artifacts/operators/stage2_9/promotion_replay_audit_report.json
+```
+
+Stage 2.9 cold-start replays the Stage 2.8 promoted artifact registry, loads the promoted artifact and promotion receipt, recomputes fingerprints, and audits Stage 2.6 / Stage 2.7 provenance. It does not call an LLM, run evolution, generate candidates, re-promote candidates, execute AST runtime, evaluate objectives, or implement an optimizer.
+
 ## Run Stage 2.1 Multi-setting Panel
 
 ```powershell
@@ -203,5 +219,5 @@ Stage 2.x evaluates each baseline or frozen artifact-backed operator as a separa
 Do not jump directly to Stage 3. Recommended next step:
 
 ```text
-Stage 2.9: promotion replay and registry audit
+Stage 2.10: pre-Stage-3 readiness gate
 ```

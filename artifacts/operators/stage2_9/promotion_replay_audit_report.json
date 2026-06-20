@@ -1,0 +1,41 @@
+{
+  "artifact_fingerprint_mismatch_count": 0,
+  "audit_report_fingerprint_mismatch_count": 0,
+  "audited_artifact_count": 1,
+  "boundary_violation_count": 0,
+  "claim": "promotion replay and registry audit",
+  "entries": [
+    {
+      "artifact_fingerprint_mismatch_count": 0,
+      "artifact_id": "stage2_8.promoted.stage2_6_corpus_valid_weighted_clip_shared_5",
+      "artifact_path": "artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5.json",
+      "audit_report_fingerprint_mismatch_count": 0,
+      "boundary_violation_count": 0,
+      "boundary_violations": [],
+      "promotion_fingerprint_mismatch_count": 0,
+      "promotion_receipt_path": "artifacts/operators/stage2_8/stage2_6_corpus_valid_weighted_clip_shared_5_promotion_receipt.json",
+      "receipt_fingerprint_mismatch_count": 0,
+      "schema_violation_count": 0,
+      "schema_violations": [],
+      "sealed_manifest_fingerprint_mismatch_count": 0,
+      "source_candidate_fingerprint_mismatch_count": 0,
+      "status": "PASS"
+    }
+  ],
+  "no_candidate_generation": true,
+  "no_evolution": true,
+  "no_llm": true,
+  "no_objective_evaluation": true,
+  "no_optimizer": true,
+  "no_test_feedback": true,
+  "promotion_fingerprint_mismatch_count": 0,
+  "receipt_fingerprint_mismatch_count": 0,
+  "registry_entry_count": 1,
+  "registry_path": "artifacts/operators/stage2_8_registry.jsonl",
+  "schema_version": "loco.promotion_replay_audit.v1",
+  "schema_violation_count": 0,
+  "sealed_manifest_fingerprint_mismatch_count": 0,
+  "source_candidate_fingerprint_mismatch_count": 0,
+  "stage": "2.9",
+  "status": "PASS"
+}

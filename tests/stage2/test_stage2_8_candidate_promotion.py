@@ -117,6 +117,7 @@ def test_stage2_8_registry_binds_promoted_artifact_and_receipt() -> None:
     assert row["frozen"] is True
     assert row["no_test_feedback"] is True
     assert len(row["artifact_fingerprint_sha256"]) == 64
+    assert len(row["promotion_receipt_fingerprint_sha256"]) == 64
     assert len(row["promotion_fingerprint_sha256"]) == 64
 
 

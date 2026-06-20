@@ -115,6 +115,7 @@ artifacts/operators/stage2_8_registry.jsonl
 
 - promoted artifact path；
 - promotion receipt path；
+- promotion receipt fingerprint；
 - source candidate id；
 - source AST fingerprint；
 - artifact fingerprint；

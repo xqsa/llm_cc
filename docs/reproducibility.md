@@ -298,6 +298,38 @@ The tested and logged surface includes:
 
 Stage 2.8 is a frozen candidate promotion contract gate. It does not call an LLM, run evolution, generate candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators.
 
+## Stage 2.9 Promotion Replay and Registry Audit
+
+Stage 2.9 can be verified with:
+
+```powershell
+python -m pytest tests\stage2\test_stage2_9_promotion_replay_audit.py -q
+```
+
+The committed artifacts are:
+
+```text
+artifacts/operators/stage2_8_registry.jsonl
+artifacts/operators/stage2_9/promotion_replay_audit_report.json
+```
+
+The tested and logged surface includes:
+
+- cold-start replay of Stage 2.8 promoted registry rows;
+- promoted artifact loading through `loco.operator_artifact.v1`;
+- promotion receipt loading through `loco.candidate_promotion_receipt.v1`;
+- artifact fingerprint recomputation;
+- promotion receipt fingerprint recomputation against the registry;
+- promotion fingerprint recomputation from artifact and receipt provenance;
+- Stage 2.6 accepted candidate log fingerprint audit;
+- Stage 2.7 sealed manifest and audit report fingerprint audit;
+- artifact tamper detection;
+- receipt tamper detection;
+- no LLM / no evolution imports;
+- no candidate generation, no candidate promotion, no runtime AST execution, no objective evaluation, and no test feedback boundary.
+
+Stage 2.9 is a promotion replay and registry audit gate. It does not call an LLM, run evolution, generate candidates, re-promote candidates, execute AST runtime, call objective functions, implement an optimizer, or claim learned operators.
+
 ## FE Accounting
 
 All function evaluations must be assigned to:

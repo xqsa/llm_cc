@@ -85,6 +85,7 @@ def promote_accepted_candidate(
         promotion_fingerprint=promotion_fingerprint,
     )
     _write_json(receipt_path, receipt)
+    receipt_fingerprint = _sha256_file(receipt_path)
 
     registry_row = {
         "registry_schema_version": PROMOTION_REGISTRY_SCHEMA_VERSION,
@@ -95,6 +96,7 @@ def promote_accepted_candidate(
         "source_candidate_id": candidate_id,
         "source_ast_fingerprint_sha256": row["ast_fingerprint_sha256"],
         "artifact_fingerprint_sha256": artifact_fingerprint,
+        "promotion_receipt_fingerprint_sha256": receipt_fingerprint,
         "promotion_fingerprint_sha256": promotion_fingerprint,
         "split": row["split"],
         "target_scope": "shared_variables_only",
