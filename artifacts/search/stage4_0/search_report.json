@@ -1,0 +1,23 @@
+{
+  "FE_total": 12,
+  "allowed_split": "train",
+  "ast_execution_used": false,
+  "baseopt_modified": false,
+  "candidate_count": 12,
+  "candidate_pool_frozen": true,
+  "family_lock_stage": "3.7",
+  "llm_call_used": false,
+  "new_candidate_generation_used": false,
+  "next_status": "READY_FOR_STAGE4_1_TRAIN_SEARCH_AUDIT",
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "optimizer_generation_used": false,
+  "promotion_candidate_count": 3,
+  "schema_version": "loco.stage4_0_search_report.v1",
+  "source_stage": "3.6",
+  "stage": "4.0",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "train_only_search_executed": true,
+  "validation_feedback_used": false
+}

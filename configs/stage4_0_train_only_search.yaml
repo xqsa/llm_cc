@@ -1,0 +1,45 @@
+stage: "4.0"
+name: "Train-only Search over Frozen Coordination-candidate Pool"
+created_by: "Codex"
+created_date: "2026-06-20"
+
+purpose:
+  summary: "Run deterministic train-only search over the Stage 3.6 frozen coordination-candidate pool under the Stage 3.7 family lock."
+  runner: "loco.coordination.train_only_search"
+  cli_entrypoint: "scripts/stage4/run_stage4_0_train_only_search.py"
+  not_performance_claim: true
+
+input:
+  frozen_candidate_pool: "artifacts/candidates/stage3_6/frozen_candidate_pool.jsonl"
+  frozen_pool_manifest: "artifacts/candidates/stage3_6/frozen_pool_manifest.json"
+  family_space_lock: "configs/stage4_coordination_family_space.yaml"
+  family_lock_stage: "3.7"
+
+artifacts:
+  output_dir: "artifacts/search/stage4_0"
+  search_trace: "artifacts/search/stage4_0/search_trace.jsonl"
+  promotion_candidates: "artifacts/search/stage4_0/promotion_candidates.json"
+  fe_ledger: "artifacts/search/stage4_0/fe_ledger.json"
+  search_report: "artifacts/search/stage4_0/search_report.json"
+
+search_policy:
+  split: "train"
+  promotion_top_k: 3
+  selection_metric: "deterministic_train_proxy_score"
+  validation_usage: "selection only after train search"
+  test_usage: "sealed final reporting only"
+  base_optimizer_policy: "BaseOpt must remain fixed"
+  fe_accounting_policy: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no AST execution"
+  - "no objective evaluation"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no controller/scheduler generation"
+  - "no performance claim"
+

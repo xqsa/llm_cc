@@ -126,10 +126,11 @@ def test_stage4_family_literature_review_documents_sources_and_loco_mapping():
 def test_readme_reports_stage3_7_family_lock_as_pre_stage4_gate():
     text = README.read_text(encoding="utf-8")
 
-    assert "Current repository state: `Stage 3.7 PASS`" in text
+    assert "Current repository state: `Stage 4.0 PASS`" in text
     assert (
         "Coordination Family Literature Grounding and Allowed Vocabulary Lock" in text
     )
+    assert "Stage 3.7 added the Coordination Family Literature Grounding" in text
     assert "Stage 4 train-only evolution/search" in text
     assert (
         "Do not run Stage 4 evolution/search before the Stage 3.7 family lock" in text

@@ -1,0 +1,16 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 12,
+  "FE_repair": 0,
+  "FE_total": 12,
+  "budget_scope": "train_only_candidate_search",
+  "candidate_count": 12,
+  "cross_candidate_evaluations_shared": false,
+  "not_performance_claim": true,
+  "schema_version": "loco.stage4_0_fe_ledger.v1",
+  "stage": "4.0",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": false
+}

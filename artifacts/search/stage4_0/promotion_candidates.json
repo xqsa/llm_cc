@@ -1,0 +1,41 @@
+{
+  "not_performance_claim": true,
+  "promotion_candidates": [
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "promotion_status": "VALIDATION_READY_NOT_SELECTED_FINAL",
+      "rank": 1,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_1_projection_dampening",
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "promotion_status": "VALIDATION_READY_NOT_SELECTED_FINAL",
+      "rank": 2,
+      "train_proxy_score": 1.0
+    },
+    {
+      "allowed_next_use": "validation selection only after train search",
+      "candidate_id": "stage3_5_batch_1_reweighting_repair",
+      "kind_sequence": "reweighting->repair",
+      "not_performance_claim": true,
+      "operator_family": "reweighting+repair",
+      "promotion_status": "VALIDATION_READY_NOT_SELECTED_FINAL",
+      "rank": 3,
+      "train_proxy_score": 1.0
+    }
+  ],
+  "promotion_top_k": 3,
+  "schema_version": "loco.stage4_0_promotion_candidates.v1",
+  "stage": "4.0",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": false
+}
