@@ -1,0 +1,44 @@
+{
+  "allowed_claims": [
+    "Stage 6.1 compares fixed Stage 6.0 sealed-test coordination diagnostics across baselines.",
+    "Stage 6.1 reports ablation-style deltas against identity, simple consensus, and weighted consensus.",
+    "Stage 6.1 records failure-analysis cautions without objective-value claims."
+  ],
+  "allowed_next_paths": [
+    "paper_claim_polish_from_diagnostics",
+    "stage7_objective_value_eval_with_new_protocol_and_fe_accounting"
+  ],
+  "claim_scope": "sealed-test baseline diagnostics only",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "objective_evaluation": false,
+    "optimizer_generation": false,
+    "promotion_rule_revision": false,
+    "prompt_revision": false,
+    "test_feedback_tuning": false,
+    "train_search_revision": false,
+    "validation_rule_revision": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "objective-value performance improvement",
+    "benchmark optimizer superiority",
+    "validation or test feedback tuning success",
+    "new optimizer/controller/scheduler generation"
+  ],
+  "legal_inputs": [
+    "artifacts/sealed_test/stage6_0/sealed_test_trace.jsonl",
+    "artifacts/sealed_test/stage6_0/sealed_test_metrics.json",
+    "artifacts/sealed_test/stage6_0/fe_ledger.json",
+    "artifacts/sealed_test/stage6_0/final_reporting_boundary.json",
+    "artifacts/sealed_test/stage6_0/sealed_test_report.json"
+  ],
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage6_1_claim_boundary.v1",
+  "stage": "6.1",
+  "status": "PASS"
+}

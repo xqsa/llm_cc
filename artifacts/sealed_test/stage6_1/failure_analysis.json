@@ -1,0 +1,88 @@
+{
+  "analysis_note": "Failure modes are coordination-diagnostic cautions, not optimizer failure claims, because no objective values were evaluated.",
+  "case_count": 3,
+  "cases": [
+    {
+      "failure_modes": [
+        "selected_uses_larger_update_than_baselines",
+        "objective_value_not_observed"
+      ],
+      "method_distances": {
+        "identity_no_coord": 0.395,
+        "selected_loco_operator": 0.252076091707,
+        "simple_consensus": 0.401666666667,
+        "weighted_consensus": 0.327773571201
+      },
+      "method_update_sizes": {
+        "identity_no_coord": 0.0,
+        "selected_loco_operator": 0.142923908293,
+        "simple_consensus": 0.006666666667,
+        "weighted_consensus": 0.067226428799
+      },
+      "sealed_test_case": 1,
+      "selected_distance_to_best": 0.252076091707,
+      "selected_method_present": true,
+      "selected_update_size": 0.142923908293,
+      "winner_method_name": "selected_loco_operator"
+    },
+    {
+      "failure_modes": [
+        "selected_uses_larger_update_than_baselines",
+        "objective_value_not_observed"
+      ],
+      "method_distances": {
+        "identity_no_coord": 0.345,
+        "selected_loco_operator": 0.231441602653,
+        "simple_consensus": 0.388333333333,
+        "weighted_consensus": 0.308848288969
+      },
+      "method_update_sizes": {
+        "identity_no_coord": 0.0,
+        "selected_loco_operator": 0.113558397347,
+        "simple_consensus": 0.043333333333,
+        "weighted_consensus": 0.036151711031
+      },
+      "sealed_test_case": 2,
+      "selected_distance_to_best": 0.231441602653,
+      "selected_method_present": true,
+      "selected_update_size": 0.113558397347,
+      "winner_method_name": "selected_loco_operator"
+    },
+    {
+      "failure_modes": [
+        "selected_uses_larger_update_than_baselines",
+        "objective_value_not_observed"
+      ],
+      "method_distances": {
+        "identity_no_coord": 0.405,
+        "selected_loco_operator": 0.250156556592,
+        "simple_consensus": 0.401666666667,
+        "weighted_consensus": 0.324930202566
+      },
+      "method_update_sizes": {
+        "identity_no_coord": 0.0,
+        "selected_loco_operator": 0.154843443408,
+        "simple_consensus": 0.003333333333,
+        "weighted_consensus": 0.080069797434
+      },
+      "sealed_test_case": 3,
+      "selected_distance_to_best": 0.250156556592,
+      "selected_method_present": true,
+      "selected_update_size": 0.154843443408,
+      "winner_method_name": "selected_loco_operator"
+    }
+  ],
+  "failure_mode_count": 2,
+  "failure_modes": {
+    "objective_value_not_observed": 3,
+    "selected_uses_larger_update_than_baselines": 3
+  },
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_evaluation_used": false,
+  "schema_version": "loco.stage6_1_failure_analysis.v1",
+  "source_stage": "6.0",
+  "stage": "6.1",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}

@@ -1,0 +1,58 @@
+stage: "6.1"
+name: "Baseline Comparison, Ablation, and Failure Analysis"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Read Stage 6.0 sealed-test reporting artifacts and produce baseline comparison, ablation, failure analysis, and claim-boundary artifacts."
+  runner: "loco.coordination.baseline_ablation_analysis"
+  cli_entrypoint: "scripts/stage6/run_stage6_1_baseline_ablation_analysis.py"
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  - "artifacts/sealed_test/stage6_0/sealed_test_trace.jsonl"
+  - "artifacts/sealed_test/stage6_0/sealed_test_metrics.json"
+  - "artifacts/sealed_test/stage6_0/fe_ledger.json"
+  - "artifacts/sealed_test/stage6_0/final_reporting_boundary.json"
+  - "artifacts/sealed_test/stage6_0/sealed_test_report.json"
+
+artifacts:
+  output_dir: "artifacts/sealed_test/stage6_1"
+  baseline_comparison_table: "artifacts/sealed_test/stage6_1/baseline_comparison_table.json"
+  ablation_summary: "artifacts/sealed_test/stage6_1/ablation_summary.json"
+  failure_analysis: "artifacts/sealed_test/stage6_1/failure_analysis.json"
+  claim_boundary: "artifacts/sealed_test/stage6_1/claim_boundary.json"
+  analysis_report: "artifacts/sealed_test/stage6_1/analysis_report.json"
+
+method_set:
+  baselines:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+  selected_method: "selected_loco_operator"
+
+analysis_metrics:
+  primary_coordination_diagnostic: "normalized_distance_to_best_reward_proposal"
+  lower_primary_diagnostic_is_better: true
+  cautionary_diagnostic: "normalized_update_size"
+  smaller_update_is_not_automatically_better: true
+  objective_evaluation_used: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no prompt revision"
+  - "no train-search revision"
+  - "no promotion-rule revision"
+  - "no validation-rule revision"
+  - "no test-feedback tuning"
+  - "no objective evaluation"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a SOTA claim"
+  - "not an objective-value performance claim"
+
+next_paths:
+  - "paper_claim_polish_from_diagnostics"
+  - "stage7_objective_value_eval_with_new_protocol_and_fe_accounting"

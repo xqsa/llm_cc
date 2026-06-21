@@ -1,0 +1,82 @@
+{
+  "analysis_scope": "sealed-test baseline diagnostics only",
+  "best_baseline": {
+    "mean_normalized_distance_to_best_reward_proposal": 0.320517354245,
+    "mean_normalized_update_size": 0.061149312421,
+    "method_name": "weighted_consensus"
+  },
+  "methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "selected_loco_operator"
+  ],
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_evaluation_used": false,
+  "rows": [
+    {
+      "FE_total": 3,
+      "best_baseline_delta_distance": 0.061149312422,
+      "case_win_count_by_distance": 0,
+      "is_selected_loco_operator": false,
+      "lower_distance_to_best_is_better": true,
+      "mean_normalized_distance_to_best_reward_proposal": 0.381666666667,
+      "mean_normalized_update_size": 0.0,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "identity_no_coord",
+      "rank_by_distance_to_best": 3,
+      "sealed_test_case_count": 3,
+      "smaller_update_is_not_automatically_better": true
+    },
+    {
+      "FE_total": 3,
+      "best_baseline_delta_distance": 0.07670486797699999,
+      "case_win_count_by_distance": 0,
+      "is_selected_loco_operator": false,
+      "lower_distance_to_best_is_better": true,
+      "mean_normalized_distance_to_best_reward_proposal": 0.397222222222,
+      "mean_normalized_update_size": 0.017777777778,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "simple_consensus",
+      "rank_by_distance_to_best": 4,
+      "sealed_test_case_count": 3,
+      "smaller_update_is_not_automatically_better": true
+    },
+    {
+      "FE_total": 3,
+      "best_baseline_delta_distance": 0.0,
+      "case_win_count_by_distance": 0,
+      "is_selected_loco_operator": false,
+      "lower_distance_to_best_is_better": true,
+      "mean_normalized_distance_to_best_reward_proposal": 0.320517354245,
+      "mean_normalized_update_size": 0.061149312421,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "weighted_consensus",
+      "rank_by_distance_to_best": 2,
+      "sealed_test_case_count": 3,
+      "smaller_update_is_not_automatically_better": true
+    },
+    {
+      "FE_total": 3,
+      "best_baseline_delta_distance": -0.07595927059399998,
+      "case_win_count_by_distance": 3,
+      "is_selected_loco_operator": true,
+      "lower_distance_to_best_is_better": true,
+      "mean_normalized_distance_to_best_reward_proposal": 0.244558083651,
+      "mean_normalized_update_size": 0.137108583016,
+      "mean_pre_conflict_intensity": 0.665,
+      "method_name": "selected_loco_operator",
+      "rank_by_distance_to_best": 1,
+      "sealed_test_case_count": 3,
+      "smaller_update_is_not_automatically_better": true
+    }
+  ],
+  "schema_version": "loco.stage6_1_baseline_comparison_table.v1",
+  "selected_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "selected_method_name": "selected_loco_operator",
+  "source_stage": "6.0",
+  "stage": "6.1",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}

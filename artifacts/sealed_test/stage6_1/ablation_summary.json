@@ -1,0 +1,42 @@
+{
+  "baseline_methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus"
+  ],
+  "best_baseline_method_name": "weighted_consensus",
+  "interpretation": "The selected LOCO operator is analyzed as a coordination-level diagnostic method against fixed baselines; this does not prove objective-value improvement.",
+  "lower_distance_to_best_is_better": true,
+  "not_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_evaluation_used": false,
+  "pairwise_deltas_vs_selected": [
+    {
+      "baseline_method_name": "identity_no_coord",
+      "selected_has_lower_distance_to_best": true,
+      "selected_minus_baseline_distance_to_best": -0.13710858301599999,
+      "selected_minus_baseline_update_size": 0.137108583016
+    },
+    {
+      "baseline_method_name": "simple_consensus",
+      "selected_has_lower_distance_to_best": true,
+      "selected_minus_baseline_distance_to_best": -0.15266413857099997,
+      "selected_minus_baseline_update_size": 0.11933080523800002
+    },
+    {
+      "baseline_method_name": "weighted_consensus",
+      "selected_has_lower_distance_to_best": true,
+      "selected_minus_baseline_distance_to_best": -0.07595927059399998,
+      "selected_minus_baseline_update_size": 0.07595927059500002
+    }
+  ],
+  "schema_version": "loco.stage6_1_ablation_summary.v1",
+  "selected_case_win_count_by_distance": 3,
+  "selected_method_name": "selected_loco_operator",
+  "selected_rank_by_distance_to_best": 1,
+  "smaller_update_is_not_automatically_better": true,
+  "source_stage": "6.0",
+  "stage": "6.1",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}

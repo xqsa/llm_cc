@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 6.0 PASS` — Stage 6.0 has locked the sealed-test reporting protocol and run a minimal sealed-test coordination diagnostics panel using only the Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`.
+Current repository state: `Stage 6.1 PASS` — Stage 6.1 has completed sealed-test baseline comparison, ablation, and failure analysis using only the Stage 6.0 sealed-test reporting artifacts and the Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`.
 
-Stage 6.0 is not a performance claim, not a SOTA claim, and still not an objective-value performance claim. It reports sealed-test coordination diagnostics only. It does not use benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, validation-rule revision, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 6.1 is not a performance claim, not a SOTA claim, and still not an objective-value performance claim. It reports sealed-test baseline diagnostics only. It does not use benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, validation-rule revision, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Current stage map:
 
@@ -28,10 +28,10 @@ Stage 4.1    train-search audit and tie-hardened promotion rule    PASS
 Stage 5.0    validation-only selection                            PASS
 Stage 5.1    selected operator freeze                             PASS
 Stage 6.0    sealed test reporting protocol and minimal runner     PASS
-Stage 6.1    baseline ablation and failure analysis                NEXT
+Stage 6.1    baseline ablation and failure analysis                PASS
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, and the first sealed-test reporting surface. The next executable frontier is deeper baseline ablation and failure analysis.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, and the baseline/ablation/failure-analysis layer. The next frontier is either paper-claim polishing from the sealed diagnostics or a new Stage 7 objective-value evaluation protocol with full FE accounting.
 
 ## What Stage 3 Established
 
@@ -206,16 +206,29 @@ validation selection, selected-operator freeze, or protocol-only sealed-test
 setup. LOCO-LSGO has completed the candidate-supply chain, frozen train-only
 candidate pool, train-only search trace, promotion-rule hardening,
 validation-only selection, selected operator freeze, and a minimal sealed-test
-coordination diagnostics runner. The active research frontier is now deeper
-baseline ablation and failure analysis.
+coordination diagnostics runner. Stage 6.1 has also completed baseline
+comparison, ablation-style deltas, failure-analysis cautions, and a claim
+boundary for the sealed-test diagnostics.
 
-Next recommended step:
+Current Stage 6.1 diagnostic result:
 
 ```text
-Stage 6.1: baseline comparison, ablation, and failure analysis
+source_stage = 6.0
+selected_candidate_id = stage3_5_batch_1_weighted_consensus_projection
+analysis_scope = sealed-test baseline diagnostics only
+method_count = 4
+baseline_method_count = 3
+selected_method_name = selected_loco_operator
+selected_rank_by_distance_to_best = 1
+selected_case_win_count_by_distance = 3 / 3
+best_baseline_method_name = weighted_consensus
+selected_minus_best_baseline_distance_to_best = -0.075959270594
+failure_modes = selected_uses_larger_update_than_baselines, objective_value_not_observed
+not_performance_claim = true
+not_sota_claim = true
 ```
 
-Stage 6.1 should read only the Stage 6.0 sealed-test reporting artifacts:
+Stage 6.1 read only the Stage 6.0 sealed-test reporting artifacts:
 
 ```text
 artifacts/sealed_test/stage6_0/sealed_test_trace.jsonl
@@ -225,7 +238,7 @@ artifacts/sealed_test/stage6_0/final_reporting_boundary.json
 artifacts/sealed_test/stage6_0/sealed_test_report.json
 ```
 
-It should deepen the baseline and ablation analysis for the fixed method set:
+It analyzed the fixed method set:
 
 ```text
 identity_no_coord
@@ -234,7 +247,7 @@ weighted_consensus
 selected_loco_operator
 ```
 
-Stage 6.1 must not revise the Stage 5.0 validation rule, rerun train search,
+Stage 6.1 did not revise the Stage 5.0 validation rule, rerun train search,
 add new candidates, or use test feedback to tune the method.
 
 Stage 5.0 produced:
@@ -267,7 +280,17 @@ artifacts/sealed_test/stage6_0/final_reporting_boundary.json
 artifacts/sealed_test/stage6_0/sealed_test_report.json
 ```
 
-Stage 6.1 must still preserve:
+Stage 6.1 produced:
+
+```text
+artifacts/sealed_test/stage6_1/baseline_comparison_table.json
+artifacts/sealed_test/stage6_1/ablation_summary.json
+artifacts/sealed_test/stage6_1/failure_analysis.json
+artifacts/sealed_test/stage6_1/claim_boundary.json
+artifacts/sealed_test/stage6_1/analysis_report.json
+```
+
+Stage 6.1 preserves:
 
 ```text
 no LLM call
@@ -277,12 +300,21 @@ no train-search revision
 no promotion-rule revision
 no validation-rule revision
 no test-feedback tuning
+no objective evaluation
 no BaseOpt modification
 no optimizer/controller/scheduler generation
 full FE accounting
 oracle grouping and detected grouping reported separately
 no SOTA overclaim
 ```
+
+Recommended next step:
+
+```text
+Paper claim polishing from Stage 6.1 diagnostics, or Stage 7 objective-value evaluation protocol
+```
+
+For a short paper, the immediate next move should be claim polishing: turn Stage 0-6.1 into a method story, result table, ablation summary, and threats-to-validity section. For any stronger performance claim, Stage 7 must first lock a new objective-value evaluation protocol and FE accounting boundary.
 
 ## Completion Distance
 
@@ -299,17 +331,17 @@ Protocol and leakage-control boundary:  85%
 Engineering prototype:                  75%
 Candidate generation and audit chain:   90%
 Train-only search and promotion audit:  80%
-Validation evidence:                    55%
+Validation evidence:                    65%
 Selected-operator freeze:               90%
-Sealed-test diagnostics surface:        45%
-Paper-ready empirical case:             65-72%
+Sealed-test diagnostics surface:        70%
+Paper-ready empirical case:             72-78%
 ```
 
 In plain terms:
 
 ```text
-Distance to a completed innovation prototype: about 85% done
-Distance to a credible short paper: about 65-72% done
+Distance to a completed innovation prototype: about 88-90% done
+Distance to a credible short paper: about 72-78% done
 Distance to a strong final performance claim: about 25-35% done
 ```
 
@@ -317,8 +349,8 @@ The main remaining gap is not more LLM generation. The main remaining gap is
 evidence:
 
 ```text
-Stage 6.1 baseline comparison, ablation, and failure analysis
--> paper claim polishing
+paper claim polishing from Stage 6.1 diagnostics
+-> optional Stage 7 objective-value evaluation protocol
 ```
 
 Known benchmark boundary:
@@ -407,10 +439,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 6.0:
+Expected latest local result after Stage 6.1:
 
 ```text
-175 passed
+177 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -497,6 +529,12 @@ Run the Stage 6.0 sealed-test reporting gate directly:
 python -m pytest tests\stage6\test_stage6_0_sealed_test_reporting.py -q
 ```
 
+Run the Stage 6.1 baseline ablation analysis gate directly:
+
+```powershell
+python -m pytest tests\stage6\test_stage6_1_baseline_ablation_analysis.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -538,7 +576,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 6.1: baseline comparison, ablation, and failure analysis
+Paper claim polishing from Stage 6.1 diagnostics, or Stage 7 objective-value evaluation protocol
 ```
 
-This next stage must use only the Stage 6.0 sealed-test reporting artifacts and the fixed Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`. It must not feed test results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
+Paper claim polishing should use Stage 6.1 only as sealed-test coordination diagnostics evidence. Stage 7, if started, must first define a fresh objective-value evaluation protocol with full FE accounting. Neither path may feed sealed-test results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
