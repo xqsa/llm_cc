@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "train_only_selection_or_audit",
+  "decision": "LOCK_TRAIN_ONLY_OPERATOR_IMPROVEMENT",
+  "decision_reason": "Frozen Stage 3.6 candidates were improved only under train-only signals and the Stage 7.6 comparator contract.",
+  "next_stage": "Stage 8.1",
+  "not_performance_claim": true,
+  "schema_version": "loco.stage8_0_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.0",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

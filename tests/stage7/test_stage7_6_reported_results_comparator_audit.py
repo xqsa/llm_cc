@@ -45,7 +45,9 @@ def test_stage7_6_fails_red_before_implementation() -> None:
     assert registry["entries"][1]["admissibility"] == "background_only"
     assert registry["entries"][1]["same_setting"] is False
     assert registry["entries"][1]["reason"] == "non_cec2013_custom_benchmark"
-    assert registry["locked_rules_source"] == "Stage 7.5 same-setting comparator contract"
+    assert (
+        registry["locked_rules_source"] == "Stage 7.5 same-setting comparator contract"
+    )
 
     route = json.loads(ROUTE.read_text(encoding="utf-8"))
     assert route["stage"] == "7.6"
@@ -62,7 +64,8 @@ def test_stage7_6_committed_artifacts_record_audit_and_boundary() -> None:
         assert path.is_file(), path
 
     combined = "\n".join(
-        path.read_text(encoding="utf-8") for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
+        path.read_text(encoding="utf-8")
+        for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 7.6" in combined
     assert "Reported-Results Comparator Audit" in combined

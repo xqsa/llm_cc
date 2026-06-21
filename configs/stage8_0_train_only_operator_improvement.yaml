@@ -1,0 +1,48 @@
+stage: "8.0"
+name: "Train-only Operator Improvement"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Improve frozen Stage 3.6 coordination candidates using deterministic train-only signals under the locked Stage 7.6 comparator contract."
+  runner: "loco.coordination.train_only_operator_improvement"
+  cli_entrypoint: "scripts/stage8/run_stage8_0_train_only_operator_improvement.py"
+  not_performance_claim: true
+
+input:
+  frozen_candidate_pool: "artifacts/candidates/stage3_6/frozen_candidate_pool.jsonl"
+  family_space_lock: "configs/stage4_coordination_family_space.yaml"
+  comparator_contract: "configs/stage7_6_reported_results_comparator_audit.yaml"
+  comparator_audit_report: "artifacts/objective_eval/stage7_6/reported_results_comparator_audit_report.json"
+  source_stage: "3.6"
+  comparator_stage: "7.6"
+
+artifacts:
+  output_dir: "artifacts/improvement/stage8_0"
+  improvement_trace: "artifacts/improvement/stage8_0/improvement_trace.jsonl"
+  improvement_candidates: "artifacts/improvement/stage8_0/improvement_candidates.json"
+  fe_ledger: "artifacts/improvement/stage8_0/fe_ledger.json"
+  improvement_report: "artifacts/improvement/stage8_0/improvement_report.json"
+  next_route_decision: "artifacts/improvement/stage8_0/next_route_decision.json"
+
+improvement_policy:
+  split: "train"
+  selection_metric: "deterministic_train_only_improvement_score"
+  validation_usage: "selection only after train improvement"
+  test_usage: "sealed final reporting only"
+  base_optimizer_policy: "BaseOpt must remain fixed"
+  fe_accounting_policy: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no AST execution"
+  - "no objective evaluation"
+  - "no benchmark execution"
+  - "no reported-results reuse as runtime feedback"
+  - "no optimizer generation"
+  - "no BaseOpt modification"
+  - "no controller/scheduler generation"
+  - "no performance claim"

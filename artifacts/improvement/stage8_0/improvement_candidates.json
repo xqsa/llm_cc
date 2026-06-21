@@ -1,0 +1,52 @@
+{
+  "improvement_candidates": [
+    {
+      "allowed_next_use": "train-only selection or audit after improvement",
+      "candidate_id": "stage3_5_batch_1_best_reward_select_dampening_clip",
+      "improvement_score": 0.9,
+      "improvement_status": "TRAIN_ONLY_RECORDED",
+      "kind_sequence": "best_reward_select->dampening->clip",
+      "not_performance_claim": true,
+      "operator_family": "best_reward_select+dampening+clip",
+      "rank": 1
+    },
+    {
+      "allowed_next_use": "train-only selection or audit after improvement",
+      "candidate_id": "stage3_5_batch_2_best_reward_dampening_clip",
+      "improvement_score": 0.9,
+      "improvement_status": "TRAIN_ONLY_RECORDED",
+      "kind_sequence": "best_reward_select->dampening->clip",
+      "not_performance_claim": true,
+      "operator_family": "best_reward_select+dampening+clip",
+      "rank": 2
+    },
+    {
+      "allowed_next_use": "train-only selection or audit after improvement",
+      "candidate_id": "stage3_5_batch_0_bestreward_dampening_clip",
+      "improvement_score": 0.84,
+      "improvement_status": "TRAIN_ONLY_RECORDED",
+      "kind_sequence": "projection->projection->best_reward_select->dampening->clip",
+      "not_performance_claim": true,
+      "operator_family": "projection+projection+best_reward_select+dampening+clip",
+      "rank": 3
+    },
+    {
+      "allowed_next_use": "train-only selection or audit after improvement",
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "improvement_score": 0.775,
+      "improvement_status": "TRAIN_ONLY_RECORDED",
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "rank": 4
+    }
+  ],
+  "improvement_top_k": 4,
+  "not_performance_claim": true,
+  "reported_results_used_as_runtime_feedback": false,
+  "schema_version": "loco.stage8_0_improvement_candidates.v1",
+  "stage": "8.0",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": false
+}

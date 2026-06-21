@@ -12,11 +12,12 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 7.6 PASS` — Stage 7.6 has audited published reported results under the locked same-setting comparator contract and frozen a small comparator registry, without running any objective panel or using paper tables as runtime feedback.
+Current repository state: `Stage 8.0 PASS` — Stage 8.0 has improved the frozen Stage 3.6 coordination candidates using deterministic train-only signals under the locked Stage 7.6 comparator contract, without running any objective panel or using paper tables as runtime feedback.
 
-Stage 7.6 is not a final objective-value performance claim and not a SOTA claim. It is a comparator audit, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, CEC2013 panel execution, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
+Historical checkpoint: Current repository state: `Stage 7.6 PASS` remains the prior comparator-audit milestone before Stage 8.0.
 
 Current stage map:
 
@@ -38,10 +39,11 @@ Stage 7.3    objective result polish and paper-ready tables         PASS
 Stage 7.4    optional CEC2013 F13/F14 objective panel decision      PASS
 Stage 7.5    SOTA-targeted real benchmark protocol lock             PASS
 Stage 7.6    reported-results comparator audit                      PASS
-Stage 8.0    train-only operator improvement                        NEXT
+Stage 8.0    train-only operator improvement                        PASS
+Stage 8.1    train-only selection audit                             NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, and the Stage 7.6 reported-results comparator audit. The next frontier is Stage 8.0: train-only operator improvement under the frozen comparison contract.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, and Stage 8.0 train-only operator improvement. The next frontier is Stage 8.1: train-only selection audit under the frozen improvement contract.
 
 ## What Stage 3 Established
 
@@ -150,6 +152,23 @@ Stage 7 is the objective-evaluation and claim-boundary phase. It keeps strict se
 7. Reported-results comparator audit
 
    Stage 7.6 classified published results into direct comparator and background-only buckets under the Stage 7.5 contract. It did not turn those reported values into runtime feedback or performance claims.
+
+8. Train-only operator improvement
+
+   Stage 8.0 ranked the frozen Stage 3.6 candidates with deterministic train-only signals while preserving the Stage 7.6 comparator boundary. It did not use validation/test feedback, objective evaluation, benchmark execution, or reported results as runtime feedback.
+
+```text
+status = PASS
+source_stage = 7.6
+candidate_pool_source_stage = 3.6
+candidate_count = 12
+improvement_candidate_count = 4
+train_only_improvement_executed = true
+comparator_contract_used = true
+next_status = READY_FOR_STAGE8_1_TRAIN_ONLY_SELECTION_AUDIT
+FE_total = 12
+not_performance_claim = true
+```
 
 5. Literature-grounded family vocabulary lock
 
