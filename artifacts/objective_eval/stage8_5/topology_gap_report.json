@@ -1,0 +1,31 @@
+{
+  "diagnosis": "Losses concentrate where simple consensus is the best baseline: all high-overlap cases and seed-0 medium-overlap cases.",
+  "loss_best_baseline_methods": {
+    "simple_consensus": 12
+  },
+  "loss_dimensions": {
+    "1000": 4,
+    "2000": 4,
+    "500": 4
+  },
+  "loss_panels": {
+    "synthetic_high_overlap_panel": 9,
+    "synthetic_medium_overlap_panel": 3
+  },
+  "loss_seeds": {
+    "0": 6,
+    "1": 3,
+    "2": 3
+  },
+  "mean_loss_delta_vs_simple_consensus": 0.017853748373,
+  "not_final_performance_claim": true,
+  "schema_version": "loco.stage8_5_topology_gap_report.v1",
+  "selected_loss_to_best_baseline_case_count": 12,
+  "selected_tie_to_best_baseline_case_count": 24,
+  "source_stage": "8.4",
+  "stage": "8.5",
+  "status": "PASS",
+  "tie_best_baseline_methods": {
+    "weighted_consensus": 24
+  }
+}

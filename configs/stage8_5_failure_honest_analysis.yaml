@@ -1,0 +1,50 @@
+stage: "8.5"
+name: "Failure-Honest Stage 8.4 Analysis"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Analyze why the Stage 8.3 selected operator beats the frozen Stage 5.1 operator but does not beat the best simple baseline in Stage 8.4."
+  runner: "loco.coordination.failure_honest_analysis"
+  cli_entrypoint: "scripts/stage8/run_stage8_5_failure_honest_analysis.py"
+  failure_honest_analysis: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_4_trace: "artifacts/objective_eval/stage8_4/objective_trace.jsonl"
+  stage8_4_win_loss: "artifacts/objective_eval/stage8_4/win_loss_report.json"
+  stage8_4_method_summary: "artifacts/objective_eval/stage8_4/method_summary.json"
+  stage8_4_panel_report: "artifacts/objective_eval/stage8_4/panel_report.json"
+  source_stage: "8.4"
+
+diagnosis_questions:
+  - "Why does the selected operator beat the old frozen Stage 5.1 operator?"
+  - "Why does the selected operator fail to beat the best simple baseline?"
+  - "Which baseline wins the remaining loss cases?"
+  - "Which topology and seed settings expose the loss?"
+
+expected_findings:
+  primary: "selected operator is numerically equivalent to weighted_consensus"
+  why_win_old_frozen: "wins the old frozen operator by removing the projection penalty"
+  why_not_best_baseline: "simple_consensus beats it on 12 cases"
+
+fe_accounting:
+  stage8_5_new_fe_total: 0
+  inherited_stage8_4_fe_total_is_recorded: true
+  no_new_objective_evaluation: true
+  objective_loop_executed: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

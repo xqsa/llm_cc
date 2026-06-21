@@ -263,7 +263,7 @@ def test_stage8_4_committed_artifacts_and_docs_record_panel_boundary() -> None:
     )
     assert "Stage 8.4" in combined
     assert "large-scale objective panel evaluation" in combined
-    assert "Current repository state: `Stage 8.4 PASS`" in combined
+    assert "Stage 8.4    large-scale objective panel evaluation                  PASS" in combined
     assert "stage3_5_batch_1_reweighting_repair" in combined
     assert "frozen Stage 5.1 operator" in combined
     assert "win/loss report" in combined

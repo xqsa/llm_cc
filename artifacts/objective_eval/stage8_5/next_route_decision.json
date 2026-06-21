@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "proposal_state_or_operator_family_ablation_before_official_claims",
+  "decision": "DO_NOT_MAKE_OFFICIAL_OR_SOTA_CLAIM_YET",
+  "decision_reason": "Stage 8.5 finds that the selected operator is equivalent to weighted_consensus on Stage 8.4 and loses to simple_consensus on 12 high/medium-overlap cases.",
+  "next_stage": "Stage 8.6",
+  "not_performance_claim": true,
+  "schema_version": "loco.stage8_5_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.5",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

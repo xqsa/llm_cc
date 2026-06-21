@@ -1,0 +1,20 @@
+{
+  "diagnosis": "The selected reweighting+repair AST behaves numerically like weighted_consensus on this Stage 8.4 panel.",
+  "equivalent_baseline_method": "weighted_consensus",
+  "mean_selected_minus_frozen_final_best_delta": -0.039915978522,
+  "not_final_performance_claim": true,
+  "projection_penalty_vs_selected_case_count": 36,
+  "schema_version": "loco.stage8_5_baseline_equivalence_report.v1",
+  "selected_matches_weighted_consensus_all_cases": true,
+  "selected_matches_weighted_consensus_all_steps": true,
+  "selected_method": "stage8_3_selected_operator",
+  "selected_trace_row_count": 108,
+  "selected_vs_weighted_max_abs_final_best_delta": 0.0,
+  "selected_vs_weighted_max_abs_update_size_delta": 0.0,
+  "simple_consensus_best_baseline_case_count": 12,
+  "source_stage": "8.4",
+  "stage": "8.5",
+  "status": "PASS",
+  "weighted_consensus_best_baseline_case_count": 24,
+  "weighted_trace_row_count": 108
+}
