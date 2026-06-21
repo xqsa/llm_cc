@@ -1,0 +1,22 @@
+{
+  "benchmark_only_import_ok": true,
+  "f13_D_api": 1000,
+  "f13_D_formula": 905,
+  "f13_adapter_mode": "implementation_api_adapter",
+  "f13_ready": true,
+  "f13_shared_variable_count": 95,
+  "f14_D_api": 1000,
+  "f14_D_formula": 905,
+  "f14_adapter_mode": "direct_metabox_dimension",
+  "f14_ready": true,
+  "f14_shared_variable_count": 95,
+  "metabox_smoke_status": "PASS",
+  "normal_import_required": false,
+  "not_final_performance_claim": true,
+  "overlap_ratio": 0.10497237569060773,
+  "overlap_size": 5,
+  "schema_version": "loco.stage7_4_cec2013_readiness_summary.v1",
+  "source": "docs/stage1/metabox_real_smoke_latest.json",
+  "stage": "7.4",
+  "status": "PASS"
+}

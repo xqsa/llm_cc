@@ -1,0 +1,20 @@
+{
+  "cec2013_panel_run": false,
+  "claim_boundary_written": true,
+  "decision": "RUN_OPTIONAL_CEC2013_F13_F14_PANEL",
+  "decision_reason": "stage7_3_mixed_synthetic_evidence_needs_real_overlap_panel",
+  "decision_scope": "optional_cec2013_f13_f14_objective_panel_decision",
+  "f13_ready": true,
+  "f14_ready": true,
+  "metabox_smoke_status": "PASS",
+  "new_objective_evaluation_used": false,
+  "next_status": "READY_FOR_STAGE7_5_OPTIONAL_CEC2013_PANEL_PROTOCOL_OR_PAPER_DRAFT",
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "protocol_status": "PREPARED_NOT_EXECUTED",
+  "schema_version": "loco.stage7_4_decision_report.v1",
+  "selected_operator_revision_used": false,
+  "source_stage": "7.3",
+  "stage": "7.4",
+  "status": "PASS"
+}

@@ -1,0 +1,25 @@
+{
+  "allowed_claims": [
+    "Stage 7.4 decides that an optional CEC2013 F13/F14 panel is warranted before strong empirical claims.",
+    "Stage 7.4 prepares a bounded protocol for F13/F14 but does not execute it.",
+    "A paper draft may still proceed as a failure-honest prototype if it clearly states the Stage 7.3 mixed evidence."
+  ],
+  "cec2013_panel_run": false,
+  "claim_scope": "decision gate only; no CEC2013 objective panel run",
+  "forbidden_claims": [
+    "official CEC2013 performance claim",
+    "F13/F14 objective improvement",
+    "final objective-value performance superiority",
+    "SOTA improvement",
+    "BaseOpt improvement",
+    "optimizer generation"
+  ],
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage7_4_claim_boundary.v1",
+  "selected_operator_revision_used": false,
+  "stage": "7.4",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}

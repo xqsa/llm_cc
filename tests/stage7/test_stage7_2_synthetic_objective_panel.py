@@ -215,7 +215,7 @@ def test_stage7_2_committed_artifacts_docs_and_readme_record_panel_boundary() ->
     )
     assert "Stage 7.2" in combined
     assert "Synthetic Large-Scale Objective Panel" in combined
-    assert "Current repository state: `Stage 7.3 PASS`" in combined
+    assert "Current repository state: `Stage 7.4 PASS`" in combined
     assert (
         "Stage 7.2    synthetic large-scale objective panel                 PASS"
         in combined

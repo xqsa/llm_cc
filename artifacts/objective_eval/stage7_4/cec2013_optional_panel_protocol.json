@@ -1,0 +1,46 @@
+{
+  "all_extra_fe_counted": true,
+  "allowed_next_execution": "Stage 7.5 optional CEC2013 protocol or paper draft",
+  "base_optimizer_policy": "fixed_baseopt_no_modification",
+  "execution_status": "NOT_RUN_IN_STAGE7_4",
+  "function_semantics": {
+    "F13": {
+      "D_api": 1000,
+      "D_formula": 905,
+      "adapter_mode": "implementation_api_adapter",
+      "overlap_ratio": 0.10497237569060773,
+      "overlap_semantics": "conforming_overlap",
+      "role": "conforming-overlap sanity/stability panel",
+      "shared_variable_count": 95
+    },
+    "F14": {
+      "D_api": 1000,
+      "D_formula": 905,
+      "adapter_mode": "direct_metabox_dimension",
+      "overlap_ratio": 0.10497237569060773,
+      "overlap_semantics": "conflicting_overlap",
+      "role": "primary real conflicting-overlap panel",
+      "shared_variable_count": 95
+    }
+  },
+  "locked_methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "selected_loco_operator"
+  ],
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "oracle_and_detected_grouping_reported_separately": true,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage7_4_cec2013_optional_panel_protocol.v1",
+  "selected_operator_policy": "frozen_no_revision",
+  "source_stage": "7.4",
+  "stage": "7.4",
+  "status": "PREPARED_NOT_EXECUTED",
+  "target_functions": [
+    "F13",
+    "F14"
+  ]
+}

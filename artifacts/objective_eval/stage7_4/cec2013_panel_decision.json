@@ -1,0 +1,23 @@
+{
+  "best_overall_method": "simple_consensus",
+  "cec2013_panel_run": false,
+  "decision": "RUN_OPTIONAL_CEC2013_F13_F14_PANEL",
+  "decision_reason": "stage7_3_mixed_synthetic_evidence_needs_real_overlap_panel",
+  "f13_ready": true,
+  "f14_ready": true,
+  "metabox_smoke_status": "PASS",
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "paper_draft_without_cec2013_allowed": true,
+  "requires_real_overlap_panel": true,
+  "schema_version": "loco.stage7_4_cec2013_panel_decision.v1",
+  "selected_loco_operator_best_panel_dimension_count": 2,
+  "selected_loco_operator_rank_overall": 4,
+  "selected_operator_revision_used": false,
+  "source_stage": "7.3",
+  "stage": "7.4",
+  "stage7_3_polish_scope": "paper_ready_objective_tables",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}

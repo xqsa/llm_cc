@@ -175,10 +175,11 @@ def test_stage7_1_committed_artifacts_and_docs_record_pilot_boundary() -> None:
     )
     assert "Stage 7.1" in combined
     assert "Minimal LOCO-CC Objective Loop Pilot" in combined
-    assert "Current repository state: `Stage 7.3 PASS`" in combined
+    assert "Current repository state: `Stage 7.4 PASS`" in combined
     assert "Stage 7.1    minimal LOCO-CC objective loop pilot" in combined
     assert "Stage 7.2    synthetic large-scale objective panel" in combined
     assert "Stage 7.3    objective result polish and paper-ready tables" in combined
+    assert "Stage 7.4    optional CEC2013 F13/F14 objective panel decision" in combined
     assert "FE_global_objective" in combined
     assert "identity_no_coord" in combined
     assert "simple_consensus" in combined

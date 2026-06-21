@@ -154,7 +154,7 @@ def test_stage7_3_committed_artifacts_docs_and_readme_record_claim_boundary() ->
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 7.3 PASS`" in combined
+    assert "Current repository state: `Stage 7.4 PASS`" in combined
     assert (
         "Stage 7.3    objective result polish and paper-ready tables         PASS"
         in combined

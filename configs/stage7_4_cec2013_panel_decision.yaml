@@ -1,0 +1,81 @@
+stage: "7.4"
+name: "Optional CEC2013 F13/F14 Objective Panel Decision"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Decide whether Stage 7.3 mixed synthetic evidence requires an optional real CEC2013 F13/F14 objective panel before strong empirical claims."
+  runner: "loco.coordination.cec2013_panel_decision"
+  cli_entrypoint: "scripts/stage7/run_stage7_4_cec2013_panel_decision.py"
+  decision_scope: "optional_cec2013_f13_f14_objective_panel_decision"
+  cec2013_panel_run: false
+  new_objective_evaluation_used: false
+  not_final_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  - "artifacts/objective_eval/stage7_3/paper_tables_report.json"
+  - "artifacts/objective_eval/stage7_3/method_ranking.json"
+  - "artifacts/objective_eval/stage7_3/claim_boundary.json"
+  - "docs/stage1/metabox_real_smoke_latest.json"
+  - "docs/stage1/cec2013lsgo_semantics.md"
+
+outputs:
+  output_dir: "artifacts/objective_eval/stage7_4"
+  decision: "artifacts/objective_eval/stage7_4/cec2013_panel_decision.json"
+  protocol: "artifacts/objective_eval/stage7_4/cec2013_optional_panel_protocol.json"
+  readiness: "artifacts/objective_eval/stage7_4/cec2013_readiness_summary.json"
+  claim_boundary: "artifacts/objective_eval/stage7_4/claim_boundary.json"
+  decision_report: "artifacts/objective_eval/stage7_4/decision_report.json"
+
+decision:
+  result: "RUN_OPTIONAL_CEC2013_F13_F14_PANEL"
+  reason: "stage7_3_mixed_synthetic_evidence_needs_real_overlap_panel"
+  paper_draft_without_cec2013_allowed: true
+  cec2013_panel_run: false
+
+cec2013_optional_panel_protocol:
+  target_functions: ["F13", "F14"]
+  F13:
+    role: "conforming-overlap sanity/stability panel"
+    overlap_semantics: "conforming_overlap"
+    D_formula: 905
+    D_api: 1000
+    adapter_mode: "implementation_api_adapter"
+    shared_variable_count: 95
+    overlap_ratio: "95 / 905"
+  F14:
+    role: "primary real conflicting-overlap panel"
+    overlap_semantics: "conflicting_overlap"
+    D_formula: 905
+    D_api: 1000
+    adapter_mode: "direct_metabox_dimension"
+    shared_variable_count: 95
+    overlap_ratio: "95 / 905"
+  locked_methods:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "selected_loco_operator"
+  same_budget_across_methods: true
+  all_extra_fe_counted: true
+  oracle_and_detected_grouping_reported_separately: true
+  selected_operator_policy: "frozen_no_revision"
+  base_optimizer_policy: "fixed_baseopt_no_modification"
+  execution_status: "NOT_RUN_IN_STAGE7_4"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search run"
+  - "no new objective evaluation"
+  - "no CEC2013 panel run in Stage 7.4"
+  - "no test-feedback tuning"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a SOTA claim"
+  - "not a final objective-value performance claim"
+
+next_status: "READY_FOR_STAGE7_5_OPTIONAL_CEC2013_PANEL_PROTOCOL_OR_PAPER_DRAFT"

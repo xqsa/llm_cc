@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 7.3 PASS` — Stage 7.3 has converted the Stage 7.2 synthetic objective-loop traces into paper-ready objective tables, curve data, method ranking, and a claim-boundary artifact.
+Current repository state: `Stage 7.4 PASS` — Stage 7.4 has decided that an optional CEC2013 F13/F14 objective panel is warranted before any strong empirical claim, and has prepared a bounded protocol without running the panel.
 
-Stage 7.3 is not a final objective-value performance claim and not a SOTA claim. It is a result-polish and evidence-interpretation layer over Stage 7.2, not a new benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 7.4 is not a final objective-value performance claim and not a SOTA claim. It is a decision gate, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, CEC2013 panel execution, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Current stage map:
 
@@ -33,10 +33,11 @@ Stage 7.0    objective-level evaluation protocol lock              PASS
 Stage 7.1    minimal LOCO-CC objective loop pilot                  PASS
 Stage 7.2    synthetic large-scale objective panel                 PASS
 Stage 7.3    objective result polish and paper-ready tables         PASS
-Stage 7.4    optional CEC2013 F13/F14 objective panel decision      NEXT
+Stage 7.4    optional CEC2013 F13/F14 objective panel decision      PASS
+Stage 7.5    optional CEC2013 panel protocol or paper draft         NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, and the Stage 7.3 paper-ready result polish. The next frontier is Stage 7.4: deciding whether to run an optional CEC2013 F13/F14 objective panel before drafting the empirical section.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, and the Stage 7.4 optional CEC2013 F13/F14 panel decision. The next frontier is Stage 7.5: either implement the bounded optional CEC2013 panel protocol or start a failure-honest paper draft.
 
 ## What Stage 3 Established
 
@@ -220,7 +221,9 @@ LOCO-CC objective loop pilot and ran all locked Stage 7 methods on a small
 synthetic sphere objective loop. Stage 7.2 has now expanded that loop to the
 locked synthetic panels under same FE budget. Stage 7.3 has converted those
 traces into paper-ready tables, curve data, method ranking, and an explicit
-claim boundary.
+claim boundary. Stage 7.4 has decided that the mixed synthetic evidence
+warrants an optional CEC2013 F13/F14 objective panel before any strong empirical
+claim.
 
 Current Stage 6.1 diagnostic result:
 
@@ -546,6 +549,67 @@ Stage 7.4: Optional CEC2013 F13/F14 Objective Panel Decision
 
 Stage 7.4 should decide whether the paper needs an optional CEC2013 F13/F14 objective panel before drafting the empirical section. If the paper remains a failure-honest prototype/methodology paper, Stage 7.3 is already enough to start writing the result section with clear limitations.
 
+Stage 7.4 produced:
+
+```text
+configs/stage7_4_cec2013_panel_decision.yaml
+docs/stage7/stage7_4_cec2013_panel_decision.md
+docs/stage7/stage7_4_self_check_report.md
+loco/coordination/cec2013_panel_decision.py
+scripts/stage7/run_stage7_4_cec2013_panel_decision.py
+tests/stage7/test_stage7_4_cec2013_panel_decision.py
+artifacts/objective_eval/stage7_4/cec2013_panel_decision.json
+artifacts/objective_eval/stage7_4/cec2013_optional_panel_protocol.json
+artifacts/objective_eval/stage7_4/cec2013_readiness_summary.json
+artifacts/objective_eval/stage7_4/claim_boundary.json
+artifacts/objective_eval/stage7_4/decision_report.json
+```
+
+Current Stage 7.4 decision:
+
+```text
+stage = 7.4
+status = PASS
+decision = RUN_OPTIONAL_CEC2013_F13_F14_PANEL
+decision_reason = stage7_3_mixed_synthetic_evidence_needs_real_overlap_panel
+metabox_smoke_status = PASS
+f13_ready = true
+f14_ready = true
+cec2013_panel_run = false
+new_objective_evaluation_used = false
+next_status = READY_FOR_STAGE7_5_OPTIONAL_CEC2013_PANEL_PROTOCOL_OR_PAPER_DRAFT
+```
+
+Prepared CEC2013 semantics:
+
+```text
+target_functions = F13, F14
+D_formula = 905
+D_api = 1000
+shared_variable_count = 95
+overlap_ratio = 95 / 905
+F13 overlap_semantics = conforming_overlap
+F14 overlap_semantics = conflicting_overlap
+F13 adapter_mode = implementation_api_adapter
+F14 adapter_mode = direct_metabox_dimension
+```
+
+Stage 7.4 preserves:
+
+```text
+no LLM call
+no new candidate generation
+no selected-operator revision
+no evolution/search run
+no new objective evaluation
+no CEC2013 panel run in Stage 7.4
+no test-feedback tuning
+no BaseOpt modification
+no optimizer/controller/scheduler generation
+not a SOTA claim
+not a final objective-value performance claim
+```
+
 ## Completion Distance
 
 This project is already a concrete research prototype rather than a loose idea:
@@ -672,10 +736,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 7.3:
+Expected latest local result after Stage 7.4:
 
 ```text
-185 passed
+187 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -792,6 +856,12 @@ Run the Stage 7.3 objective result-polish gate directly:
 python -m pytest tests\stage7\test_stage7_3_objective_result_polish.py -q
 ```
 
+Run the Stage 7.4 optional CEC2013 decision gate directly:
+
+```powershell
+python -m pytest tests\stage7\test_stage7_4_cec2013_panel_decision.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -839,7 +909,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 7.4: Optional CEC2013 F13/F14 Objective Panel Decision
+Stage 7.5: Optional CEC2013 Panel Protocol Or Paper Draft Decision
 ```
 
-Stage 7.4 should decide whether to run an explicitly bounded optional CEC2013 F13/F14 objective panel before paper drafting, or instead start drafting from the Stage 7.3 mixed synthetic evidence. It must not feed objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
+Stage 7.5 should either implement the bounded optional CEC2013 F13/F14 panel protocol, or start the paper as a failure-honest prototype/methodology draft that explicitly reports the Stage 7.3 mixed synthetic evidence. It must not feed objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
