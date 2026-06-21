@@ -1,0 +1,30 @@
+{
+  "claim_scope": "synthetic objective-panel execution",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "optimizer_generation": false,
+    "selected_operator_revision": false,
+    "test_feedback_tuning": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "official CEC2013 large-scale benchmark success",
+    "BaseOpt improvement"
+  ],
+  "legal_inputs": [
+    "configs/stage7_0_objective_eval_protocol.yaml",
+    "configs/stage7_1_objective_loop_pilot.yaml",
+    "artifacts/selected/stage5_1/selected_operator.json",
+    "artifacts/selected/stage5_1/selected_operator_ast.json"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage7_2_runtime_boundary.v1",
+  "stage": "7.2",
+  "status": "PASS"
+}

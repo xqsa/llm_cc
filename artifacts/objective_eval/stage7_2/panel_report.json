@@ -1,0 +1,52 @@
+{
+  "FE_global_objective": 120,
+  "FE_total": 240,
+  "baseopt_modified": false,
+  "controller_scheduler_generation_used": false,
+  "dimensions": [
+    500,
+    1000
+  ],
+  "evolution_search_used": false,
+  "llm_call_used": false,
+  "method_count": 5,
+  "method_names": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "selected_loco_operator"
+  ],
+  "method_summary_written": true,
+  "new_candidate_generation_used": false,
+  "next_status": "READY_FOR_STAGE7_3_OBJECTIVE_RESULT_POLISH",
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_benchmark_run": false,
+  "objective_panel_executed": true,
+  "objective_step_count_per_method_per_panel": 3,
+  "optimizer_generation_used": false,
+  "panel_count": 4,
+  "panel_scope": "synthetic_large_scale_objective_panel",
+  "panel_summary_written": true,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage7_2_panel_report.v1",
+  "seed_count": 1,
+  "seeds": [
+    0
+  ],
+  "selected_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "selected_operator_revision_used": false,
+  "selected_operator_target_variable": 6,
+  "source_stage": "7.1",
+  "stage": "7.2",
+  "status": "PASS",
+  "synthetic_panels": [
+    "synthetic_no_overlap_panel",
+    "synthetic_low_overlap_panel",
+    "synthetic_conflicting_overlap_panel",
+    "synthetic_high_overlap_panel"
+  ],
+  "test_feedback_tuning_used": false,
+  "trace_row_count": 120
+}

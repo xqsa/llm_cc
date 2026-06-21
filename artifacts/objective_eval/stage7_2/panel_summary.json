@@ -1,0 +1,157 @@
+{
+  "claim_scope": "synthetic objective-panel execution",
+  "dimensions": [
+    500,
+    1000
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "panel_rows": [
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 15.082656760319,
+        "identity_no_coord": 15.082656760319,
+        "selected_loco_operator": 15.082656760319,
+        "simple_consensus": 15.082656760319,
+        "weighted_consensus": 15.082656760319
+      },
+      "method_count": 5,
+      "problem_dimension": 500,
+      "seed_count": 1,
+      "shared_conflict_row_count": 0,
+      "synthetic_panel": "synthetic_no_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 29.494565808702,
+        "identity_no_coord": 29.494565808702,
+        "selected_loco_operator": 29.494565808702,
+        "simple_consensus": 29.494565808702,
+        "weighted_consensus": 29.494565808702
+      },
+      "method_count": 5,
+      "problem_dimension": 1000,
+      "seed_count": 1,
+      "shared_conflict_row_count": 0,
+      "synthetic_panel": "synthetic_no_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 15.738871356654,
+        "identity_no_coord": 15.570693578876,
+        "selected_loco_operator": 15.554527312456,
+        "simple_consensus": 15.549793578876,
+        "weighted_consensus": 15.548624832761
+      },
+      "method_count": 5,
+      "problem_dimension": 500,
+      "seed_count": 1,
+      "shared_conflict_row_count": 15,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 30.611923839799,
+        "identity_no_coord": 30.443746062021,
+        "selected_loco_operator": 30.427579795601,
+        "simple_consensus": 30.422846062021,
+        "weighted_consensus": 30.421677315906
+      },
+      "method_count": 5,
+      "problem_dimension": 1000,
+      "seed_count": 1,
+      "shared_conflict_row_count": 15,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 16.779792419478,
+        "identity_no_coord": 16.065556308367,
+        "selected_loco_operator": 16.206930961061,
+        "simple_consensus": 16.046459086145,
+        "weighted_consensus": 16.079263897834
+      },
+      "method_count": 5,
+      "problem_dimension": 500,
+      "seed_count": 1,
+      "shared_conflict_row_count": 15,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 32.126219466063,
+        "identity_no_coord": 31.411983354952,
+        "selected_loco_operator": 31.553358007645,
+        "simple_consensus": 31.392886132729,
+        "weighted_consensus": 31.425690944418
+      },
+      "method_count": 5,
+      "problem_dimension": 1000,
+      "seed_count": 1,
+      "shared_conflict_row_count": 15,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 17.550975264669,
+        "identity_no_coord": 16.573475264669,
+        "selected_loco_operator": 16.672393788332,
+        "simple_consensus": 16.551200264669,
+        "weighted_consensus": 16.586295200448
+      },
+      "method_count": 5,
+      "problem_dimension": 500,
+      "seed_count": 1,
+      "shared_conflict_row_count": 15,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 15
+    },
+    {
+      "FE_global_objective": 15,
+      "FE_total": 30,
+      "final_best_by_method": {
+        "best_reward_select": 33.383266167781,
+        "identity_no_coord": 32.405766167781,
+        "selected_loco_operator": 32.504684691443,
+        "simple_consensus": 32.383491167781,
+        "weighted_consensus": 32.418586103559
+      },
+      "method_count": 5,
+      "problem_dimension": 1000,
+      "seed_count": 1,
+      "shared_conflict_row_count": 15,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 15
+    }
+  ],
+  "panels": [
+    "synthetic_no_overlap_panel",
+    "synthetic_low_overlap_panel",
+    "synthetic_conflicting_overlap_panel",
+    "synthetic_high_overlap_panel"
+  ],
+  "schema_version": "loco.stage7_2_panel_summary.v1",
+  "source_stage": "7.1",
+  "stage": "7.2",
+  "status": "PASS"
+}

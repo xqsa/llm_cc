@@ -1,0 +1,16 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 120,
+  "FE_grouping": 0,
+  "FE_proposal": 120,
+  "FE_repair": 0,
+  "FE_total": 240,
+  "budget_scope": "synthetic_large_scale_objective_panel",
+  "cross_method_evaluations_shared": false,
+  "not_final_performance_claim": true,
+  "objective_benchmark_run": false,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage7_2_fe_ledger.v1",
+  "stage": "7.2",
+  "status": "PASS"
+}

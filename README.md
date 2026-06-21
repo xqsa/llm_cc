@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 7.1 PASS` — Stage 7.1 has implemented and run a minimal LOCO-CC objective-loop pilot under the Stage 7.0 protocol, using the Stage 5.1 frozen selected operator in a fixed synthetic sphere loop with full `FE_global_objective` accounting.
+Current repository state: `Stage 7.2 PASS` — Stage 7.2 has expanded the Stage 7.1 LOCO-CC objective loop to the Stage 7.0 locked synthetic panels: no-overlap, low-overlap, conflicting-overlap, and high-overlap at D=500 and D=1000 under same FE budget.
 
-Stage 7.1 is not a final objective-value performance claim and not a SOTA claim. It is a minimal integration pilot, not the Stage 7.2 synthetic large-scale panel. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 7.2 is not a final objective-value performance claim and not a SOTA claim. It is a bounded synthetic objective-panel execution, not an official CEC2013 benchmark result. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Current stage map:
 
@@ -31,10 +31,11 @@ Stage 6.0    sealed test reporting protocol and minimal runner     PASS
 Stage 6.1    baseline ablation and failure analysis                PASS
 Stage 7.0    objective-level evaluation protocol lock              PASS
 Stage 7.1    minimal LOCO-CC objective loop pilot                  PASS
-Stage 7.2    synthetic large-scale objective panel                 NEXT
+Stage 7.2    synthetic large-scale objective panel                 PASS
+Stage 7.3    objective result polish and paper-ready tables         NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, and the Stage 7.1 minimal objective-loop pilot. The next frontier is Stage 7.2: Synthetic Large-Scale Objective Panel.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, and the Stage 7.2 synthetic large-scale objective panel. The next frontier is Stage 7.3: objective result polish and paper-ready tables.
 
 ## What Stage 3 Established
 
@@ -213,9 +214,10 @@ coordination diagnostics runner. Stage 6.1 has also completed baseline
 comparison, ablation-style deltas, failure-analysis cautions, and a claim
 boundary for the sealed-test diagnostics. Stage 7.0 now locks how the next
 objective-level large-scale evaluation must be run before any objective-loop
-runner or benchmark result is produced. Stage 7.1 has now implemented the
-minimal LOCO-CC objective loop pilot and run all locked Stage 7 methods on a
-small synthetic sphere objective loop.
+runner or benchmark result is produced. Stage 7.1 implemented the minimal
+LOCO-CC objective loop pilot and ran all locked Stage 7 methods on a small
+synthetic sphere objective loop. Stage 7.2 has now expanded that loop to the
+locked synthetic panels under same FE budget.
 
 Current Stage 6.1 diagnostic result:
 
@@ -341,6 +343,44 @@ not_final_performance_claim = true
 next_status = READY_FOR_STAGE7_2_SYNTHETIC_LARGE_SCALE_PANEL
 ```
 
+Stage 7.2 produced:
+
+```text
+configs/stage7_2_synthetic_objective_panel.yaml
+docs/stage7/stage7_2_synthetic_objective_panel.md
+docs/stage7/stage7_2_self_check_report.md
+loco/coordination/synthetic_objective_panel.py
+scripts/stage7/run_stage7_2_synthetic_objective_panel.py
+tests/stage7/test_stage7_2_synthetic_objective_panel.py
+artifacts/objective_eval/stage7_2/objective_trace.jsonl
+artifacts/objective_eval/stage7_2/panel_summary.json
+artifacts/objective_eval/stage7_2/method_summary.json
+artifacts/objective_eval/stage7_2/fe_ledger.json
+artifacts/objective_eval/stage7_2/runtime_boundary.json
+artifacts/objective_eval/stage7_2/panel_report.json
+```
+
+Current Stage 7.2 synthetic objective-panel result:
+
+```text
+stage = 7.2
+status = PASS
+panel_scope = synthetic_large_scale_objective_panel
+dimensions = [500, 1000]
+seeds = [0]
+synthetic_panel_count = 4
+method_count = 5
+objective_step_count_per_method_per_panel = 3
+trace_row_count = 120
+FE_proposal = 120
+FE_global_objective = 120
+FE_total = 240
+same_budget_across_methods = true
+objective_benchmark_run = false
+not_final_performance_claim = true
+next_status = READY_FOR_STAGE7_3_OBJECTIVE_RESULT_POLISH
+```
+
 Stage 7.0 locks the LOCO-CC objective-level evaluation protocol:
 
 ```text
@@ -424,13 +464,27 @@ not a SOTA claim
 not a final objective-value performance claim
 ```
 
+Stage 7.2 preserves:
+
+```text
+no LLM call
+no new candidate generation
+no selected-operator revision
+no evolution/search run
+no test-feedback tuning
+no BaseOpt modification
+no optimizer/controller/scheduler generation
+not a SOTA claim
+not a final objective-value performance claim
+```
+
 Recommended next step:
 
 ```text
-Stage 7.2: Synthetic Large-Scale Objective Panel
+Stage 7.3: Objective Result Polish And Paper-Ready Tables
 ```
 
-Stage 7.2 should scale from the Stage 7.1 pilot into the Stage 7.0 locked synthetic panels: no-overlap, low-overlap, conflicting-overlap, and high-overlap. paper claim polishing should still wait for Stage 7.2 evidence if the paper's central claim is objective-level large-scale optimization effectiveness.
+Stage 7.3 should convert the Stage 7.2 objective traces into paper-ready tables, curves, and failure-honest interpretation. It should still avoid feeding objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
 
 ## Completion Distance
 
@@ -468,8 +522,8 @@ The main remaining gap is not more LLM generation. The main remaining gap is
 evidence:
 
 ```text
-Stage 7.2 synthetic large-scale objective panel
--> paper-ready objective-level result tables
+Stage 7.3 objective result polish and paper-ready tables
+-> optional CEC2013 F13/F14 objective panel decision
 ```
 
 Known benchmark boundary:
@@ -558,10 +612,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 7.1:
+Expected latest local result after Stage 7.2:
 
 ```text
-181 passed
+183 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -666,6 +720,12 @@ Run the Stage 7.1 minimal objective-loop pilot gate directly:
 python -m pytest tests\stage7\test_stage7_1_objective_loop_pilot.py -q
 ```
 
+Run the Stage 7.2 synthetic objective-panel gate directly:
+
+```powershell
+python -m pytest tests\stage7\test_stage7_2_synthetic_objective_panel.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -713,7 +773,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 7.2: Synthetic Large-Scale Objective Panel
+Stage 7.3: Objective Result Polish And Paper-Ready Tables
 ```
 
-Stage 7.2 should use the Stage 7.0 protocol and Stage 7.1 runner boundary to run the locked synthetic panels under same FE budget. It must not feed objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design. paper claim polishing should wait for Stage 7.2 evidence if the paper's central claim is objective-level large-scale optimization effectiveness.
+Stage 7.3 should use the Stage 7.2 objective trace, panel summary, method summary, and FE ledger to produce paper-ready objective-level tables and curves. It must not feed objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design. Any optional CEC2013 F13/F14 objective panel should be treated as a separate, explicitly bounded next decision.

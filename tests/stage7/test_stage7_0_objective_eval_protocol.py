@@ -110,9 +110,10 @@ def test_stage7_0_docs_and_readme_record_claim_boundary_and_next_step() -> None:
     assert "LOCO-CC" in combined
     assert "objective-level evaluation protocol" in combined
     assert "Stage 7.1: Minimal LOCO-CC Objective Loop Pilot" in combined
-    assert "Current repository state: `Stage 7.1 PASS`" in combined
+    assert "Current repository state: `Stage 7.2 PASS`" in combined
     assert "Stage 7.0    objective-level evaluation protocol lock" in combined
     assert "Stage 7.1    minimal LOCO-CC objective loop pilot" in combined
+    assert "Stage 7.2    synthetic large-scale objective panel" in combined
 
     for baseline in REQUIRED_BASELINES:
         assert baseline in combined
