@@ -12,11 +12,13 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 8.3 PASS` — Stage 8.3 has converted the Stage 8.2 objective-level utility evidence into a bounded selection decision, selecting `stage3_5_batch_1_reweighting_repair` over the frozen Stage 5.1 operator for the next large-scale objective panel while adding no new objective evaluation and making no final performance claim.
+Current repository state: `Stage 8.4 PASS` — Stage 8.4 has executed the Stage 8.3 selected operator, `stage3_5_batch_1_reweighting_repair`, in a larger locked objective-level panel across 4 overlap settings, 3 dimensions, 3 seeds, 6 methods, and 648 objective trace rows. It records FE_total = 1296, a win/loss report, and bounded utility evidence: 36/0/0 wins/ties/losses vs the frozen Stage 5.1 operator, but 0/24/12 wins/ties/losses vs the best simple baseline. This is still not a final objective-value performance claim and not a SOTA claim.
 
 Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Stage 8.3 is an objective-level utility evidence selection gate, not a new objective run. It reads Stage 8.2 utility_report.json, selects the utility-positive Stage 8.1 candidate, records FE_total = 0 for the selection step, and keeps validation/test feedback sealed.
+
+Stage 8.4 is a large-scale objective panel evaluation under the locked synthetic objective protocol, not an official CEC2013 benchmark claim. It executes the Stage 8.3 selected operator against `identity_no_coord`, `simple_consensus`, `weighted_consensus`, `best_reward_select`, and the frozen Stage 5.1 operator with no LLM call, no new candidate generation, no selected-operator revision, no validation feedback, no test feedback, and no BaseOpt modification.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 Historical checkpoint: Current repository state: `Stage 7.6 PASS` remains the prior comparator-audit milestone before Stage 8.0.
@@ -45,10 +47,11 @@ Stage 8.0    train-only operator improvement                        PASS
 Stage 8.1    train-only selection audit                             PASS
 Stage 8.2    objective-level utility pilot                          PASS
 Stage 8.3    objective-level utility evidence selection              PASS
-Stage 8.4    large-scale objective panel evaluation                  NEXT
+Stage 8.4    large-scale objective panel evaluation                  PASS
+Stage 8.5    official/paper panel decision or failure analysis        NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, and Stage 8.3 objective-level utility evidence selection. The next frontier is Stage 8.4: large-scale objective panel evaluation under the locked objective protocol.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, and Stage 8.4 large-scale objective panel evaluation. The next frontier is Stage 8.5: decide whether to move into official/CEC2013-like or paper experiment consolidation, or to perform failure-honest analysis before any stronger claim.
 
 ## What Stage 3 Established
 
@@ -970,7 +973,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 8.4: Large-scale objective panel evaluation under the locked objective protocol
+Stage 8.5: Official/CEC2013-like panel decision, paper experiment consolidation, or failure-honest Stage 8.4 analysis
 ```
 
-Stage 8.4 should take the Stage 8.3 selected candidate, `stage3_5_batch_1_reweighting_repair`, into a larger objective-level panel under the locked protocol. It should keep BaseOpt fixed, count all FE, preserve oracle/detected grouping separation when relevant, avoid validation/test feedback leakage, and still avoid SOTA or final performance claims until a proper large-scale benchmark comparison exists.
+Stage 8.5 should consume the Stage 8.4 large-scale objective panel artifacts. The selected operator has stable wins over the frozen Stage 5.1 operator on this panel, but it ties or loses against the best simple baseline, so the next step must stay failure-honest: either build the official/CEC2013-like panel with the same locked boundaries, consolidate a bounded method-paper experiment section, or analyze whether the remaining gap comes from operator family limits, proposal construction, panel design, or objective-loop integration. It should keep BaseOpt fixed, count all FE, avoid validation/test feedback leakage, and still avoid SOTA or final performance claims until a proper large-scale benchmark comparison exists.

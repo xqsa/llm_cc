@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "official_or_paper_experiment_consolidation",
+  "decision": "READY_FOR_OFFICIAL_OR_PAPER_PANEL_DECISION",
+  "decision_reason": "Stage 8.4 executed the Stage 8.3 selected operator across a large-scale objective panel and recorded win/loss utility evidence.",
+  "next_stage": "Stage 8.5",
+  "not_performance_claim": true,
+  "schema_version": "loco.stage8_4_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.4",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

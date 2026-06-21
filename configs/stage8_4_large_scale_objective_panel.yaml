@@ -1,0 +1,73 @@
+stage: "8.4"
+name: "Large-Scale Objective Panel Evaluation"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Evaluate the Stage 8.3 selected coordination operator in a larger objective-level LOCO-CC panel under the locked objective protocol."
+  runner: "loco.coordination.large_scale_objective_panel"
+  cli_entrypoint: "scripts/stage8/run_stage8_4_large_scale_objective_panel.py"
+  large_scale_objective_panel_evaluation: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  objective_protocol: "configs/stage7_0_objective_eval_protocol.yaml"
+  stage8_3_selection_decision: "artifacts/selection_audit/stage8_3/objective_utility_selection_decision.json"
+  frozen_stage5_operator: "artifacts/selected/stage5_1/selected_operator.json"
+  frozen_stage5_ast: "artifacts/selected/stage5_1/selected_operator_ast.json"
+  frozen_candidate_pool: "artifacts/candidates/stage3_6/frozen_candidate_pool.jsonl"
+  source_stage: "8.3"
+
+panel:
+  dimensions: [500, 1000, 2000]
+  seeds: [0, 1, 2]
+  panels:
+    - "synthetic_low_overlap_panel"
+    - "synthetic_medium_overlap_panel"
+    - "synthetic_high_overlap_panel"
+    - "synthetic_conflicting_overlap_panel"
+  objective_steps_per_method_per_panel: 3
+  objective_name: "synthetic_sphere"
+
+methods:
+  - "identity_no_coord"
+  - "simple_consensus"
+  - "weighted_consensus"
+  - "best_reward_select"
+  - "frozen_stage5_selected_operator"
+  - "stage8_3_selected_operator"
+
+selected_operator:
+  selected_candidate_id: "stage3_5_batch_1_reweighting_repair"
+  previous_frozen_candidate_id: "stage3_5_batch_1_weighted_consensus_projection"
+  target_scope: "shared_variables_only"
+
+metrics:
+  - "final_best_objective"
+  - "mean_final_best"
+  - "median_final_best"
+  - "win/tie/loss vs frozen Stage 5.1"
+  - "win/tie/loss vs best baseline"
+  - "FE_total"
+  - "conflict metrics"
+  - "stability across seeds and panels"
+
+fe_accounting:
+  all_extra_fe_counted: true
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+  expected_trace_rows: 648
+  expected_fe_total: 1296
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
