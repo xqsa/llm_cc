@@ -1,0 +1,121 @@
+stage: "7.0"
+name: "Objective-Level Large-Scale Evaluation Protocol Lock"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Lock the objective-level large-scale evaluation contract for LOCO-CC before implementing or running any objective-loop experiment."
+  method_name: "LOCO-CC"
+  not_performance_claim: true
+  not_sota_claim: true
+  objective_evaluation_protocol_locked: true
+  large_scale_runner_implemented: false
+  objective_benchmark_run: false
+
+legal_inputs:
+  selected_operator:
+    - "artifacts/selected/stage5_1/selected_operator.json"
+    - "artifacts/selected/stage5_1/selected_operator_ast.json"
+  diagnostic_context:
+    - "artifacts/sealed_test/stage6_1/analysis_report.json"
+    - "artifacts/sealed_test/stage6_1/claim_boundary.json"
+
+objective_loop_contract:
+  loop_name: "LOCO-CC objective loop"
+  objective: "minimize f(x), x in Omega, x in R^D"
+  decomposition_modes:
+    - "oracle grouping"
+    - "detected grouping"
+  base_optimizer_policy: "fixed BaseOpt"
+  base_optimizer_selection_by_loco: false
+  selected_operator_policy: "frozen selected_loco_operator"
+  selected_operator_id: "stage3_5_batch_1_weighted_consensus_projection"
+  proposal_source: "fixed BaseOpt subcomponent proposals"
+  conflict_state_source: "online shared-variable conflict states"
+  non_shared_variable_policy: "standard fixed BaseOpt / CC subcomponent update"
+  shared_variable_policy: "apply frozen LOCO coordination operator only to shared variables"
+  global_merge_policy: "merge non-shared updates with coordinated shared-variable updates before global objective evaluation"
+  acceptance_policy: "fixed protocol-defined acceptance rule in Stage 7.1; LOCO cannot generate or revise it"
+  global_objective_step: "global objective evaluation"
+
+baseline_methods:
+  - "identity_no_coord"
+  - "simple_consensus"
+  - "weighted_consensus"
+  - "best_reward_select"
+  - "selected_loco_operator"
+
+large_scale_panels:
+  required_synthetic:
+    - name: "synthetic_no_overlap_panel"
+      purpose: "no-overlap non-degradation safeguard"
+      dimensions: [500, 1000]
+    - name: "synthetic_low_overlap_panel"
+      purpose: "low-overlap non-degradation safeguard"
+      dimensions: [500, 1000]
+    - name: "synthetic_conflicting_overlap_panel"
+      purpose: "shared-variable conflict effectiveness panel"
+      dimensions: [500, 1000]
+    - name: "synthetic_high_overlap_panel"
+      purpose: "high-overlap stress panel"
+      dimensions: [500, 1000]
+  optional_real:
+    - "CEC2013 F13/F14 optional"
+
+metrics:
+  objective_level:
+    - "final_best_objective"
+    - "best_so_far_curve"
+    - "anytime_auc"
+    - "mean_std_over_seeds"
+    - "win_tie_loss_vs_baselines"
+  mechanism_level:
+    - "conflict_intensity_over_time"
+    - "proposal_disagreement_over_time"
+    - "shared_variable_oscillation"
+    - "coordination_update_size"
+    - "distance_to_best_reward_proposal"
+    - "shared_conflict_frequency"
+  grouping_reports:
+    - "oracle grouping"
+    - "detected grouping"
+
+fe_accounting:
+  identity: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair + FE_global_objective"
+  required_fields:
+    - "FE_grouping"
+    - "FE_proposal"
+    - "FE_coordination_extra"
+    - "FE_repair"
+    - "FE_global_objective"
+    - "FE_total"
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+  all_extra_fe_counted: true
+
+stage7_0_forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search run"
+  - "no objective benchmark run"
+  - "no test-feedback tuning"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a performance claim"
+  - "not an objective-value performance claim"
+  - "not a SOTA claim"
+
+allowed_claims:
+  - "Stage 7.0 locks the objective-level evaluation protocol."
+  - "Stage 7.0 defines how Stage 7.1 should embed the frozen selected operator into a fixed LOCO-CC objective loop."
+  - "Stage 7.0 defines required baselines, panels, metrics, and FE accounting before any objective benchmark run."
+
+forbidden_claims:
+  - "objective-value improvement"
+  - "large-scale benchmark success"
+  - "SOTA improvement"
+  - "BaseOpt improvement"
+  - "optimizer generation"
+
+next_status: READY_FOR_STAGE7_1_MINIMAL_OBJECTIVE_LOOP_PILOT

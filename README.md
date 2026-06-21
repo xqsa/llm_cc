@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 6.1 PASS` — Stage 6.1 has completed sealed-test baseline comparison, ablation, and failure analysis using only the Stage 6.0 sealed-test reporting artifacts and the Stage 5.1 frozen selected operator, `stage3_5_batch_1_weighted_consensus_projection`.
+Current repository state: `Stage 7.0 PASS` — Stage 7.0 has locked the objective-level large-scale evaluation protocol for LOCO-CC before any objective-loop runner or benchmark experiment is implemented.
 
-Stage 6.1 is not a performance claim, not a SOTA claim, and still not an objective-value performance claim. It reports sealed-test baseline diagnostics only. It does not use benchmark objective evaluation, LLM calls, new candidate generation, prompt revision, train-search revision, promotion-rule revision, validation-rule revision, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 7.0 is not a performance claim, not a SOTA claim, and not an objective-value performance claim. It does not run objective benchmark, does not implement the objective-loop runner, and does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Current stage map:
 
@@ -29,9 +29,11 @@ Stage 5.0    validation-only selection                            PASS
 Stage 5.1    selected operator freeze                             PASS
 Stage 6.0    sealed test reporting protocol and minimal runner     PASS
 Stage 6.1    baseline ablation and failure analysis                PASS
+Stage 7.0    objective-level evaluation protocol lock              PASS
+Stage 7.1    minimal LOCO-CC objective loop pilot                  NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, and the baseline/ablation/failure-analysis layer. The next frontier is either paper-claim polishing from the sealed diagnostics or a new Stage 7 objective-value evaluation protocol with full FE accounting.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, and the Stage 7.0 objective-level evaluation protocol lock. The next frontier is Stage 7.1: Minimal LOCO-CC Objective Loop Pilot.
 
 ## What Stage 3 Established
 
@@ -208,7 +210,9 @@ candidate pool, train-only search trace, promotion-rule hardening,
 validation-only selection, selected operator freeze, and a minimal sealed-test
 coordination diagnostics runner. Stage 6.1 has also completed baseline
 comparison, ablation-style deltas, failure-analysis cautions, and a claim
-boundary for the sealed-test diagnostics.
+boundary for the sealed-test diagnostics. Stage 7.0 now locks how the next
+objective-level large-scale evaluation must be run before any objective-loop
+runner or benchmark result is produced.
 
 Current Stage 6.1 diagnostic result:
 
@@ -290,6 +294,50 @@ artifacts/sealed_test/stage6_1/claim_boundary.json
 artifacts/sealed_test/stage6_1/analysis_report.json
 ```
 
+Stage 7.0 produced:
+
+```text
+configs/stage7_0_objective_eval_protocol.yaml
+docs/stage7/stage7_0_objective_eval_protocol.md
+docs/stage7/stage7_0_self_check_report.md
+tests/stage7/test_stage7_0_objective_eval_protocol.py
+```
+
+Stage 7.0 locks the LOCO-CC objective-level evaluation protocol:
+
+```text
+LOCO-CC = fixed BaseOpt
+        + oracle grouping / detected grouping
+        + frozen selected_loco_operator
+        + online shared-variable conflict states
+        + global objective evaluation
+```
+
+Required Stage 7 baselines:
+
+```text
+identity_no_coord
+simple_consensus
+weighted_consensus
+best_reward_select
+selected_loco_operator
+```
+
+Required synthetic large-scale panels:
+
+```text
+synthetic_no_overlap_panel
+synthetic_low_overlap_panel
+synthetic_conflicting_overlap_panel
+synthetic_high_overlap_panel
+```
+
+Objective-level FE accounting is now locked as:
+
+```text
+FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair + FE_global_objective
+```
+
 Stage 6.1 preserves:
 
 ```text
@@ -308,13 +356,29 @@ oracle grouping and detected grouping reported separately
 no SOTA overclaim
 ```
 
+Stage 7.0 preserves:
+
+```text
+no LLM call
+no new candidate generation
+no selected-operator revision
+no evolution/search run
+no objective benchmark run
+no test-feedback tuning
+no BaseOpt modification
+no optimizer/controller/scheduler generation
+not a performance claim
+not an objective-value performance claim
+not a SOTA claim
+```
+
 Recommended next step:
 
 ```text
-Paper claim polishing from Stage 6.1 diagnostics, or Stage 7 objective-value evaluation protocol
+Stage 7.1: Minimal LOCO-CC Objective Loop Pilot
 ```
 
-For a short paper, the immediate next move should be claim polishing: turn Stage 0-6.1 into a method story, result table, ablation summary, and threats-to-validity section. For any stronger performance claim, Stage 7 must first lock a new objective-value evaluation protocol and FE accounting boundary.
+Stage 7.1 should implement the minimal fixed-BaseOpt objective loop, load the frozen selected operator, generate online shared-variable conflicts, evaluate the global objective with `FE_global_objective` counted, and compare the locked baseline set under the same FE budget. paper claim polishing should wait for Stage 7.1/7.2 evidence if the paper's central claim is objective-level large-scale optimization effectiveness.
 
 ## Completion Distance
 
@@ -334,14 +398,16 @@ Train-only search and promotion audit:  80%
 Validation evidence:                    65%
 Selected-operator freeze:               90%
 Sealed-test diagnostics surface:        70%
-Paper-ready empirical case:             72-78%
+Objective-level protocol readiness:     80%
+Large-scale objective-loop evidence:    15-25%
+Paper-ready empirical case:             55-65%
 ```
 
 In plain terms:
 
 ```text
-Distance to a completed innovation prototype: about 88-90% done
-Distance to a credible short paper: about 72-78% done
+Distance to a completed innovation prototype: about 82-86% done
+Distance to a credible objective-level short paper: about 55-65% done
 Distance to a strong final performance claim: about 25-35% done
 ```
 
@@ -349,8 +415,8 @@ The main remaining gap is not more LLM generation. The main remaining gap is
 evidence:
 
 ```text
-paper claim polishing from Stage 6.1 diagnostics
--> optional Stage 7 objective-value evaluation protocol
+Stage 7.1 minimal LOCO-CC objective loop pilot
+-> Stage 7.2 synthetic large-scale objective panel
 ```
 
 Known benchmark boundary:
@@ -439,10 +505,10 @@ Run the full local test suite:
 python -m pytest -p no:cacheprovider tests -q -rs
 ```
 
-Expected latest local result after Stage 6.1:
+Expected latest local result after Stage 7.0:
 
 ```text
-177 passed
+179 passed
 ```
 
 Run the Stage 2 readiness gate directly:
@@ -535,6 +601,12 @@ Run the Stage 6.1 baseline ablation analysis gate directly:
 python -m pytest tests\stage6\test_stage6_1_baseline_ablation_analysis.py -q
 ```
 
+Run the Stage 7.0 objective-level evaluation protocol gate directly:
+
+```powershell
+python -m pytest tests\stage7\test_stage7_0_objective_eval_protocol.py -q
+```
+
 Run Stage 2 diagnostic runners when regenerating reports:
 
 ```powershell
@@ -569,6 +641,12 @@ The project keeps this accounting identity:
 FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair
 ```
 
+Stage 7 objective-level evaluation extends this identity:
+
+```text
+FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair + FE_global_objective
+```
+
 Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate method run. Cross-baseline comparison evaluations are not shared across methods.
 
 ## Next Recommended Stage
@@ -576,7 +654,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Paper claim polishing from Stage 6.1 diagnostics, or Stage 7 objective-value evaluation protocol
+Stage 7.1: Minimal LOCO-CC Objective Loop Pilot
 ```
 
-Paper claim polishing should use Stage 6.1 only as sealed-test coordination diagnostics evidence. Stage 7, if started, must first define a fresh objective-value evaluation protocol with full FE accounting. Neither path may feed sealed-test results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
+Stage 7.1 should implement the minimal fixed-BaseOpt objective loop under the Stage 7.0 protocol. It must not feed objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design. paper claim polishing should wait for Stage 7.1/7.2 evidence if the paper's central claim is objective-level large-scale optimization effectiveness.
