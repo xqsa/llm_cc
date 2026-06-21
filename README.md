@@ -12,9 +12,11 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 7.4 PASS` — Stage 7.4 has decided that an optional CEC2013 F13/F14 objective panel is warranted before any strong empirical claim, and has prepared a bounded protocol without running the panel.
+Current repository state: `Stage 7.5 PASS` — Stage 7.5 has locked the SOTA-targeted real benchmark protocol, including comparator admissibility rules and reported-results reuse policy, without running any objective panel or extracting any paper table values.
 
-Stage 7.4 is not a final objective-value performance claim and not a SOTA claim. It is a decision gate, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, CEC2013 panel execution, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 7.5 is not a final objective-value performance claim and not a SOTA claim. It is a protocol lock, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, CEC2013 panel execution, paper table extraction, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+
+Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 
 Current stage map:
 
@@ -34,10 +36,11 @@ Stage 7.1    minimal LOCO-CC objective loop pilot                  PASS
 Stage 7.2    synthetic large-scale objective panel                 PASS
 Stage 7.3    objective result polish and paper-ready tables         PASS
 Stage 7.4    optional CEC2013 F13/F14 objective panel decision      PASS
-Stage 7.5    optional CEC2013 panel protocol or paper draft         NEXT
+Stage 7.5    SOTA-targeted real benchmark protocol lock             PASS
+Stage 7.6    reported-results comparator audit                      NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, and the Stage 7.4 optional CEC2013 F13/F14 panel decision. The next frontier is Stage 7.5: either implement the bounded optional CEC2013 panel protocol or start a failure-honest paper draft.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, and the Stage 7.5 SOTA-targeted real benchmark protocol lock. The next frontier is Stage 7.6: audit published reported results under the locked same-setting comparator rules.
 
 ## What Stage 3 Established
 
@@ -223,7 +226,8 @@ locked synthetic panels under same FE budget. Stage 7.3 has converted those
 traces into paper-ready tables, curve data, method ranking, and an explicit
 claim boundary. Stage 7.4 has decided that the mixed synthetic evidence
 warrants an optional CEC2013 F13/F14 objective panel before any strong empirical
-claim.
+claim. Stage 7.5 then locks how any published comparator result may be reused
+under the same-setting contract.
 
 Current Stage 6.1 diagnostic result:
 
@@ -547,7 +551,7 @@ Recommended next step:
 Stage 7.4: Optional CEC2013 F13/F14 Objective Panel Decision
 ```
 
-Stage 7.4 should decide whether the paper needs an optional CEC2013 F13/F14 objective panel before drafting the empirical section. If the paper remains a failure-honest prototype/methodology paper, Stage 7.3 is already enough to start writing the result section with clear limitations.
+Stage 7.4 decided whether the paper needs an optional CEC2013 F13/F14 objective panel before drafting the empirical section. Stage 7.5 then locks the same-setting comparison protocol. If the paper remains a failure-honest prototype/methodology paper, Stage 7.3 is already enough to start writing the result section with clear limitations.
 
 Stage 7.4 produced:
 
@@ -909,7 +913,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 7.5: Optional CEC2013 Panel Protocol Or Paper Draft Decision
+Stage 7.6: Reported-Results Comparator Audit
 ```
 
-Stage 7.5 should either implement the bounded optional CEC2013 F13/F14 panel protocol, or start the paper as a failure-honest prototype/methodology draft that explicitly reports the Stage 7.3 mixed synthetic evidence. It must not feed objective-loop results back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
+Stage 7.6 should audit published reported results under the same-setting contract locked in Stage 7.5. It must not use reported results as runtime feedback or feed them back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.

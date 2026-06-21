@@ -1,0 +1,6 @@
+id,task,status,acceptance_criteria,validation_command,completed_at,retry_count,notes
+1,Read current Stage 7 context,DONE,Stage 7.3 and 7.4 artifacts inspected,manual inspection,2026-06-21,0,Stage 7.4 decision and Stage 7.3 ranking were read
+2,Add Stage 7.5 failing tests,DONE,Focused test fails because Stage 7.5 module/artifacts do not exist,python -m pytest tests\stage7\test_stage7_5_sota_protocol.py -q,2026-06-21,0,RED confirmed before implementation
+3,Implement Stage 7.5 protocol artifacts,DONE,Runner writes required report/rules/policy/contract/decision artifacts,python scripts\stage7\run_stage7_5_sota_protocol.py,2026-06-21,0,Implemented protocol lock runner, config, docs, artifacts
+4,Update docs README and config,DONE,README and docs record Stage 7.5 PASS and next route,manual diff plus focused tests,2026-06-21,0,README and stage docs synchronized to Stage 7.5 PASS
+5,Verify commit and push,IN_PROGRESS,Focused/full tests and secret checks pass then commit and push,python -m pytest -p no:cacheprovider tests -q -rs,,0,Awaiting commit and push after verification

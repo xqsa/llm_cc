@@ -1,0 +1,40 @@
+{
+  "direct_comparison_requires_same_setting": true,
+  "direct_reuse_allowed_when": [
+    "benchmark_suite_matches_cec2013_lsgo",
+    "function_ids_match_the_claim_scope",
+    "max_fe_matches_the_loco_budget",
+    "run_count_is_25_or_explicitly_compatible_with_claim_scope",
+    "reported_statistic_matches_the_loco_table_statistic",
+    "objective_and_dimension_semantics_are_compatible",
+    "source_citation_and_table_location_are_recorded"
+  ],
+  "limits": [
+    "paper_table_values_not_extracted_in_stage7_5",
+    "reported_results_are_not_runtime_feedback",
+    "reported_results_do_not_authorize_operator_revision",
+    "background_only_entries_cannot_support_sota_claims"
+  ],
+  "must_record": [
+    "source_citation",
+    "paper_title",
+    "method_name",
+    "benchmark_suite",
+    "function_ids",
+    "max_fe",
+    "run_count",
+    "statistic",
+    "table_or_figure_id",
+    "objective_implementation",
+    "dimension_semantics",
+    "notes_on_budget_compatibility"
+  ],
+  "new_objective_evaluation_used": false,
+  "next_stage_for_extraction": "Stage 7.6",
+  "reported_results_reuse_allowed": true,
+  "schema_version": "loco.stage7_5_reported_results_reuse_policy.v1",
+  "sota_claim_made": false,
+  "stage": "7.5",
+  "status": "PASS",
+  "unknown_or_mismatched_setting_policy": "background_only"
+}

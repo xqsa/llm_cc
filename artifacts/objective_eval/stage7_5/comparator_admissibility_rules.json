@@ -1,0 +1,110 @@
+{
+  "direct_comparison_rule": "A reported result is a direct comparator only when benchmark suite, function IDs, FE budget, run count, statistic, objective semantics, dimension semantics, and source citation are all compatible.",
+  "f13_f14_panel": {
+    "allowed_claim_tier": "T1",
+    "forbidden_claim_tier": "T3",
+    "function_semantics": {
+      "F13": {
+        "D_api": 1000,
+        "D_formula": 905,
+        "adapter_mode": "implementation_api_adapter",
+        "overlap_ratio": 0.10497237569060773,
+        "overlap_semantics": "conforming_overlap",
+        "role": "conforming-overlap sanity/stability panel",
+        "shared_variable_count": 95
+      },
+      "F14": {
+        "D_api": 1000,
+        "D_formula": 905,
+        "adapter_mode": "direct_metabox_dimension",
+        "overlap_ratio": 0.10497237569060773,
+        "overlap_semantics": "conflicting_overlap",
+        "role": "primary real conflicting-overlap panel",
+        "shared_variable_count": 95
+      }
+    },
+    "reason": "F13/F14 test overlapping semantics only, not the full 15-function CEC2013 LSGO suite.",
+    "target_functions": [
+      "F13",
+      "F14"
+    ]
+  },
+  "forbidden_runtime_fields": [
+    "function_id_for_operator_selection",
+    "benchmark_name_for_operator_selection",
+    "true_optimum",
+    "hidden_test_metadata",
+    "future_evaluations",
+    "paper_reported_result_as_runtime_signal"
+  ],
+  "loco_budget_rules": {
+    "all_extra_fe_counted": true,
+    "base_optimizer_policy": "fixed_baseopt_no_modification",
+    "oracle_and_detected_grouping_reported_separately": true,
+    "same_budget_required": true
+  },
+  "mismatch_policy": {
+    "different_max_fe": "background_only_unless_recomputed_same_budget",
+    "different_run_count": "background_only_or_separate_sensitivity_note",
+    "different_statistic": "background_only_until_statistic_aligned",
+    "missing_required_field": "background_only",
+    "unknown_objective_wrapper": "background_only",
+    "unresolved_f13_f14_dimension_semantics": "not_admissible"
+  },
+  "no_new_objective_evaluation": true,
+  "not_sota_claim": true,
+  "official_cec2013_lsgo": {
+    "benchmark_suite": "CEC2013_LSGO",
+    "checkpoint_fe": [
+      120000,
+      600000,
+      3000000
+    ],
+    "dimension": 1000,
+    "function_count": 15,
+    "function_ids": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9",
+      "F10",
+      "F11",
+      "F12",
+      "F13",
+      "F14",
+      "F15"
+    ],
+    "max_fe": 3000000,
+    "primary_ranking_statistic": "median_at_checkpoints",
+    "run_count": 25,
+    "source": "docs/stage1/cec2013lsgo_semantics.md",
+    "statistics": [
+      "best",
+      "median",
+      "worst",
+      "mean",
+      "std"
+    ],
+    "termination": "maximum_function_evaluations"
+  },
+  "purpose": "direct_sota_comparator_admissibility",
+  "required_direct_comparison_fields": [
+    "benchmark_suite",
+    "function_ids",
+    "max_fe",
+    "run_count",
+    "statistic",
+    "objective_implementation",
+    "dimension_semantics",
+    "same_budget",
+    "source_citation"
+  ],
+  "schema_version": "loco.stage7_5_comparator_admissibility_rules.v1",
+  "stage": "7.5",
+  "status": "PASS"
+}

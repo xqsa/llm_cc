@@ -1,0 +1,12 @@
+{
+  "allowed_next_work": "reported_results_comparator_audit",
+  "alternative_after_audit": "Stage 8.0 train-only operator improvement before any SOTA claim",
+  "decision": "LOCK_SOTA_PROTOCOL_AND_AUDIT_REPORTED_RESULTS",
+  "decision_reason": "SOTA-facing comparison needs admissible same-setting comparators before objective panels or paper claims are interpreted as SOTA evidence.",
+  "next_stage": "Stage 7.6",
+  "not_sota_claim": true,
+  "run_cec2013_panel_now": false,
+  "schema_version": "loco.stage7_5_next_route_decision.v1",
+  "stage": "7.5",
+  "status": "PASS"
+}

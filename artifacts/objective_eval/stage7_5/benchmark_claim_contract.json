@@ -1,0 +1,63 @@
+{
+  "boundary_flags": {
+    "ast_execution_used": false,
+    "baseopt_modified": false,
+    "cec2013_panel_run": false,
+    "evolution_search_used": false,
+    "llm_call_used": false,
+    "new_candidate_generation_used": false,
+    "objective_evaluation_used": false,
+    "optimizer_controller_scheduler_generated": false,
+    "sota_claim_made": false,
+    "test_feedback_tuning_used": false
+  },
+  "claim_tiers": [
+    {
+      "allowed_claim": "SOTA protocol and comparator admissibility rules are locked.",
+      "scope": "protocol_only",
+      "sota_claim_allowed": false,
+      "tier_id": "T0"
+    },
+    {
+      "allowed_claim": "Overlap-focused CEC2013 F13/F14 evidence.",
+      "full_cec2013_sota_claim_allowed": false,
+      "requires_cec2013_panel_run": true,
+      "scope": "overlap_focused_f13_f14_panel",
+      "tier_id": "T1"
+    },
+    {
+      "allowed_claim": "Same-setting subset comparison on explicitly named functions.",
+      "full_cec2013_sota_claim_allowed": false,
+      "requires_admissible_comparators": true,
+      "scope": "cec2013_lsgo_subset_claim",
+      "tier_id": "T2"
+    },
+    {
+      "allowed_claim": "Full same-setting CEC2013 LSGO SOTA-facing comparison.",
+      "requires_admissible_comparators": true,
+      "requires_full_function_scope_or_explicit_sota_scope": true,
+      "requires_full_official_setting": true,
+      "scope": "full_or_sota_cec2013_lsgo_claim",
+      "sota_claim_allowed": true,
+      "tier_id": "T3"
+    }
+  ],
+  "current_selected_operator": {
+    "best_overall_method": "simple_consensus",
+    "final_sota_candidate": false,
+    "method_name": "selected_loco_operator",
+    "overall_rank": 4,
+    "reason": "Stage 7.3 ranks the current selected LOCO operator below simple_consensus on the synthetic objective panel."
+  },
+  "f13_f14_only_not_full_sota": true,
+  "forbidden_claims_in_stage7_5": [
+    "SOTA improvement",
+    "full CEC2013 LSGO superiority",
+    "F13/F14 objective improvement",
+    "selected LOCO operator is final SOTA candidate",
+    "optimizer improvement"
+  ],
+  "schema_version": "loco.stage7_5_benchmark_claim_contract.v1",
+  "stage": "7.5",
+  "status": "PASS"
+}

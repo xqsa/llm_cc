@@ -1,0 +1,90 @@
+stage: "7.5"
+name: "SOTA-Targeted Real Benchmark Protocol Lock"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Lock the admissibility rules for SOTA-facing real-benchmark comparisons before any CEC2013 reported-results audit or objective panel run."
+  runner: "loco.coordination.sota_protocol_lock"
+  cli_entrypoint: "scripts/stage7/run_stage7_5_sota_protocol.py"
+  protocol_scope: "sota_targeted_real_benchmark_protocol_lock"
+  official_cec2013_setting_locked: true
+  official_run_count: 25
+  official_max_fe: 3000000
+  reported_results_reuse_allowed: true
+  reported_results_direct_comparison_requires_same_setting: true
+  f13_f14_only_not_full_sota: true
+  cec2013_panel_run: false
+  new_objective_evaluation_used: false
+  not_sota_claim: true
+
+legal_inputs:
+  - "artifacts/objective_eval/stage7_4/cec2013_panel_decision.json"
+  - "artifacts/objective_eval/stage7_4/cec2013_optional_panel_protocol.json"
+  - "artifacts/objective_eval/stage7_3/method_ranking.json"
+  - "docs/stage1/cec2013lsgo_semantics.md"
+
+outputs:
+  output_dir: "artifacts/objective_eval/stage7_5"
+  report: "artifacts/objective_eval/stage7_5/sota_protocol_report.json"
+  comparator_admissibility_rules: "artifacts/objective_eval/stage7_5/comparator_admissibility_rules.json"
+  reported_results_reuse_policy: "artifacts/objective_eval/stage7_5/reported_results_reuse_policy.json"
+  benchmark_claim_contract: "artifacts/objective_eval/stage7_5/benchmark_claim_contract.json"
+  next_route_decision: "artifacts/objective_eval/stage7_5/next_route_decision.json"
+
+protocol:
+  official_cec2013_lsgo:
+    benchmark_suite: "CEC2013_LSGO"
+    function_ids: ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15"]
+    function_count: 15
+    dimension: 1000
+    run_count: 25
+    max_fe: 3000000
+    termination: "maximum_function_evaluations"
+    checkpoint_fe: [120000, 600000, 3000000]
+    statistics: ["best", "median", "worst", "mean", "std"]
+    primary_ranking_statistic: "median_at_checkpoints"
+  required_direct_comparison_fields:
+    - "benchmark_suite"
+    - "function_ids"
+    - "max_fe"
+    - "run_count"
+    - "statistic"
+    - "objective_implementation"
+    - "dimension_semantics"
+    - "same_budget"
+    - "source_citation"
+
+claim_tiers:
+  T0:
+    scope: "protocol_only"
+    allowed_claim: "SOTA protocol and comparator admissibility rules are locked."
+    sota_claim_allowed: false
+  T1:
+    scope: "overlap_focused_f13_f14_panel"
+    allowed_claim: "Overlap-focused CEC2013 F13/F14 evidence."
+    full_cec2013_sota_claim_allowed: false
+  T2:
+    scope: "cec2013_lsgo_subset_claim"
+    allowed_claim: "Same-setting subset comparison on explicitly named functions."
+    full_cec2013_sota_claim_allowed: false
+  T3:
+    scope: "full_or_sota_cec2013_lsgo_claim"
+    allowed_claim: "Full same-setting CEC2013 LSGO SOTA-facing comparison."
+    sota_claim_allowed: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no evolution/search run"
+  - "no AST execution"
+  - "no objective evaluation"
+  - "no CEC2013 panel run"
+  - "no paper table extraction from third-party sources in Stage 7.5"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a SOTA claim"
+  - "not a final objective-value performance claim"
+
+next_status: "READY_FOR_STAGE7_6_REPORTED_RESULTS_COMPARATOR_AUDIT"
+
