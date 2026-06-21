@@ -1,0 +1,21 @@
+{
+  "best_overall_method": "simple_consensus",
+  "claim_boundary_written": true,
+  "dimension_count": 2,
+  "method_count": 5,
+  "new_objective_evaluation_used": false,
+  "next_status": "READY_FOR_OPTIONAL_CEC2013_OR_PAPER_DRAFT",
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_curve_row_count": 120,
+  "panel_count": 4,
+  "paper_objective_row_count": 40,
+  "polish_scope": "paper_ready_objective_tables",
+  "schema_version": "loco.stage7_3_paper_tables_report.v1",
+  "selected_loco_operator_rank_overall": 4,
+  "source_stage": "7.2",
+  "source_trace_row_count": 120,
+  "stage": "7.3",
+  "stage7_2_artifacts_modified": false,
+  "status": "PASS"
+}

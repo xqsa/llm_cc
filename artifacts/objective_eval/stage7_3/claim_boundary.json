@@ -1,0 +1,28 @@
+{
+  "allowed_claims": [
+    "Stage 7.3 converts Stage 7.2 synthetic objective-loop traces into paper-ready tables and curve data.",
+    "The Stage 7.2 synthetic panel ran under the same FE budget across locked methods.",
+    "Current synthetic evidence is mixed and does not support a final performance or SOTA claim."
+  ],
+  "claim_scope": "paper-ready tables from synthetic Stage 7.2 traces",
+  "forbidden_claims": [
+    "final objective-value performance superiority",
+    "SOTA improvement",
+    "official CEC2013 benchmark success",
+    "BaseOpt improvement",
+    "optimizer generation"
+  ],
+  "llm_call_used": false,
+  "new_candidate_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "requires_optional_cec2013_decision": true,
+  "schema_version": "loco.stage7_3_claim_boundary.v1",
+  "selected_loco_not_best_overall": true,
+  "selected_operator_revision_used": false,
+  "source_stage": "7.2",
+  "stage": "7.3",
+  "status": "PASS",
+  "test_feedback_tuning_used": false
+}

@@ -1,0 +1,61 @@
+{
+  "best_overall_method": "simple_consensus",
+  "lower_is_better": true,
+  "method_rows": [
+    {
+      "best_panel_dimension_count": 6,
+      "case_count": 8,
+      "mean_delta_vs_identity": -0.015568055556,
+      "mean_final_best_objective": 23.365487357655,
+      "mean_rank": 1.25,
+      "method_name": "simple_consensus",
+      "overall_rank": 1
+    },
+    {
+      "best_panel_dimension_count": 2,
+      "case_count": 8,
+      "mean_delta_vs_identity": 0.0,
+      "mean_final_best_objective": 23.381055413211,
+      "mean_rank": 2.25,
+      "method_name": "identity_no_coord",
+      "overall_rank": 2
+    },
+    {
+      "best_panel_dimension_count": 4,
+      "case_count": 8,
+      "mean_delta_vs_identity": 0.001114694783,
+      "mean_final_best_objective": 23.382170107993,
+      "mean_rank": 2.0,
+      "method_name": "weighted_consensus",
+      "overall_rank": 3
+    },
+    {
+      "best_panel_dimension_count": 2,
+      "case_count": 8,
+      "mean_delta_vs_identity": 0.056031727484,
+      "mean_final_best_objective": 23.437087140695,
+      "mean_rank": 3.0,
+      "method_name": "selected_loco_operator",
+      "overall_rank": 4
+    },
+    {
+      "best_panel_dimension_count": 2,
+      "case_count": 8,
+      "mean_delta_vs_identity": 0.464978472222,
+      "mean_final_best_objective": 23.846033885433,
+      "mean_rank": 4.0,
+      "method_name": "best_reward_select",
+      "overall_rank": 5
+    }
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "ranking_metric": "mean_final_best_objective",
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage7_3_method_ranking.v1",
+  "selected_loco_operator_best_panel_dimension_count": 2,
+  "selected_loco_operator_rank_overall": 4,
+  "source_stage": "7.2",
+  "stage": "7.3",
+  "status": "PASS"
+}

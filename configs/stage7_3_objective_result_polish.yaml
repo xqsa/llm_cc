@@ -1,0 +1,65 @@
+stage: "7.3"
+name: "Objective Result Polish And Paper-Ready Tables"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Convert Stage 7.2 synthetic objective-loop artifacts into paper-ready tables, curve data, method ranking, and claim boundary."
+  runner: "loco.coordination.objective_result_polish"
+  cli_entrypoint: "scripts/stage7/run_stage7_3_objective_result_polish.py"
+  polish_scope: "paper_ready_objective_tables"
+  paper_tables_generated: true
+  new_objective_evaluation_used: false
+  not_final_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  - "artifacts/objective_eval/stage7_2/objective_trace.jsonl"
+  - "artifacts/objective_eval/stage7_2/panel_summary.json"
+  - "artifacts/objective_eval/stage7_2/method_summary.json"
+  - "artifacts/objective_eval/stage7_2/fe_ledger.json"
+  - "artifacts/objective_eval/stage7_2/panel_report.json"
+
+outputs:
+  output_dir: "artifacts/objective_eval/stage7_3"
+  paper_objective_table: "artifacts/objective_eval/stage7_3/paper_objective_table.csv"
+  objective_curve_table: "artifacts/objective_eval/stage7_3/objective_curve_table.csv"
+  method_ranking: "artifacts/objective_eval/stage7_3/method_ranking.json"
+  claim_boundary: "artifacts/objective_eval/stage7_3/claim_boundary.json"
+  paper_tables_report: "artifacts/objective_eval/stage7_3/paper_tables_report.json"
+
+paper_table_contract:
+  source_stage: "7.2"
+  objective_table_rows: 40
+  curve_table_rows: 120
+  method_count: 5
+  panel_count: 4
+  dimension_count: 2
+  ranking_metric: "mean_final_best_objective"
+  lower_is_better: true
+  same_budget_across_methods: true
+
+observed_stage7_3_result:
+  best_overall_method: "simple_consensus"
+  selected_loco_operator_rank_overall: 4
+  selected_loco_operator_best_panel_dimension_count: 2
+  selected_loco_not_best_overall: true
+
+allowed_claims:
+  - "Stage 7.3 converts Stage 7.2 synthetic objective-loop traces into paper-ready tables and curve data."
+  - "The Stage 7.2 synthetic panel ran under the same FE budget across locked methods."
+  - "Current synthetic evidence is mixed and does not support a final performance or SOTA claim."
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search run"
+  - "no new objective evaluation"
+  - "no test-feedback tuning"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a SOTA claim"
+  - "not a final objective-value performance claim"
+
+next_status: "READY_FOR_OPTIONAL_CEC2013_OR_PAPER_DRAFT"
