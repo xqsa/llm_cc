@@ -75,7 +75,9 @@ def run_stage8_2_objective_level_loco_cc_loop_pilot(
     selection_decision = _read_json(Path(selection_decision_path))
     selected_operator = _read_json(Path(selected_operator_path))
     selected_ast_payload = _read_json(Path(selected_ast_path))
-    _validate_inputs(protocol, selection_decision, selected_operator, selected_ast_payload)
+    _validate_inputs(
+        protocol, selection_decision, selected_operator, selected_ast_payload
+    )
 
     selection_ready_candidate = _choose_selection_ready_candidate(
         selection_decision,
@@ -451,7 +453,9 @@ def _utility_row(
 ) -> dict[str, Any]:
     final_best = float(method_rows[-1]["best_objective_so_far"])
     baseline_final = float(method_rows[-1]["objective_value"])
-    improvement_count = sum(1 for row in method_rows if row["objective_improved_or_equal"])
+    improvement_count = sum(
+        1 for row in method_rows if row["objective_improved_or_equal"]
+    )
     return {
         "schema_version": UTILITY_TRACE_SCHEMA_VERSION,
         "stage": STAGE,

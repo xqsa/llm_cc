@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "large_scale_objective_panel_evaluation",
+  "decision": "LOCK_OBJECTIVE_UTILITY_SELECTION",
+  "decision_reason": "Stage 8.3 selected the utility-positive Stage 8.1 candidate using the frozen Stage 8.2 objective-level utility evidence.",
+  "next_stage": "Stage 8.4",
+  "not_performance_claim": true,
+  "schema_version": "loco.stage8_3_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.3",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

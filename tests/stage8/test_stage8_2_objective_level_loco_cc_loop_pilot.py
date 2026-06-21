@@ -5,9 +5,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "configs" / "stage8_2_objective_level_loco_cc_loop_pilot.yaml"
 PROTOCOL = ROOT / "configs" / "stage7_0_objective_eval_protocol.yaml"
-SELECTION_DECISION = ROOT / "artifacts" / "selection_audit" / "stage8_1" / "selection_decision.json"
-SELECTED_OPERATOR = ROOT / "artifacts" / "selected" / "stage5_1" / "selected_operator.json"
-SELECTED_AST = ROOT / "artifacts" / "selected" / "stage5_1" / "selected_operator_ast.json"
+SELECTION_DECISION = (
+    ROOT / "artifacts" / "selection_audit" / "stage8_1" / "selection_decision.json"
+)
+SELECTED_OPERATOR = (
+    ROOT / "artifacts" / "selected" / "stage5_1" / "selected_operator.json"
+)
+SELECTED_AST = (
+    ROOT / "artifacts" / "selected" / "stage5_1" / "selected_operator_ast.json"
+)
 OUTPUT_DIR = ROOT / "artifacts" / "objective_eval" / "stage8_2"
 OBJECTIVE_TRACE = OUTPUT_DIR / "objective_trace.jsonl"
 METHOD_SUMMARY = OUTPUT_DIR / "method_summary.json"
@@ -68,7 +74,9 @@ def test_stage8_2_runs_objective_level_loco_cc_loop_pilot(tmp_path) -> None:
     assert report["utility_trace_row_count"] == 6
     assert report["shared_variable_count"] >= 1
     assert report["selected_operator_target_variable"] == 6
-    assert report["next_status"] == "READY_FOR_STAGE8_3_TRAIN_ONLY_OR_VALIDATION_SELECTION"
+    assert (
+        report["next_status"] == "READY_FOR_STAGE8_3_TRAIN_ONLY_OR_VALIDATION_SELECTION"
+    )
 
     for flag in [
         "llm_call_used",
@@ -105,7 +113,9 @@ def test_stage8_2_runs_objective_level_loco_cc_loop_pilot(tmp_path) -> None:
     assert all(row["objective_improved_or_equal"] is True for row in trace_rows)
     assert all(row["target_scope"] == "shared_variables_only" for row in trace_rows)
     assert all(row["llm_call_used"] is False for row in trace_rows)
-    assert all(row["reported_results_used_as_runtime_feedback"] is False for row in trace_rows)
+    assert all(
+        row["reported_results_used_as_runtime_feedback"] is False for row in trace_rows
+    )
 
     assert summary["stage"] == "8.2"
     assert summary["status"] == "PASS"
@@ -144,16 +154,24 @@ def test_stage8_2_runs_objective_level_loco_cc_loop_pilot(tmp_path) -> None:
 
     assert utility_report["stage"] == "8.2"
     assert utility_report["status"] == "PASS"
-    assert utility_report["baseline_selected_candidate_id"] == "stage3_5_batch_1_weighted_consensus_projection"
+    assert (
+        utility_report["baseline_selected_candidate_id"]
+        == "stage3_5_batch_1_weighted_consensus_projection"
+    )
     assert utility_report["utility_ready_candidate_count"] == 6
     assert utility_report["selected_loco_method_count"] == 2
     assert utility_report["selected_loco_methods"] == [
         "frozen_stage5_selected_operator",
         "selection_ready_stage8_operator",
     ]
-    assert utility_report["selection_ready_improved_over_frozen_selected_operator"] is True
+    assert (
+        utility_report["selection_ready_improved_over_frozen_selected_operator"] is True
+    )
     assert utility_report["selection_ready_vs_frozen_selected_operator_delta"] < 0.0
-    assert utility_report["selection_ready_candidate_final_best"] < utility_report["frozen_selected_operator_final_best"]
+    assert (
+        utility_report["selection_ready_candidate_final_best"]
+        < utility_report["frozen_selected_operator_final_best"]
+    )
     assert utility_report["best_candidate_rank"] == 2
     assert utility_report["best_candidate_improved_or_equal_methods"] >= 1
     assert utility_report["selection_ready_candidates_used"] is True

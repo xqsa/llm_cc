@@ -1,0 +1,27 @@
+{
+  "claim_scope": "objective-level utility selection",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "new_objective_evaluation": false,
+    "objective_loop_execution": false,
+    "optimizer_generation": false,
+    "selected_operator_revision": false,
+    "test_feedback": false,
+    "test_feedback_tuning": false,
+    "validation_feedback": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "large-scale benchmark success"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_3_runtime_boundary.v1",
+  "stage": "8.3",
+  "status": "PASS"
+}

@@ -12,9 +12,11 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 8.2 PASS` — Stage 8.2 has embedded the Stage 8.1 selection-ready operator set into a fixed objective-level LOCO-CC loop, compared it against the frozen Stage 5.1 selected operator, and produced objective-level utility evidence under the locked Stage 7.0 protocol without turning the result into a final performance claim.
+Current repository state: `Stage 8.3 PASS` — Stage 8.3 has converted the Stage 8.2 objective-level utility evidence into a bounded selection decision, selecting `stage3_5_batch_1_reweighting_repair` over the frozen Stage 5.1 operator for the next large-scale objective panel while adding no new objective evaluation and making no final performance claim.
 
 Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+
+Stage 8.3 is an objective-level utility evidence selection gate, not a new objective run. It reads Stage 8.2 utility_report.json, selects the utility-positive Stage 8.1 candidate, records FE_total = 0 for the selection step, and keeps validation/test feedback sealed.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 Historical checkpoint: Current repository state: `Stage 7.6 PASS` remains the prior comparator-audit milestone before Stage 8.0.
@@ -42,10 +44,11 @@ Stage 7.6    reported-results comparator audit                      PASS
 Stage 8.0    train-only operator improvement                        PASS
 Stage 8.1    train-only selection audit                             PASS
 Stage 8.2    objective-level utility pilot                          PASS
-Stage 8.3    train-only or validation selection over utility evidence NEXT
+Stage 8.3    objective-level utility evidence selection              PASS
+Stage 8.4    large-scale objective panel evaluation                  NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, and Stage 8.2 objective-level utility pilot. The next frontier is Stage 8.3: train-only or validation selection over objective-level utility evidence.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, and Stage 8.3 objective-level utility evidence selection. The next frontier is Stage 8.4: large-scale objective panel evaluation under the locked objective protocol.
 
 ## What Stage 3 Established
 
@@ -967,7 +970,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 8.3: Train-only or validation selection over objective-level utility evidence
+Stage 8.4: Large-scale objective panel evaluation under the locked objective protocol
 ```
 
-Stage 8.3 should use the objective-level utility evidence from Stage 8.2 for train-only or validation selection, while keeping the utility traces sealed from runtime feedback, candidate regeneration, and any BaseOpt modification.
+Stage 8.4 should take the Stage 8.3 selected candidate, `stage3_5_batch_1_reweighting_repair`, into a larger objective-level panel under the locked protocol. It should keep BaseOpt fixed, count all FE, preserve oracle/detected grouping separation when relevant, avoid validation/test feedback leakage, and still avoid SOTA or final performance claims until a proper large-scale benchmark comparison exists.

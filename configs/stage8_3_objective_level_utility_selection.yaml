@@ -1,0 +1,51 @@
+stage: "8.3"
+name: "Objective-Level Utility Evidence Selection"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Select the Stage 8 objective-level utility candidate using the frozen Stage 8.2 utility_report.json evidence."
+  runner: "loco.coordination.objective_level_utility_selection"
+  cli_entrypoint: "scripts/stage8/run_stage8_3_objective_level_utility_selection.py"
+  objective_level_utility_evidence_selection: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_1_selection_decision: "artifacts/selection_audit/stage8_1/selection_decision.json"
+  stage8_2_pilot_report: "artifacts/objective_eval/stage8_2/pilot_report.json"
+  stage8_2_utility_report: "artifacts/objective_eval/stage8_2/utility_report.json"
+  stage8_2_fe_ledger: "artifacts/objective_eval/stage8_2/fe_ledger.json"
+  source_stage: "8.2"
+  evidence_source: "Stage 8.2 utility_report.json"
+
+selection_rule:
+  scope: "objective-level utility evidence selection"
+  candidate_scope: "LOCO candidates from Stage 8.2 utility report"
+  rank_key: "objective_final_best"
+  rank_direction: "ascending"
+  tie_breaker: "candidate_id"
+  selected_operator_status: "OBJECTIVE_UTILITY_SELECTED_NOT_FINAL_NOT_FROZEN_FOR_TEST"
+  allowed_next_use: "large-scale objective panel evaluation under locked protocol"
+
+fe_accounting:
+  stage8_3_new_fe_total: 0
+  inherited_stage8_2_fe_total_is_recorded: true
+  no_new_objective_evaluation: true
+  all_extra_fe_counted: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search run"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no test-feedback tuning"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "no reported-results reuse as runtime feedback"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
