@@ -1,0 +1,63 @@
+{
+  "count_by_admissibility": {
+    "background_only": 1,
+    "direct_comparator": 1,
+    "not_admissible": 0
+  },
+  "entries": [
+    {
+      "admissibility": "direct_comparator",
+      "benchmark_suite": "CEC2013_LSGO",
+      "function_ids": [
+        "F11",
+        "F13"
+      ],
+      "max_fe": 3000000,
+      "paper_title": "A Novel Two-Phase Cooperative Co-evolution Framework for Large-Scale Global Optimization with Complex Overlapping",
+      "reason": "same_cec2013_lsgo_setting_with_explicit_reported_results",
+      "reported_result_notes": "Reported results are audit-only comparators under the Stage 7.5 same-setting contract.",
+      "run_count": 25,
+      "same_setting": true,
+      "source_kind": "paper_reported_results",
+      "source_name": "HCC",
+      "source_url": "https://arxiv.org/abs/2503.21797",
+      "statistic": "reported_table_statistic"
+    },
+    {
+      "admissibility": "background_only",
+      "benchmark_suite": "custom_overlapping_benchmark",
+      "function_ids": [],
+      "max_fe": null,
+      "paper_title": "An Enhanced Differential Grouping Method for Large-Scale Overlapping Problems",
+      "reason": "non_cec2013_custom_benchmark",
+      "reported_result_notes": "Table results are relevant background for overlapping grouping, but not same-setting CEC2013 comparators.",
+      "run_count": null,
+      "same_setting": false,
+      "source_kind": "paper_reported_results",
+      "source_name": "OEDG",
+      "source_url": "https://arxiv.org/abs/2404.10515",
+      "statistic": "reported_table_statistic"
+    }
+  ],
+  "forbidden_use": [
+    "runtime_feedback",
+    "prompt_generation",
+    "candidate_generation",
+    "train_search_scores",
+    "validation_selection",
+    "promotion_rule_design",
+    "performance_claim",
+    "sota_claim"
+  ],
+  "locked_rules_source": "Stage 7.5 same-setting comparator contract",
+  "no_ast_execution": true,
+  "no_evolution_run": true,
+  "no_llm_call": true,
+  "no_objective_evaluation": true,
+  "not_sota_claim": true,
+  "registry_type": "reported_results_comparator_registry",
+  "schema_version": "loco.stage7_6_reported_results_comparator_registry.v1",
+  "source_stage": "7.5",
+  "stage": "7.6",
+  "status": "PASS"
+}

@@ -12,9 +12,9 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 7.5 PASS` — Stage 7.5 has locked the SOTA-targeted real benchmark protocol, including comparator admissibility rules and reported-results reuse policy, without running any objective panel or extracting any paper table values.
+Current repository state: `Stage 7.6 PASS` — Stage 7.6 has audited published reported results under the locked same-setting comparator contract and frozen a small comparator registry, without running any objective panel or using paper tables as runtime feedback.
 
-Stage 7.5 is not a final objective-value performance claim and not a SOTA claim. It is a protocol lock, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, CEC2013 panel execution, paper table extraction, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
+Stage 7.6 is not a final objective-value performance claim and not a SOTA claim. It is a comparator audit, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, CEC2013 panel execution, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 
@@ -37,10 +37,11 @@ Stage 7.2    synthetic large-scale objective panel                 PASS
 Stage 7.3    objective result polish and paper-ready tables         PASS
 Stage 7.4    optional CEC2013 F13/F14 objective panel decision      PASS
 Stage 7.5    SOTA-targeted real benchmark protocol lock             PASS
-Stage 7.6    reported-results comparator audit                      NEXT
+Stage 7.6    reported-results comparator audit                      PASS
+Stage 8.0    train-only operator improvement                        NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, and the Stage 7.5 SOTA-targeted real benchmark protocol lock. The next frontier is Stage 7.6: audit published reported results under the locked same-setting comparator rules.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, and the Stage 7.6 reported-results comparator audit. The next frontier is Stage 8.0: train-only operator improvement under the frozen comparison contract.
 
 ## What Stage 3 Established
 
@@ -100,7 +101,7 @@ not_performance_claim = true
 
 4. Frozen train-only input for Stage 4
 
-   Stage 3.6 froze the Stage 3.5 quality-pass candidate pool as immutable train-only input and prepared the Stage 4 search protocol boundary.
+Stage 3.6 froze the Stage 3.5 quality-pass candidate pool as immutable train-only input and prepared the Stage 4 search protocol boundary.
 
 ```text
 status = PASS
@@ -117,6 +118,38 @@ no_objective_evaluation = true
 no_test_feedback = true
 not_performance_claim = true
 ```
+
+## What Stage 7 Established
+
+Stage 7 is the objective-evaluation and claim-boundary phase. It keeps strict separation between protocol locks, optional panel decisions, and reported-results audit.
+
+1. Objective protocol lock
+
+   Stage 7.0 locked the objective-level evaluation protocol before any new large-scale objective claims.
+
+2. Minimal LOCO-CC objective loop
+
+   Stage 7.1 established the smallest objective-loop pilot without converting it into a performance claim.
+
+3. Synthetic large-scale objective panel
+
+   Stage 7.2 ran a synthetic large-scale objective panel to explore the objective surface under the frozen coordination-operator line.
+
+4. Paper-ready result polish
+
+   Stage 7.3 consolidated the paper-facing result layer while keeping the claim boundary explicit.
+
+5. Optional CEC2013 decision gate
+
+   Stage 7.4 decided whether a real F13/F14 objective panel was warranted.
+
+6. SOTA-targeted protocol lock
+
+   Stage 7.5 locked the same-setting comparator contract for reported results.
+
+7. Reported-results comparator audit
+
+   Stage 7.6 classified published results into direct comparator and background-only buckets under the Stage 7.5 contract. It did not turn those reported values into runtime feedback or performance claims.
 
 5. Literature-grounded family vocabulary lock
 

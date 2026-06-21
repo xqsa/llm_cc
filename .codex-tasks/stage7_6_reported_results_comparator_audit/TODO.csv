@@ -1,0 +1,6 @@
+id,task,status,acceptance_criteria,validation_command,completed_at,retry_count,notes
+1,Read Stage 7.5 contract and locate comparator sources,DONE,Relevant Stage 7.5 contract and candidate papers identified,manual inspection,2026-06-21,0,Using HCC and OEDG as comparator sources
+2,Add Stage 7.6 failing tests,DONE,Focused test fails because Stage 7.6 module/artifacts do not exist,python -m pytest tests\stage7\test_stage7_6_reported_results_comparator_audit.py -q,2026-06-21,0,Added path-fixed failing test scaffold
+3,Implement comparator registry audit runner,DONE,Runner emits registry, audit report, and route decision with direct/background status,python scripts/stage7/run_stage7_6_reported_results_comparator_audit.py,2026-06-21,0,Implemented reported-results audit runner and frozen registry
+4,Update docs README and config,DONE,README and docs show Stage 7.6 PASS and next stage,manual diff plus focused tests,2026-06-21,0,Updated README, docs, config, and task/test sync
+5,Verify commit and push,DONE,Focused/full tests and secret checks pass then commit and push,python -m pytest -p no:cacheprovider tests -q -rs,2026-06-21,0,Focused stage7 and full repo tests passed; secret scan clean

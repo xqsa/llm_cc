@@ -1,0 +1,12 @@
+{
+  "allowed_next_work": "train_only_operator_improvement",
+  "decision": "LOCK_REPORTED_RESULTS_COMPARATOR_AUDIT",
+  "decision_reason": "Reported results are now classified under the Stage 7.5 same-setting contract.",
+  "next_stage": "Stage 8.0",
+  "not_sota_claim": true,
+  "schema_version": "loco.stage7_6_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "7.6",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false
+}

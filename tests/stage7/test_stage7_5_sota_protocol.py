@@ -141,7 +141,7 @@ def test_stage7_5_committed_artifacts_docs_and_readme_record_protocol() -> None:
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 7.5 PASS`" in combined
+    assert "Current repository state: `Stage 7.6 PASS`" in combined
     assert (
         "Stage 7.5    SOTA-targeted real benchmark protocol lock             PASS"
         in combined

@@ -1,0 +1,20 @@
+{
+  "background_only_count": 1,
+  "background_only_sources": [
+    "OEDG"
+  ],
+  "direct_comparator_count": 1,
+  "direct_comparator_sources": [
+    "HCC"
+  ],
+  "next_status": "READY_FOR_STAGE8_0_TRAIN_ONLY_OPERATOR_IMPROVEMENT",
+  "not_admissible_count": 0,
+  "not_sota_claim": true,
+  "registry_size": 2,
+  "reported_results_are_audit_only": true,
+  "schema_version": "loco.stage7_6_reported_results_comparator_audit.v1",
+  "source_contract": "Stage 7.5 same-setting comparator contract",
+  "source_stage": "7.5",
+  "stage": "7.6",
+  "status": "PASS"
+}

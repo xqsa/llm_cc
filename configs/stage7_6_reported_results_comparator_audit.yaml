@@ -1,0 +1,50 @@
+stage: "7.6"
+name: "Reported-Results Comparator Audit"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Audit published reported results under the Stage 7.5 same-setting comparator contract and freeze a small comparator registry."
+  runner: "loco.coordination.reported_results_comparator_audit"
+  cli_entrypoint: "scripts/stage7/run_stage7_6_reported_results_comparator_audit.py"
+  audit_scope: "reported_results_comparator_audit"
+  direct_comparator_count: 1
+  background_only_count: 1
+  not_sota_claim: true
+  no_llm_call: true
+  no_evolution_run: true
+  no_ast_execution: true
+  no_objective_evaluation: true
+  no_test_feedback: true
+
+legal_inputs:
+  - "artifacts/objective_eval/stage7_5/comparator_admissibility_rules.json"
+  - "artifacts/objective_eval/stage7_5/reported_results_reuse_policy.json"
+  - "docs/stage7/stage7_5_sota_protocol.md"
+  - "docs/stage7/stage7_5_self_check_report.md"
+
+outputs:
+  output_dir: "artifacts/objective_eval/stage7_6"
+  report: "artifacts/objective_eval/stage7_6/reported_results_comparator_audit_report.json"
+  registry: "artifacts/objective_eval/stage7_6/reported_results_comparator_registry.json"
+  route_decision: "artifacts/objective_eval/stage7_6/next_route_decision.json"
+
+comparator_policy:
+  direct_comparator_sources:
+    - "HCC"
+  background_only_sources:
+    - "OEDG"
+  not_admissible_sources: []
+  source_contract: "Stage 7.5 same-setting comparator contract"
+  use_reported_results_as_runtime_feedback: false
+  forbidden_use:
+    - "runtime_feedback"
+    - "prompt_generation"
+    - "candidate_generation"
+    - "train_search_scores"
+    - "validation_selection"
+    - "promotion_rule_design"
+    - "performance_claim"
+    - "sota_claim"
+
+next_status: "READY_FOR_STAGE8_0_TRAIN_ONLY_OPERATOR_IMPROVEMENT"
