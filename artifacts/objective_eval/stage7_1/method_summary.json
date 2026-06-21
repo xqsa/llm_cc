@@ -1,0 +1,89 @@
+{
+  "claim_scope": "minimal objective-loop integration pilot",
+  "method_rows": [
+    {
+      "FE_coordination_extra": 0,
+      "FE_global_objective": 3,
+      "FE_grouping": 0,
+      "FE_proposal": 3,
+      "FE_repair": 0,
+      "FE_total": 6,
+      "final_best_objective": 15.646345482332,
+      "initial_objective": 18.417636,
+      "mean_conflict_intensity": 0.621851851852,
+      "mean_distance_to_best_reward_proposal": 0.168055555556,
+      "method_name": "identity_no_coord",
+      "objective_step_count": 3
+    },
+    {
+      "FE_coordination_extra": 0,
+      "FE_global_objective": 3,
+      "FE_grouping": 0,
+      "FE_proposal": 3,
+      "FE_repair": 0,
+      "FE_total": 6,
+      "final_best_objective": 15.62724826011,
+      "initial_objective": 18.405136,
+      "mean_conflict_intensity": 0.621851851852,
+      "mean_distance_to_best_reward_proposal": 0.152777777778,
+      "method_name": "simple_consensus",
+      "objective_step_count": 3
+    },
+    {
+      "FE_coordination_extra": 0,
+      "FE_global_objective": 3,
+      "FE_grouping": 0,
+      "FE_proposal": 3,
+      "FE_repair": 0,
+      "FE_total": 6,
+      "final_best_objective": 15.660053071799,
+      "initial_objective": 18.396301238574,
+      "mean_conflict_intensity": 0.621851851852,
+      "mean_distance_to_best_reward_proposal": 0.111341735633,
+      "method_name": "weighted_consensus",
+      "objective_step_count": 3
+    },
+    {
+      "FE_coordination_extra": 0,
+      "FE_global_objective": 3,
+      "FE_grouping": 0,
+      "FE_proposal": 3,
+      "FE_repair": 0,
+      "FE_total": 6,
+      "final_best_objective": 16.360581593443,
+      "initial_objective": 18.555136,
+      "mean_conflict_intensity": 0.621851851852,
+      "mean_distance_to_best_reward_proposal": 0.0,
+      "method_name": "best_reward_select",
+      "objective_step_count": 3
+    },
+    {
+      "FE_coordination_extra": 0,
+      "FE_global_objective": 3,
+      "FE_grouping": 0,
+      "FE_proposal": 3,
+      "FE_repair": 0,
+      "FE_total": 6,
+      "final_best_objective": 15.787720135025,
+      "initial_objective": 18.417714099333,
+      "mean_conflict_intensity": 0.621851851852,
+      "mean_distance_to_best_reward_proposal": 0.075586498308,
+      "method_name": "selected_loco_operator",
+      "objective_step_count": 3
+    }
+  ],
+  "methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "selected_loco_operator"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage7_1_method_summary.v1",
+  "selected_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "source_stage": "7.0",
+  "stage": "7.1",
+  "status": "PASS"
+}

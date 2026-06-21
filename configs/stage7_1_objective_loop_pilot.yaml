@@ -1,0 +1,69 @@
+stage: "7.1"
+name: "Minimal LOCO-CC Objective Loop Pilot"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Implement and run a minimal fixed-BaseOpt LOCO-CC objective-loop pilot under the Stage 7.0 protocol."
+  runner: "loco.coordination.objective_loop_pilot"
+  cli_entrypoint: "scripts/stage7/run_stage7_1_objective_loop_pilot.py"
+  pilot_scope: "minimal_loco_cc_objective_loop_pilot"
+  objective_loop_runner_implemented: true
+  objective_loop_pilot_executed: true
+  objective_benchmark_run: false
+  not_final_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  - "configs/stage7_0_objective_eval_protocol.yaml"
+  - "artifacts/selected/stage5_1/selected_operator.json"
+  - "artifacts/selected/stage5_1/selected_operator_ast.json"
+
+pilot_problem:
+  objective_name: "synthetic_sphere"
+  synthetic_panel: "synthetic_conflicting_overlap_panel"
+  dimension: 500
+  grouping_mode: "oracle grouping"
+  selected_operator_target_variable: 6
+  fixed_baseopt: "deterministic proposal generator"
+  objective_step_count_per_method: 3
+
+method_set:
+  - "identity_no_coord"
+  - "simple_consensus"
+  - "weighted_consensus"
+  - "best_reward_select"
+  - "selected_loco_operator"
+
+artifacts:
+  output_dir: "artifacts/objective_eval/stage7_1"
+  objective_trace: "artifacts/objective_eval/stage7_1/objective_trace.jsonl"
+  method_summary: "artifacts/objective_eval/stage7_1/method_summary.json"
+  fe_ledger: "artifacts/objective_eval/stage7_1/fe_ledger.json"
+  runtime_boundary: "artifacts/objective_eval/stage7_1/runtime_boundary.json"
+  pilot_report: "artifacts/objective_eval/stage7_1/pilot_report.json"
+
+fe_accounting:
+  identity: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair + FE_global_objective"
+  expected_total:
+    FE_grouping: 0
+    FE_proposal: 15
+    FE_coordination_extra: 0
+    FE_repair: 0
+    FE_global_objective: 15
+    FE_total: 30
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search run"
+  - "no test-feedback tuning"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a SOTA claim"
+  - "not a final objective-value performance claim"
+
+next_status: "READY_FOR_STAGE7_2_SYNTHETIC_LARGE_SCALE_PANEL"

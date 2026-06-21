@@ -1,0 +1,28 @@
+{
+  "claim_scope": "minimal objective-loop integration pilot",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "optimizer_generation": false,
+    "selected_operator_revision": false,
+    "test_feedback_tuning": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "large-scale benchmark success"
+  ],
+  "legal_inputs": [
+    "configs/stage7_0_objective_eval_protocol.yaml",
+    "artifacts/selected/stage5_1/selected_operator.json",
+    "artifacts/selected/stage5_1/selected_operator_ast.json"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage7_1_runtime_boundary.v1",
+  "stage": "7.1",
+  "status": "PASS"
+}
