@@ -1,0 +1,55 @@
+stage: "8.2"
+name: "Objective-Level LOCO-CC Loop Pilot"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Run a fixed-BaseOpt objective-level LOCO-CC pilot that exercises the Stage 8.1 selection-ready operator set alongside the frozen Stage 5.1 selected operator."
+  runner: "loco.coordination.objective_level_loco_cc_loop_pilot"
+  cli_entrypoint: "scripts/stage8/run_stage8_2_objective_level_loco_cc_loop_pilot.py"
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  objective_protocol: "configs/stage7_0_objective_eval_protocol.yaml"
+  selection_decision: "artifacts/selection_audit/stage8_1/selection_decision.json"
+  selected_operator: "artifacts/selected/stage5_1/selected_operator.json"
+  selected_ast: "artifacts/selected/stage5_1/selected_operator_ast.json"
+  source_stage: "8.1"
+  objective_protocol_stage: "7.0"
+
+pilot_scope:
+  objective_name: "synthetic_sphere"
+  synthetic_panel: "synthetic_conflicting_overlap_panel"
+  dimensions: [500]
+  seeds: [0]
+  objective_step_count_per_method: 3
+  method_names:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "frozen_stage5_selected_operator"
+    - "selection_ready_stage8_operator"
+  selected_operator_policy: "frozen Stage 5.1 operator plus selection-ready Stage 8.1 operator"
+  base_optimizer_policy: "fixed BaseOpt"
+  shared_variable_policy: "apply frozen LOCO coordination operator only to shared variables"
+
+fe_accounting:
+  identity: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair + FE_global_objective"
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+  all_extra_fe_counted: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search run"
+  - "no objective benchmark run"
+  - "no test-feedback tuning"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "no reported-results reuse as runtime feedback"
+  - "not a performance claim"
+  - "not a SOTA claim"

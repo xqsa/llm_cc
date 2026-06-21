@@ -1,0 +1,16 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 18,
+  "FE_grouping": 0,
+  "FE_proposal": 18,
+  "FE_repair": 0,
+  "FE_total": 36,
+  "budget_scope": "objective_level_loco_cc_loop_pilot",
+  "cross_method_evaluations_shared": false,
+  "not_final_performance_claim": true,
+  "objective_benchmark_run": false,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_2_fe_ledger.v1",
+  "stage": "8.2",
+  "status": "PASS"
+}

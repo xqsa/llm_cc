@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 8.0 PASS` — Stage 8.0 has improved the frozen Stage 3.6 coordination candidates using deterministic train-only signals under the locked Stage 7.6 comparator contract, without running any objective panel or using paper tables as runtime feedback.
+Current repository state: `Stage 8.2 PASS` — Stage 8.2 has embedded the Stage 8.1 selection-ready operator set into a fixed objective-level LOCO-CC loop, compared it against the frozen Stage 5.1 selected operator, and produced objective-level utility evidence under the locked Stage 7.0 protocol without turning the result into a final performance claim.
 
 Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
@@ -40,10 +40,12 @@ Stage 7.4    optional CEC2013 F13/F14 objective panel decision      PASS
 Stage 7.5    SOTA-targeted real benchmark protocol lock             PASS
 Stage 7.6    reported-results comparator audit                      PASS
 Stage 8.0    train-only operator improvement                        PASS
-Stage 8.1    train-only selection audit                             NEXT
+Stage 8.1    train-only selection audit                             PASS
+Stage 8.2    objective-level utility pilot                          PASS
+Stage 8.3    train-only or validation selection over utility evidence NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, and Stage 8.0 train-only operator improvement. The next frontier is Stage 8.1: train-only selection audit under the frozen improvement contract.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, and Stage 8.2 objective-level utility pilot. The next frontier is Stage 8.3: train-only or validation selection over objective-level utility evidence.
 
 ## What Stage 3 Established
 
@@ -678,16 +680,16 @@ Current estimated completion:
 ```text
 Concept and contribution framing:       90%
 Protocol and leakage-control boundary:  85%
-Engineering prototype:                  75%
+Engineering prototype:                  80%
 Candidate generation and audit chain:   90%
 Train-only search and promotion audit:  80%
 Validation evidence:                    65%
 Selected-operator freeze:               90%
 Sealed-test diagnostics surface:        70%
-Objective-level protocol readiness:     80%
-Minimal objective-loop integration:     60%
-Large-scale objective-loop evidence:    25-35%
-Paper-ready empirical case:             60-68%
+Objective-level protocol readiness:     90%
+Minimal objective-loop integration:     85%
+Large-scale objective-loop evidence:    35-45%
+Paper-ready empirical case:             65-72%
 ```
 
 In plain terms:
@@ -965,7 +967,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 7.6: Reported-Results Comparator Audit
+Stage 8.3: Train-only or validation selection over objective-level utility evidence
 ```
 
-Stage 7.6 should audit published reported results under the same-setting contract locked in Stage 7.5. It must not use reported results as runtime feedback or feed them back into prompt generation, candidate generation, frozen pool contents, train-search scores, validation selection, or promotion-rule design.
+Stage 8.3 should use the objective-level utility evidence from Stage 8.2 for train-only or validation selection, while keeping the utility traces sealed from runtime feedback, candidate regeneration, and any BaseOpt modification.
