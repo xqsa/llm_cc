@@ -181,7 +181,7 @@ def test_stage8_5_committed_artifacts_docs_and_readme_record_failure_honesty() -
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.5" in combined
-    assert "Current repository state: `Stage 8.5 PASS`" in combined
+    assert "Stage 8.5    failure-honest analysis of Stage 8.4 gaps                PASS" in combined
     assert "selected operator is numerically equivalent to weighted_consensus" in combined
     assert "simple_consensus beats it on 12 cases" in combined
     assert "wins the old frozen operator by removing the projection penalty" in combined

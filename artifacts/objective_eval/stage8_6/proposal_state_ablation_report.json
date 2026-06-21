@@ -1,0 +1,33 @@
+{
+  "loss_best_baseline_methods": {
+    "simple_consensus": 12
+  },
+  "loss_dimensions": {
+    "1000": 4,
+    "2000": 4,
+    "500": 4
+  },
+  "loss_panels": {
+    "synthetic_high_overlap_panel": 9,
+    "synthetic_medium_overlap_panel": 3
+  },
+  "loss_regime_case_count": 12,
+  "loss_seeds": {
+    "0": 6,
+    "1": 3,
+    "2": 3
+  },
+  "mean_loss_selected_minus_simple_final_best": 0.017853748373,
+  "mean_loss_selected_minus_simple_update_size": 0.052530800959,
+  "not_final_performance_claim": true,
+  "proposal_state_diagnosis": "simple_consensus is needed in 12 high/medium-overlap cases; weighted/reweighting behavior is sufficient only where weighted consensus is already the best baseline.",
+  "recommended_proposal_state_action": "add overlap/topology and reward-reliability features before official claims",
+  "schema_version": "loco.stage8_6_proposal_state_ablation_report.v1",
+  "source_stage": "8.5",
+  "stage": "8.6",
+  "status": "PASS",
+  "tie_best_baseline_methods": {
+    "weighted_consensus": 24
+  },
+  "weighted_sufficient_case_count": 24
+}

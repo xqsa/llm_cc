@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "conditional_proposal_state_policy_or_operator_family_expansion",
+  "decision": "BLOCK_OFFICIAL_CLAIMS_AND_EXPAND_ABLATION",
+  "decision_reason": "Stage 8.6 confirms operator-family collapse to weighted_consensus and a proposal-state gap where simple_consensus is needed.",
+  "next_stage": "Stage 8.7",
+  "not_performance_claim": true,
+  "schema_version": "loco.stage8_6_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.6",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

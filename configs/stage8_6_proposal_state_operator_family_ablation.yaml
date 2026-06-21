@@ -1,0 +1,50 @@
+stage: "8.6"
+name: "Proposal-State / Operator-Family Ablation"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Ablate Stage 8.5's diagnosis before official claims: separate operator-family collapse from proposal-state regimes."
+  runner: "loco.coordination.proposal_state_operator_family_ablation"
+  cli_entrypoint: "scripts/stage8/run_stage8_6_proposal_state_operator_family_ablation.py"
+  proposal_state_operator_family_ablation: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_4_trace: "artifacts/objective_eval/stage8_4/objective_trace.jsonl"
+  stage8_4_win_loss: "artifacts/objective_eval/stage8_4/win_loss_report.json"
+  stage8_5_diagnosis: "artifacts/objective_eval/stage8_5/failure_honest_diagnosis_report.json"
+  stage8_5_equivalence: "artifacts/objective_eval/stage8_5/baseline_equivalence_report.json"
+  stage8_5_topology: "artifacts/objective_eval/stage8_5/topology_gap_report.json"
+  source_stage: "8.5"
+
+ablation_questions:
+  - "Does the selected operator family collapse to weighted_consensus?"
+  - "Which proposal-state regimes require simple_consensus?"
+  - "Should official claims remain blocked?"
+
+expected_findings:
+  operator_family: "operator-family collapse to weighted_consensus"
+  proposal_state: "simple_consensus is needed in 12 high/medium-overlap cases"
+  route: "block official claims and expand ablation"
+
+fe_accounting:
+  stage8_6_new_fe_total: 0
+  inherited_stage8_4_fe_total_is_recorded: true
+  no_new_objective_evaluation: true
+  objective_loop_executed: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

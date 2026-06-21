@@ -1,0 +1,16 @@
+{
+  "best_reward_select_overstep_case_count": 36,
+  "best_reward_select_overstep_confirmed": true,
+  "not_final_performance_claim": true,
+  "operator_family_diagnosis": "operator-family collapse to weighted_consensus; projection removal helps against the old frozen operator but does not add a new family.",
+  "projection_penalty_case_count": 36,
+  "recommended_operator_family_action": "add conditional/simple-consensus-aware families instead of more weighted clones",
+  "schema_version": "loco.stage8_6_operator_family_ablation_report.v1",
+  "selected_weighted_coord_value_max_abs_delta": 0.0,
+  "selected_weighted_family_collapse_confirmed": true,
+  "selected_weighted_final_best_max_abs_delta": 0.0,
+  "selected_weighted_update_size_max_abs_delta": 0.0,
+  "source_stage": "8.5",
+  "stage": "8.6",
+  "status": "PASS"
+}
