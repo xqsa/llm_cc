@@ -1,0 +1,73 @@
+{
+  "benchmark_execution_used": false,
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "reported_results_used_as_runtime_feedback": false,
+  "schema_version": "loco.stage8_1_selection_decision.v1",
+  "selection_ready_candidates": [
+    {
+      "allowed_next_use": "validation selection only after train improvement",
+      "candidate_id": "stage3_5_batch_0_projection_dampening",
+      "improvement_score": 0.775,
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "rank": 4,
+      "selection_status": "TRAIN_ONLY_SELECTION_READY_NOT_FINAL"
+    },
+    {
+      "allowed_next_use": "validation selection only after train improvement",
+      "candidate_id": "stage3_5_batch_1_projection_dampening",
+      "improvement_score": 0.775,
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "rank": 5,
+      "selection_status": "TRAIN_ONLY_SELECTION_READY_NOT_FINAL"
+    },
+    {
+      "allowed_next_use": "validation selection only after train improvement",
+      "candidate_id": "stage3_5_batch_1_reweighting_repair",
+      "improvement_score": 0.775,
+      "kind_sequence": "reweighting->repair",
+      "not_performance_claim": true,
+      "operator_family": "reweighting+repair",
+      "rank": 6,
+      "selection_status": "TRAIN_ONLY_SELECTION_READY_NOT_FINAL"
+    },
+    {
+      "allowed_next_use": "validation selection only after train improvement",
+      "candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+      "improvement_score": 0.775,
+      "kind_sequence": "weighted_consensus->projection",
+      "not_performance_claim": true,
+      "operator_family": "weighted_consensus+projection",
+      "rank": 7,
+      "selection_status": "TRAIN_ONLY_SELECTION_READY_NOT_FINAL"
+    },
+    {
+      "allowed_next_use": "validation selection only after train improvement",
+      "candidate_id": "stage3_5_batch_2_projection_dampening",
+      "improvement_score": 0.775,
+      "kind_sequence": "projection->dampening",
+      "not_performance_claim": true,
+      "operator_family": "projection+dampening",
+      "rank": 8,
+      "selection_status": "TRAIN_ONLY_SELECTION_READY_NOT_FINAL"
+    },
+    {
+      "allowed_next_use": "validation selection only after train improvement",
+      "candidate_id": "stage3_5_batch_2_reweighting_repair",
+      "improvement_score": 0.775,
+      "kind_sequence": "reweighting->repair",
+      "not_performance_claim": true,
+      "operator_family": "reweighting+repair",
+      "rank": 9,
+      "selection_status": "TRAIN_ONLY_SELECTION_READY_NOT_FINAL"
+    }
+  ],
+  "stage": "8.1",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": false
+}

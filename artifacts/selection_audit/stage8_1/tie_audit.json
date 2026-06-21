@@ -1,0 +1,30 @@
+{
+  "benchmark_execution_used": false,
+  "boundary_tie_detected": true,
+  "cutoff_rank": 4,
+  "cutoff_score": 0.775,
+  "dropped_by_original_top_k": [
+    "stage3_5_batch_1_projection_dampening",
+    "stage3_5_batch_1_reweighting_repair",
+    "stage3_5_batch_1_weighted_consensus_projection",
+    "stage3_5_batch_2_projection_dampening",
+    "stage3_5_batch_2_reweighting_repair"
+  ],
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "reported_results_used_as_runtime_feedback": false,
+  "schema_version": "loco.stage8_1_tie_audit.v1",
+  "stage": "8.1",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "tie_group_candidate_ids": [
+    "stage3_5_batch_0_projection_dampening",
+    "stage3_5_batch_1_projection_dampening",
+    "stage3_5_batch_1_reweighting_repair",
+    "stage3_5_batch_1_weighted_consensus_projection",
+    "stage3_5_batch_2_projection_dampening",
+    "stage3_5_batch_2_reweighting_repair"
+  ],
+  "tie_group_size_at_cutoff": 6,
+  "validation_feedback_used": false
+}

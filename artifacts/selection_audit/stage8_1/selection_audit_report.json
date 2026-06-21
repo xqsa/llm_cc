@@ -1,0 +1,20 @@
+{
+  "FE_total": 12,
+  "benchmark_execution_used": false,
+  "boundary_tie_detected": true,
+  "candidate_count": 12,
+  "hardened_selection_candidate_count": 6,
+  "next_status": "READY_FOR_STAGE8_2_TRAIN_ONLY_BOUNDARY_LOCK",
+  "not_performance_claim": true,
+  "objective_evaluation_used": false,
+  "original_selection_top_k": 4,
+  "reported_results_used_as_runtime_feedback": false,
+  "schema_version": "loco.stage8_1_train_only_selection_audit_report.v1",
+  "selection_rule_hardened": true,
+  "source_stage": "8.0",
+  "stage": "8.1",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "top_score_tie_count": 6,
+  "validation_feedback_used": false
+}

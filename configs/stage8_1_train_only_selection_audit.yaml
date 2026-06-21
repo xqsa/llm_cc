@@ -1,0 +1,42 @@
+stage: "8.1"
+name: "Train-only Selection Audit"
+created_by: "Codex"
+created_date: "2026-06-21"
+
+purpose:
+  summary: "Audit the Stage 8.0 improvement trace and harden selection when the train-only cutoff cuts through a tie group."
+  runner: "loco.coordination.train_only_selection_audit"
+  cli_entrypoint: "scripts/stage8/run_stage8_1_train_only_selection_audit.py"
+  not_performance_claim: true
+
+input:
+  improvement_trace: "artifacts/improvement/stage8_0/improvement_trace.jsonl"
+  improvement_candidates: "artifacts/improvement/stage8_0/improvement_candidates.json"
+  source_stage: "8.0"
+
+artifacts:
+  output_dir: "artifacts/selection_audit/stage8_1"
+  tie_audit: "artifacts/selection_audit/stage8_1/tie_audit.json"
+  hardened_selection_rule: "artifacts/selection_audit/stage8_1/hardened_selection_rule.json"
+  selection_decision: "artifacts/selection_audit/stage8_1/selection_decision.json"
+  fe_ledger: "artifacts/selection_audit/stage8_1/fe_ledger.json"
+  selection_audit_report: "artifacts/selection_audit/stage8_1/selection_audit_report.json"
+  next_route_decision: "artifacts/selection_audit/stage8_1/next_route_decision.json"
+
+audit_policy:
+  split: "train"
+  selection_top_k: 4
+  validation_usage: "selection only after train improvement"
+  test_usage: "sealed final reporting only"
+  fe_accounting_policy: "FE_total = FE_grouping + FE_proposal + FE_coordination_extra + FE_repair"
+
+forbidden_scope:
+  - "no validation feedback"
+  - "no test feedback"
+  - "no objective evaluation"
+  - "no benchmark execution"
+  - "no reported-results reuse as runtime feedback"
+  - "no AST execution"
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no performance claim"
