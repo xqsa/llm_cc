@@ -198,10 +198,14 @@ def _build_comparison_table(
     )
 
     rows = []
-    for metric in sorted(metric_rows, key=lambda row: METHODS.index(row["method_name"])):
+    for metric in sorted(
+        metric_rows, key=lambda row: METHODS.index(row["method_name"])
+    ):
         method_name = str(metric["method_name"])
         per_case = [row for row in trace_rows if row["method_name"] == method_name]
-        mean_distance = float(metric["mean_normalized_distance_to_best_reward_proposal"])
+        mean_distance = float(
+            metric["mean_normalized_distance_to_best_reward_proposal"]
+        )
         mean_update = float(metric["mean_normalized_update_size"])
         baseline_delta = mean_distance - float(
             best_baseline["mean_normalized_distance_to_best_reward_proposal"]
@@ -336,7 +340,9 @@ def _build_failure_analysis(trace_rows: Sequence[Mapping[str, Any]]) -> dict[str
         )
         selected = by_method[SELECTED_METHOD]
         method_distances = {
-            method: float(by_method[method]["normalized_distance_to_best_reward_proposal"])
+            method: float(
+                by_method[method]["normalized_distance_to_best_reward_proposal"]
+            )
             for method in METHODS
         }
         method_updates = {

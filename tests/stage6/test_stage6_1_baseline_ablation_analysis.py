@@ -57,7 +57,9 @@ def test_stage6_1_analyzes_stage6_0_baselines_without_feedback_tuning(
     assert report["ablation_summary_written"] is True
     assert report["failure_analysis_written"] is True
     assert report["claim_boundary_written"] is True
-    assert report["next_status"] == "READY_FOR_PAPER_CLAIM_POLISH_OR_STAGE7_OBJECTIVE_EVAL"
+    assert (
+        report["next_status"] == "READY_FOR_PAPER_CLAIM_POLISH_OR_STAGE7_OBJECTIVE_EVAL"
+    )
 
     for flag in [
         "llm_call_used",
@@ -88,10 +90,14 @@ def test_stage6_1_analyzes_stage6_0_baselines_without_feedback_tuning(
     assert len(comparison["rows"]) == 4
     assert all(row["sealed_test_case_count"] == 3 for row in comparison["rows"])
     assert all(row["rank_by_distance_to_best"] >= 1 for row in comparison["rows"])
-    assert any(row["method_name"] == "selected_loco_operator" for row in comparison["rows"])
+    assert any(
+        row["method_name"] == "selected_loco_operator" for row in comparison["rows"]
+    )
 
     selected_row = next(
-        row for row in comparison["rows"] if row["method_name"] == "selected_loco_operator"
+        row
+        for row in comparison["rows"]
+        if row["method_name"] == "selected_loco_operator"
     )
     assert selected_row["is_selected_loco_operator"] is True
     assert selected_row["best_baseline_delta_distance"] == (
@@ -119,8 +125,13 @@ def test_stage6_1_analyzes_stage6_0_baselines_without_feedback_tuning(
     assert failures["case_count"] == 3
     assert len(failures["cases"]) == 3
     assert all(case["selected_method_present"] is True for case in failures["cases"])
-    assert all(case["winner_method_name"] in EXPECTED_METHODS for case in failures["cases"])
-    assert all("selected_loco_operator" in case["method_distances"] for case in failures["cases"])
+    assert all(
+        case["winner_method_name"] in EXPECTED_METHODS for case in failures["cases"]
+    )
+    assert all(
+        "selected_loco_operator" in case["method_distances"]
+        for case in failures["cases"]
+    )
     assert failures["failure_mode_count"] >= 1
     assert failures["not_performance_claim"] is True
 
