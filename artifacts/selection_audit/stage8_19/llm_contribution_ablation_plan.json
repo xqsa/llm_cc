@@ -1,0 +1,26 @@
+{
+  "comparison_pools": [
+    "llm_reflective_pool",
+    "hand_designed_pool",
+    "random_mutation_pool",
+    "literature_inspired_pool",
+    "stage8_16_human_repair_policy"
+  ],
+  "llm_pool_beats_non_llm_pool_required_for_pass": true,
+  "llm_vs_non_llm_ablation_required": true,
+  "metrics": [
+    "quality_pass_rate",
+    "family_diversity",
+    "non_degenerate_candidate_count",
+    "train_objective_win_count_vs_best_reward",
+    "train_objective_loss_count_vs_best_reward",
+    "candidate_pool_best_rank",
+    "candidate_pool_median_rank"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_19_llm_contribution_ablation_plan.v1",
+  "stage": "8.19",
+  "stage8_16_human_repair_policy_is_baseline_not_llm_success": true,
+  "status": "PASS"
+}

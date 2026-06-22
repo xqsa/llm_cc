@@ -1,0 +1,29 @@
+{
+  "failure_patterns_used": [
+    "best_reward_short_horizon_regret",
+    "shared_variable_oscillation",
+    "low_reward_margin_unreliability",
+    "direction_flip_under_conflicting_overlap",
+    "stage8_18_always_trust_best_reward_degeneracy"
+  ],
+  "fake_llm_candidates_forbidden": true,
+  "minimum_coordination_family_count": 4,
+  "minimum_quality_pass_candidate_count": 8,
+  "minimum_raw_llm_candidate_count": 24,
+  "minimum_reflection_round_count": 2,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "prompt_scope": "llm_reflective_shared_variable_coordination_policy_search",
+  "real_llm_api_required_for_execution": true,
+  "reflection_loop": [
+    "mine_best_reward_failure_and_degeneracy_patterns",
+    "prompt_llm_for_shared_variable_coordination_policy_programs",
+    "audit_candidates_against_dsl_and_boundary",
+    "evaluate_on_train_side_objective_cases",
+    "feed_top_candidates_and_failure_summaries_back_to_llm",
+    "generate_mutated_or_repaired_policy_programs"
+  ],
+  "schema_version": "loco.stage8_19_reflection_prompt_contract.v1",
+  "stage": "8.19",
+  "status": "PASS"
+}

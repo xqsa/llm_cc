@@ -1,0 +1,28 @@
+{
+  "claim_scope": "Stage 8.19 design lock only",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "fake_llm_candidate_generation": true,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "implementation_status": "DESIGN_LOCK_ONLY",
+  "llm_call_used": false,
+  "new_llm_candidate_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "required_future_behaviors": {
+    "beat_best_reward_select_gate": true,
+    "llm_vs_non_llm_ablation": true,
+    "objective_evaluator_feedback_loop": true,
+    "real_llm_api_call_for_execution": true
+  },
+  "schema_version": "loco.stage8_19_runtime_boundary.v1",
+  "stage": "8.19",
+  "status": "PASS"
+}

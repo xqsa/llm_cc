@@ -1,0 +1,19 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 0,
+  "FE_repair": 0,
+  "FE_total": 0,
+  "budget_scope": "llm_reflective_policy_search_design_lock_only",
+  "implementation_status": "DESIGN_LOCK_ONLY",
+  "inherited_stage8_18_FE_total": 28812,
+  "llm_call_used": false,
+  "new_llm_candidate_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_19_fe_ledger.v1",
+  "stage": "8.19",
+  "status": "PASS"
+}

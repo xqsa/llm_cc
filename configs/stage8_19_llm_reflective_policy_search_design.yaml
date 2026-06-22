@@ -1,0 +1,105 @@
+stage: "8.19"
+name: "LLM-reflective Coordination Policy Search Design Lock"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Redirect Stage 8.19 from static LLM candidate expansion to an evaluator-grounded LLM-reflective shared-variable coordination policy search loop."
+  runner: "loco.coordination.llm_reflective_policy_search_design"
+  cli_entrypoint: "scripts/stage8/run_stage8_19_llm_reflective_policy_search_design.py"
+  design_only: true
+  llm_reflective_design_loop_locked: true
+  static_one_shot_llm_candidate_generation_rejected: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  llm_call_used: false
+  new_llm_candidate_generation_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_18_resmoke_report: "artifacts/objective_eval/stage8_18/repaired_policy_resmoke_report.json"
+  stage8_18_win_loss_report: "artifacts/objective_eval/stage8_18/win_loss_report.json"
+  stage8_18_policy_branch_report: "artifacts/objective_eval/stage8_18/policy_branch_report.json"
+  stage8_18_fe_ledger: "artifacts/objective_eval/stage8_18/fe_ledger.json"
+  stage8_18_runtime_boundary: "artifacts/objective_eval/stage8_18/runtime_boundary.json"
+  stage8_18_next_route_decision: "artifacts/objective_eval/stage8_18/next_route_decision.json"
+
+llm_reflective_search_contract:
+  target: "LLM-reflective shared-variable coordination policy search"
+  static_one_shot_llm_candidate_generation_is_rejected: true
+  fake_llm_candidates_are_forbidden: true
+  real_llm_api_required_for_execution: true
+  minimum_reflection_round_count: 2
+  minimum_raw_llm_candidate_count: 24
+  minimum_quality_pass_candidate_count: 8
+  minimum_coordination_family_count: 4
+  required_future_loop:
+    - "mine best_reward_select failure and degeneracy patterns"
+    - "prompt LLM for shared-variable coordination policy programs"
+    - "audit candidates against DSL and boundary"
+    - "evaluate on train-side objective cases"
+    - "feed top candidates and failure summaries back to LLM"
+    - "generate mutated or repaired policy programs"
+
+dsl_contract:
+  target_scope: "shared_variables_only"
+  program_unit: "coordination_policy_program"
+  allowed_actions:
+    - "trust_best_reward"
+    - "damp_best_reward"
+    - "weighted_consensus"
+    - "simple_consensus"
+    - "shrinkage_repair"
+    - "reject_unstable_best_reward"
+  forbidden_capabilities:
+    - "optimizer_generation"
+    - "baseopt_modification"
+    - "controller_scheduler_generation"
+    - "benchmark_objective_rewrite"
+    - "validation_feedback_access"
+    - "test_feedback_access"
+    - "reported_results_runtime_feedback"
+
+beat_best_reward_gate:
+  selected_candidate_origin_required: "llm_reflective_generated"
+  selected_candidate_not_equivalent_to_best_reward_required: true
+  non_trust_best_reward_branch_exercised_required: true
+  win_count_vs_best_reward_select_min: 1
+  loss_count_vs_best_reward_select_max: 0
+  pass_condition_is_not_no_loss: true
+
+llm_contribution_ablation:
+  required: true
+  comparison_pools:
+    - "llm_reflective_pool"
+    - "hand_designed_pool"
+    - "random_mutation_pool"
+    - "literature_inspired_pool"
+    - "stage8_16_human_repair_policy"
+  llm_pool_beats_non_llm_pool_required_for_pass: true
+
+fe_accounting:
+  stage8_19_FE_total: 0
+  inherited_stage8_18_FE_total: 28812
+  all_extra_fe_counted: true
+
+next_route:
+  next_stage: "Stage 8.20"
+  allowed_next_work: "execute_llm_reflective_coordination_policy_search"
+  run_llm_reflective_search_next: true
+  run_full_25_run_panel_next: false
+
+forbidden_scope:
+  - "no fake LLM candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search execution"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

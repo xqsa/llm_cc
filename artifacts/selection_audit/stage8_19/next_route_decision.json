@@ -1,0 +1,16 @@
+{
+  "allowed_next_work": "execute_llm_reflective_coordination_policy_search",
+  "decision": "ROUTE_TO_EXECUTE_LLM_REFLECTIVE_POLICY_SEARCH",
+  "decision_reason": "Stage 8.19 rejects static one-shot candidate generation and locks an LLM-reflective shared-variable coordination policy search loop.",
+  "next_stage": "Stage 8.20",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "run_llm_reflective_search_next": true,
+  "schema_version": "loco.stage8_19_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.19",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

@@ -1,0 +1,41 @@
+{
+  "allowed_actions": [
+    "trust_best_reward",
+    "damp_best_reward",
+    "weighted_consensus",
+    "simple_consensus",
+    "shrinkage_repair",
+    "reject_unstable_best_reward"
+  ],
+  "allowed_features": [
+    "reward_margin",
+    "reward_concentration",
+    "conflict_intensity",
+    "proposal_dispersion",
+    "direction_consistency",
+    "shared_variable_oscillation",
+    "recent_best_reward_regret"
+  ],
+  "allowed_memory": [
+    "recent_best_reward_regret",
+    "recent_shared_variable_direction",
+    "recent_policy_branch_outcomes"
+  ],
+  "forbidden_capabilities": [
+    "optimizer_generation",
+    "baseopt_modification",
+    "controller_scheduler_generation",
+    "benchmark_objective_rewrite",
+    "validation_feedback_access",
+    "test_feedback_access",
+    "reported_results_runtime_feedback"
+  ],
+  "not_sota_claim": true,
+  "output_format": "json_policy_program",
+  "program_unit": "coordination_policy_program",
+  "schema_version": "loco.stage8_19_coordination_policy_dsl_contract.v1",
+  "stage": "8.19",
+  "static_audit_required": true,
+  "status": "PASS",
+  "target_scope": "shared_variables_only"
+}

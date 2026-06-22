@@ -1,0 +1,14 @@
+{
+  "llm_contribution_evidence_required": true,
+  "loss_count_vs_best_reward_select_max": 0,
+  "non_trust_best_reward_branch_exercised_required": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "pass_condition_is_not_no_loss": true,
+  "schema_version": "loco.stage8_19_beat_best_reward_gate.v1",
+  "selected_candidate_not_equivalent_to_best_reward_required": true,
+  "selected_candidate_origin_required": "llm_reflective_generated",
+  "stage": "8.19",
+  "status": "PASS",
+  "win_count_vs_best_reward_select_min": 1
+}
