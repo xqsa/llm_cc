@@ -1,0 +1,64 @@
+stage: "8.10"
+name: "Official-like Panel or Policy-Generalization Decision"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Choose the next SOTA-targeted route after Stage 8.9 failure-honest interpretation."
+  runner: "loco.coordination.official_like_policy_generalization_decision"
+  cli_entrypoint: "scripts/stage8/run_stage8_10_official_like_policy_generalization_decision.py"
+  decision_only: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_9_interpretation: "artifacts/objective_eval/stage8_9/interpretation_report.json"
+  stage8_9_claim_boundary: "artifacts/objective_eval/stage8_9/claim_boundary_report.json"
+  stage8_9_readiness: "artifacts/objective_eval/stage8_9/paper_claim_readiness_report.json"
+  stage8_9_fe_ledger: "artifacts/objective_eval/stage8_9/fe_ledger.json"
+  stage8_9_runtime_boundary: "artifacts/objective_eval/stage8_9/runtime_boundary.json"
+  stage7_5_sota_protocol: "artifacts/objective_eval/stage7_5/sota_protocol_report.json"
+  stage7_5_claim_contract: "artifacts/objective_eval/stage7_5/benchmark_claim_contract.json"
+  stage7_6_comparator_audit: "artifacts/objective_eval/stage7_6/reported_results_comparator_audit_report.json"
+
+decision:
+  selected_route: "PRIORITIZE_POLICY_GENERALIZATION_BEFORE_OFFICIAL_SOTA_CLAIM"
+  best_baseline_beaten: false
+  official_like_panel_ready: "partial"
+  policy_generalization_required: true
+  reason: "Stage 8.9 ties but does not beat the best simple baseline, so policy generalization is the stronger SOTA-targeted next move."
+
+policy_generalization_gate:
+  next_stage: "Stage 8.11"
+  next_work: "policy generalization beyond best simple baseline"
+  minimum_vs_best_baseline_win_count: 3
+  maximum_vs_best_baseline_loss_count: 0
+  must_exceed_switching_policy: true
+  required_capabilities:
+    - "adaptive_robust_aggregation"
+    - "conflict_aware_shrinkage"
+    - "outlier_proposal_rejection"
+    - "reliability_calibrated_consensus"
+    - "topology_aware_shared_variable_update"
+
+fe_accounting:
+  FE_total: 0
+  inherited_stage8_9_FE_total: 0
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

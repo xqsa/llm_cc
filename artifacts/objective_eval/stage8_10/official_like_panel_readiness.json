@@ -1,0 +1,16 @@
+{
+  "allowed_later_claim_tier": "T1_or_T2_only_after_panel",
+  "blocking_reason": "method has not beaten the best simple baseline on the locked synthetic panel",
+  "full_sota_claim_ready": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_ready": false,
+  "official_like_panel_ready": "partial",
+  "recommended_precondition": "Stage 8.11 should first produce positive wins over the best simple baseline under the same FE budget.",
+  "run_official_like_panel_now": false,
+  "schema_version": "loco.stage8_10_official_like_panel_readiness.v1",
+  "sota_claim_ready": false,
+  "source_stage": "8.9",
+  "stage": "8.10",
+  "status": "PASS"
+}

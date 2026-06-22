@@ -1,0 +1,31 @@
+{
+  "best_baseline_beaten": false,
+  "claim_contract_tiers_available": [
+    "T0",
+    "T1",
+    "T2",
+    "T3"
+  ],
+  "conditional_vs_best_baseline": {
+    "loss": 0,
+    "tie": 36,
+    "win": 0
+  },
+  "current_frontier": "matches_best_simple_baseline",
+  "full_cec2013_sota_claim_allowed_now": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_function_count": 15,
+  "official_max_fe": 3000000,
+  "official_run_count": 25,
+  "reason": "A method that only ties the best simple baseline on the locked synthetic panel is not ready for official/SOTA claims.",
+  "reported_results_background_only_count": 1,
+  "reported_results_direct_comparator_count": 1,
+  "schema_version": "loco.stage8_10_sota_gap_report.v1",
+  "sota_gap": "does_not_beat_best_simple_baseline",
+  "source_stage": "8.9",
+  "stage": "8.10",
+  "stage8_9_negative_boundary": "conditional policy matches but does not beat the best simple baseline; not final performance and not SOTA",
+  "stage8_9_positive_utility": true,
+  "status": "PASS"
+}

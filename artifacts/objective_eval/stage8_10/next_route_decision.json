@@ -1,0 +1,16 @@
+{
+  "allowed_next_work": "policy_generalization_beyond_best_simple_baseline",
+  "decision": "READY_FOR_STAGE8_11_POLICY_GENERALIZATION",
+  "decision_reason": "Stage 8.9 shows bounded synthetic utility but no win over the best simple baseline, so official-like evaluation is not the best next SOTA-targeted move.",
+  "next_stage": "Stage 8.11",
+  "not_performance_claim": true,
+  "run_official_like_panel_now": false,
+  "run_policy_generalization_next": true,
+  "schema_version": "loco.stage8_10_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.10",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

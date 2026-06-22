@@ -1,0 +1,31 @@
+{
+  "maximum_vs_best_baseline_loss_count": 0,
+  "minimum_vs_best_baseline_win_count": 3,
+  "must_exceed_switching_policy": true,
+  "must_keep_same_fe_budget": true,
+  "must_not_modify_baseopt": true,
+  "must_not_use_test_feedback": true,
+  "must_not_use_validation_feedback": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "required_capabilities": [
+    "adaptive_robust_aggregation",
+    "conflict_aware_shrinkage",
+    "outlier_proposal_rejection",
+    "reliability_calibrated_consensus",
+    "topology_aware_shared_variable_update"
+  ],
+  "required_evidence": [
+    "win_count_vs_best_simple_baseline_positive",
+    "loss_count_vs_best_simple_baseline_zero_or_failure_honest",
+    "same_budget_fe_ledger",
+    "no_baseopt_modification",
+    "no_validation_or_test_feedback"
+  ],
+  "schema_version": "loco.stage8_10_policy_generalization_requirements.v1",
+  "source_stage": "8.9",
+  "stage": "8.10",
+  "status": "PASS",
+  "target_stage": "Stage 8.11",
+  "target_work": "policy_generalization_beyond_best_simple_baseline"
+}
