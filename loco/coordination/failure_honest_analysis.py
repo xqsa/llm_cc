@@ -133,14 +133,23 @@ def _build_case_diagnosis_rows(
                 "problem_dimension": dimension,
                 "seed": seed,
                 "selected_operator_final_best": selected_final,
-                "weighted_consensus_final_best": float(weighted_series[-1]["best_objective_so_far"]),
-                "simple_consensus_final_best": float(simple_series[-1]["best_objective_so_far"]),
-                "frozen_stage5_final_best": float(frozen_series[-1]["best_objective_so_far"]),
+                "weighted_consensus_final_best": float(
+                    weighted_series[-1]["best_objective_so_far"]
+                ),
+                "simple_consensus_final_best": float(
+                    simple_series[-1]["best_objective_so_far"]
+                ),
+                "frozen_stage5_final_best": float(
+                    frozen_series[-1]["best_objective_so_far"]
+                ),
                 "best_baseline_method": best_baseline,
                 "selected_vs_frozen_delta": round(selected_vs_frozen_delta, 12),
                 "selected_vs_best_baseline_delta": round(selected_vs_best_delta, 12),
                 "selected_weighted_final_best_abs_delta": round(
-                    abs(selected_final - float(weighted_series[-1]["best_objective_so_far"])),
+                    abs(
+                        selected_final
+                        - float(weighted_series[-1]["best_objective_so_far"])
+                    ),
                     12,
                 ),
                 "selected_weighted_update_size_max_abs_delta": _max_abs_delta(
@@ -259,7 +268,9 @@ def _build_topology_report(case_rows: Sequence[Mapping[str, Any]]) -> dict[str, 
         "selected_tie_to_best_baseline_case_count": len(tie_rows),
         "loss_panels": _count_by(row["synthetic_panel"] for row in loss_rows),
         "loss_seeds": _count_by(str(row["seed"]) for row in loss_rows),
-        "loss_dimensions": _count_by(str(row["problem_dimension"]) for row in loss_rows),
+        "loss_dimensions": _count_by(
+            str(row["problem_dimension"]) for row in loss_rows
+        ),
         "loss_best_baseline_methods": _count_by(
             row["best_baseline_method"] for row in loss_rows
         ),
@@ -372,7 +383,9 @@ def _build_diagnosis_report(
         "source_stage": "8.4",
         "analysis_scope": "failure_honest_stage8_4_analysis",
         "selected_candidate_id": str(panel_report["selected_candidate_id"]),
-        "previous_frozen_candidate_id": str(panel_report["previous_frozen_candidate_id"]),
+        "previous_frozen_candidate_id": str(
+            panel_report["previous_frozen_candidate_id"]
+        ),
         "stage8_4_trace_row_count": len(trace_rows),
         "comparison_case_count": int(win_loss["comparison_case_count"]),
         "vs_frozen_stage5": dict(win_loss["vs_frozen_stage5"]),
@@ -452,7 +465,10 @@ def _max_abs(values: Iterable[float]) -> float:
 
 def _max_abs_delta(left: Iterable[Any], right: Iterable[Any]) -> float:
     return round(
-        max(abs(float(left_value) - float(right_value)) for left_value, right_value in zip(left, right)),
+        max(
+            abs(float(left_value) - float(right_value))
+            for left_value, right_value in zip(left, right)
+        ),
         12,
     )
 

@@ -113,12 +113,16 @@ def run_stage8_4_large_scale_objective_panel(
     )
 
     selected_candidate_id = str(stage8_3_decision["selected_candidate_id"])
-    previous_frozen_candidate_id = str(stage8_3_decision["previous_frozen_candidate_id"])
+    previous_frozen_candidate_id = str(
+        stage8_3_decision["previous_frozen_candidate_id"]
+    )
     selected_candidate = _load_frozen_candidate(selected_candidate_id)
     selected_variable = int(frozen_stage5_operator["target_variable_set"][0])
     _validate_selected_candidate(selected_candidate, selected_variable)
 
-    frozen_stage5_runtime = FrozenASTRuntime(load_coordination_ast(frozen_stage5_ast_payload))
+    frozen_stage5_runtime = FrozenASTRuntime(
+        load_coordination_ast(frozen_stage5_ast_payload)
+    )
     stage8_3_runtime = FrozenASTRuntime(
         load_coordination_ast(selected_candidate["llm_candidate_payload"]["ast"])
     )
@@ -211,16 +215,17 @@ def _validate_inputs(
 
     if frozen_stage5_operator.get("stage") != "5.1":
         raise ValueError("Stage 8.4 requires the frozen Stage 5.1 operator.")
-    if (
-        frozen_stage5_operator.get("candidate_id")
-        != stage8_3_decision.get("previous_frozen_candidate_id")
+    if frozen_stage5_operator.get("candidate_id") != stage8_3_decision.get(
+        "previous_frozen_candidate_id"
     ):
         raise ValueError("Stage 5.1 operator must match Stage 8.3 previous frozen id.")
-    if frozen_stage5_operator.get("freeze_status") != "FROZEN_FOR_SEALED_TEST_NOT_FINAL":
-        raise ValueError("Stage 8.4 requires the frozen Stage 5.1 operator.")
     if (
-        frozen_stage5_ast_payload.get("operator_id")
-        != frozen_stage5_operator.get("candidate_id")
+        frozen_stage5_operator.get("freeze_status")
+        != "FROZEN_FOR_SEALED_TEST_NOT_FINAL"
+    ):
+        raise ValueError("Stage 8.4 requires the frozen Stage 5.1 operator.")
+    if frozen_stage5_ast_payload.get("operator_id") != frozen_stage5_operator.get(
+        "candidate_id"
     ):
         raise ValueError("Frozen Stage 5.1 AST does not match selected operator.")
     if frozen_stage5_operator.get("not_performance_claim") is not True:

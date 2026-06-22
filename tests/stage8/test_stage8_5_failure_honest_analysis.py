@@ -116,14 +116,25 @@ def test_stage8_5_analyzes_why_selected_operator_does_not_beat_best_baseline(
 
     assert len(case_rows) == 36
     assert all(row["stage"] == "8.5" for row in case_rows)
-    assert all(row["diagnosis"] in {
-        "selected_ties_weighted_consensus_best_baseline",
-        "simple_consensus_beats_selected_operator",
-    } for row in case_rows)
-    assert sum(
-        1 for row in case_rows if row["diagnosis"] == "simple_consensus_beats_selected_operator"
-    ) == 12
-    assert all(row["objective_evaluation_used_in_stage8_5"] is False for row in case_rows)
+    assert all(
+        row["diagnosis"]
+        in {
+            "selected_ties_weighted_consensus_best_baseline",
+            "simple_consensus_beats_selected_operator",
+        }
+        for row in case_rows
+    )
+    assert (
+        sum(
+            1
+            for row in case_rows
+            if row["diagnosis"] == "simple_consensus_beats_selected_operator"
+        )
+        == 12
+    )
+    assert all(
+        row["objective_evaluation_used_in_stage8_5"] is False for row in case_rows
+    )
 
     assert ledger["stage"] == "8.5"
     assert ledger["status"] == "PASS"
@@ -181,8 +192,13 @@ def test_stage8_5_committed_artifacts_docs_and_readme_record_failure_honesty() -
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.5" in combined
-    assert "Stage 8.5    failure-honest analysis of Stage 8.4 gaps                PASS" in combined
-    assert "selected operator is numerically equivalent to weighted_consensus" in combined
+    assert (
+        "Stage 8.5    failure-honest analysis of Stage 8.4 gaps                PASS"
+        in combined
+    )
+    assert (
+        "selected operator is numerically equivalent to weighted_consensus" in combined
+    )
     assert "simple_consensus beats it on 12 cases" in combined
     assert "wins the old frozen operator by removing the projection penalty" in combined
     assert "FE_total = 0" in combined

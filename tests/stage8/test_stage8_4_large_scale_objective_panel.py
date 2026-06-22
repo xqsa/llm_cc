@@ -87,7 +87,9 @@ def test_stage8_4_runs_large_scale_objective_panel(tmp_path) -> None:
     assert report["win_loss_report_written"] is True
     assert report["same_budget_across_methods"] is True
     assert report["objective_benchmark_run"] is False
-    assert report["next_status"] == "READY_FOR_STAGE8_5_OFFICIAL_OR_PAPER_PANEL_DECISION"
+    assert (
+        report["next_status"] == "READY_FOR_STAGE8_5_OFFICIAL_OR_PAPER_PANEL_DECISION"
+    )
 
     for flag in [
         "llm_call_used",
@@ -131,8 +133,7 @@ def test_stage8_4_runs_large_scale_objective_panel(tmp_path) -> None:
     assert all(row["selected_operator_revision_used"] is False for row in trace_rows)
     assert all(row["test_feedback_used"] is False for row in trace_rows)
     assert all(
-        row["reported_results_used_as_runtime_feedback"] is False
-        for row in trace_rows
+        row["reported_results_used_as_runtime_feedback"] is False for row in trace_rows
     )
 
     selected_rows = [
@@ -215,7 +216,9 @@ def test_stage8_4_runs_large_scale_objective_panel(tmp_path) -> None:
     assert boundary["forbidden_behaviors"]["test_feedback"] is False
     assert boundary["forbidden_behaviors"]["baseopt_modification"] is False
     assert "SOTA improvement" in boundary["forbidden_claims"]
-    assert "final objective-value performance improvement" in boundary["forbidden_claims"]
+    assert (
+        "final objective-value performance improvement" in boundary["forbidden_claims"]
+    )
 
 
 def test_stage8_4_committed_artifacts_and_docs_record_panel_boundary() -> None:
@@ -263,7 +266,10 @@ def test_stage8_4_committed_artifacts_and_docs_record_panel_boundary() -> None:
     )
     assert "Stage 8.4" in combined
     assert "large-scale objective panel evaluation" in combined
-    assert "Stage 8.4    large-scale objective panel evaluation                  PASS" in combined
+    assert (
+        "Stage 8.4    large-scale objective panel evaluation                  PASS"
+        in combined
+    )
     assert "stage3_5_batch_1_reweighting_repair" in combined
     assert "frozen Stage 5.1 operator" in combined
     assert "win/loss report" in combined

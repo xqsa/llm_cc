@@ -41,7 +41,9 @@ def run_stage8_7_conditional_policy_ablation(
     stage8_6_summary = _read_json(Path(stage8_6_summary_path))
     operator_report = _read_json(Path(stage8_6_operator_report_path))
     proposal_report = _read_json(Path(stage8_6_proposal_report_path))
-    _validate_inputs(source_case_rows, stage8_6_summary, operator_report, proposal_report)
+    _validate_inputs(
+        source_case_rows, stage8_6_summary, operator_report, proposal_report
+    )
 
     case_rows = [_build_case_policy_row(row) for row in source_case_rows]
     policy_report = _build_policy_report(case_rows)
@@ -174,12 +176,22 @@ def _policy_action(*, overlap_degree: str, reward_reliability: str) -> str:
 
 
 def _build_policy_report(case_rows: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
-    switch_count = sum(row["policy_action"] == "use_simple_consensus" for row in case_rows)
-    keep_count = sum(row["policy_action"] == "keep_weighted_consensus" for row in case_rows)
-    simple_count = sum(row["source_regime"] == "simple_consensus_preferred" for row in case_rows)
-    weighted_count = sum(row["source_regime"] == "weighted_consensus_sufficient" for row in case_rows)
+    switch_count = sum(
+        row["policy_action"] == "use_simple_consensus" for row in case_rows
+    )
+    keep_count = sum(
+        row["policy_action"] == "keep_weighted_consensus" for row in case_rows
+    )
+    simple_count = sum(
+        row["source_regime"] == "simple_consensus_preferred" for row in case_rows
+    )
+    weighted_count = sum(
+        row["source_regime"] == "weighted_consensus_sufficient" for row in case_rows
+    )
     recovery_count = sum(row["recovered_simple_preferred_regime"] for row in case_rows)
-    regression_count = sum(row["regressed_weighted_sufficient_regime"] for row in case_rows)
+    regression_count = sum(
+        row["regressed_weighted_sufficient_regime"] for row in case_rows
+    )
     not_weighted = switch_count > 0
     not_simple = keep_count > 0
     return {
@@ -225,7 +237,9 @@ def _build_feature_report(case_rows: Sequence[Mapping[str, Any]]) -> dict[str, A
             "selected_minus_simple_mean_update_size",
         ],
         "low_overlap_case_count": _count_value(case_rows, "overlap_degree", "low"),
-        "medium_overlap_case_count": _count_value(case_rows, "overlap_degree", "medium"),
+        "medium_overlap_case_count": _count_value(
+            case_rows, "overlap_degree", "medium"
+        ),
         "high_overlap_case_count": _count_value(case_rows, "overlap_degree", "high"),
         "conflicting_overlap_case_count": _count_value(
             case_rows, "overlap_degree", "conflicting"
@@ -310,11 +324,13 @@ def _build_route(policy_report: Mapping[str, Any]) -> dict[str, Any]:
             else "BLOCK_OBJECTIVE_RERUN_AND_REVISE_POLICY"
         ),
         "decision_reason": (
-            "Stage 8.7 recovers all simple-preferred regimes, preserves all "
-            "weighted-sufficient regimes, and is not equivalent to weighted_consensus."
-        )
-        if gate_passed
-        else "Stage 8.7 did not pass the family-collapse gate.",
+            (
+                "Stage 8.7 recovers all simple-preferred regimes, preserves all "
+                "weighted-sufficient regimes, and is not equivalent to weighted_consensus."
+            )
+            if gate_passed
+            else "Stage 8.7 did not pass the family-collapse gate."
+        ),
         "next_stage": "Stage 8.8" if gate_passed else "Stage 8.7 revision",
         "allowed_next_work": (
             "objective_loop_rerun_for_conditional_policy"

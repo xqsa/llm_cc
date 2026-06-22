@@ -167,7 +167,8 @@ def _build_case_rows(
                 "selected_weighted_update_size_abs_delta": selected_weighted_update_delta,
                 "selected_minus_simple_mean_update_size": selected_simple_update_delta,
                 "projection_penalty_removed": selected_minus_frozen < -TIE_EPSILON,
-                "best_reward_oversteps_selected": selected_minus_best_reward < -TIE_EPSILON,
+                "best_reward_oversteps_selected": selected_minus_best_reward
+                < -TIE_EPSILON,
                 "objective_evaluation_used_in_stage8_6": False,
                 "not_final_performance_claim": True,
             }
@@ -214,7 +215,8 @@ def _build_operator_family_report(
         and _max_abs(selected_weighted_final_deltas) <= TIE_EPSILON,
         "projection_penalty_case_count": projection_penalty_case_count,
         "best_reward_select_overstep_case_count": best_reward_overstep_case_count,
-        "best_reward_select_overstep_confirmed": best_reward_overstep_case_count == len(case_rows),
+        "best_reward_select_overstep_confirmed": best_reward_overstep_case_count
+        == len(case_rows),
         "operator_family_diagnosis": (
             "operator-family collapse to weighted_consensus; projection removal "
             "helps against the old frozen operator but does not add a new family."
@@ -229,7 +231,9 @@ def _build_operator_family_report(
 def _build_proposal_state_report(
     case_rows: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
-    loss_rows = [row for row in case_rows if row["regime"] == "simple_consensus_preferred"]
+    loss_rows = [
+        row for row in case_rows if row["regime"] == "simple_consensus_preferred"
+    ]
     weighted_rows = [
         row for row in case_rows if row["regime"] == "weighted_consensus_sufficient"
     ]
@@ -242,7 +246,9 @@ def _build_proposal_state_report(
         "weighted_sufficient_case_count": len(weighted_rows),
         "loss_panels": _count_by(row["synthetic_panel"] for row in loss_rows),
         "loss_seeds": _count_by(str(row["seed"]) for row in loss_rows),
-        "loss_dimensions": _count_by(str(row["problem_dimension"]) for row in loss_rows),
+        "loss_dimensions": _count_by(
+            str(row["problem_dimension"]) for row in loss_rows
+        ),
         "loss_best_baseline_methods": _count_by(
             row["best_baseline_method"] for row in loss_rows
         ),
@@ -373,9 +379,7 @@ def _build_summary(
         "operator_family_collapse_confirmed": bool(
             operator_report["selected_weighted_family_collapse_confirmed"]
         ),
-        "proposal_state_gap_confirmed": int(
-            proposal_report["loss_regime_case_count"]
-        )
+        "proposal_state_gap_confirmed": int(proposal_report["loss_regime_case_count"])
         > 0,
         "official_claim_blocked": True,
         "recommended_next_stage": (

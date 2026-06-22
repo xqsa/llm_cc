@@ -19,7 +19,9 @@ CASE_TABLE = OUTPUT_DIR / "ablation_case_table.jsonl"
 FE_LEDGER = OUTPUT_DIR / "fe_ledger.json"
 RUNTIME_BOUNDARY = OUTPUT_DIR / "runtime_boundary.json"
 ROUTE = OUTPUT_DIR / "next_route_decision.json"
-STAGE_DOC = ROOT / "docs" / "stage8" / "stage8_6_proposal_state_operator_family_ablation.md"
+STAGE_DOC = (
+    ROOT / "docs" / "stage8" / "stage8_6_proposal_state_operator_family_ablation.md"
+)
 SELF_CHECK = ROOT / "docs" / "stage8" / "stage8_6_self_check_report.md"
 README = ROOT / "README.md"
 
@@ -119,9 +121,15 @@ def test_stage8_6_runs_proposal_state_operator_family_ablation(tmp_path) -> None
     assert len(case_rows) == 36
     assert all(row["stage"] == "8.6" for row in case_rows)
     assert sum(row["regime"] == "simple_consensus_preferred" for row in case_rows) == 12
-    assert sum(row["regime"] == "weighted_consensus_sufficient" for row in case_rows) == 24
-    assert all(row["objective_evaluation_used_in_stage8_6"] is False for row in case_rows)
-    assert all(row["selected_weighted_coord_value_abs_delta"] == 0.0 for row in case_rows)
+    assert (
+        sum(row["regime"] == "weighted_consensus_sufficient" for row in case_rows) == 24
+    )
+    assert all(
+        row["objective_evaluation_used_in_stage8_6"] is False for row in case_rows
+    )
+    assert all(
+        row["selected_weighted_coord_value_abs_delta"] == 0.0 for row in case_rows
+    )
 
     assert ledger["stage"] == "8.6"
     assert ledger["status"] == "PASS"
@@ -144,7 +152,9 @@ def test_stage8_6_runs_proposal_state_operator_family_ablation(tmp_path) -> None
     assert route["use_test_feedback"] is False
 
 
-def test_stage8_6_committed_artifacts_docs_and_readme_record_ablation_boundary() -> None:
+def test_stage8_6_committed_artifacts_docs_and_readme_record_ablation_boundary() -> (
+    None
+):
     required = [
         CONFIG,
         ABLATION_SUMMARY,
@@ -178,7 +188,10 @@ def test_stage8_6_committed_artifacts_docs_and_readme_record_ablation_boundary()
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.6" in combined
-    assert "Stage 8.6    proposal-state/operator-family ablation                  PASS" in combined
+    assert (
+        "Stage 8.6    proposal-state/operator-family ablation                  PASS"
+        in combined
+    )
     assert "operator-family collapse to weighted_consensus" in combined
     assert "simple_consensus is needed in 12 high/medium-overlap cases" in combined
     assert "FE_total = 0" in combined

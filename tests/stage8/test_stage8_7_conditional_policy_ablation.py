@@ -110,8 +110,13 @@ def test_stage8_7_recovers_simple_regimes_without_weighted_collapse(tmp_path) ->
 
     assert len(case_rows) == 36
     assert all(row["stage"] == "8.7" for row in case_rows)
-    assert sum(row["policy_action"] == "use_simple_consensus" for row in case_rows) == 12
-    assert sum(row["policy_action"] == "keep_weighted_consensus" for row in case_rows) == 24
+    assert (
+        sum(row["policy_action"] == "use_simple_consensus" for row in case_rows) == 12
+    )
+    assert (
+        sum(row["policy_action"] == "keep_weighted_consensus" for row in case_rows)
+        == 24
+    )
     assert all(
         row["policy_action"] == "use_simple_consensus"
         for row in case_rows
@@ -122,7 +127,9 @@ def test_stage8_7_recovers_simple_regimes_without_weighted_collapse(tmp_path) ->
         for row in case_rows
         if row["source_regime"] == "weighted_consensus_sufficient"
     )
-    assert all(row["objective_evaluation_used_in_stage8_7"] is False for row in case_rows)
+    assert all(
+        row["objective_evaluation_used_in_stage8_7"] is False for row in case_rows
+    )
 
     assert ledger["stage"] == "8.7"
     assert ledger["status"] == "PASS"
@@ -180,7 +187,10 @@ def test_stage8_7_committed_artifacts_docs_and_readme_record_policy_boundary() -
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.7" in combined
-    assert "Stage 8.7    conditional proposal-state policy ablation                PASS" in combined
+    assert (
+        "Stage 8.7    conditional proposal-state policy ablation                PASS"
+        in combined
+    )
     assert "overlap/reward-reliability aware conditional policy" in combined
     assert "simple_preferred_regime_recovery_count = 12" in combined
     assert "weighted_sufficient_regression_count = 0" in combined
