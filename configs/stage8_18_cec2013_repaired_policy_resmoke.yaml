@@ -1,0 +1,70 @@
+stage: "8.18"
+name: "CEC2013 F13/F14 Repaired-policy Re-smoke"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Re-run a bounded CEC2013 F13/F14 single-seed smoke with reward_trust_gated_coordination_v1 before any full 25-run panel."
+  runner: "loco.coordination.cec2013_repaired_policy_resmoke"
+  cli_entrypoint: "scripts/stage8/run_stage8_18_cec2013_repaired_policy_resmoke.py"
+  repaired_policy_resmoke: true
+  objective_loop_executed: true
+  new_objective_evaluation_used: true
+  official_cec2013_panel_run: false
+  not_full_25_run_panel: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_17_objective_check_report: "artifacts/objective_eval/stage8_17/objective_check_report.json"
+  stage8_17_win_loss_report: "artifacts/objective_eval/stage8_17/win_loss_report.json"
+  stage8_17_policy_branch_report: "artifacts/objective_eval/stage8_17/policy_branch_report.json"
+  stage8_17_fe_ledger: "artifacts/objective_eval/stage8_17/fe_ledger.json"
+  stage8_17_runtime_boundary: "artifacts/objective_eval/stage8_17/runtime_boundary.json"
+  stage8_17_next_route_decision: "artifacts/objective_eval/stage8_17/next_route_decision.json"
+
+resmoke_contract:
+  benchmark_suite: "CEC2013_LSGO"
+  function_ids:
+    - "F13"
+    - "F14"
+  run_count: 1
+  smoke_seed: 0
+  smoke_max_fe_per_method_per_function: 1200
+  repair_policy_name: "reward_trust_gated_coordination_v1"
+  method_count: 6
+  methods:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "stage8_11_generalized_policy"
+    - "stage8_16_reward_trust_gated_policy"
+
+success_gate:
+  repaired_vs_stage8_11_generalized_policy_max_loss: 0
+  repaired_vs_best_reward_select_max_loss: 0
+  require_trust_best_reward_exercised: true
+  run_full_25_run_panel_next: false
+  next_stage: "Stage 8.19"
+  allowed_next_work: "cec2013_f13_f14_repaired_policy_multiseed_pilot"
+
+fe_accounting:
+  count_all_extra_fe: true
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new LLM candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no full 25-run panel"
+  - "no full F1-F15 panel"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

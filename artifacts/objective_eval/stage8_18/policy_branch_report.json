@@ -1,0 +1,17 @@
+{
+  "branch_counts": {
+    "shrinkage_repair": 0,
+    "simple_safety": 0,
+    "trust_best_reward": 2400,
+    "weighted_safety": 0
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_trace_row_count": 2400,
+  "repair_policy_name": "reward_trust_gated_coordination_v1",
+  "schema_version": "loco.stage8_18_policy_branch_report.v1",
+  "source_stage": "8.17",
+  "stage": "8.18",
+  "status": "PASS",
+  "trust_best_reward_exercised": true
+}

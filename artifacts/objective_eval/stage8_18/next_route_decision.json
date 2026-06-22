@@ -1,0 +1,16 @@
+{
+  "allowed_next_work": "cec2013_f13_f14_repaired_policy_multiseed_pilot",
+  "decision": "PROMISING_RESMOKE_ROUTE_TO_CEC2013_MULTISEED_PILOT",
+  "decision_reason": "Stage 8.18 reran the CEC2013 F13/F14 smoke with the repaired reward-trust policy before any full 25-run panel.",
+  "next_stage": "Stage 8.19",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "run_multiseed_pilot_next": true,
+  "schema_version": "loco.stage8_18_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.18",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

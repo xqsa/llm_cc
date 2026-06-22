@@ -1,0 +1,65 @@
+{
+  "baseline_comparison_made": true,
+  "benchmark_suite": "CEC2013_LSGO",
+  "case_rows": [
+    {
+      "best_baseline_final_best": 8.714428967708853e+16,
+      "best_baseline_method": "best_reward_select",
+      "best_reward_select_final_best": 8.714428967708853e+16,
+      "function_id": "F13",
+      "repair_policy_name": "reward_trust_gated_coordination_v1",
+      "repaired_policy_final_best": 8.714428967708853e+16,
+      "repaired_vs_best_baseline_delta": 0.0,
+      "repaired_vs_best_baseline_result": "tie",
+      "repaired_vs_best_reward_select_delta": 0.0,
+      "repaired_vs_best_reward_select_result": "tie",
+      "repaired_vs_stage8_11_generalized_policy_delta": -21302277879232.0,
+      "repaired_vs_stage8_11_generalized_policy_result": "win",
+      "run_index": 1,
+      "seed": 0,
+      "stage8_11_generalized_policy_final_best": 8.716559195496776e+16
+    },
+    {
+      "best_baseline_final_best": 5.074322565106659e+18,
+      "best_baseline_method": "best_reward_select",
+      "best_reward_select_final_best": 5.074322565106659e+18,
+      "function_id": "F14",
+      "repair_policy_name": "reward_trust_gated_coordination_v1",
+      "repaired_policy_final_best": 5.074322565106659e+18,
+      "repaired_vs_best_baseline_delta": 0.0,
+      "repaired_vs_best_baseline_result": "tie",
+      "repaired_vs_best_reward_select_delta": 0.0,
+      "repaired_vs_best_reward_select_result": "tie",
+      "repaired_vs_stage8_11_generalized_policy_delta": -243274496000.0,
+      "repaired_vs_stage8_11_generalized_policy_result": "win",
+      "run_index": 1,
+      "seed": 0,
+      "stage8_11_generalized_policy_final_best": 5.074322808381155e+18
+    }
+  ],
+  "comparison_case_count": 2,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "promising_delta_threshold": 0.0,
+  "repaired_policy_resmoke_promising": true,
+  "repaired_vs_best_baseline": {
+    "loss": 0,
+    "tie": 2,
+    "win": 0
+  },
+  "repaired_vs_best_reward_select": {
+    "loss": 0,
+    "tie": 2,
+    "win": 0
+  },
+  "repaired_vs_stage8_11_generalized_policy": {
+    "loss": 0,
+    "tie": 0,
+    "win": 2
+  },
+  "run_count": 1,
+  "schema_version": "loco.stage8_18_win_loss_report.v1",
+  "source_stage": "8.17",
+  "stage": "8.18",
+  "status": "PASS"
+}

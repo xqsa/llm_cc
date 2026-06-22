@@ -1,0 +1,71 @@
+{
+  "FE_global_objective": 14412,
+  "FE_total": 28812,
+  "baseline_comparison_made": true,
+  "baseopt_modified": false,
+  "benchmark_suite": "CEC2013_LSGO",
+  "comparison_case_count": 2,
+  "controller_scheduler_generation_used": false,
+  "evolution_search_used": false,
+  "function_count": 2,
+  "function_ids": [
+    "F13",
+    "F14"
+  ],
+  "llm_call_used": false,
+  "method_count": 6,
+  "method_names": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "stage8_11_generalized_policy",
+    "stage8_16_reward_trust_gated_policy"
+  ],
+  "new_llm_candidate_generation_used": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_full_25_run_panel": true,
+  "not_full_f1_f15_panel": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "official_cec2013_problem_loaded": true,
+  "optimizer_generation_used": false,
+  "policy_branch_report_written": true,
+  "recommended_next_stage": "Stage 8.19",
+  "recommended_next_work": "cec2013_f13_f14_repaired_policy_multiseed_pilot",
+  "repair_policy_name": "reward_trust_gated_coordination_v1",
+  "repaired_policy_resmoke_promising": true,
+  "repaired_vs_best_baseline": {
+    "loss": 0,
+    "tie": 2,
+    "win": 0
+  },
+  "repaired_vs_best_reward_select": {
+    "loss": 0,
+    "tie": 2,
+    "win": 0
+  },
+  "repaired_vs_stage8_11_generalized_policy": {
+    "loss": 0,
+    "tie": 0,
+    "win": 2
+  },
+  "reported_results_used_as_runtime_feedback": false,
+  "resmoke_scope": "cec2013_f13_f14_repaired_policy_resmoke",
+  "run_count": 1,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_18_repaired_policy_resmoke_report.v1",
+  "selected_operator_revision_used": false,
+  "single_run_resmoke_executed": true,
+  "smoke_max_fe_per_method_per_function": 1200,
+  "smoke_seed": 0,
+  "source_stage": "8.17",
+  "stage": "8.18",
+  "stage8_18_route_decision": "PROMISING_RESMOKE_ROUTE_TO_CEC2013_MULTISEED_PILOT",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "trace_row_count": 14400,
+  "trust_best_reward_branch_count": 2400,
+  "validation_feedback_used": false
+}

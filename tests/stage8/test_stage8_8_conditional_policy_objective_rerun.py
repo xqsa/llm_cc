@@ -303,7 +303,7 @@ def test_stage8_8_committed_artifacts_docs_and_readme_record_objective_rerun() -
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.8" in combined
-    assert "Current repository state: `Stage 8.17 PASS`" in combined
+    assert "Current repository state: `Stage 8.18 PASS`" in combined
     assert (
         "Stage 8.8    objective-loop rerun for conditional policy               PASS"
         in combined
