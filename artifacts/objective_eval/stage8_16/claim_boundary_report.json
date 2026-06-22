@@ -1,0 +1,21 @@
+{
+  "allowed_claim": "Stage 8.16 adds a train-side reward-reliability alignment gate and a repair candidate for later bounded objective checking.",
+  "claim_scope": "train-side proposal/policy alignment repair candidate",
+  "final_performance_claim_allowed": false,
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "full 25-run CEC2013 result",
+    "policy selected for official panel",
+    "CEC2013 performance repair success"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_allowed": false,
+  "policy_selected_for_official_panel": false,
+  "schema_version": "loco.stage8_16_claim_boundary_report.v1",
+  "sota_claim_allowed": false,
+  "source_stage": "8.15",
+  "stage": "8.16",
+  "status": "PASS"
+}

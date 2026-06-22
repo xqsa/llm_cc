@@ -1,0 +1,34 @@
+{
+  "claim_scope": "train-side reward-reliability repair candidate",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_llm_candidate_generation": false,
+    "new_objective_evaluation": false,
+    "objective_loop_execution": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_operator_revision": false,
+    "stage8_14_direct_tuning_feedback": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "legal_inputs": [
+    "artifacts/objective_eval/stage8_15/diagnosis_report.json",
+    "artifacts/objective_eval/stage8_15/method_gap_report.json",
+    "artifacts/objective_eval/stage8_15/branch_diagnostics.json",
+    "artifacts/objective_eval/stage8_15/root_cause_hypotheses.json",
+    "artifacts/objective_eval/stage8_15/fe_ledger.json",
+    "artifacts/objective_eval/stage8_15/runtime_boundary.json",
+    "artifacts/objective_eval/stage8_15/next_route_decision.json"
+  ],
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_16_runtime_boundary.v1",
+  "stage": "8.16",
+  "status": "PASS"
+}

@@ -1,0 +1,71 @@
+stage: "8.16"
+name: "Train-side Proposal/Policy Alignment Repair"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Add a train-side reward-reliability gate so shared-variable coordination can decide when to trust best-reward proposals and when to fall back to consensus/weighted/shrinkage repair."
+  runner: "loco.coordination.train_side_proposal_policy_alignment_repair"
+  cli_entrypoint: "scripts/stage8/run_stage8_16_train_side_proposal_policy_alignment_repair.py"
+  train_side_repair_candidate: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  selected_operator_revision_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_15_diagnosis_report: "artifacts/objective_eval/stage8_15/diagnosis_report.json"
+  stage8_15_method_gap_report: "artifacts/objective_eval/stage8_15/method_gap_report.json"
+  stage8_15_branch_diagnostics: "artifacts/objective_eval/stage8_15/branch_diagnostics.json"
+  stage8_15_root_cause_hypotheses: "artifacts/objective_eval/stage8_15/root_cause_hypotheses.json"
+  stage8_15_fe_ledger: "artifacts/objective_eval/stage8_15/fe_ledger.json"
+  stage8_15_runtime_boundary: "artifacts/objective_eval/stage8_15/runtime_boundary.json"
+  stage8_15_next_route_decision: "artifacts/objective_eval/stage8_15/next_route_decision.json"
+
+repair_contract:
+  source_failure_mode: "best_reward_select_alignment_gap"
+  repair_policy_name: "reward_trust_gated_coordination_v1"
+  repair_scope: "shared-variable proposal conflict coordination only"
+  adds_reward_reliability_features: true
+  adds_policy_alignment_gate: true
+  stage8_14_smoke_used_as_direct_tuning_feedback: false
+  official_cec2013_feedback_used_for_tuning: false
+  full_25_run_panel_blocked: true
+  next_stage: "Stage 8.17"
+  allowed_next_work: "bounded_train_side_repaired_policy_objective_check"
+
+reward_reliability_features:
+  - "reward_top_margin"
+  - "reward_concentration"
+  - "best_reward_direction_agreement"
+  - "best_reward_value_outlier_score"
+  - "best_reward_update_fraction"
+
+policy_branches:
+  - "trust_best_reward"
+  - "weighted_safety"
+  - "simple_safety"
+  - "shrinkage_repair"
+
+fe_accounting:
+  stage8_16_FE_total: 0
+  inherited_stage8_15_FE_total: 0
+  inherited_stage8_14_FE_total: 24010
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new LLM candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no Stage 8.14 direct policy-tuning feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a full 25-run panel"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

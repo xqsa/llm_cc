@@ -164,7 +164,7 @@ def test_stage8_15_committed_artifacts_docs_and_readme_record_diagnosis() -> Non
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.15 PASS`" in combined
+    assert "Current repository state: `Stage 8.16 PASS`" in combined
     assert "Stage 8.15   failure-honest CEC2013 smoke diagnosis" in combined
     assert "best_reward_select_alignment_gap" in combined
     assert "FE_total = 0" in combined

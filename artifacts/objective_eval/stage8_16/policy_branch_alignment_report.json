@@ -1,0 +1,156 @@
+{
+  "best_reward_alignment_gap_addressed": true,
+  "branch_counts": {
+    "shrinkage_repair": 1,
+    "simple_safety": 2,
+    "trust_best_reward": 1,
+    "weighted_safety": 1
+  },
+  "fallback_case_count": 4,
+  "fixture_rows": [
+    {
+      "best_reward_trustworthy": true,
+      "best_reward_value": 6.0,
+      "coordinated_value": 6.0,
+      "fallback_operator": null,
+      "features": {
+        "best_reward": 0.95,
+        "best_reward_direction_agreement": 1.0,
+        "best_reward_index": 0,
+        "best_reward_trustworthy": true,
+        "best_reward_update_fraction": 0.02,
+        "best_reward_value": 6.0,
+        "best_reward_value_outlier_score": 0.01,
+        "reward_concentration": 0.434541079096,
+        "reward_top_margin": 0.41,
+        "trust_thresholds": {
+          "concentration_threshold": 0.4,
+          "direction_agreement_threshold": 0.6666666666666666,
+          "outlier_threshold": 1.35,
+          "top_margin_threshold": 0.12,
+          "update_fraction_threshold": 0.75
+        }
+      },
+      "fixture_name": "trusted_best_reward_margin_aligned",
+      "policy_branch": "trust_best_reward"
+    },
+    {
+      "best_reward_trustworthy": false,
+      "best_reward_value": -95.0,
+      "coordinated_value": -25.833333333333332,
+      "fallback_operator": "AverageConsensus",
+      "features": {
+        "best_reward": 0.91,
+        "best_reward_direction_agreement": 1.0,
+        "best_reward_index": 0,
+        "best_reward_trustworthy": false,
+        "best_reward_update_fraction": 0.525,
+        "best_reward_value": -95.0,
+        "best_reward_value_outlier_score": 0.5175,
+        "reward_concentration": 0.342269422286,
+        "reward_top_margin": 0.03,
+        "trust_thresholds": {
+          "concentration_threshold": 0.4,
+          "direction_agreement_threshold": 0.6666666666666666,
+          "outlier_threshold": 1.35,
+          "top_margin_threshold": 0.12,
+          "update_fraction_threshold": 0.75
+        }
+      },
+      "fixture_name": "untrusted_best_reward_outlier",
+      "policy_branch": "simple_safety"
+    },
+    {
+      "best_reward_trustworthy": false,
+      "best_reward_value": 7.0,
+      "coordinated_value": 7.828330638956526,
+      "fallback_operator": "WeightedConsensus",
+      "features": {
+        "best_reward": 0.71,
+        "best_reward_direction_agreement": 1.0,
+        "best_reward_index": 0,
+        "best_reward_trustworthy": false,
+        "best_reward_update_fraction": 0.015,
+        "best_reward_value": 7.0,
+        "best_reward_value_outlier_score": 0.005,
+        "reward_concentration": 0.336672166529,
+        "reward_top_margin": 0.01,
+        "trust_thresholds": {
+          "concentration_threshold": 0.4,
+          "direction_agreement_threshold": 0.6666666666666666,
+          "outlier_threshold": 1.35,
+          "top_margin_threshold": 0.12,
+          "update_fraction_threshold": 0.75
+        }
+      },
+      "fixture_name": "untrusted_low_reward_margin_weighted",
+      "policy_branch": "weighted_safety"
+    },
+    {
+      "best_reward_trustworthy": false,
+      "best_reward_value": 6.5,
+      "coordinated_value": 10.666666666666666,
+      "fallback_operator": "AverageConsensus",
+      "features": {
+        "best_reward": 0.82,
+        "best_reward_direction_agreement": 0.333333333333,
+        "best_reward_index": 0,
+        "best_reward_trustworthy": false,
+        "best_reward_update_fraction": 0.0175,
+        "best_reward_value": 6.5,
+        "best_reward_value_outlier_score": 0.03,
+        "reward_concentration": 0.367444150711,
+        "reward_top_margin": 0.14,
+        "trust_thresholds": {
+          "concentration_threshold": 0.4,
+          "direction_agreement_threshold": 0.6666666666666666,
+          "outlier_threshold": 1.35,
+          "top_margin_threshold": 0.12,
+          "update_fraction_threshold": 0.75
+        }
+      },
+      "fixture_name": "untrusted_direction_conflict_simple",
+      "policy_branch": "simple_safety"
+    },
+    {
+      "best_reward_trustworthy": false,
+      "best_reward_value": -160.0,
+      "coordinated_value": -23.514622004318745,
+      "fallback_operator": "WeightedConsensus",
+      "features": {
+        "best_reward": 0.94,
+        "best_reward_direction_agreement": 1.0,
+        "best_reward_index": 0,
+        "best_reward_trustworthy": false,
+        "best_reward_update_fraction": 0.85,
+        "best_reward_value": -160.0,
+        "best_reward_value_outlier_score": 0.8425,
+        "reward_concentration": 0.389798407484,
+        "reward_top_margin": 0.24,
+        "trust_thresholds": {
+          "concentration_threshold": 0.4,
+          "direction_agreement_threshold": 0.6666666666666666,
+          "outlier_threshold": 1.35,
+          "top_margin_threshold": 0.12,
+          "update_fraction_threshold": 0.75
+        }
+      },
+      "fixture_name": "untrusted_oversized_best_reward_shrinkage",
+      "policy_branch": "shrinkage_repair"
+    }
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_branches": [
+    "trust_best_reward",
+    "weighted_safety",
+    "simple_safety",
+    "shrinkage_repair"
+  ],
+  "repair_policy_name": "reward_trust_gated_coordination_v1",
+  "schema_version": "loco.stage8_16_policy_branch_alignment_report.v1",
+  "source_stage": "8.15",
+  "stage": "8.16",
+  "status": "PASS",
+  "trust_best_reward_case_count": 1
+}
