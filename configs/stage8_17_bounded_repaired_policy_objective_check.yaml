@@ -1,0 +1,71 @@
+stage: "8.17"
+name: "Bounded Train-side Repaired-policy Objective Check"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Evaluate reward_trust_gated_coordination_v1 in a bounded train-side objective-level LOCO-CC loop before any full 25-run CEC2013 panel."
+  runner: "loco.coordination.bounded_repaired_policy_objective_check"
+  cli_entrypoint: "scripts/stage8/run_stage8_17_bounded_repaired_policy_objective_check.py"
+  bounded_objective_check: true
+  objective_loop_executed: true
+  new_objective_evaluation_used: true
+  official_cec2013_panel_run: false
+  not_full_25_run_panel: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_16_alignment_report: "artifacts/objective_eval/stage8_16/alignment_repair_report.json"
+  stage8_16_reward_reliability_feature_report: "artifacts/objective_eval/stage8_16/reward_reliability_feature_report.json"
+  stage8_16_policy_branch_alignment_report: "artifacts/objective_eval/stage8_16/policy_branch_alignment_report.json"
+  stage8_16_fe_ledger: "artifacts/objective_eval/stage8_16/fe_ledger.json"
+  stage8_16_runtime_boundary: "artifacts/objective_eval/stage8_16/runtime_boundary.json"
+  stage8_16_next_route_decision: "artifacts/objective_eval/stage8_16/next_route_decision.json"
+
+panel_contract:
+  repair_policy_name: "reward_trust_gated_coordination_v1"
+  method_count: 6
+  methods:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "stage8_11_generalized_policy"
+    - "stage8_16_reward_trust_gated_policy"
+  case_count: 8
+  objective_step_count_per_case: 4
+  expected_trace_row_count: 192
+  regimes:
+    - "trusted_best_reward"
+    - "low_margin_weighted"
+    - "direction_conflict_simple"
+    - "oversized_best_reward_shrinkage"
+
+success_gate:
+  repaired_vs_stage8_11_generalized_policy_max_loss: 0
+  repaired_vs_best_reward_select_max_loss: 2
+  require_all_repair_branches_exercised: true
+  run_full_25_run_panel_next: false
+  next_stage: "Stage 8.18"
+  allowed_next_work: "cec2013_f13_f14_repaired_policy_resmoke"
+
+fe_accounting:
+  count_all_extra_fe: true
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new LLM candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no official CEC2013 panel"
+  - "no full 25-run panel"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

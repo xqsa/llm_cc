@@ -1,0 +1,63 @@
+{
+  "FE_global_objective": 192,
+  "FE_total": 384,
+  "baseline_comparison_made": true,
+  "baseopt_modified": false,
+  "bounded_check_promising": true,
+  "bounded_panel_executed": true,
+  "case_count": 8,
+  "check_scope": "bounded_train_side_repaired_policy_objective_check",
+  "controller_scheduler_generation_used": false,
+  "evolution_search_used": false,
+  "llm_call_used": false,
+  "method_count": 6,
+  "method_names": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "stage8_11_generalized_policy",
+    "stage8_16_reward_trust_gated_policy"
+  ],
+  "minimum_branch_coverage_count": 2,
+  "new_llm_candidate_generation_used": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_full_25_run_panel": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "objective_step_count_per_case": 4,
+  "official_cec2013_panel_run": false,
+  "optimizer_generation_used": false,
+  "policy_branch_report_written": true,
+  "recommended_next_stage": "Stage 8.18",
+  "recommended_next_work": "cec2013_f13_f14_repaired_policy_resmoke",
+  "repair_policy_name": "reward_trust_gated_coordination_v1",
+  "repaired_vs_best_baseline": {
+    "loss": 0,
+    "tie": 6,
+    "win": 2
+  },
+  "repaired_vs_best_reward_select": {
+    "loss": 0,
+    "tie": 2,
+    "win": 6
+  },
+  "repaired_vs_stage8_11_generalized_policy": {
+    "loss": 0,
+    "tie": 3,
+    "win": 5
+  },
+  "reported_results_used_as_runtime_feedback": false,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_17_objective_check_report.v1",
+  "selected_operator_revision_used": false,
+  "source_stage": "8.16",
+  "stage": "8.17",
+  "stage8_16_policy_executed": true,
+  "status": "PASS",
+  "test_feedback_used": false,
+  "trace_row_count": 192,
+  "validation_feedback_used": false,
+  "win_loss_report_written": true
+}

@@ -1,0 +1,16 @@
+{
+  "allowed_next_work": "cec2013_f13_f14_repaired_policy_resmoke",
+  "decision": "PROMISING_BOUNDED_CHECK_ROUTE_TO_CEC2013_RESMOKE",
+  "decision_reason": "Stage 8.17 ran the repaired policy in a bounded train-side objective loop before any full CEC2013 panel.",
+  "next_stage": "Stage 8.18",
+  "not_performance_claim": true,
+  "run_cec2013_resmoke_next": true,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_17_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.17",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

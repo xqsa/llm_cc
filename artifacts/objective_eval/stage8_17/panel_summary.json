@@ -1,0 +1,164 @@
+{
+  "case_count": 8,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_step_count": 4,
+  "panel_rows": [
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "trusted_best_reward_low_seed0",
+      "final_best_by_method": {
+        "best_reward_select": 0.0,
+        "identity_no_coord": 16.0,
+        "simple_consensus": 2.777777777778,
+        "stage8_11_generalized_policy": 1.982445602765,
+        "stage8_16_reward_trust_gated_policy": 0.0,
+        "weighted_consensus": 1.982445602765
+      },
+      "method_count": 6,
+      "regime": "trusted_best_reward",
+      "seed": 0,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "target_shared_value": 6.0,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "trusted_best_reward_medium_seed1",
+      "final_best_by_method": {
+        "best_reward_select": 0.0,
+        "identity_no_coord": 13.69,
+        "simple_consensus": 2.56,
+        "stage8_11_generalized_policy": 1.861362510448,
+        "stage8_16_reward_trust_gated_policy": 0.0,
+        "weighted_consensus": 1.861362510448
+      },
+      "method_count": 6,
+      "regime": "trusted_best_reward",
+      "seed": 1,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "target_shared_value": 5.8,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "low_margin_weighted_low_seed0",
+      "final_best_by_method": {
+        "best_reward_select": 0.686131647434,
+        "identity_no_coord": 4.716147813695,
+        "simple_consensus": 2.5026951e-05,
+        "stage8_11_generalized_policy": 0.0,
+        "stage8_16_reward_trust_gated_policy": 0.0,
+        "weighted_consensus": 0.0
+      },
+      "method_count": 6,
+      "regime": "low_margin_weighted",
+      "seed": 0,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "target_shared_value": 7.828330638956526,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "low_margin_weighted_medium_seed1",
+      "final_best_by_method": {
+        "best_reward_select": 0.62620999975,
+        "identity_no_coord": 4.034737829899,
+        "simple_consensus": 0.001763917453,
+        "stage8_11_generalized_policy": 0.001368727909,
+        "stage8_16_reward_trust_gated_policy": 0.001368727909,
+        "weighted_consensus": 0.001368727909
+      },
+      "method_count": 6,
+      "regime": "low_margin_weighted",
+      "seed": 1,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "target_shared_value": 7.59133431604478,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "direction_conflict_simple_high_seed0",
+      "final_best_by_method": {
+        "best_reward_select": 0.444444444444,
+        "identity_no_coord": 0.444444444444,
+        "simple_consensus": 0.0,
+        "stage8_11_generalized_policy": 0.0,
+        "stage8_16_reward_trust_gated_policy": 0.0,
+        "weighted_consensus": 0.046127847674
+      },
+      "method_count": 6,
+      "regime": "direction_conflict_simple",
+      "seed": 0,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "target_shared_value": 10.666666666666666,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "direction_conflict_simple_conflicting_seed1",
+      "final_best_by_method": {
+        "best_reward_select": 0.444444444444,
+        "identity_no_coord": 0.444444444444,
+        "simple_consensus": 0.0,
+        "stage8_11_generalized_policy": 0.056308225647,
+        "stage8_16_reward_trust_gated_policy": 0.0,
+        "weighted_consensus": 0.056308225647
+      },
+      "method_count": 6,
+      "regime": "direction_conflict_simple",
+      "seed": 1,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "target_shared_value": 10.466666666666667,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "oversized_best_reward_shrinkage_high_seed0",
+      "final_best_by_method": {
+        "best_reward_select": 1123.229888092366,
+        "identity_no_coord": 1123.229888092366,
+        "simple_consensus": 575.298357595711,
+        "stage8_11_generalized_policy": 575.298357595711,
+        "stage8_16_reward_trust_gated_policy": 0.0,
+        "weighted_consensus": 1123.229888092366
+      },
+      "method_count": 6,
+      "regime": "oversized_best_reward_shrinkage",
+      "seed": 0,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "target_shared_value": -23.514622004318745,
+      "trace_row_count": 24
+    },
+    {
+      "FE_global_objective": 24,
+      "FE_total": 48,
+      "case_id": "oversized_best_reward_shrinkage_conflicting_seed1",
+      "final_best_by_method": {
+        "best_reward_select": 1094.371660133068,
+        "identity_no_coord": 1094.371660133068,
+        "simple_consensus": 589.779584393119,
+        "stage8_11_generalized_policy": 542.018402181754,
+        "stage8_16_reward_trust_gated_policy": 0.132382029154,
+        "weighted_consensus": 1094.371660133068
+      },
+      "method_count": 6,
+      "regime": "oversized_best_reward_shrinkage",
+      "seed": 1,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "target_shared_value": -23.28128867098541,
+      "trace_row_count": 24
+    }
+  ],
+  "schema_version": "loco.stage8_17_panel_summary.v1",
+  "source_stage": "8.16",
+  "stage": "8.17",
+  "status": "PASS"
+}

@@ -1,0 +1,73 @@
+{
+  "method_rows": [
+    {
+      "FE_global_objective": 32,
+      "FE_total": 64,
+      "case_count": 8,
+      "mean_final_best": 282.11641534474,
+      "median_final_best": 9.203073906848,
+      "method_name": "identity_no_coord",
+      "trace_row_count": 32
+    },
+    {
+      "FE_global_objective": 32,
+      "FE_total": 64,
+      "case_count": 8,
+      "mean_final_best": 146.302188588877,
+      "median_final_best": 1.280881958727,
+      "method_name": "simple_consensus",
+      "trace_row_count": 32
+    },
+    {
+      "FE_global_objective": 32,
+      "FE_total": 64,
+      "case_count": 8,
+      "mean_final_best": 277.693645142485,
+      "median_final_best": 0.958835368048,
+      "method_name": "weighted_consensus",
+      "trace_row_count": 32
+    },
+    {
+      "FE_global_objective": 32,
+      "FE_total": 64,
+      "case_count": 8,
+      "mean_final_best": 277.475347345188,
+      "median_final_best": 0.535327222097,
+      "method_name": "best_reward_select",
+      "trace_row_count": 32
+    },
+    {
+      "FE_global_objective": 32,
+      "FE_total": 64,
+      "case_count": 8,
+      "mean_final_best": 140.152280605529,
+      "median_final_best": 0.958835368048,
+      "method_name": "stage8_11_generalized_policy",
+      "trace_row_count": 32
+    },
+    {
+      "FE_global_objective": 32,
+      "FE_total": 64,
+      "case_count": 8,
+      "mean_final_best": 0.016718844633,
+      "median_final_best": 0.0,
+      "method_name": "stage8_16_reward_trust_gated_policy",
+      "trace_row_count": 32
+    }
+  ],
+  "methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "stage8_11_generalized_policy",
+    "stage8_16_reward_trust_gated_policy"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_17_method_summary.v1",
+  "source_stage": "8.16",
+  "stage": "8.17",
+  "status": "PASS"
+}

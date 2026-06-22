@@ -1,0 +1,20 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 192,
+  "FE_grouping": 0,
+  "FE_proposal": 192,
+  "FE_repair": 0,
+  "FE_total": 384,
+  "all_extra_fe_counted": true,
+  "budget_scope": "bounded_train_side_repaired_policy_objective_check",
+  "cross_method_evaluations_shared": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_full_25_run_panel": true,
+  "objective_loop_executed": true,
+  "official_cec2013_panel_run": false,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_17_fe_ledger.v1",
+  "stage": "8.17",
+  "status": "PASS"
+}
