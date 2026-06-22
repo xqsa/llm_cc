@@ -1,0 +1,16 @@
+{
+  "conditional_policy_name": "overlap_reward_reliability_switch_v1",
+  "conditional_policy_not_equivalent_to_weighted_consensus": true,
+  "conditional_policy_trace_row_count": 108,
+  "keep_weighted_trace_row_count": 72,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "objective_loop_executed": true,
+  "schema_version": "loco.stage8_8_conditional_policy_runtime_report.v1",
+  "simple_preferred_case_recovery_count": 12,
+  "source_stage": "8.7",
+  "stage": "8.8",
+  "status": "PASS",
+  "switch_to_simple_trace_row_count": 36,
+  "weighted_sufficient_case_regression_count": 0
+}

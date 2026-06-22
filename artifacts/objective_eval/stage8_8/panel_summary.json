@@ -1,0 +1,711 @@
+{
+  "claim_scope": "conditional policy objective-loop utility evidence",
+  "dimensions": [
+    500,
+    1000,
+    2000
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "panel_rows": [
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 15.453871788611,
+        "frozen_stage5_selected_operator": 15.324112482044,
+        "identity_no_coord": 15.3443606775,
+        "simple_consensus": 15.325263455277,
+        "stage8_3_selected_operator": 15.321881637571,
+        "stage8_7_conditional_policy": 15.321881637571,
+        "weighted_consensus": 15.321881637571
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 15.365288939108,
+        "frozen_stage5_selected_operator": 15.241847235555,
+        "identity_no_coord": 15.266044494664,
+        "simple_consensus": 15.245113939108,
+        "stage8_3_selected_operator": 15.240657019076,
+        "stage8_7_conditional_policy": 15.240657019076,
+        "weighted_consensus": 15.240657019076
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 15.320828081789,
+        "frozen_stage5_selected_operator": 15.203703981249,
+        "identity_no_coord": 15.231850304011,
+        "simple_consensus": 15.209086415123,
+        "stage8_3_selected_operator": 15.203554392765,
+        "stage8_7_conditional_policy": 15.203554392765,
+        "weighted_consensus": 15.203554392765
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 30.910099890972,
+        "frozen_stage5_selected_operator": 30.780340584405,
+        "identity_no_coord": 30.80058877986,
+        "simple_consensus": 30.781491557638,
+        "stage8_3_selected_operator": 30.778109739932,
+        "stage8_7_conditional_policy": 30.778109739932,
+        "weighted_consensus": 30.778109739932
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 30.940834023685,
+        "frozen_stage5_selected_operator": 30.817392320131,
+        "identity_no_coord": 30.84158957924,
+        "simple_consensus": 30.820659023685,
+        "stage8_3_selected_operator": 30.816202103653,
+        "stage8_7_conditional_policy": 30.816202103653,
+        "weighted_consensus": 30.816202103653
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 31.281979145238,
+        "frozen_stage5_selected_operator": 31.164855044698,
+        "identity_no_coord": 31.19300136746,
+        "simple_consensus": 31.170237478572,
+        "stage8_3_selected_operator": 31.164705456214,
+        "stage8_7_conditional_policy": 31.164705456214,
+        "weighted_consensus": 31.164705456214
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 61.511984505487,
+        "frozen_stage5_selected_operator": 61.38222519892,
+        "identity_no_coord": 61.402473394376,
+        "simple_consensus": 61.383376172154,
+        "stage8_3_selected_operator": 61.379994354447,
+        "stage8_7_conditional_policy": 61.379994354447,
+        "weighted_consensus": 61.379994354447
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 61.436089899414,
+        "frozen_stage5_selected_operator": 61.312648195861,
+        "identity_no_coord": 61.336845454969,
+        "simple_consensus": 61.315914899414,
+        "stage8_3_selected_operator": 61.311457979382,
+        "stage8_7_conditional_policy": 61.311457979382,
+        "weighted_consensus": 61.311457979382
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 61.400489625902,
+        "frozen_stage5_selected_operator": 61.283365525363,
+        "identity_no_coord": 61.311511848125,
+        "simple_consensus": 61.288747959236,
+        "stage8_3_selected_operator": 61.283215936878,
+        "stage8_7_conditional_policy": 61.283215936878,
+        "weighted_consensus": 61.283215936878
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_low_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 16.193919758748,
+        "frozen_stage5_selected_operator": 15.848436055794,
+        "identity_no_coord": 15.832019758748,
+        "simple_consensus": 15.812922536526,
+        "stage8_3_selected_operator": 15.815049957857,
+        "stage8_7_conditional_policy": 15.812922536526,
+        "weighted_consensus": 15.815049957857
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 16.097612288747,
+        "frozen_stage5_selected_operator": 15.760583143002,
+        "identity_no_coord": 15.751112288747,
+        "simple_consensus": 15.730181733192,
+        "stage8_3_selected_operator": 15.729655181686,
+        "stage8_7_conditional_policy": 15.729655181686,
+        "weighted_consensus": 15.729655181686
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 16.046824745476,
+        "frozen_stage5_selected_operator": 15.71825015694,
+        "identity_no_coord": 15.715724745476,
+        "simple_consensus": 15.692960856587,
+        "stage8_3_selected_operator": 15.689780332245,
+        "stage8_7_conditional_policy": 15.689780332245,
+        "weighted_consensus": 15.689780332245
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 32.142083544028,
+        "frozen_stage5_selected_operator": 31.796599841074,
+        "identity_no_coord": 31.780183544028,
+        "simple_consensus": 31.761086321805,
+        "stage8_3_selected_operator": 31.763213743137,
+        "stage8_7_conditional_policy": 31.761086321805,
+        "weighted_consensus": 31.763213743137
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 32.168890637434,
+        "frozen_stage5_selected_operator": 31.831861491688,
+        "identity_no_coord": 31.822390637434,
+        "simple_consensus": 31.801460081878,
+        "stage8_3_selected_operator": 31.800933530372,
+        "stage8_7_conditional_policy": 31.800933530372,
+        "weighted_consensus": 31.800933530372
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 32.515982011768,
+        "frozen_stage5_selected_operator": 32.187407423232,
+        "identity_no_coord": 32.184882011768,
+        "simple_consensus": 32.16211812288,
+        "stage8_3_selected_operator": 32.158937598537,
+        "stage8_7_conditional_policy": 32.158937598537,
+        "weighted_consensus": 32.158937598537
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 63.717954755191,
+        "frozen_stage5_selected_operator": 63.372471052237,
+        "identity_no_coord": 63.356054755191,
+        "simple_consensus": 63.336957532969,
+        "stage8_3_selected_operator": 63.3390849543,
+        "stage8_7_conditional_policy": 63.336957532969,
+        "weighted_consensus": 63.3390849543
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 63.634739365808,
+        "frozen_stage5_selected_operator": 63.297710220062,
+        "identity_no_coord": 63.288239365808,
+        "simple_consensus": 63.267308810252,
+        "stage8_3_selected_operator": 63.266782258746,
+        "stage8_7_conditional_policy": 63.266782258746,
+        "weighted_consensus": 63.266782258746
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 63.593094418056,
+        "frozen_stage5_selected_operator": 63.264519829519,
+        "identity_no_coord": 63.261994418056,
+        "simple_consensus": 63.239230529167,
+        "stage8_3_selected_operator": 63.236050004824,
+        "stage8_7_conditional_policy": 63.236050004824,
+        "weighted_consensus": 63.236050004824
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_medium_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 17.283556120233,
+        "frozen_stage5_selected_operator": 16.410367904301,
+        "identity_no_coord": 16.332545009122,
+        "simple_consensus": 16.310056120233,
+        "stage8_3_selected_operator": 16.336469784084,
+        "stage8_7_conditional_policy": 16.310056120233,
+        "weighted_consensus": 16.336469784084
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 17.177255662425,
+        "frozen_stage5_selected_operator": 16.317466021893,
+        "identity_no_coord": 16.248977884647,
+        "simple_consensus": 16.223555662425,
+        "stage8_3_selected_operator": 16.246651519812,
+        "stage8_7_conditional_policy": 16.223555662425,
+        "weighted_consensus": 16.246651519812
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 17.117909948344,
+        "frozen_stage5_selected_operator": 16.271518883212,
+        "identity_no_coord": 16.212365503899,
+        "simple_consensus": 16.184009948344,
+        "stage8_3_selected_operator": 16.203787999266,
+        "stage8_7_conditional_policy": 16.184009948344,
+        "weighted_consensus": 16.203787999266
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 33.736634589413,
+        "frozen_stage5_selected_operator": 32.863446373481,
+        "identity_no_coord": 32.785623478302,
+        "simple_consensus": 32.763134589413,
+        "stage8_3_selected_operator": 32.789548253265,
+        "stage8_7_conditional_policy": 32.763134589413,
+        "weighted_consensus": 32.789548253265
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 33.757346469809,
+        "frozen_stage5_selected_operator": 32.897556829278,
+        "identity_no_coord": 32.829068692032,
+        "simple_consensus": 32.803646469809,
+        "stage8_3_selected_operator": 32.826742327196,
+        "stage8_7_conditional_policy": 32.803646469809,
+        "weighted_consensus": 32.826742327196
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 34.108476415544,
+        "frozen_stage5_selected_operator": 33.262085350412,
+        "identity_no_coord": 33.2029319711,
+        "simple_consensus": 33.174576415544,
+        "stage8_3_selected_operator": 33.194354466466,
+        "stage8_7_conditional_policy": 33.174576415544,
+        "weighted_consensus": 33.194354466466
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 66.312189604063,
+        "frozen_stage5_selected_operator": 65.439001388131,
+        "identity_no_coord": 65.361178492952,
+        "simple_consensus": 65.338689604063,
+        "stage8_3_selected_operator": 65.365103267915,
+        "stage8_7_conditional_policy": 65.338689604063,
+        "weighted_consensus": 65.365103267915
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 66.219395718712,
+        "frozen_stage5_selected_operator": 65.359606078181,
+        "identity_no_coord": 65.291117940934,
+        "simple_consensus": 65.265695718712,
+        "stage8_3_selected_operator": 65.288791576099,
+        "stage8_7_conditional_policy": 65.265695718712,
+        "weighted_consensus": 65.288791576099
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 66.169482052328,
+        "frozen_stage5_selected_operator": 65.323090987196,
+        "identity_no_coord": 65.263937607883,
+        "simple_consensus": 65.235582052328,
+        "stage8_3_selected_operator": 65.25536010325,
+        "stage8_7_conditional_policy": 65.235582052328,
+        "weighted_consensus": 65.25536010325
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_high_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 17.82370657151,
+        "frozen_stage5_selected_operator": 16.887573641492,
+        "identity_no_coord": 16.84620657151,
+        "simple_consensus": 16.843540599288,
+        "stage8_3_selected_operator": 16.826922139919,
+        "stage8_7_conditional_policy": 16.826922139919,
+        "weighted_consensus": 16.826922139919
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 17.734309989787,
+        "frozen_stage5_selected_operator": 16.793222672765,
+        "identity_no_coord": 16.759909989787,
+        "simple_consensus": 16.757060684232,
+        "stage8_3_selected_operator": 16.736491438554,
+        "stage8_7_conditional_policy": 16.736491438554,
+        "weighted_consensus": 16.736491438554
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 17.693140625638,
+        "frozen_stage5_selected_operator": 16.747298921611,
+        "identity_no_coord": 16.722040625638,
+        "simple_consensus": 16.719007986749,
+        "stage8_3_selected_operator": 16.694487954762,
+        "stage8_7_conditional_policy": 16.694487954762,
+        "weighted_consensus": 16.694487954762
+      },
+      "method_count": 7,
+      "problem_dimension": 500,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 34.794951237525,
+        "frozen_stage5_selected_operator": 33.858818307508,
+        "identity_no_coord": 33.817451237525,
+        "simple_consensus": 33.814785265303,
+        "stage8_3_selected_operator": 33.798166805935,
+        "stage8_7_conditional_policy": 33.798166805935,
+        "weighted_consensus": 33.798166805935
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 34.836567066113,
+        "frozen_stage5_selected_operator": 33.89547974909,
+        "identity_no_coord": 33.862167066113,
+        "simple_consensus": 33.859317760557,
+        "stage8_3_selected_operator": 33.838748514879,
+        "stage8_7_conditional_policy": 33.838748514879,
+        "weighted_consensus": 33.838748514879
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 35.218800706162,
+        "frozen_stage5_selected_operator": 34.272959002135,
+        "identity_no_coord": 34.247700706162,
+        "simple_consensus": 34.244668067274,
+        "stage8_3_selected_operator": 34.220148035286,
+        "stage8_7_conditional_policy": 34.220148035286,
+        "weighted_consensus": 34.220148035286
+      },
+      "method_count": 7,
+      "problem_dimension": 1000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 68.396426810649,
+        "frozen_stage5_selected_operator": 67.460293880632,
+        "identity_no_coord": 67.418926810649,
+        "simple_consensus": 67.416260838427,
+        "stage8_3_selected_operator": 67.399642379059,
+        "stage8_7_conditional_policy": 67.399642379059,
+        "weighted_consensus": 67.399642379059
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 0,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 68.320962171584,
+        "frozen_stage5_selected_operator": 67.379874854562,
+        "identity_no_coord": 67.346562171584,
+        "simple_consensus": 67.343712866028,
+        "stage8_3_selected_operator": 67.323143620351,
+        "stage8_7_conditional_policy": 67.323143620351,
+        "weighted_consensus": 67.323143620351
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 1,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    },
+    {
+      "FE_global_objective": 21,
+      "FE_total": 42,
+      "final_best_by_method": {
+        "best_reward_select": 68.289521903996,
+        "frozen_stage5_selected_operator": 67.343680199969,
+        "identity_no_coord": 67.318421903996,
+        "simple_consensus": 67.315389265107,
+        "stage8_3_selected_operator": 67.29086923312,
+        "stage8_7_conditional_policy": 67.29086923312,
+        "weighted_consensus": 67.29086923312
+      },
+      "method_count": 7,
+      "problem_dimension": 2000,
+      "seed": 2,
+      "shared_conflict_row_count": 21,
+      "synthetic_panel": "synthetic_conflicting_overlap_panel",
+      "trace_row_count": 21
+    }
+  ],
+  "panels": [
+    "synthetic_low_overlap_panel",
+    "synthetic_medium_overlap_panel",
+    "synthetic_high_overlap_panel",
+    "synthetic_conflicting_overlap_panel"
+  ],
+  "schema_version": "loco.stage8_8_panel_summary.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "source_stage": "8.7",
+  "stage": "8.8",
+  "status": "PASS"
+}

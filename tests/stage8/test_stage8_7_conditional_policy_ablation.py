@@ -180,7 +180,7 @@ def test_stage8_7_committed_artifacts_docs_and_readme_record_policy_boundary() -
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.7" in combined
-    assert "Current repository state: `Stage 8.7 PASS`" in combined
+    assert "Stage 8.7    conditional proposal-state policy ablation                PASS" in combined
     assert "overlap/reward-reliability aware conditional policy" in combined
     assert "simple_preferred_regime_recovery_count = 12" in combined
     assert "weighted_sufficient_regression_count = 0" in combined

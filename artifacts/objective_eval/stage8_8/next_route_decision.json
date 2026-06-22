@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "failure_honest_interpretation_before_official_claims",
+  "decision": "READY_FOR_STAGE8_9_FAILURE_HONEST_INTERPRETATION",
+  "decision_reason": "Stage 8.8 executed the conditional policy in the objective loop and recorded win/loss evidence against Stage 8.3, weighted/simple baselines, and the best baseline.",
+  "next_stage": "Stage 8.9",
+  "not_performance_claim": true,
+  "schema_version": "loco.stage8_8_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.8",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}
