@@ -140,12 +140,16 @@ def run_stage8_8_conditional_policy_objective_rerun(
     _validate_stage8_7_inputs(stage8_7_policy_report, stage8_7_case_rows)
 
     selected_candidate_id = str(stage8_3_decision["selected_candidate_id"])
-    previous_frozen_candidate_id = str(stage8_3_decision["previous_frozen_candidate_id"])
+    previous_frozen_candidate_id = str(
+        stage8_3_decision["previous_frozen_candidate_id"]
+    )
     selected_candidate = _load_frozen_candidate(selected_candidate_id)
     selected_variable = int(frozen_stage5_operator["target_variable_set"][0])
     _validate_selected_candidate(selected_candidate, selected_variable)
 
-    frozen_stage5_runtime = FrozenASTRuntime(load_coordination_ast(frozen_stage5_ast_payload))
+    frozen_stage5_runtime = FrozenASTRuntime(
+        load_coordination_ast(frozen_stage5_ast_payload)
+    )
     stage8_3_runtime = FrozenASTRuntime(
         load_coordination_ast(selected_candidate["llm_candidate_payload"]["ast"])
     )
@@ -240,7 +244,12 @@ def _validate_stage8_7_inputs(
         raise ValueError("Stage 8.8 requires claim-boundary preservation.")
     if len(case_rows) != 36:
         raise ValueError("Stage 8.8 requires 36 Stage 8.7 policy case rows.")
-    expected = {(panel, dimension, seed) for panel in PANEL_NAMES for dimension in DIMENSIONS for seed in SEEDS}
+    expected = {
+        (panel, dimension, seed)
+        for panel in PANEL_NAMES
+        for dimension in DIMENSIONS
+        for seed in SEEDS
+    }
     found = {
         (str(row["synthetic_panel"]), int(row["problem_dimension"]), int(row["seed"]))
         for row in case_rows
@@ -253,9 +262,11 @@ def _action_by_case(
     case_rows: Sequence[Mapping[str, Any]]
 ) -> dict[tuple[str, int, int], str]:
     return {
-        (str(row["synthetic_panel"]), int(row["problem_dimension"]), int(row["seed"])): str(
-            row["policy_action"]
-        )
+        (
+            str(row["synthetic_panel"]),
+            int(row["problem_dimension"]),
+            int(row["seed"]),
+        ): str(row["policy_action"])
         for row in case_rows
     }
 
@@ -264,9 +275,11 @@ def _source_regime_by_case(
     case_rows: Sequence[Mapping[str, Any]]
 ) -> dict[tuple[str, int, int], str]:
     return {
-        (str(row["synthetic_panel"]), int(row["problem_dimension"]), int(row["seed"])): str(
-            row["source_regime"]
-        )
+        (
+            str(row["synthetic_panel"]),
+            int(row["problem_dimension"]),
+            int(row["seed"]),
+        ): str(row["source_regime"])
         for row in case_rows
     }
 
@@ -285,13 +298,17 @@ def _retag_trace_rows(
             int(row["problem_dimension"]),
             int(row["seed"]),
         )
-        action = action_by_case[key] if row["method_name"] == CONDITIONAL_METHOD else None
+        action = (
+            action_by_case[key] if row["method_name"] == CONDITIONAL_METHOD else None
+        )
         row["schema_version"] = TRACE_SCHEMA_VERSION
         row["stage"] = STAGE
         row["source_stage"] = "8.7"
         row["split"] = "conditional_policy_objective_rerun"
         row["conditional_policy_name"] = (
-            CONDITIONAL_POLICY_NAME if row["method_name"] == CONDITIONAL_METHOD else None
+            CONDITIONAL_POLICY_NAME
+            if row["method_name"] == CONDITIONAL_METHOD
+            else None
         )
         row["conditional_policy_action"] = action
         row["conditional_policy_source_regime"] = (
@@ -624,9 +641,9 @@ def _build_runtime_boundary() -> dict[str, Any]:
 
 
 def _build_route(win_loss_report: Mapping[str, Any]) -> dict[str, Any]:
-    no_best_baseline_loss = int(
-        win_loss_report["conditional_vs_best_baseline"]["loss"]
-    ) == 0
+    no_best_baseline_loss = (
+        int(win_loss_report["conditional_vs_best_baseline"]["loss"]) == 0
+    )
     return {
         "schema_version": "loco.stage8_8_next_route_decision.v1",
         "stage": STAGE,

@@ -130,7 +130,9 @@ def test_stage8_8_runs_conditional_policy_objective_loop_rerun(tmp_path) -> None
     assert {row["method_name"] for row in trace_rows} == EXPECTED_METHODS
     assert all(row["stage"] == "8.8" for row in trace_rows)
     assert all(row["source_stage"] == "8.7" for row in trace_rows)
-    assert all(row["split"] == "conditional_policy_objective_rerun" for row in trace_rows)
+    assert all(
+        row["split"] == "conditional_policy_objective_rerun" for row in trace_rows
+    )
     assert all(row["target_scope"] == "shared_variables_only" for row in trace_rows)
     assert all(row["shared_conflict_present"] is True for row in trace_rows)
     assert all(row["FE_global_objective"] == 1 for row in trace_rows)
@@ -151,14 +153,20 @@ def test_stage8_8_runs_conditional_policy_objective_loop_rerun(tmp_path) -> None
         row["method_selected_candidate_id"] == "stage3_5_batch_1_reweighting_repair"
         for row in conditional_rows
     )
-    assert sum(
-        row["conditional_policy_action"] == "use_simple_consensus"
-        for row in conditional_rows
-    ) == 36
-    assert sum(
-        row["conditional_policy_action"] == "keep_weighted_consensus"
-        for row in conditional_rows
-    ) == 72
+    assert (
+        sum(
+            row["conditional_policy_action"] == "use_simple_consensus"
+            for row in conditional_rows
+        )
+        == 36
+    )
+    assert (
+        sum(
+            row["conditional_policy_action"] == "keep_weighted_consensus"
+            for row in conditional_rows
+        )
+        == 72
+    )
     assert all(
         row["conditional_policy_name"] == "overlap_reward_reliability_switch_v1"
         for row in conditional_rows
@@ -174,7 +182,10 @@ def test_stage8_8_runs_conditional_policy_objective_loop_rerun(tmp_path) -> None
     assert policy_runtime["keep_weighted_trace_row_count"] == 72
     assert policy_runtime["simple_preferred_case_recovery_count"] == 12
     assert policy_runtime["weighted_sufficient_case_regression_count"] == 0
-    assert policy_runtime["conditional_policy_not_equivalent_to_weighted_consensus"] is True
+    assert (
+        policy_runtime["conditional_policy_not_equivalent_to_weighted_consensus"]
+        is True
+    )
 
     assert method_summary["stage"] == "8.8"
     assert method_summary["status"] == "PASS"
@@ -232,7 +243,9 @@ def test_stage8_8_runs_conditional_policy_objective_loop_rerun(tmp_path) -> None
 
     assert boundary["stage"] == "8.8"
     assert boundary["status"] == "PASS"
-    assert boundary["claim_scope"] == "conditional policy objective-loop utility evidence"
+    assert (
+        boundary["claim_scope"] == "conditional policy objective-loop utility evidence"
+    )
     assert boundary["objective_loop_executed"] is True
     assert boundary["new_objective_evaluation_used"] is True
     assert boundary["forbidden_behaviors"]["llm_call"] is False
@@ -293,7 +306,10 @@ def test_stage8_8_committed_artifacts_docs_and_readme_record_objective_rerun() -
     assert "Current repository state: `Stage 8.8 PASS`" in combined
     assert "objective-loop rerun for conditional policy" in combined
     assert "overlap_reward_reliability_switch_v1" in combined
-    assert "conditional_vs_stage8_3_selected_operator = 12 win / 24 tie / 0 loss" in combined
+    assert (
+        "conditional_vs_stage8_3_selected_operator = 12 win / 24 tie / 0 loss"
+        in combined
+    )
     assert "conditional_vs_best_baseline = 0 win / 36 tie / 0 loss" in combined
     assert "FE_total = 1512" in combined
     assert "no LLM call" in combined
