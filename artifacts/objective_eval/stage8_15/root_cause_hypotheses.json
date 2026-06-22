@@ -1,0 +1,58 @@
+{
+  "do_not_run_25_until_diagnosed": true,
+  "hypotheses": [
+    {
+      "diagnosis": "The generalized policy prioritizes safety branches while the smoke rewards direct best-reward proposal selection.",
+      "evidence": {
+        "best_reward_select": 2
+      },
+      "hypothesis_id": "H1_best_reward_alignment_gap",
+      "support": "best_reward_select is the best baseline on both F13 and F14"
+    },
+    {
+      "diagnosis": "Synthetic branch rules do not transfer cleanly to the CEC2013 F13/F14 proposal state.",
+      "evidence": {
+        "F13": {
+          "branch_counts": {
+            "simple_safety": 1200
+          },
+          "dominant_branch": "simple_safety",
+          "dominant_branch_count": 1200,
+          "function_id": "F13",
+          "trace_row_count": 1200
+        },
+        "F14": {
+          "branch_counts": {
+            "weighted_safety": 2,
+            "zero_anchor": 1198
+          },
+          "dominant_branch": "zero_anchor",
+          "dominant_branch_count": 1198,
+          "function_id": "F14",
+          "trace_row_count": 1200
+        }
+      },
+      "hypothesis_id": "H2_branch_transfer_mismatch",
+      "support": "F13 collapses to simple_safety and F14 mostly to zero_anchor"
+    },
+    {
+      "diagnosis": "The proposal generator may be producing CEC2013 states where reward is more reliable than the synthetic panels assumed.",
+      "hypothesis_id": "H3_proposal_construction_mismatch",
+      "support": "Best-reward proposals dominate in the smoke but were not the Stage 8.11 target behavior"
+    },
+    {
+      "diagnosis": "The smoke may underrepresent multi-shared-variable interaction benefits, so it blocks 25 runs but does not falsify the whole idea.",
+      "hypothesis_id": "H4_single_shared_variable_scope_limit",
+      "support": "Stage 8.14 exercises one shared-variable update path"
+    }
+  ],
+  "hypothesis_count": 4,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_revision_from_smoke_forbidden": true,
+  "schema_version": "loco.stage8_15_root_cause_hypotheses.v1",
+  "source_stage": "8.14",
+  "stage": "8.15",
+  "status": "PASS",
+  "top_hypothesis_id": "H1_best_reward_alignment_gap"
+}

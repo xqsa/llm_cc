@@ -1,0 +1,15 @@
+{
+  "allowed_next_work": "train_side_proposal_policy_alignment_repair",
+  "decision": "ROUTE_TO_TRAIN_SIDE_PROPOSAL_POLICY_ALIGNMENT_REPAIR",
+  "decision_reason": "Stage 8.15 diagnoses the Stage 8.14 smoke as a best-reward-selection alignment gap, so the full 25-run panel remains blocked.",
+  "next_stage": "Stage 8.16",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_15_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.15",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

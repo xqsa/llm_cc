@@ -1,0 +1,52 @@
+stage: "8.15"
+name: "Failure-Honest CEC2013 Smoke Diagnosis"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Diagnose why the Stage 8.14 F13/F14 single-run smoke should not proceed directly to the 25-run panel."
+  runner: "loco.coordination.cec2013_smoke_failure_diagnosis"
+  cli_entrypoint: "scripts/stage8/run_stage8_15_cec2013_smoke_failure_diagnosis.py"
+  diagnosis_only: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  policy_revision_allowed: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_14_smoke_report: "artifacts/objective_eval/stage8_14/single_run_smoke_report.json"
+  stage8_14_win_loss_report: "artifacts/objective_eval/stage8_14/win_loss_report.json"
+  stage8_14_method_summary: "artifacts/objective_eval/stage8_14/method_summary.json"
+  stage8_14_objective_trace: "artifacts/objective_eval/stage8_14/objective_trace.jsonl"
+  stage8_14_fe_ledger: "artifacts/objective_eval/stage8_14/fe_ledger.json"
+  stage8_14_runtime_boundary: "artifacts/objective_eval/stage8_14/runtime_boundary.json"
+  stage8_14_next_route_decision: "artifacts/objective_eval/stage8_14/next_route_decision.json"
+
+diagnosis_contract:
+  source_result: "Stage 8.14 single_run_promising=false"
+  dominant_failure_mode: "best_reward_select_alignment_gap"
+  top_hypothesis_id: "H1_best_reward_alignment_gap"
+  full_25_run_panel_blocked: true
+  next_stage: "Stage 8.16"
+  allowed_next_work: "train_side_proposal_policy_alignment_repair"
+
+fe_accounting:
+  stage8_15_FE_total: 0
+  inherited_stage8_14_FE_total: 24010
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a full 25-run panel"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

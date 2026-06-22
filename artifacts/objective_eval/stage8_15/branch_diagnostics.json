@@ -1,0 +1,49 @@
+{
+  "branch_rows_by_function": {
+    "F13": {
+      "branch_counts": {
+        "simple_safety": 1200
+      },
+      "dominant_branch": "simple_safety",
+      "dominant_branch_count": 1200,
+      "function_id": "F13",
+      "trace_row_count": 1200
+    },
+    "F14": {
+      "branch_counts": {
+        "weighted_safety": 2,
+        "zero_anchor": 1198
+      },
+      "dominant_branch": "zero_anchor",
+      "dominant_branch_count": 1198,
+      "function_id": "F14",
+      "trace_row_count": 1200
+    }
+  },
+  "f13_policy_equivalent_to_simple_consensus": true,
+  "f14_policy_equivalent_to_weighted_consensus": true,
+  "final_best_by_function": {
+    "F13": {
+      "best_reward_select": 8.714428967708853e+16,
+      "identity_no_coord": 8.717046354704237e+16,
+      "simple_consensus": 8.716559195496776e+16,
+      "stage8_11_generalized_policy": 8.716559195496776e+16,
+      "weighted_consensus": 8.716145609879006e+16
+    },
+    "F14": {
+      "best_reward_select": 5.074322565106659e+18,
+      "identity_no_coord": 5.074322939550878e+18,
+      "simple_consensus": 5.074322834198567e+18,
+      "stage8_11_generalized_policy": 5.074322808381155e+18,
+      "weighted_consensus": 5.074322808381155e+18
+    }
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_method_name": "stage8_11_generalized_policy",
+  "policy_name": "regime_safe_adaptive_shrinkage_v1",
+  "schema_version": "loco.stage8_15_branch_diagnostics.v1",
+  "source_stage": "8.14",
+  "stage": "8.15",
+  "status": "PASS"
+}

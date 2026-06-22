@@ -1,0 +1,21 @@
+{
+  "allowed_claim": "The single-run F13/F14 CEC2013 smoke exposed a best-reward-selection alignment gap that should be diagnosed before any 25-run panel.",
+  "claim_scope": "failure-honest CEC2013 smoke diagnosis only",
+  "final_performance_claim_allowed": false,
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "full 25-run CEC2013 result",
+    "full F1..F15 CEC2013 result",
+    "policy repair success"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_allowed": false,
+  "policy_revision_allowed": false,
+  "schema_version": "loco.stage8_15_claim_boundary_report.v1",
+  "sota_claim_allowed": false,
+  "source_stage": "8.14",
+  "stage": "8.15",
+  "status": "PASS"
+}
