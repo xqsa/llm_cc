@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 8.13 PASS` — Stage 8.13 completed the formal CEC2013 SOTA experiment design and budget lock. It records function_ids = F1..F15, run_count = 25, MaxFEs = 3000000, total_planned_official_runs = 375, total_planned_max_fe = 1125000000, and the official CEC2013 same-budget panel not executed yet boundary. It is still not a final objective-value performance claim and not a SOTA claim.
+Current repository state: `Stage 8.14 PASS` — Stage 8.14 executed a CEC2013 F13/F14 single-run smoke before spending the full 25-run formal budget. It records run_count = 1, smoke_max_fe_per_method_per_function = 1200, FE_total = 24010, policy_vs_best_baseline = 0 win / 0 tie / 2 loss, single_run_promising = false, and routes to Stage 8.15 failure-honest CEC2013 smoke diagnosis. It is not a full 25-run panel, not a full F1..F15 panel, not a final objective-value performance claim, and not a SOTA claim.
 
 Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
@@ -37,6 +37,8 @@ Stage 8.11 is a policy generalization objective-loop rerun, not an official benc
 Stage 8.12 is an official-like / SOTA-facing evidence gate, not an official CEC2013 benchmark run. It reads Stage 8.11 evidence plus the Stage 7.5/7.6 SOTA protocol and comparator audit, records formal_sota_gap = official_cec2013_same_budget_panel_not_yet_run, and routes to Stage 8.13 formal CEC2013 SOTA experiment design and budget lock. It does not rerun objectives, records FE_total = 0 for the gate, does not use reported results as runtime feedback, and remains not a final objective-value performance claim and not a SOTA claim.
 
 Stage 8.13 is a formal experiment design and budget lock, not an official CEC2013 benchmark run. It locks benchmark_suite = CEC2013_LSGO, function_ids = F1..F15, overlap_focus_function_ids = F13/F14, run_count = 25, MaxFEs = 3000000, checkpoints = 120000/600000/3000000, primary_ranking_statistic = median_at_3000000_fe, total_planned_official_runs = 375, and total_planned_max_fe = 1125000000. It records FE_total = 0, does not execute objectives, and remains not a final objective-value performance claim and not a SOTA claim.
+
+Stage 8.14 is a CEC2013 single-run smoke and route decision, not the full formal panel. It runs one seed on F13/F14 with smoke_max_fe_per_method_per_function = 1200 and compares regime_safe_adaptive_shrinkage_v1 against identity_no_coord, simple_consensus, weighted_consensus, and best_reward_select. The smoke records policy_vs_best_baseline = 0 win / 0 tie / 2 loss, single_run_promising = false, FE_total = 24010, and routes to Stage 8.15 failure-honest CEC2013 smoke diagnosis before any 25-run panel.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 Historical checkpoint: Current repository state: `Stage 7.6 PASS` remains the prior comparator-audit milestone before Stage 8.0.
@@ -75,10 +77,11 @@ Stage 8.10   official-like panel or policy-generalization decision      PASS
 Stage 8.11   policy generalization beyond best simple baseline          PASS
 Stage 8.12   official-like / SOTA-facing evidence gate               PASS
 Stage 8.13   formal CEC2013 SOTA experiment design and budget lock    PASS
-Stage 8.14   execute formal CEC2013 same-budget panel                NEXT
+Stage 8.14   CEC2013 single-run smoke and route decision             PASS
+Stage 8.15   failure-honest CEC2013 smoke diagnosis                  NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, Stage 8.4 large-scale objective panel evaluation, Stage 8.5 failure-honest analysis, Stage 8.6 proposal-state/operator-family ablation, Stage 8.7 conditional proposal-state policy ablation, Stage 8.8 objective-loop rerun for conditional policy, Stage 8.9 failure-honest interpretation before official claims, Stage 8.10 official-like panel or policy-generalization decision, Stage 8.11 policy generalization beyond best simple baseline, Stage 8.12 official-like / SOTA-facing evidence gate, and Stage 8.13 formal CEC2013 SOTA experiment design and budget lock. The next frontier is Stage 8.14: execute formal CEC2013 same-budget panel.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, Stage 8.4 large-scale objective panel evaluation, Stage 8.5 failure-honest analysis, Stage 8.6 proposal-state/operator-family ablation, Stage 8.7 conditional proposal-state policy ablation, Stage 8.8 objective-loop rerun for conditional policy, Stage 8.9 failure-honest interpretation before official claims, Stage 8.10 official-like panel or policy-generalization decision, Stage 8.11 policy generalization beyond best simple baseline, Stage 8.12 official-like / SOTA-facing evidence gate, Stage 8.13 formal CEC2013 SOTA experiment design and budget lock, and Stage 8.14 CEC2013 single-run smoke and route decision. The next frontier is Stage 8.15: failure-honest CEC2013 smoke diagnosis before any full 25-run panel.
 
 ## What Stage 3 Established
 
@@ -1000,7 +1003,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 8.14: execute formal CEC2013 same-budget panel
+Stage 8.15: failure-honest CEC2013 smoke diagnosis
 ```
 
-Stage 8.14 should execute the locked formal CEC2013 same-budget panel from Stage 8.13. It must keep BaseOpt fixed, avoid validation/test feedback leakage, count every FE, preserve the final-performance claim boundary during execution, and remain not a SOTA claim until the official same-budget evidence is complete and audited.
+Stage 8.15 should diagnose why the Stage 8.11 generalized policy lost to best_reward_select on the Stage 8.14 F13/F14 single-run smoke. It must keep BaseOpt fixed, avoid validation/test feedback leakage, avoid selected-policy revision from this smoke result, preserve FE accounting, and decide whether the failure comes from proposal construction, policy behavior, CEC2013 transfer mismatch, or objective-loop integration before any full 25-run panel is attempted.

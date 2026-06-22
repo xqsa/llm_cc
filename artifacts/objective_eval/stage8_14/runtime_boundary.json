@@ -1,0 +1,35 @@
+{
+  "claim_scope": "CEC2013 single-run smoke and route decision only",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_operator_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "full 25-run CEC2013 result",
+    "full F1..F15 CEC2013 result"
+  ],
+  "full_official_budget_deferred": true,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_full_25_run_panel": true,
+  "not_full_f1_f15_panel": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "official_cec2013_panel_run": false,
+  "run_count": 1,
+  "schema_version": "loco.stage8_14_runtime_boundary.v1",
+  "single_run_smoke_executed": true,
+  "smoke_max_fe_per_method_per_function": 1200,
+  "stage": "8.14",
+  "status": "PASS"
+}

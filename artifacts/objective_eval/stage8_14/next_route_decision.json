@@ -1,0 +1,17 @@
+{
+  "decision": "NOT_PROMISING_SINGLE_RUN_DIAGNOSE_BEFORE_25_RUN_PANEL",
+  "decision_reason": "Stage 8.14 ran one overlap-focused CEC2013 smoke before spending the full 25-run formal budget.",
+  "if_not_promising_next": "failure_honest_cec2013_smoke_diagnosis",
+  "if_promising_next": "execute_full_25_run_formal_panel",
+  "next_stage": "Stage 8.15",
+  "not_performance_claim": true,
+  "run_failure_diagnosis_next": true,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_14_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.14",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

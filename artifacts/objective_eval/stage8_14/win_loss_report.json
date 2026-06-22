@@ -1,0 +1,43 @@
+{
+  "baseline_comparison_made": true,
+  "benchmark_suite": "CEC2013_LSGO",
+  "case_rows": [
+    {
+      "best_baseline_final_best": 8.714428967708853e+16,
+      "best_baseline_method": "best_reward_select",
+      "function_id": "F13",
+      "policy_final_best": 8.716559195496776e+16,
+      "policy_name": "regime_safe_adaptive_shrinkage_v1",
+      "policy_vs_best_baseline_delta": 21302277879232.0,
+      "policy_vs_best_baseline_result": "loss",
+      "run_index": 1,
+      "seed": 0
+    },
+    {
+      "best_baseline_final_best": 5.074322565106659e+18,
+      "best_baseline_method": "best_reward_select",
+      "function_id": "F14",
+      "policy_final_best": 5.074322808381155e+18,
+      "policy_name": "regime_safe_adaptive_shrinkage_v1",
+      "policy_vs_best_baseline_delta": 243274496000.0,
+      "policy_vs_best_baseline_result": "loss",
+      "run_index": 1,
+      "seed": 0
+    }
+  ],
+  "comparison_case_count": 2,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_vs_best_baseline": {
+    "loss": 2,
+    "tie": 0,
+    "win": 0
+  },
+  "promising_delta_threshold": 0.0,
+  "run_count": 1,
+  "schema_version": "loco.stage8_14_win_loss_report.v1",
+  "single_run_promising": false,
+  "source_stage": "8.13",
+  "stage": "8.14",
+  "status": "PASS"
+}

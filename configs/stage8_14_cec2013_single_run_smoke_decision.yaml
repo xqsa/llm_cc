@@ -1,0 +1,55 @@
+stage: "8.14"
+name: "CEC2013 Single-Run Smoke And Route Decision"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Run one overlap-focused CEC2013 smoke before spending the full 25-run formal budget."
+  runner: "loco.coordination.cec2013_single_run_smoke_decision"
+  cli_entrypoint: "scripts/stage8/run_stage8_14_cec2013_single_run_smoke_decision.py"
+  single_run_smoke_executed: true
+  run_count: 1
+  not_full_25_run_panel: true
+  not_full_f1_f15_panel: true
+  full_official_budget_deferred: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_13_design_report: "artifacts/objective_eval/stage8_13/formal_sota_experiment_design.json"
+  stage8_13_budget_lock: "artifacts/objective_eval/stage8_13/budget_lock.json"
+  stage8_13_function_scope: "artifacts/objective_eval/stage8_13/function_scope_lock.json"
+  stage8_13_claim_gate: "artifacts/objective_eval/stage8_13/claim_gate.json"
+  stage8_13_runtime_boundary: "artifacts/objective_eval/stage8_13/runtime_boundary.json"
+  stage8_13_next_route_decision: "artifacts/objective_eval/stage8_13/next_route_decision.json"
+
+smoke_contract:
+  benchmark_suite: "CEC2013_LSGO"
+  function_ids: ["F13", "F14"]
+  run_count: 1
+  seed: 0
+  smoke_max_fe_per_method_per_function: 1200
+  full_formal_run_count: 25
+  full_formal_function_ids: "F1..F15"
+  full_formal_MaxFEs: 3000000
+  route_if_promising: "execute_full_25_run_formal_panel"
+  route_if_not_promising: "failure_honest_cec2013_smoke_diagnosis"
+
+fe_accounting:
+  all_extra_fe_counted: true
+  same_budget_across_methods: true
+  cross_method_evaluations_shared: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a full 25-run panel"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
