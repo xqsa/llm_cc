@@ -1,0 +1,19 @@
+{
+  "case_count": 36,
+  "conditional_policy_not_equivalent_to_simple_consensus": true,
+  "conditional_policy_not_equivalent_to_weighted_consensus": true,
+  "family_collapse_gate_passed": true,
+  "keep_weighted_count": 24,
+  "not_final_performance_claim": true,
+  "policy_name": "overlap_reward_reliability_switch_v1",
+  "policy_rule": "use simple_consensus when overlap is medium/high and reward-weighted behavior is unreliable; otherwise keep weighted_consensus",
+  "schema_version": "loco.stage8_7_conditional_policy_report.v1",
+  "simple_preferred_regime_count": 12,
+  "simple_preferred_regime_recovery_count": 12,
+  "source_stage": "8.6",
+  "stage": "8.7",
+  "status": "PASS",
+  "switch_to_simple_count": 12,
+  "weighted_sufficient_regime_count": 24,
+  "weighted_sufficient_regression_count": 0
+}

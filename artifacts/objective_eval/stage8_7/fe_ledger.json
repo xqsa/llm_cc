@@ -1,0 +1,16 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 0,
+  "FE_repair": 0,
+  "FE_total": 0,
+  "budget_scope": "conditional_policy_ablation_only",
+  "inherited_stage8_4_FE_total": 1296,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_7_fe_ledger.v1",
+  "stage": "8.7",
+  "status": "PASS"
+}

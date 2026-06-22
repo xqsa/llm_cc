@@ -1,0 +1,55 @@
+stage: "8.7"
+name: "Conditional Proposal-State Policy Ablation"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Test an overlap/reward-reliability aware conditional policy before rerunning the objective loop."
+  runner: "loco.coordination.conditional_proposal_state_policy"
+  cli_entrypoint: "scripts/stage8/run_stage8_7_conditional_policy_ablation.py"
+  conditional_policy_ablation: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_6_case_table: "artifacts/objective_eval/stage8_6/ablation_case_table.jsonl"
+  stage8_6_summary: "artifacts/objective_eval/stage8_6/ablation_summary.json"
+  stage8_6_operator_report: "artifacts/objective_eval/stage8_6/operator_family_ablation_report.json"
+  stage8_6_proposal_report: "artifacts/objective_eval/stage8_6/proposal_state_ablation_report.json"
+  source_stage: "8.6"
+
+policy:
+  name: "overlap_reward_reliability_switch_v1"
+  rule: "use simple_consensus when overlap is medium/high and reward-weighted behavior is unreliable; otherwise keep weighted_consensus"
+  features:
+    - "overlap_degree"
+    - "reward_reliability"
+    - "weighted_vs_simple_final_best_delta"
+    - "selected_minus_simple_mean_update_size"
+
+success_criteria:
+  simple_preferred_regime_recovery_count: 12
+  weighted_sufficient_regression_count: 0
+  conditional_policy_not_equivalent_to_weighted_consensus: true
+  conditional_policy_not_equivalent_to_simple_consensus: true
+  family_collapse_gate_passed: true
+
+fe_accounting:
+  stage8_7_new_fe_total: 0
+  inherited_stage8_4_fe_total_is_recorded: true
+  no_new_objective_evaluation: true
+  objective_loop_executed: false
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

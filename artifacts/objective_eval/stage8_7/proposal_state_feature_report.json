@@ -1,0 +1,20 @@
+{
+  "conflicting_overlap_case_count": 9,
+  "feature_names": [
+    "overlap_degree",
+    "reward_reliability",
+    "weighted_vs_simple_final_best_delta",
+    "selected_minus_simple_mean_update_size"
+  ],
+  "feature_schema_version": "loco.stage8_7_proposal_features.v1",
+  "high_overlap_case_count": 9,
+  "low_overlap_case_count": 9,
+  "medium_overlap_case_count": 9,
+  "not_final_performance_claim": true,
+  "reliable_reward_case_count": 24,
+  "schema_version": "loco.stage8_7_proposal_state_feature_report.v1",
+  "source_stage": "8.6",
+  "stage": "8.7",
+  "status": "PASS",
+  "unreliable_reward_case_count": 12
+}

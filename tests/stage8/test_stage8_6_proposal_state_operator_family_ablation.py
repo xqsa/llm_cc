@@ -178,7 +178,7 @@ def test_stage8_6_committed_artifacts_docs_and_readme_record_ablation_boundary()
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
     assert "Stage 8.6" in combined
-    assert "Current repository state: `Stage 8.6 PASS`" in combined
+    assert "Stage 8.6    proposal-state/operator-family ablation                  PASS" in combined
     assert "operator-family collapse to weighted_consensus" in combined
     assert "simple_consensus is needed in 12 high/medium-overlap cases" in combined
     assert "FE_total = 0" in combined
