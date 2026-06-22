@@ -1,0 +1,66 @@
+{
+  "best_baseline_beaten": true,
+  "conditional_vs_best_baseline": {
+    "loss": 0,
+    "tie": 9,
+    "win": 27
+  },
+  "generalized_method": "stage8_11_generalized_policy",
+  "method_ranking_by_mean_final_best": [
+    {
+      "mean_final_best": 37.574061141369,
+      "median_final_best": 32.459558300591,
+      "method_name": "stage8_11_generalized_policy"
+    },
+    {
+      "mean_final_best": 37.581519322246,
+      "median_final_best": 32.474242925901,
+      "method_name": "stage8_3_selected_operator"
+    },
+    {
+      "mean_final_best": 37.581519322246,
+      "median_final_best": 32.474242925901,
+      "method_name": "weighted_consensus"
+    },
+    {
+      "mean_final_best": 37.582133537203,
+      "median_final_best": 32.462626356147,
+      "method_name": "simple_consensus"
+    },
+    {
+      "mean_final_best": 37.599666696925,
+      "median_final_best": 32.485252745035,
+      "method_name": "identity_no_coord"
+    },
+    {
+      "mean_final_best": 37.621435300767,
+      "median_final_best": 32.525426898356,
+      "method_name": "frozen_stage5_selected_operator"
+    },
+    {
+      "mean_final_best": 38.186755585814,
+      "median_final_best": 33.126308300591,
+      "method_name": "best_reward_select"
+    }
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_name": "regime_safe_adaptive_shrinkage_v1",
+  "same_budget_comparison": true,
+  "schema_version": "loco.stage8_12_strong_baseline_report.v1",
+  "source_stage": "8.11",
+  "stage": "8.12",
+  "stage8_11_generalized_policy_rank": 1,
+  "status": "PASS",
+  "strictly_beats_best_simple_baseline": true,
+  "strong_baseline_count": 6,
+  "strong_baseline_methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "frozen_stage5_selected_operator",
+    "stage8_3_selected_operator"
+  ],
+  "zero_losses_vs_best_baseline": true
+}

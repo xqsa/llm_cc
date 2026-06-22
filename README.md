@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 8.10 PASS` — Stage 8.10 completed the official-like panel or policy-generalization decision gate. It records decision = PRIORITIZE_POLICY_GENERALIZATION_BEFORE_OFFICIAL_SOTA_CLAIM because Stage 8.9 shows bounded synthetic utility but best_baseline_beaten = false: conditional_vs_best_baseline = 0 win / 36 tie / 0 loss. official_like_panel_ready = partial, FE_total = 0, and this is still not a final objective-value performance claim and not a SOTA claim.
+Current repository state: `Stage 8.12 PASS` — Stage 8.12 completed the official-like / SOTA-facing evidence gate. It records policy_name = regime_safe_adaptive_shrinkage_v1, same_budget_comparison = true, strong_baseline_comparison = true, conditional_vs_best_baseline = 27 win / 9 tie / 0 loss, formal_sota_gap = official_cec2013_same_budget_panel_not_yet_run, Stage 8.12 FE_total = 0, inherited_stage8_11_FE_total = 1512, and this is still not a final objective-value performance claim and not a SOTA claim.
 
 Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
@@ -31,6 +31,10 @@ Stage 8.8 is an objective-loop rerun for conditional policy, not an official ben
 Stage 8.9 is a failure-honest interpretation gate, not a new objective run. It reads Stage 8.8 artifacts and records the bounded claim: the conditional policy repairs the Stage 8.3/weighted-consensus failure in simple-preferred overlap regimes, but conditional policy matches but does not beat the best simple baseline. It records FE_total = 0, inherited_stage8_8_FE_total = 1512, no LLM call, no new candidate generation, no selected-operator revision, no validation feedback, no test feedback, no BaseOpt modification, and not a final objective-value performance claim.
 
 Stage 8.10 is a route-decision gate, not a new objective run. It reads Stage 8.9 interpretation artifacts plus the Stage 7.5/7.6 SOTA protocol and comparator-audit artifacts, then chooses policy generalization beyond best simple baseline before any official/SOTA claim. It records official_like_panel_ready = partial, best_baseline_beaten = false, FE_total = 0, no LLM call, no new candidate generation, no selected-operator revision, no validation feedback, no test feedback, no BaseOpt modification, and not a final objective-value performance claim.
+
+Stage 8.11 is a policy generalization objective-loop rerun, not an official benchmark claim. It executes regime_safe_adaptive_shrinkage_v1 in the locked synthetic objective panel, records FE_total = 1512, and shows that the generalized policy beats the best simple baseline while preserving the no LLM call, no new candidate generation, no selected-operator revision, no validation feedback, no test feedback, no BaseOpt modification, and not a final objective-value performance claim boundaries.
+
+Stage 8.12 is an official-like / SOTA-facing evidence gate, not an official CEC2013 benchmark run. It reads Stage 8.11 evidence plus the Stage 7.5/7.6 SOTA protocol and comparator audit, records formal_sota_gap = official_cec2013_same_budget_panel_not_yet_run, and routes to Stage 8.13 formal CEC2013 SOTA experiment design and budget lock. It does not rerun objectives, records FE_total = 0 for the gate, does not use reported results as runtime feedback, and remains not a final objective-value performance claim and not a SOTA claim.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 Historical checkpoint: Current repository state: `Stage 7.6 PASS` remains the prior comparator-audit milestone before Stage 8.0.
@@ -66,10 +70,12 @@ Stage 8.7    conditional proposal-state policy ablation                PASS
 Stage 8.8    objective-loop rerun for conditional policy               PASS
 Stage 8.9    failure-honest interpretation before official claims      PASS
 Stage 8.10   official-like panel or policy-generalization decision      PASS
-Stage 8.11   policy generalization beyond best simple baseline          NEXT
+Stage 8.11   policy generalization beyond best simple baseline          PASS
+Stage 8.12   official-like / SOTA-facing evidence gate               PASS
+Stage 8.13   formal CEC2013 SOTA experiment design and budget lock    NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, Stage 8.4 large-scale objective panel evaluation, Stage 8.5 failure-honest analysis, Stage 8.6 proposal-state/operator-family ablation, Stage 8.7 conditional proposal-state policy ablation, Stage 8.8 objective-loop rerun for conditional policy, Stage 8.9 failure-honest interpretation before official claims, and Stage 8.10 official-like panel or policy-generalization decision. The next frontier is Stage 8.11: policy generalization beyond best simple baseline.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, Stage 8.4 large-scale objective panel evaluation, Stage 8.5 failure-honest analysis, Stage 8.6 proposal-state/operator-family ablation, Stage 8.7 conditional proposal-state policy ablation, Stage 8.8 objective-loop rerun for conditional policy, Stage 8.9 failure-honest interpretation before official claims, Stage 8.10 official-like panel or policy-generalization decision, Stage 8.11 policy generalization beyond best simple baseline, and Stage 8.12 official-like / SOTA-facing evidence gate. The next frontier is Stage 8.13: formal CEC2013 SOTA experiment design and budget lock.
 
 ## What Stage 3 Established
 
@@ -991,7 +997,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 8.11: Policy generalization beyond best simple baseline
+Stage 8.13: formal CEC2013 SOTA experiment design and budget lock
 ```
 
-Stage 8.11 should develop a generalized coordination policy that can exceed the best simple baseline rather than only switch between existing baselines. It must keep BaseOpt fixed, avoid validation/test feedback leakage, preserve the final-performance claim boundary, and remain not a SOTA claim until official-like evidence exists.
+Stage 8.13 should lock the formal CEC2013 same-budget experiment design before any SOTA claim: exact functions, run count, FE budget, admissible comparators, statistical reporting, artifact schema, and failure-honest stopping rules. It must keep BaseOpt fixed, avoid validation/test feedback leakage, preserve the final-performance claim boundary, and remain not a SOTA claim until official same-budget evidence exists.

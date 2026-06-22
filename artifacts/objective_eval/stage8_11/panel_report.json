@@ -1,0 +1,99 @@
+{
+  "FE_global_objective": 756,
+  "FE_total": 1512,
+  "baseline_comparison_made": true,
+  "baseopt_modified": false,
+  "best_baseline_beaten": true,
+  "comparison_case_count": 36,
+  "conditional_vs_best_baseline": {
+    "loss": 0,
+    "tie": 9,
+    "win": 27
+  },
+  "conditional_vs_simple_consensus": {
+    "loss": 0,
+    "tie": 9,
+    "win": 27
+  },
+  "conditional_vs_stage8_3_selected_operator": {
+    "loss": 0,
+    "tie": 18,
+    "win": 18
+  },
+  "conditional_vs_weighted_consensus": {
+    "loss": 0,
+    "tie": 18,
+    "win": 18
+  },
+  "controller_scheduler_generation_used": false,
+  "dimension_count": 3,
+  "dimensions": [
+    500,
+    1000,
+    2000
+  ],
+  "evolution_search_used": false,
+  "final_performance_claim_ready": false,
+  "inherited_stage8_10_FE_total": 0,
+  "large_scale_panel_executed": true,
+  "llm_call_used": false,
+  "maximum_vs_best_baseline_loss_count": 0,
+  "method_count": 7,
+  "method_names": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "frozen_stage5_selected_operator",
+    "stage8_3_selected_operator",
+    "stage8_11_generalized_policy"
+  ],
+  "method_summary_written": true,
+  "minimum_vs_best_baseline_win_count": 27,
+  "new_candidate_generation_used": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_benchmark_run": false,
+  "objective_loop_executed": true,
+  "objective_step_count_per_method_per_panel": 3,
+  "official_benchmark_claim_ready": false,
+  "official_like_panel_ready": "now_candidate",
+  "optimizer_generation_used": false,
+  "panel_count": 4,
+  "panel_scope": "policy_generalization_beyond_best_simple_baseline",
+  "panel_summary_written": true,
+  "policy_generalization_required": true,
+  "policy_name": "regime_safe_adaptive_shrinkage_v1",
+  "policy_scope": "policy_generalization_beyond_best_simple_baseline",
+  "previous_frozen_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "recommended_next_stage": "Stage 8.12",
+  "recommended_next_work": "official_like_panel_or_sota_facing_protocol",
+  "reported_results_used_as_runtime_feedback": false,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_11_panel_report.v1",
+  "seed_count": 3,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "selected_candidate_id": "stage3_5_batch_1_reweighting_repair",
+  "selected_operator_revision_used": false,
+  "selected_operator_target_variable": 6,
+  "sota_claim_ready": false,
+  "source_stage": "8.10",
+  "stage": "8.11",
+  "stage8_11_generalized_policy_executed": true,
+  "status": "PASS",
+  "synthetic_panels": [
+    "synthetic_low_overlap_panel",
+    "synthetic_medium_overlap_panel",
+    "synthetic_high_overlap_panel",
+    "synthetic_conflicting_overlap_panel"
+  ],
+  "test_feedback_used": false,
+  "trace_row_count": 756,
+  "validation_feedback_used": false,
+  "win_loss_report_written": true
+}

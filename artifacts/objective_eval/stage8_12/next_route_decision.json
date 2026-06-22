@@ -1,0 +1,15 @@
+{
+  "allowed_next_work": "formal_cec2013_sota_experiment_design_and_budget_lock",
+  "decision": "READY_FOR_STAGE8_13_FORMAL_SOTA_EXPERIMENT_DESIGN",
+  "decision_reason": "Stage 8.12 confirms same-budget synthetic evidence against strong baselines, but official CEC2013 same-budget runs are still required before any SOTA claim.",
+  "next_stage": "Stage 8.13",
+  "not_performance_claim": true,
+  "run_formal_sota_experiment_design_next": true,
+  "schema_version": "loco.stage8_12_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.12",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

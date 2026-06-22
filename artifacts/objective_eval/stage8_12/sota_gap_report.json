@@ -1,0 +1,32 @@
+{
+  "best_baseline_beaten": true,
+  "claim_contract_tiers_available": [
+    "T0",
+    "T1",
+    "T2",
+    "T3"
+  ],
+  "claim_tier_recommended": "T1_then_T2_or_T3_after_official_runs",
+  "conditional_vs_best_baseline": {
+    "loss": 0,
+    "tie": 9,
+    "win": 27
+  },
+  "current_frontier": "beats_best_simple_baseline_on_locked_synthetic_panel",
+  "formal_sota_gap": "official_cec2013_same_budget_panel_not_yet_run",
+  "full_cec2013_sota_claim_allowed_now": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_function_count": 15,
+  "official_max_fe": 3000000,
+  "official_run_count": 25,
+  "ready_for_formal_sota_experiment_design": true,
+  "reason": "The generalized policy has crossed the best-simple-baseline gate on the locked synthetic panel, but no official CEC2013 same-budget panel has been executed yet.",
+  "reported_results_background_only_count": 1,
+  "reported_results_direct_comparator_count": 1,
+  "schema_version": "loco.stage8_12_sota_gap_report.v1",
+  "source_stage": "8.11",
+  "stage": "8.12",
+  "stage8_11_generalized_policy_rank": 1,
+  "status": "PASS"
+}

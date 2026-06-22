@@ -1,0 +1,73 @@
+stage: "8.12"
+name: "Official-like / SOTA-facing Evidence Gate"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Convert Stage 8.11 generalized-policy evidence into a SOTA-facing gate that decides whether formal CEC2013 same-budget experiment design is justified."
+  runner: "loco.coordination.official_like_sota_panel"
+  cli_entrypoint: "scripts/stage8/run_stage8_12_official_like_sota_panel.py"
+  decision_gate_only: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  official_cec2013_panel_run: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_11_panel_report: "artifacts/objective_eval/stage8_11/panel_report.json"
+  stage8_11_win_loss_report: "artifacts/objective_eval/stage8_11/win_loss_report.json"
+  stage8_11_method_summary: "artifacts/objective_eval/stage8_11/method_summary.json"
+  stage8_11_panel_summary: "artifacts/objective_eval/stage8_11/panel_summary.json"
+  stage8_11_fe_ledger: "artifacts/objective_eval/stage8_11/fe_ledger.json"
+  stage8_11_runtime_boundary: "artifacts/objective_eval/stage8_11/runtime_boundary.json"
+  stage8_11_next_route_decision: "artifacts/objective_eval/stage8_11/next_route_decision.json"
+  stage7_5_sota_protocol: "artifacts/objective_eval/stage7_5/sota_protocol_report.json"
+  stage7_5_claim_contract: "artifacts/objective_eval/stage7_5/benchmark_claim_contract.json"
+  stage7_6_comparator_audit: "artifacts/objective_eval/stage7_6/reported_results_comparator_audit_report.json"
+  stage7_6_comparator_registry: "artifacts/objective_eval/stage7_6/reported_results_comparator_registry.json"
+
+policy:
+  name: "regime_safe_adaptive_shrinkage_v1"
+  method_name: "stage8_11_generalized_policy"
+  source_stage: "8.11"
+
+strong_baselines:
+  same_budget_required: true
+  methods:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "frozen_stage5_selected_operator"
+    - "stage8_3_selected_operator"
+  expected_stage8_11_result: "27 win / 9 tie / 0 loss versus best simple baseline"
+
+sota_facing_contract:
+  official_run_count_required: 25
+  official_max_fe_required: 3000000
+  official_function_count_required: 15
+  reported_results_are_audit_only: true
+  formal_sota_gap: "official_cec2013_same_budget_panel_not_yet_run"
+  next_stage: "Stage 8.13"
+  next_work: "formal_cec2013_sota_experiment_design_and_budget_lock"
+
+fe_accounting:
+  stage8_12_FE_total: 0
+  inherited_stage8_11_FE_total: 1512
+  all_extra_fe_counted: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

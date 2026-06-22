@@ -1,0 +1,18 @@
+{
+  "inherited_objective_evidence_FE_total": 1512,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_budget_match_next_stage_required": true,
+  "official_budget_match_ready": false,
+  "official_function_count_required": 15,
+  "official_max_fe_required": 3000000,
+  "official_run_count_required": 25,
+  "reason": "Stage 8.12 is a SOTA-facing evidence gate. It verifies same-budget synthetic evidence and locks the need for a formal official-budget experiment before any benchmark or SOTA claim.",
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_12_same_budget_report.v1",
+  "source_stage": "8.11",
+  "stage": "8.12",
+  "stage8_11_FE_total": 1512,
+  "stage8_12_FE_total": 0,
+  "status": "PASS"
+}
