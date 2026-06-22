@@ -1,0 +1,47 @@
+{
+  "allow_t1_overlap_focus_after_f13_f14_runs": true,
+  "allow_t2_subset_claim_after_named_same_budget_subset_runs": true,
+  "allow_t3_full_sota_only_after_full_suite_same_budget_runs": true,
+  "blocked_claim_reason": "formal official CEC2013 same-budget panel not executed yet",
+  "claim_tier_locked": "T1_then_T2_then_T3_after_runs",
+  "claim_tiers": [
+    {
+      "allowed_claim": "SOTA protocol and comparator admissibility rules are locked.",
+      "scope": "protocol_only",
+      "sota_claim_allowed": false,
+      "tier_id": "T0"
+    },
+    {
+      "allowed_claim": "Overlap-focused CEC2013 F13/F14 evidence.",
+      "full_cec2013_sota_claim_allowed": false,
+      "requires_cec2013_panel_run": true,
+      "scope": "overlap_focused_f13_f14_panel",
+      "tier_id": "T1"
+    },
+    {
+      "allowed_claim": "Same-setting subset comparison on explicitly named functions.",
+      "full_cec2013_sota_claim_allowed": false,
+      "requires_admissible_comparators": true,
+      "scope": "cec2013_lsgo_subset_claim",
+      "tier_id": "T2"
+    },
+    {
+      "allowed_claim": "Full same-setting CEC2013 LSGO SOTA-facing comparison.",
+      "requires_admissible_comparators": true,
+      "requires_full_function_scope_or_explicit_sota_scope": true,
+      "requires_full_official_setting": true,
+      "scope": "full_or_sota_cec2013_lsgo_claim",
+      "sota_claim_allowed": true,
+      "tier_id": "T3"
+    }
+  ],
+  "final_performance_claim_ready": false,
+  "full_sota_claim_allowed_now": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_ready": false,
+  "schema_version": "loco.stage8_13_claim_gate.v1",
+  "source_stage": "7.5",
+  "stage": "8.13",
+  "status": "PASS"
+}

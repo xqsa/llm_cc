@@ -1,0 +1,29 @@
+{
+  "claim_scope": "formal CEC2013 SOTA experiment design and budget lock only",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_operator_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "official CEC2013 large-scale benchmark success",
+    "BaseOpt improvement"
+  ],
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "official_cec2013_panel_run": false,
+  "schema_version": "loco.stage8_13_runtime_boundary.v1",
+  "stage": "8.13",
+  "status": "PASS"
+}

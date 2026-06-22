@@ -1,0 +1,15 @@
+{
+  "allowed_next_work": "execute_formal_cec2013_same_budget_panel",
+  "decision": "READY_FOR_STAGE8_14_EXECUTE_FORMAL_CEC2013_PANEL",
+  "decision_reason": "Stage 8.13 locked the formal official-budget CEC2013 experiment design, including function scope, budget, comparators, statistics, and claim gate.",
+  "next_stage": "Stage 8.14",
+  "not_performance_claim": true,
+  "run_formal_cec2013_panel_next": true,
+  "schema_version": "loco.stage8_13_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.13",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

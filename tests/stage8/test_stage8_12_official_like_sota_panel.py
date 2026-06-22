@@ -171,10 +171,10 @@ def test_stage8_12_committed_artifacts_docs_and_readme_record_sota_facing_gate()
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.12 PASS`" in combined
+    assert "Current repository state: `Stage 8.13 PASS`" in combined
     assert "Stage 8.11   policy generalization beyond best simple baseline          PASS" in combined
     assert "Stage 8.12   official-like / SOTA-facing evidence gate               PASS" in combined
-    assert "Stage 8.13   formal CEC2013 SOTA experiment design and budget lock    NEXT" in combined
+    assert "Stage 8.13   formal CEC2013 SOTA experiment design and budget lock    PASS" in combined
     assert "regime_safe_adaptive_shrinkage_v1" in combined
     assert "27 win / 9 tie / 0 loss" in combined
     assert "official_cec2013_same_budget_panel_not_yet_run" in combined

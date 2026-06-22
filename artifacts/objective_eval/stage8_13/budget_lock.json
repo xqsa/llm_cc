@@ -1,0 +1,27 @@
+{
+  "all_extra_fe_counted": true,
+  "benchmark_suite": "CEC2013_LSGO",
+  "checkpoint_fe": [
+    120000,
+    600000,
+    3000000
+  ],
+  "dimension": 1000,
+  "formal_run_budget_per_function_per_seed": 3000000,
+  "function_count": 15,
+  "inherited_stage8_11_FE_total": 1512,
+  "inherited_stage8_12_FE_total": 0,
+  "max_fe": 3000000,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_panel_executed": false,
+  "run_count": 25,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_13_budget_lock.v1",
+  "source_stage": "8.12",
+  "stage": "8.13",
+  "stage8_13_FE_total": 0,
+  "status": "PASS",
+  "total_planned_max_fe": 1125000000,
+  "total_planned_official_runs": 375
+}

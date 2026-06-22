@@ -1,0 +1,76 @@
+stage: "8.13"
+name: "Formal CEC2013 SOTA Experiment Design And Budget Lock"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Lock the formal official-budget CEC2013 experiment design before executing any SOTA-facing benchmark panel."
+  runner: "loco.coordination.formal_sota_experiment_design"
+  cli_entrypoint: "scripts/stage8/run_stage8_13_formal_sota_experiment_design.py"
+  design_only: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  official_cec2013_panel_run: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_12_panel_report: "artifacts/objective_eval/stage8_12/official_like_panel_report.json"
+  stage8_12_sota_gap_report: "artifacts/objective_eval/stage8_12/sota_gap_report.json"
+  stage8_12_same_budget_report: "artifacts/objective_eval/stage8_12/same_budget_report.json"
+  stage8_12_strong_baseline_report: "artifacts/objective_eval/stage8_12/strong_baseline_report.json"
+  stage8_12_fe_ledger: "artifacts/objective_eval/stage8_12/fe_ledger.json"
+  stage8_12_runtime_boundary: "artifacts/objective_eval/stage8_12/runtime_boundary.json"
+  stage8_12_next_route_decision: "artifacts/objective_eval/stage8_12/next_route_decision.json"
+  stage7_4_cec2013_decision: "artifacts/objective_eval/stage7_4/cec2013_panel_decision.json"
+  stage7_5_sota_protocol: "artifacts/objective_eval/stage7_5/sota_protocol_report.json"
+  stage7_5_claim_contract: "artifacts/objective_eval/stage7_5/benchmark_claim_contract.json"
+  stage7_6_comparator_audit: "artifacts/objective_eval/stage7_6/reported_results_comparator_audit_report.json"
+  stage7_6_comparator_registry: "artifacts/objective_eval/stage7_6/reported_results_comparator_registry.json"
+
+formal_cec2013_contract:
+  benchmark_suite: "CEC2013_LSGO"
+  dimension: 1000
+  function_ids: "F1..F15"
+  overlap_focus_function_ids: ["F13", "F14"]
+  run_count: 25
+  MaxFEs: 3000000
+  checkpoints: [120000, 600000, 3000000]
+  statistics: ["best", "median", "worst", "mean", "std"]
+  primary_ranking_statistic: "median_at_3000000_fe"
+  total_planned_official_runs: 375
+  total_planned_max_fe: 1125000000
+
+comparator_contract:
+  direct_comparator_sources: ["HCC"]
+  background_only_sources: ["OEDG"]
+  same_setting_required_for_direct_comparison: true
+  reported_results_use_policy: "audit_only_not_runtime_feedback"
+
+claim_gate:
+  claim_tier_locked: "T1_then_T2_then_T3_after_runs"
+  full_sota_claim_allowed_now: false
+  official_benchmark_claim_ready: false
+  blocked_claim_reason: "formal official CEC2013 same-budget panel not executed yet"
+
+fe_accounting:
+  stage8_13_FE_total: 0
+  inherited_stage8_12_FE_total: 0
+  inherited_stage8_11_FE_total: 1512
+  all_extra_fe_counted: true
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected-operator revision"
+  - "no evolution/search"
+  - "no objective-loop execution"
+  - "no new objective evaluation"
+  - "no official CEC2013 panel run"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

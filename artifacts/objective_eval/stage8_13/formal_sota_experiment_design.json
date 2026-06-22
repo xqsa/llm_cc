@@ -1,0 +1,89 @@
+{
+  "FE_total": 0,
+  "all_extra_fe_counted": true,
+  "background_only_sources": [
+    "OEDG"
+  ],
+  "baseopt_modified": false,
+  "benchmark_suite": "CEC2013_LSGO",
+  "checkpoints": [
+    120000,
+    600000,
+    3000000
+  ],
+  "claim_tier_locked": "T1_then_T2_then_T3_after_runs",
+  "controller_scheduler_generation_used": false,
+  "design_scope": "formal_cec2013_sota_experiment_design_and_budget_lock",
+  "dimension": 1000,
+  "direct_comparator_sources": [
+    "HCC"
+  ],
+  "evolution_search_used": false,
+  "formal_execution_ready": true,
+  "formal_experiment_design_locked": true,
+  "full_sota_claim_allowed_now": false,
+  "function_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F9",
+    "F10",
+    "F11",
+    "F12",
+    "F13",
+    "F14",
+    "F15"
+  ],
+  "inherited_stage8_11_FE_total": 1512,
+  "inherited_stage8_12_FE_total": 0,
+  "llm_call_used": false,
+  "max_fe": 3000000,
+  "new_candidate_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "official_benchmark_claim_ready": false,
+  "official_cec2013_panel_run": false,
+  "official_cec2013_setting_locked": true,
+  "official_function_count": 15,
+  "optimizer_generation_used": false,
+  "overlap_focus_function_ids": [
+    "F13",
+    "F14"
+  ],
+  "policy_name": "regime_safe_adaptive_shrinkage_v1",
+  "primary_ranking_statistic": "median_at_3000000_fe",
+  "recommended_next_stage": "Stage 8.14",
+  "recommended_next_work": "execute_formal_cec2013_same_budget_panel",
+  "reported_results_are_audit_only": true,
+  "reported_results_used_as_runtime_feedback": false,
+  "run_count": 25,
+  "same_budget_required": true,
+  "schema_version": "loco.stage8_13_formal_sota_experiment_design.v1",
+  "selected_operator_revision_used": false,
+  "source_stage": "8.12",
+  "stage": "8.13",
+  "stage8_12_policy_frontier": {
+    "loss": 0,
+    "tie": 9,
+    "win": 27
+  },
+  "statistics": [
+    "best",
+    "median",
+    "worst",
+    "mean",
+    "std"
+  ],
+  "status": "PASS",
+  "test_feedback_used": false,
+  "total_planned_max_fe": 1125000000,
+  "total_planned_official_runs": 375,
+  "validation_feedback_used": false
+}

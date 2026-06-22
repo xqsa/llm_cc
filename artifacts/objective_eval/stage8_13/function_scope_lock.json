@@ -1,0 +1,37 @@
+{
+  "benchmark_suite": "CEC2013_LSGO",
+  "dimension": 1000,
+  "dimension_semantics_required": [
+    "D_api=1000",
+    "F13/F14 D_formula=905 overlap semantics preserved"
+  ],
+  "f13_f14_only_not_full_sota": true,
+  "full_function_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F9",
+    "F10",
+    "F11",
+    "F12",
+    "F13",
+    "F14",
+    "F15"
+  ],
+  "full_suite_required_for_t3": true,
+  "not_sota_claim": true,
+  "official_function_count": 15,
+  "oracle_and_detected_grouping_reported_separately": true,
+  "overlap_focus_function_ids": [
+    "F13",
+    "F14"
+  ],
+  "schema_version": "loco.stage8_13_function_scope_lock.v1",
+  "stage": "8.13",
+  "status": "PASS"
+}

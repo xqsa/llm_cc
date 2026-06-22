@@ -1,0 +1,27 @@
+{
+  "aggregate_report_required": true,
+  "checkpoint_fe": [
+    120000,
+    600000,
+    3000000
+  ],
+  "effect_size_report": "median_relative_gap_and_win_tie_loss",
+  "failure_honest_reporting_required": true,
+  "multiple_comparison_control": "holm_bonferroni",
+  "not_sota_claim": true,
+  "paired_test_plan": "wilcoxon_signed_rank_on_per_function_final_values",
+  "per_function_report_required": true,
+  "primary_ranking_statistic": "median_at_3000000_fe",
+  "raw_trace_retention_required": true,
+  "run_count": 25,
+  "schema_version": "loco.stage8_13_statistical_reporting_plan.v1",
+  "stage": "8.13",
+  "statistics": [
+    "best",
+    "median",
+    "worst",
+    "mean",
+    "std"
+  ],
+  "status": "PASS"
+}
