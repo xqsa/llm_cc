@@ -12,7 +12,7 @@ The project does **not** use LLMs to generate a new optimizer. It does not gener
 
 ## Current Status
 
-Current repository state: `Stage 8.8 PASS` — Stage 8.8 completed an objective-loop rerun for conditional policy. It executed `overlap_reward_reliability_switch_v1` as `stage8_7_conditional_policy` in the locked synthetic objective panel, with conditional_vs_stage8_3_selected_operator = 12 win / 24 tie / 0 loss and conditional_vs_best_baseline = 0 win / 36 tie / 0 loss. FE_total = 1512 for Stage 8.8, and this is still not a final objective-value performance claim and not a SOTA claim.
+Current repository state: `Stage 8.9 PASS` — Stage 8.9 completed a failure-honest interpretation of the Stage 8.8 conditional-policy objective-loop evidence. It records that `overlap_reward_reliability_switch_v1` fixes the weighted-consensus collapse against the Stage 8.3 selected operator, with conditional_vs_stage8_3_selected_operator = 12 win / 24 tie / 0 loss, but conditional policy matches but does not beat the best simple baseline, with conditional_vs_best_baseline = 0 win / 36 tie / 0 loss. FE_total = 0 for Stage 8.9, inherited_stage8_8_FE_total = 1512, and this is still not a final objective-value performance claim and not a SOTA claim.
 
 Stage 8.0 is not a final objective-value performance claim and not a SOTA claim. It is a train-only improvement record, not a CEC2013 benchmark run. It does not use LLM calls, new candidate generation, selected-operator revision, evolution/search, new objective evaluation, benchmark execution, reported-results reuse as runtime feedback, paper table extraction into runtime logic, test-feedback tuning, BaseOpt modification, or optimizer/controller/scheduler generation.
 
@@ -27,6 +27,8 @@ Stage 8.6 is a proposal-state/operator-family ablation gate, not a new objective
 Stage 8.7 is a conditional proposal-state policy ablation gate, not a new objective run. It consumes Stage 8.6 evidence and tests `overlap_reward_reliability_switch_v1`: use simple_consensus when overlap is medium/high and reward-weighted behavior is unreliable; otherwise keep weighted_consensus. It records simple_preferred_regime_recovery_count = 12, weighted_sufficient_regression_count = 0, conditional_policy_not_equivalent_to_weighted_consensus = true, FE_total = 0, no new objective evaluation, no validation feedback, no test feedback, and not a final objective-value performance claim.
 
 Stage 8.8 is an objective-loop rerun for conditional policy, not an official benchmark claim. It executes `overlap_reward_reliability_switch_v1` in the same locked synthetic objective panel as Stage 8.4, records FE_total = 1512, and shows that the conditional policy wins the Stage 8.3 selected operator on the 12 simple-preferred cases while tying the best baseline on all 36 cases. It keeps no LLM call, no new candidate generation, no selected-operator revision, no validation feedback, no test feedback, no BaseOpt modification, and not a final objective-value performance claim.
+
+Stage 8.9 is a failure-honest interpretation gate, not a new objective run. It reads Stage 8.8 artifacts and records the bounded claim: the conditional policy repairs the Stage 8.3/weighted-consensus failure in simple-preferred overlap regimes, but conditional policy matches but does not beat the best simple baseline. It records FE_total = 0, inherited_stage8_8_FE_total = 1512, no LLM call, no new candidate generation, no selected-operator revision, no validation feedback, no test feedback, no BaseOpt modification, and not a final objective-value performance claim.
 
 Historical checkpoint: Current repository state: `Stage 7.4 PASS` remains the prior milestone that introduced the optional CEC2013 F13/F14 decision gate.
 Historical checkpoint: Current repository state: `Stage 7.6 PASS` remains the prior comparator-audit milestone before Stage 8.0.
@@ -60,10 +62,11 @@ Stage 8.5    failure-honest analysis of Stage 8.4 gaps                PASS
 Stage 8.6    proposal-state/operator-family ablation                  PASS
 Stage 8.7    conditional proposal-state policy ablation                PASS
 Stage 8.8    objective-loop rerun for conditional policy               PASS
-Stage 8.9    failure-honest interpretation before official claims      NEXT
+Stage 8.9    failure-honest interpretation before official claims      PASS
+Stage 8.10   official-like panel or policy-generalization decision      NEXT
 ```
 
-The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, Stage 8.4 large-scale objective panel evaluation, Stage 8.5 failure-honest analysis, Stage 8.6 proposal-state/operator-family ablation, Stage 8.7 conditional proposal-state policy ablation, and Stage 8.8 objective-loop rerun for conditional policy. The next frontier is Stage 8.9: failure-honest interpretation before any official or SOTA-targeted claim.
+The project is now past candidate generation, train-search promotion, validation-only selection, selected-operator freeze, the first sealed-test reporting surface, the baseline/ablation/failure-analysis layer, the Stage 7.0 objective-level evaluation protocol lock, the Stage 7.1 minimal objective-loop pilot, the Stage 7.2 synthetic large-scale objective panel, the Stage 7.3 paper-ready result polish, the Stage 7.4 optional CEC2013 F13/F14 panel decision, the Stage 7.5 SOTA-targeted real benchmark protocol lock, the Stage 7.6 reported-results comparator audit, Stage 8.0 train-only operator improvement, Stage 8.1 train-only selection audit, Stage 8.2 objective-level utility pilot, Stage 8.3 objective-level utility evidence selection, Stage 8.4 large-scale objective panel evaluation, Stage 8.5 failure-honest analysis, Stage 8.6 proposal-state/operator-family ablation, Stage 8.7 conditional proposal-state policy ablation, Stage 8.8 objective-loop rerun for conditional policy, and Stage 8.9 failure-honest interpretation before official claims. The next frontier is Stage 8.10: official-like panel or policy-generalization decision.
 
 ## What Stage 3 Established
 
@@ -985,7 +988,7 @@ Stage 2 evaluates each baseline or frozen artifact-backed operator as a separate
 Recommended next step:
 
 ```text
-Stage 8.9: Failure-honest interpretation before official claims
+Stage 8.10: Official-like panel or policy-generalization decision
 ```
 
-Stage 8.9 should interpret Stage 8.8 honestly: the conditional policy fixes the regression against simple_consensus and ties the best baseline on the synthetic panel, but it does not beat the best baseline and does not yet support an official benchmark or SOTA claim. It should keep BaseOpt fixed, avoid validation/test feedback leakage, and preserve the final-performance claim boundary.
+Stage 8.10 should choose between two honest next routes: run an official-like panel under the locked boundary, or continue policy generalization because Stage 8.9 records that the conditional policy matches but does not beat the best simple baseline. It must keep BaseOpt fixed, avoid validation/test feedback leakage, and preserve the final-performance claim boundary.

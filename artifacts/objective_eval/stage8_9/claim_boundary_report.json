@@ -1,0 +1,29 @@
+{
+  "allowed_paper_claim": "On the locked synthetic objective panel, the conditional coordination policy recovers the 12 simple-preferred cases and ties the best simple baseline without claiming final performance.",
+  "best_baseline_not_beaten": true,
+  "blocked_claim_reason": "conditional policy ties but does not beat the best simple baseline",
+  "claim_scope": "failure-honest interpretation before official claims",
+  "conditional_vs_best_baseline": {
+    "loss": 0,
+    "tie": 36,
+    "win": 0
+  },
+  "final_performance_claim_allowed": false,
+  "forbidden_claims": [
+    "official CEC2013 benchmark success",
+    "SOTA improvement",
+    "final objective-value performance superiority",
+    "BaseOpt improvement"
+  ],
+  "negative_boundary": "conditional policy matches but does not beat the best simple baseline; not final performance and not SOTA",
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_allowed": false,
+  "positive_claim": "conditional proposal-state coordination fixes weighted-consensus collapse and recovers simple-preferred overlap regimes in objective-loop execution",
+  "positive_claim_allowed": true,
+  "schema_version": "loco.stage8_9_claim_boundary_report.v1",
+  "sota_claim_allowed": false,
+  "source_stage": "8.8",
+  "stage": "8.9",
+  "status": "PASS"
+}

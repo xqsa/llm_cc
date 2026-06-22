@@ -1,0 +1,60 @@
+{
+  "FE_total": 0,
+  "baseopt_modified": false,
+  "best_baseline_not_beaten_is_recorded": true,
+  "conditional_policy_name": "overlap_reward_reliability_switch_v1",
+  "conditional_policy_not_equivalent_to_weighted_consensus": true,
+  "conditional_policy_utility_is_recorded": true,
+  "conditional_vs_best_baseline": {
+    "loss": 0,
+    "tie": 36,
+    "win": 0
+  },
+  "conditional_vs_simple_consensus": {
+    "loss": 0,
+    "tie": 12,
+    "win": 24
+  },
+  "conditional_vs_stage8_3_selected_operator": {
+    "loss": 0,
+    "tie": 24,
+    "win": 12
+  },
+  "conditional_vs_weighted_consensus": {
+    "loss": 0,
+    "tie": 24,
+    "win": 12
+  },
+  "controller_scheduler_generation_used": false,
+  "evolution_search_used": false,
+  "inherited_stage8_8_FE_total": 1512,
+  "interpretation_scope": "failure_honest_stage8_8_interpretation",
+  "keep_weighted_trace_row_count": 72,
+  "llm_call_used": false,
+  "method_name": "stage8_7_conditional_policy",
+  "negative_boundary_is_explicit": true,
+  "new_candidate_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "optimizer_generation_used": false,
+  "positive_claim_is_bounded": true,
+  "previous_frozen_candidate_id": "stage3_5_batch_1_weighted_consensus_projection",
+  "primary_negative_boundary": "conditional policy matches but does not beat the best simple baseline; not final performance and not SOTA",
+  "primary_positive_claim": "conditional proposal-state coordination fixes weighted-consensus collapse and recovers simple-preferred overlap regimes in objective-loop execution",
+  "reported_results_used_as_runtime_feedback": false,
+  "research_meaning": "the useful object is an overlap/reward-reliability aware coordination policy over operator families, not another weighted-consensus clone",
+  "schema_version": "loco.stage8_9_interpretation_report.v1",
+  "selected_candidate_id": "stage3_5_batch_1_reweighting_repair",
+  "selected_operator_revision_used": false,
+  "simple_preferred_case_recovery_count": 12,
+  "source_stage": "8.8",
+  "stage": "8.9",
+  "stage8_8_result_interpreted": true,
+  "status": "PASS",
+  "switch_to_simple_trace_row_count": 36,
+  "test_feedback_used": false,
+  "validation_feedback_used": false,
+  "weighted_sufficient_case_regression_count": 0
+}

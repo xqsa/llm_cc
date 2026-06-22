@@ -1,0 +1,37 @@
+{
+  "claim_scope": "failure-honest Stage 8.8 interpretation",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "new_objective_evaluation": false,
+    "objective_loop_execution": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_operator_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "official CEC2013 large-scale benchmark success",
+    "BaseOpt improvement"
+  ],
+  "legal_inputs": [
+    "artifacts/objective_eval/stage8_8/panel_report.json",
+    "artifacts/objective_eval/stage8_8/win_loss_report.json",
+    "artifacts/objective_eval/stage8_8/conditional_policy_runtime_report.json",
+    "artifacts/objective_eval/stage8_8/fe_ledger.json",
+    "artifacts/objective_eval/stage8_8/runtime_boundary.json"
+  ],
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_9_runtime_boundary.v1",
+  "stage": "8.9",
+  "status": "PASS"
+}

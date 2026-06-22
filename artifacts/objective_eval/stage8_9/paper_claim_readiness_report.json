@@ -1,0 +1,16 @@
+{
+  "blocked_claim_summary": "Official/SOTA/final-performance claims require an official-like panel or a policy-generalization decision after Stage 8.9.",
+  "final_performance_claim_ready": false,
+  "method_claim_ready": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_ready": false,
+  "paper_experiment_paragraph_ready": true,
+  "ready_claim_summary": "Failure-honest synthetic-panel paragraph is ready: conditional coordination repairs weighted-consensus collapse but only matches the best baseline.",
+  "schema_version": "loco.stage8_9_paper_claim_readiness_report.v1",
+  "sota_claim_ready": false,
+  "source_stage": "8.8",
+  "stage": "8.9",
+  "status": "PASS",
+  "synthetic_panel_claim_ready": true
+}
