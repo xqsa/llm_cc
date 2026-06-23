@@ -1,0 +1,14 @@
+{
+  "case_count": 4,
+  "loss_count_vs_best_reward": 0,
+  "mean_delta_vs_best_reward": -2184.305550505688,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_26_train_side_win_loss_report.v1",
+  "selected_strategy_id": "ownership_conflict_guard_v1",
+  "stage": "8.26",
+  "status": "PASS",
+  "strategy_id": "ownership_conflict_guard_v1",
+  "tie_count_vs_best_reward": 1,
+  "win_count_vs_best_reward": 3
+}

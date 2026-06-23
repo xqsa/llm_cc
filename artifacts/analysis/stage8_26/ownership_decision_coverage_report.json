@@ -1,0 +1,22 @@
+{
+  "case_count": 4,
+  "linkage_decision_counts": {
+    "break": 1,
+    "preserve": 3
+  },
+  "multi_assignment_case_count": 1,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_counts": {
+    "best_reward_group": 1,
+    "contribution_leader": 1,
+    "historical_owner": 1,
+    "multi_owner": 1
+  },
+  "ownership_or_linkage_decision_exercised": true,
+  "schema_version": "loco.stage8_26_ownership_decision_coverage_report.v1",
+  "selected_strategy_id": "ownership_conflict_guard_v1",
+  "stage": "8.26",
+  "status": "PASS",
+  "strategy_id": "ownership_conflict_guard_v1"
+}

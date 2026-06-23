@@ -1,0 +1,14 @@
+{
+  "behavior_guard": "not_equivalent_to_best_reward_select",
+  "best_reward_equivalent_case_count": 1,
+  "case_count": 4,
+  "equivalent_to_best_reward_select": false,
+  "not_equivalent_to_best_reward_select": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_26_behavior_equivalence_report.v1",
+  "selected_strategy_id": "ownership_conflict_guard_v1",
+  "stage": "8.26",
+  "status": "PASS",
+  "strategy_id": "ownership_conflict_guard_v1"
+}

@@ -1,0 +1,79 @@
+stage: "8.26"
+name: "MVP Strategy DSL and Behavior-Equivalence Checker"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Implement the MVP ownership-aware strategy DSL, evaluator, and behavior-equivalence checker required by Stage 8.25."
+  runner: "loco.coordination.ownership_aware_strategy_dsl"
+  cli_entrypoint: "scripts/stage8/run_stage8_26_mvp_strategy_dsl.py"
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  llm_call_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_25_report: "artifacts/analysis/stage8_25/stage8_25_report.json"
+  stage8_25_dsl_contract: "artifacts/analysis/stage8_25/ownership_aware_strategy_dsl_contract.json"
+  stage8_25_fe_ledger: "artifacts/analysis/stage8_25/fe_ledger.json"
+  stage8_25_runtime_boundary: "artifacts/analysis/stage8_25/runtime_boundary.json"
+  stage8_25_next_route_decision: "artifacts/analysis/stage8_25/next_route_decision.json"
+
+mvp_strategy_dsl:
+  target_scope: "shared_variables_and_decomposition_consequences"
+  program_schema_version: "loco.stage8_26_ownership_aware_strategy_program.v1"
+  allowed_outputs:
+    - "shared_variable_owner"
+    - "allow_multi_assignment"
+    - "linkage_break_or_preserve"
+    - "contribution_based_owner_switch"
+    - "coordination_action"
+    - "fallback_repair_action"
+    - "behavior_equivalence_guard"
+  required_guards:
+    - "not equivalent to best_reward_select"
+    - "non-trust branch exercised"
+    - "ownership or linkage decision exercised"
+
+synthetic_search:
+  scope: "small train-side synthetic conflict-regime search"
+  regimes:
+    - "trusted_best_reward"
+    - "conflicting_overlap"
+    - "conforming_overlap"
+    - "unstable_best_reward"
+  objective_fe_used: 0
+  candidate_count: 3
+
+artifacts:
+  output_dir: "artifacts/analysis/stage8_26"
+  files:
+    - "strategy_dsl_manifest.json"
+    - "behavior_equivalence_report.json"
+    - "branch_coverage_report.json"
+    - "ownership_decision_coverage_report.json"
+    - "train_side_win_loss_report.json"
+    - "synthetic_search_trace.jsonl"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+    - "stage8_26_report.json"
+
+next_stage:
+  recommended_next_stage: "Stage 8.27"
+  recommended_next_work: "real LLM reflective ownership-aware strategy search"
+
+forbidden_scope:
+  - "no CEC objective loop"
+  - "no new objective evaluation"
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected policy revision"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

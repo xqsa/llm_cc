@@ -1,0 +1,21 @@
+{
+  "branch_counts": {
+    "damp_best_reward": 0,
+    "multi_owner_weighted_vote": 1,
+    "owner_proposal_select": 1,
+    "reject_unstable_best_reward": 1,
+    "shrinkage_repair": 0,
+    "simple_consensus": 0,
+    "trust_best_reward": 1,
+    "weighted_consensus": 0
+  },
+  "case_count": 4,
+  "non_trust_branch_exercised": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_26_branch_coverage_report.v1",
+  "selected_strategy_id": "ownership_conflict_guard_v1",
+  "stage": "8.26",
+  "status": "PASS",
+  "strategy_id": "ownership_conflict_guard_v1"
+}
