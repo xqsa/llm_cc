@@ -1,0 +1,59 @@
+stage: "8.22"
+name: "Freeze LLM-origin Beat-best_reward Policy"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Freeze the Stage 8.20 LLM-origin policy confirmed by Stage 8.21 contribution ablation before any CEC2013 F13/F14 multiseed pilot."
+  runner: "loco.coordination.llm_origin_policy_freeze"
+  cli_entrypoint: "scripts/stage8/run_stage8_22_llm_origin_policy_freeze.py"
+  freeze_status: "FROZEN_FOR_CEC2013_F13_F14_MULTISEED_NOT_FINAL"
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_20_report: "artifacts/selection_audit/stage8_20/llm_reflective_search_report.json"
+  stage8_20_accepted_candidates: "artifacts/selection_audit/stage8_20/accepted_candidates.jsonl"
+  stage8_20_evaluator_report: "artifacts/selection_audit/stage8_20/candidate_evaluator_report.json"
+  stage8_20_fe_ledger: "artifacts/selection_audit/stage8_20/fe_ledger.json"
+  stage8_20_runtime_boundary: "artifacts/selection_audit/stage8_20/runtime_boundary.json"
+  stage8_21_report: "artifacts/selection_audit/stage8_21/llm_contribution_ablation_report.json"
+  stage8_21_pool_summary: "artifacts/selection_audit/stage8_21/pool_summary.json"
+  stage8_21_candidate_table: "artifacts/selection_audit/stage8_21/pool_candidate_table.jsonl"
+  stage8_21_fe_ledger: "artifacts/selection_audit/stage8_21/fe_ledger.json"
+  stage8_21_runtime_boundary: "artifacts/selection_audit/stage8_21/runtime_boundary.json"
+  stage8_21_next_route_decision: "artifacts/selection_audit/stage8_21/next_route_decision.json"
+
+freeze_contract:
+  selected_candidate_id: "stage8_20_round_candidate_8"
+  selected_candidate_origin: "llm_reflective_generated"
+  selected_policy_family: "ShrinkageWhenUnstable"
+  payload_must_match_stage8_20_accepted_candidate: true
+  policy_revision_allowed: false
+  FE_total: 0
+  next_stage: "Stage 8.23"
+
+artifacts:
+  output_dir: "artifacts/selected/stage8_22"
+  files:
+    - "frozen_policy.json"
+    - "frozen_policy_payload.json"
+    - "frozen_policy_manifest.json"
+    - "cec2013_f13_f14_multiseed_readiness_protocol.json"
+    - "freeze_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no selected policy revision"
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

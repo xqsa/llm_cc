@@ -1,0 +1,23 @@
+{
+  "allowed_next_use": "CEC2013 F13/F14 multiseed pilot only",
+  "base_optimizer_policy": "BaseOpt must remain fixed",
+  "benchmark_scope": "CEC2013 F13/F14 only before full F1-F15 escalation",
+  "frozen_policy_payload_sha256": "756e8682130e072b3cca70b41a280fbe267d9c11ff74f881ba80327a28b0ecc9",
+  "frozen_policy_sha256": "be1a7eb9638b0db6907685a163265d87016cd84866aa8aad79200d26dca229d9",
+  "no_baseopt_modification": true,
+  "no_controller_scheduler_generation": true,
+  "no_llm_call": true,
+  "no_new_candidate_generation": true,
+  "no_optimizer_generation": true,
+  "no_policy_revision": true,
+  "no_reported_results_runtime_feedback": true,
+  "no_test_feedback": true,
+  "no_validation_feedback": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "run_count_policy": "multiseed pilot before formal 25-run panel",
+  "schema_version": "loco.stage8_22_cec2013_f13_f14_readiness_protocol.v1",
+  "selected_candidate_id": "stage8_20_round_candidate_8",
+  "stage": "8.22",
+  "status": "READY_FOR_STAGE8_23_CEC2013_F13_F14_MULTISEED_PILOT"
+}

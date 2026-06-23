@@ -1,0 +1,15 @@
+{
+  "allowed_next_work": "cec2013_f13_f14_multiseed_pilot",
+  "decision": "ROUTE_TO_CEC2013_F13_F14_MULTISEED_PILOT",
+  "next_route": "cec2013_f13_f14_multiseed_pilot",
+  "next_stage": "Stage 8.23",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_22_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.22",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

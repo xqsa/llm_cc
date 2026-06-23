@@ -1,0 +1,25 @@
+{
+  "claim_scope": "freeze LLM-origin policy for CEC2013 F13/F14 multiseed pilot",
+  "fake_llm_candidates_used": false,
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "fake_llm_candidate_generation": false,
+    "new_llm_candidate_generation": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_policy_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "llm_call_used": false,
+  "new_candidate_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_22_runtime_boundary.v1",
+  "stage": "8.22",
+  "status": "PASS"
+}

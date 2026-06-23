@@ -1,0 +1,29 @@
+{
+  "family": "ShrinkageWhenUnstable",
+  "features": [
+    "shared_variable_oscillation",
+    "reward_margin"
+  ],
+  "forbidden_capabilities_used": [],
+  "memory": [
+    "recent_best_reward_regret"
+  ],
+  "origin": "llm_reflective_generated",
+  "policy_id": "stage8_20_round_candidate_8",
+  "rules": [
+    {
+      "action": "shrinkage_repair",
+      "condition": "shared_variable_oscillation > 0.25"
+    },
+    {
+      "action": "trust_best_reward",
+      "condition": "reward_margin > 0.2"
+    },
+    {
+      "action": "damp_best_reward",
+      "condition": "always"
+    }
+  ],
+  "schema_version": "loco.stage8_20_coordination_policy_program.v1",
+  "target_scope": "shared_variables_only"
+}

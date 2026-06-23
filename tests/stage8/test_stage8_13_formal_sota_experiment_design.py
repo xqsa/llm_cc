@@ -183,7 +183,7 @@ def test_stage8_13_committed_artifacts_docs_and_readme_record_budget_lock() -> N
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.21 PASS`" in combined
+    assert "Current repository state: `Stage 8.22 PASS`" in combined
     assert "Stage 8.12   official-like / SOTA-facing evidence gate               PASS" in combined
     assert "Stage 8.13   formal CEC2013 SOTA experiment design and budget lock    PASS" in combined
     assert "Stage 8.14   CEC2013 single-run smoke and route decision             PASS" in combined

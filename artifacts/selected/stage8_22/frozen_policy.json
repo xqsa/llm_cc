@@ -1,0 +1,55 @@
+{
+  "baseopt_modified": false,
+  "branch_counts": {
+    "damp_best_reward": 1,
+    "shrinkage_repair": 2,
+    "trust_best_reward": 1
+  },
+  "candidate_id": "stage8_20_round_candidate_8",
+  "controller_scheduler_generation_used": false,
+  "family": "ShrinkageWhenUnstable",
+  "features": [
+    "shared_variable_oscillation",
+    "reward_margin"
+  ],
+  "freeze_status": "FROZEN_FOR_CEC2013_F13_F14_MULTISEED_NOT_FINAL",
+  "llm_call_used": false,
+  "mean_delta_vs_best_reward": -1466.853728945506,
+  "memory": [
+    "recent_best_reward_regret"
+  ],
+  "new_candidate_generation_used": false,
+  "non_trust_best_reward_branch_exercised": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_evaluation_used": false,
+  "optimizer_generation_used": false,
+  "origin": "llm_reflective_generated",
+  "policy_id": "stage8_20_round_candidate_8",
+  "reported_results_used_as_runtime_feedback": false,
+  "rules": [
+    {
+      "action": "shrinkage_repair",
+      "condition": "shared_variable_oscillation > 0.25"
+    },
+    {
+      "action": "trust_best_reward",
+      "condition": "reward_margin > 0.2"
+    },
+    {
+      "action": "damp_best_reward",
+      "condition": "always"
+    }
+  ],
+  "schema_version": "loco.stage8_22_frozen_policy.v1",
+  "selected_policy_revision_used": false,
+  "source_stage": "8.20",
+  "stage": "8.22",
+  "stage8_20_train_objective_loss_count_vs_best_reward": 0,
+  "stage8_20_train_objective_win_count_vs_best_reward": 3,
+  "stage8_21_llm_pool_beats_non_llm_pool_best": true,
+  "stage8_21_llm_pool_best_rank": 1,
+  "target_scope": "shared_variables_only",
+  "test_feedback_used": false,
+  "validation_feedback_used": false
+}
