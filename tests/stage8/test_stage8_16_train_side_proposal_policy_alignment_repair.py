@@ -210,7 +210,7 @@ def test_stage8_16_committed_artifacts_docs_and_readme_record_repair() -> None:
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.27 PASS`" in combined
+    assert "Current repository state: `Stage 8.28 PASS`" in combined
     assert "Stage 8.16   train-side proposal/policy alignment repair" in combined
     assert "reward_trust_gated_coordination_v1" in combined
     assert "best_reward_select_alignment_gap" in combined

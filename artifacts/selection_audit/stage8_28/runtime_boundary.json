@@ -1,0 +1,20 @@
+{
+  "baseopt_modified": false,
+  "claim_scope": "LLM vs non-LLM ownership strategy ablation",
+  "controller_scheduler_generation_used": false,
+  "llm_call_used": false,
+  "new_candidate_generation_used": false,
+  "new_llm_strategy_generation_used": false,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "optimizer_generation_used": false,
+  "reported_results_used_as_runtime_feedback": false,
+  "schema_version": "loco.stage8_28_runtime_boundary.v1",
+  "selected_policy_revision_used": false,
+  "stage": "8.28",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "validation_feedback_used": false
+}

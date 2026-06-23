@@ -1,0 +1,65 @@
+stage: "8.28"
+name: "LLM vs Non-LLM Ownership-strategy Ablation"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Compare Stage 8.27 LLM-reflective ownership-aware strategy programs against hand-designed, random mutation, and literature-inspired non-LLM pools."
+  runner: "loco.coordination.llm_vs_non_llm_ownership_strategy_ablation"
+  cli_entrypoint: "scripts/stage8/run_stage8_28_llm_vs_non_llm_ownership_strategy_ablation.py"
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  llm_call_used: false
+  new_llm_strategy_generation_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_27_report: "artifacts/selection_audit/stage8_27/llm_reflective_ownership_strategy_search_report.json"
+  stage8_27_accepted_strategies: "artifacts/selection_audit/stage8_27/accepted_strategies.jsonl"
+  stage8_27_evaluator: "artifacts/selection_audit/stage8_27/strategy_evaluator_report.json"
+  stage8_27_fe_ledger: "artifacts/selection_audit/stage8_27/fe_ledger.json"
+  stage8_27_runtime_boundary: "artifacts/selection_audit/stage8_27/runtime_boundary.json"
+  stage8_27_next_route: "artifacts/selection_audit/stage8_27/next_route_decision.json"
+
+pools:
+  - "llm_reflective_pool"
+  - "hand_designed_pool"
+  - "random_mutation_pool"
+  - "literature_inspired_pool"
+
+ablation_gate:
+  llm_pool_best_rank_required: 1
+  llm_pool_beats_non_llm_pool_best_required: true
+  selected_strategy_not_equivalent_to_best_reward_select_required: true
+  non_trust_branch_exercised_required: true
+  ownership_or_linkage_decision_exercised_required: true
+
+artifacts:
+  output_dir: "artifacts/selection_audit/stage8_28"
+  files:
+    - "llm_vs_non_llm_ownership_ablation_report.json"
+    - "pool_summary.json"
+    - "pool_candidate_table.jsonl"
+    - "pool_win_loss_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+next_stage:
+  recommended_next_stage: "Stage 8.29"
+  recommended_next_work: "freeze behavior-distinct ownership policy"
+
+forbidden_scope:
+  - "no new LLM call"
+  - "no fake LLM strategies"
+  - "no CEC objective loop"
+  - "no new objective evaluation"
+  - "no selected policy revision"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

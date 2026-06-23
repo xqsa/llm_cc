@@ -1,0 +1,15 @@
+{
+  "best_non_llm_pool_name": "hand_designed_pool",
+  "best_pool_name": "llm_reflective_pool",
+  "llm_pool_best_rank": 1,
+  "llm_pool_vs_best_non_llm_pool": {
+    "loss": 0,
+    "tie": 0,
+    "win": 1
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_28_pool_win_loss_report.v1",
+  "stage": "8.28",
+  "status": "PASS"
+}

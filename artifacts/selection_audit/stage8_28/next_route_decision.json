@@ -1,0 +1,12 @@
+{
+  "allowed_next_work": "freeze_behavior_distinct_ownership_policy",
+  "decision": "ROUTE_TO_STAGE8_29_FREEZE_BEHAVIOR_DISTINCT_POLICY",
+  "next_stage": "Stage 8.29",
+  "not_performance_claim": true,
+  "run_cec_checkpoint_next": false,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_28_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.28",
+  "status": "PASS"
+}
