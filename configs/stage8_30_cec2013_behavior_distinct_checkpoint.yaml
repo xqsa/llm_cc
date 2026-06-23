@@ -1,0 +1,76 @@
+stage: "8.30"
+name: "CEC2013 F13/F14 Behavior-distinct Policy Checkpoint"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+public_status: "Current repository state: `Stage 8.30 PASS`"
+
+purpose:
+  summary: "Run a CEC2013 F13/F14 checkpoint for the frozen Stage 8.29 behavior-distinct ownership-aware policy."
+  runner: "loco.coordination.cec2013_behavior_distinct_policy_checkpoint"
+  cli_entrypoint: "scripts/stage8/run_stage8_30_cec2013_behavior_distinct_policy_checkpoint.py"
+  selected_strategy_id: "stage8_27_1"
+  frozen_policy_status: "FROZEN_FOR_CEC2013_F13_F14_CHECKPOINT_NOT_FINAL"
+  checkpoint_executed: true
+  objective_loop_executed: true
+  new_objective_evaluation_used: true
+  llm_call_used: false
+  new_llm_strategy_generation_used: false
+  selected_policy_revision_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_29_frozen_policy: "artifacts/selected/stage8_29/frozen_behavior_distinct_policy.json"
+  stage8_29_frozen_strategy_payload: "artifacts/selected/stage8_29/frozen_strategy_payload.json"
+  stage8_29_manifest: "artifacts/selected/stage8_29/freeze_manifest.json"
+  stage8_29_readiness_protocol: "artifacts/selected/stage8_29/cec_checkpoint_readiness_protocol.json"
+  stage8_29_fe_ledger: "artifacts/selected/stage8_29/fe_ledger.json"
+  stage8_29_runtime_boundary: "artifacts/selected/stage8_29/runtime_boundary.json"
+  stage8_29_next_route: "artifacts/selected/stage8_29/next_route_decision.json"
+
+checkpoint_protocol:
+  benchmark_suite: "CEC2013_LSGO"
+  function_ids: ["F13", "F14"]
+  run_count: 3
+  max_fe_per_method_per_function: 1200
+  checkpoint_steps: [1, 120, 600, 1200]
+  methods:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "stage8_29_behavior_distinct_policy"
+
+ownership_policy_gate:
+  strategy_id_required: "stage8_27_1"
+  coordination_action_required: "owner_proposal_select"
+  shared_variable_owner_required: "contribution_leader"
+  linkage_decision_required: "break"
+  ownership_action_exercised_required: true
+  ownership_or_linkage_decision_exercised_required: true
+
+artifacts:
+  output_dir: "artifacts/objective_eval/stage8_30"
+  files:
+    - "checkpoint_pilot_report.json"
+    - "checkpoint_trace.jsonl"
+    - "method_summary.json"
+    - "win_loss_report.json"
+    - "policy_branch_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no new LLM strategy generation"
+  - "no selected policy revision"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "failure_honest_behavior_distinct_checkpoint_diagnosis",
+  "decision": "CHECKPOINT_NOT_PROMISING_DIAGNOSE_BEFORE_FORMAL_PANEL",
+  "next_stage": "Stage 8.31",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_30_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.30",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

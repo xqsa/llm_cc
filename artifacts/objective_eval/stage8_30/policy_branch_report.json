@@ -1,0 +1,33 @@
+{
+  "coordination_action_counts": {
+    "damp_best_reward": 0,
+    "multi_owner_weighted_vote": 0,
+    "owner_proposal_select": 3600,
+    "reject_unstable_best_reward": 0,
+    "shrinkage_repair": 3600,
+    "simple_consensus": 0,
+    "trust_best_reward": 0,
+    "weighted_consensus": 0
+  },
+  "linkage_decision_counts": {
+    "break": 7200,
+    "preserve": 0
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_counts": {
+    "best_reward_group": 0,
+    "contribution_leader": 7200,
+    "historical_owner": 0,
+    "multi_owner": 0
+  },
+  "ownership_action_exercised": true,
+  "ownership_or_linkage_decision_exercised": true,
+  "policy_trace_row_count": 7200,
+  "schema_version": "loco.stage8_30_policy_branch_report.v1",
+  "selected_strategy_id": "stage8_27_1",
+  "selected_strategy_origin": "llm_reflective_generated",
+  "source_stage": "8.29",
+  "stage": "8.30",
+  "status": "PASS"
+}

@@ -1,0 +1,16 @@
+{
+  "family": "ownership_aware_conflict_guard",
+  "origin": "llm_reflective_generated",
+  "rules": [
+    {
+      "allow_multi_assignment": false,
+      "condition": "conflicting_overlap AND high_owner_regret",
+      "coordination_action": "owner_proposal_select",
+      "fallback_repair_action": "shrinkage_repair",
+      "linkage_decision": "break",
+      "shared_variable_owner": "contribution_leader"
+    }
+  ],
+  "schema_version": "loco.stage8_26_ownership_aware_strategy_program.v1",
+  "strategy_id": "stage8_27_1"
+}
