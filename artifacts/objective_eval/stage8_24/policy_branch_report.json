@@ -1,0 +1,18 @@
+{
+  "branch_counts": {
+    "damp_best_reward": 0,
+    "shrinkage_repair": 0,
+    "trust_best_reward": 720000
+  },
+  "freeze_status": "FROZEN_FOR_CEC2013_F13_F14_MULTISEED_NOT_FINAL",
+  "non_trust_branch_exercised": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "policy_trace_row_count": 720000,
+  "schema_version": "loco.stage8_24_policy_branch_report.v1",
+  "selected_candidate_id": "stage8_20_round_candidate_8",
+  "source_stage": "8.22",
+  "stage": "8.24",
+  "status": "PASS",
+  "trust_best_reward_exercised": true
+}

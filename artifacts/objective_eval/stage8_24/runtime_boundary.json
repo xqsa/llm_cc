@@ -1,0 +1,41 @@
+{
+  "checkpoint_budget_pilot_executed": true,
+  "checkpoint_steps": [
+    1,
+    1200,
+    12000,
+    30000,
+    60000,
+    120000
+  ],
+  "claim_scope": "CEC2013 F13/F14 frozen-policy checkpoint-budget pilot only",
+  "compact_checkpoint_trace_written": true,
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_policy_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "full_objective_trace_written": false,
+  "max_fe_per_method_per_function": 120000,
+  "max_workers": 8,
+  "multiseed_pilot_executed": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_full_25_run_panel": true,
+  "not_full_f1_f15_panel": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "official_cec2013_panel_run": false,
+  "parallel_execution_used": true,
+  "run_count": 3,
+  "schema_version": "loco.stage8_24_runtime_boundary.v1",
+  "stage": "8.24",
+  "status": "PASS"
+}

@@ -1,0 +1,73 @@
+stage: "8.24"
+name: "CEC2013 F13/F14 Frozen-policy Checkpoint-budget Pilot"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Rerun the Stage 8.22 frozen LLM-origin policy on CEC2013 F13/F14 with a 120000-FE checkpoint budget before any formal 25-run or full F1-F15 panel."
+  runner: "loco.coordination.cec2013_frozen_policy_checkpoint_pilot"
+  cli_entrypoint: "scripts/stage8/run_stage8_24_cec2013_f13_f14_checkpoint_budget_pilot.py"
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_22_frozen_policy: "artifacts/selected/stage8_22/frozen_policy.json"
+  stage8_22_frozen_policy_payload: "artifacts/selected/stage8_22/frozen_policy_payload.json"
+  stage8_22_manifest: "artifacts/selected/stage8_22/frozen_policy_manifest.json"
+  stage8_22_readiness_protocol: "artifacts/selected/stage8_22/cec2013_f13_f14_multiseed_readiness_protocol.json"
+  stage8_22_fe_ledger: "artifacts/selected/stage8_22/fe_ledger.json"
+  stage8_22_runtime_boundary: "artifacts/selected/stage8_22/runtime_boundary.json"
+  stage8_22_next_route_decision: "artifacts/selected/stage8_22/next_route_decision.json"
+
+pilot_contract:
+  benchmark_suite: "CEC2013_LSGO"
+  function_ids:
+    - "F13"
+    - "F14"
+  run_seeds:
+    - 0
+    - 1
+    - 2
+  max_fe_per_method_per_function: 120000
+  checkpoint_steps:
+    - 1
+    - 1200
+    - 12000
+    - 30000
+    - 60000
+    - 120000
+  methods:
+    - "identity_no_coord"
+    - "simple_consensus"
+    - "weighted_consensus"
+    - "best_reward_select"
+    - "stage8_22_frozen_llm_policy"
+  frozen_policy_revision_allowed: false
+  full_25_run_panel: false
+  full_f1_f15_panel: false
+  full_objective_trace_written: false
+  compact_checkpoint_trace_written: true
+
+artifacts:
+  output_dir: "artifacts/objective_eval/stage8_24"
+  files:
+    - "checkpoint_pilot_report.json"
+    - "checkpoint_trace.jsonl"
+    - "method_summary.json"
+    - "win_loss_report.json"
+    - "policy_branch_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected policy revision"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

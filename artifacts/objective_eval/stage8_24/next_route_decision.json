@@ -1,0 +1,15 @@
+{
+  "allowed_next_work": "formal_f13_f14_same_budget_decision_gate",
+  "decision": "PROMISING_CHECKPOINT_ROUTE_TO_FORMAL_F13_F14_DECISION",
+  "next_stage": "Stage 8.25",
+  "not_performance_claim": true,
+  "run_checkpoint_budget_pilot_next": false,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_24_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.24",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}
