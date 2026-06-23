@@ -1,0 +1,73 @@
+stage: "8.33"
+name: "Static Guard Sanity Gate"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+public_status: "Current repository state: `Stage 8.33 PASS`"
+
+purpose:
+  summary: "Check that the Stage 8.32 guarded policy does not collapse back to always contribution_leader + break."
+  runner: "loco.coordination.static_guard_sanity_gate"
+  cli_entrypoint: "scripts/stage8/run_stage8_33_static_guard_sanity_gate.py"
+  source_stage: "8.32"
+  sanity_scope: "static_guard_sanity_only"
+  guard_not_collapsed: true
+  reliable_best_reward_preserves_trust: true
+  misleading_conflict_breaks_only_when_guarded: true
+  allow_bounded_checkpoint_next: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  cec_checkpoint_executed: false
+  run_full_25_run_panel_next: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_32_repair_design: "artifacts/analysis/stage8_32/repair_design_report.json"
+  stage8_32_policy_payload: "artifacts/analysis/stage8_32/guarded_policy_payload.json"
+  stage8_32_guard_spec: "artifacts/analysis/stage8_32/overcorrection_guard_spec.json"
+  stage8_32_static_coverage: "artifacts/analysis/stage8_32/static_guard_coverage_report.json"
+  stage8_32_fe_ledger: "artifacts/analysis/stage8_32/fe_ledger.json"
+  stage8_32_runtime_boundary: "artifacts/analysis/stage8_32/runtime_boundary.json"
+  stage8_32_next_route: "artifacts/analysis/stage8_32/next_route_decision.json"
+
+sanity_checks:
+  guard_not_collapsed: true
+  reliable_best_reward_preserves_trust: true
+  misleading_conflict_breaks_only_when_guarded: true
+  unguarded_break_detected: false
+  always_contribution_leader_break_detected: false
+
+artifacts:
+  output_dir: "artifacts/analysis/stage8_33"
+  files:
+    - "static_guard_sanity_report.json"
+    - "guard_decision_matrix.jsonl"
+    - "collapse_audit_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no new LLM strategy generation"
+  - "no selected policy revision"
+  - "no objective loop execution"
+  - "no new objective evaluation"
+  - "no CEC checkpoint execution"
+  - "no formal 25-run panel execution"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
+
+next_route:
+  next_stage: "Stage 8.34"
+  allowed_next_work: "bounded_guarded_policy_checkpoint"
+  allow_bounded_checkpoint_next: true
+  run_full_25_run_panel_next: false
+  run_cec_checkpoint_next: false

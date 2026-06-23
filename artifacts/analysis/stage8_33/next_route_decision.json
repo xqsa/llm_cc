@@ -1,0 +1,15 @@
+{
+  "allow_bounded_checkpoint_next": true,
+  "allowed_next_work": "bounded_guarded_policy_checkpoint",
+  "call_llm_next": false,
+  "decision": "ALLOW_BOUNDED_GUARDED_POLICY_CHECKPOINT",
+  "next_stage": "Stage 8.34",
+  "not_performance_claim": true,
+  "run_cec_checkpoint_next": false,
+  "run_full_25_run_panel_next": false,
+  "run_new_objective_next": false,
+  "schema_version": "loco.stage8_33_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.33",
+  "status": "PASS"
+}

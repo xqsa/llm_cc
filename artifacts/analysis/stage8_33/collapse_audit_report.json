@@ -1,0 +1,35 @@
+{
+  "FE_total": 0,
+  "allow_bounded_checkpoint_next": true,
+  "always_contribution_leader_break_detected": false,
+  "branch_counts": {
+    "owner_proposal_select": 1,
+    "shrinkage_repair": 1,
+    "simple_consensus": 0,
+    "trust_best_reward": 1,
+    "weighted_consensus": 1
+  },
+  "fixture_count": 4,
+  "forbidden_degenerate_pattern": "always_contribution_leader_break",
+  "guard_not_collapsed": true,
+  "linkage_decision_counts": {
+    "break": 1,
+    "preserve": 3
+  },
+  "misleading_conflict_breaks_only_when_guarded": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_counts": {
+    "best_reward_group": 1,
+    "contribution_leader": 1,
+    "historical_owner": 1,
+    "multi_owner": 1
+  },
+  "reliable_best_reward_preserves_trust": true,
+  "repair_policy_id": "stage8_32_guarded_owner_trust_repair_v1",
+  "schema_version": "loco.stage8_33_collapse_audit_report.v1",
+  "source_stage": "8.32",
+  "stage": "8.33",
+  "status": "PASS",
+  "unguarded_break_detected": false
+}
