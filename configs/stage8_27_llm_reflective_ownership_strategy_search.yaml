@@ -1,0 +1,67 @@
+stage: "8.27"
+name: "Real LLM Reflective Ownership-aware Strategy Search"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Use the Stage 8.26 ownership-aware strategy DSL and evaluator for real LLM reflective strategy-program generation."
+  runner: "loco.coordination.llm_reflective_ownership_strategy_search"
+  cli_entrypoint: "scripts/stage8/run_stage8_27_llm_reflective_ownership_strategy_search.py"
+  real_llm_api_required_for_pass: true
+  fake_llm_strategies_forbidden: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_26_report: "artifacts/analysis/stage8_26/stage8_26_report.json"
+  stage8_26_manifest: "artifacts/analysis/stage8_26/strategy_dsl_manifest.json"
+  stage8_26_behavior_equivalence: "artifacts/analysis/stage8_26/behavior_equivalence_report.json"
+  stage8_26_fe_ledger: "artifacts/analysis/stage8_26/fe_ledger.json"
+  stage8_26_runtime_boundary: "artifacts/analysis/stage8_26/runtime_boundary.json"
+  stage8_26_next_route: "artifacts/analysis/stage8_26/next_route_decision.json"
+
+reflection_search:
+  reflection_round_count: 2
+  strategy_count_per_round: 6
+  output_schema: "loco.stage8_27_raw_strategy_batch.v1"
+  strategy_program_schema: "loco.stage8_26_ownership_aware_strategy_program.v1"
+  required_origin: "llm_reflective_generated"
+  required_behavior_gate:
+    - "not equivalent to best_reward_select"
+    - "non-trust branch exercised"
+    - "ownership or linkage decision exercised"
+
+artifacts:
+  output_dir: "artifacts/selection_audit/stage8_27"
+  files:
+    - "llm_reflective_ownership_strategy_search_report.json"
+    - "api_preflight_report.json"
+    - "reflection_prompt_context.json"
+    - "reflection_rounds.jsonl"
+    - "raw_llm_strategies.jsonl"
+    - "accepted_strategies.jsonl"
+    - "rejected_strategies.jsonl"
+    - "static_audit_report.json"
+    - "strategy_evaluator_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+next_stage:
+  if_pass: "Stage 8.28"
+  if_blocked: "Stage 8.27"
+
+forbidden_scope:
+  - "no fake LLM strategies"
+  - "no CEC objective loop"
+  - "no new objective evaluation"
+  - "no selected policy revision"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

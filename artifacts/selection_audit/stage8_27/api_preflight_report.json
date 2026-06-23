@@ -1,0 +1,13 @@
+{
+  "base_url_host_known": true,
+  "missing_or_invalid": [],
+  "model": "deepseek-v4-pro",
+  "real_llm_api_available": true,
+  "reasoning_effort": "high",
+  "schema_version": "loco.stage8_27_api_preflight_report.v1",
+  "secret_redacted": true,
+  "stage": "8.27",
+  "status": "READY",
+  "unit_test_injected_provider_used": false,
+  "wire_api": "chat"
+}

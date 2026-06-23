@@ -1,0 +1,110 @@
+{
+  "FE_total": 0,
+  "candidate_rows": [
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": true,
+      "loss_count_vs_best_reward": 0,
+      "mean_delta_vs_best_reward": -2459.3125,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_1",
+      "win_count_vs_best_reward": 3
+    },
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": false,
+      "loss_count_vs_best_reward": 1,
+      "mean_delta_vs_best_reward": -2168.333065820305,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_2",
+      "win_count_vs_best_reward": 3
+    },
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": false,
+      "loss_count_vs_best_reward": 2,
+      "mean_delta_vs_best_reward": -2388.952576523626,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_4",
+      "win_count_vs_best_reward": 2
+    },
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": false,
+      "loss_count_vs_best_reward": 1,
+      "mean_delta_vs_best_reward": -2308.937255764291,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_5",
+      "win_count_vs_best_reward": 3
+    },
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": false,
+      "loss_count_vs_best_reward": 2,
+      "mean_delta_vs_best_reward": -1856.921875,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_6",
+      "win_count_vs_best_reward": 2
+    },
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": true,
+      "loss_count_vs_best_reward": 0,
+      "mean_delta_vs_best_reward": -2459.3125,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_7",
+      "win_count_vs_best_reward": 3
+    },
+    {
+      "family": "ownership_aware_conflict_guard",
+      "gate_passed": false,
+      "loss_count_vs_best_reward": 1,
+      "mean_delta_vs_best_reward": -2308.937255764291,
+      "non_trust_branch_exercised": true,
+      "not_equivalent_to_best_reward_select": true,
+      "origin": "llm_reflective_generated",
+      "ownership_or_linkage_decision_exercised": true,
+      "strategy_id": "stage8_27_10",
+      "win_count_vs_best_reward": 3
+    }
+  ],
+  "evaluated_strategy_count": 7,
+  "failure_summary": [
+    "stage8_27_2",
+    "stage8_27_4",
+    "stage8_27_5",
+    "stage8_27_6",
+    "stage8_27_10"
+  ],
+  "non_trust_branch_exercised": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "ownership_or_linkage_decision_exercised": true,
+  "schema_version": "loco.stage8_27_strategy_evaluator_report.v1",
+  "selected_strategy_family": "ownership_aware_conflict_guard",
+  "selected_strategy_id": "stage8_27_1",
+  "selected_strategy_not_equivalent_to_best_reward_select": true,
+  "selected_strategy_origin": "llm_reflective_generated",
+  "stage": "8.27",
+  "status": "PASS",
+  "train_side_loss_count_vs_best_reward": 0,
+  "train_side_win_count_vs_best_reward": 3
+}

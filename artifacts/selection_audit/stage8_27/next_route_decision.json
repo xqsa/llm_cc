@@ -1,0 +1,12 @@
+{
+  "allowed_next_work": "llm_vs_non_llm_ownership_strategy_ablation",
+  "decision": "ROUTE_TO_STAGE8_28_LLM_VS_NON_LLM_ABLATION",
+  "next_stage": "Stage 8.28",
+  "not_performance_claim": true,
+  "run_cec_checkpoint_next": false,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_27_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.27",
+  "status": "PASS"
+}

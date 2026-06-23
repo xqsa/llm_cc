@@ -207,7 +207,7 @@ def test_stage8_14_committed_artifacts_docs_and_readme_record_single_run_gate() 
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.26 PASS`" in combined
+    assert "Current repository state: `Stage 8.27 PASS`" in combined
     assert "Stage 8.14   CEC2013 single-run smoke and route decision" in combined
     assert "run_count = 1" in combined
     assert "not_full_25_run_panel = true" in combined

@@ -1,0 +1,23 @@
+{
+  "baseopt_modified": false,
+  "claim_scope": "real LLM reflective ownership-aware strategy search",
+  "controller_scheduler_generation_used": false,
+  "evolution_search_used": false,
+  "fake_llm_strategies_used": false,
+  "llm_call_used": true,
+  "new_llm_strategy_generation_used": true,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "optimizer_generation_used": false,
+  "real_llm_api_called": true,
+  "reported_results_used_as_runtime_feedback": false,
+  "schema_version": "loco.stage8_27_runtime_boundary.v1",
+  "selected_policy_revision_used": false,
+  "stage": "8.27",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "unit_test_injected_provider_used": false,
+  "validation_feedback_used": false
+}

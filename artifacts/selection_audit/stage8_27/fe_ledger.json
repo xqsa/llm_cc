@@ -1,0 +1,20 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 0,
+  "FE_repair": 0,
+  "FE_total": 0,
+  "all_extra_fe_counted": true,
+  "budget_scope": "llm_reflective_ownership_strategy_search",
+  "inherited_stage8_26_FE_total": 0,
+  "llm_call_used": true,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "real_llm_api_called": true,
+  "schema_version": "loco.stage8_27_fe_ledger.v1",
+  "stage": "8.27",
+  "status": "PASS"
+}

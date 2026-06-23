@@ -1,0 +1,13 @@
+{
+  "accepted_strategy_count": 7,
+  "fake_llm_strategies_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "schema_version": "loco.stage8_27_static_audit_report.v1",
+  "stage": "8.27",
+  "status": "PASS",
+  "strategy_families": [
+    "ownership_aware_conflict_guard"
+  ],
+  "strategy_family_count": 1
+}

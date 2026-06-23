@@ -1,0 +1,39 @@
+{
+  "allowed_coordination_actions": [
+    "trust_best_reward",
+    "damp_best_reward",
+    "weighted_consensus",
+    "simple_consensus",
+    "shrinkage_repair",
+    "reject_unstable_best_reward",
+    "owner_proposal_select",
+    "multi_owner_weighted_vote"
+  ],
+  "allowed_outputs": [
+    "shared_variable_owner",
+    "allow_multi_assignment",
+    "linkage_break_or_preserve",
+    "contribution_based_owner_switch",
+    "coordination_action",
+    "fallback_repair_action",
+    "behavior_equivalence_guard"
+  ],
+  "behavior_equivalence_guards": [
+    "not_equivalent_to_best_reward_select",
+    "non_trust_branch_exercised",
+    "ownership_or_linkage_decision_exercised"
+  ],
+  "fake_llm_strategies_forbidden": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "output_schema": "loco.stage8_27_raw_strategy_batch.v1",
+  "prompt_scope": "ownership_aware_strategy_program_generation",
+  "reflection_round_count": 2,
+  "schema_version": "loco.stage8_27_reflection_prompt_context.v1",
+  "source_stage": "8.26",
+  "stage": "8.27",
+  "stage8_26_selected_strategy_id": "ownership_conflict_guard_v1",
+  "status": "READY",
+  "strategy_count_per_round": 6,
+  "strategy_program_schema_version": "loco.stage8_26_ownership_aware_strategy_program.v1"
+}

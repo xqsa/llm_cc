@@ -153,7 +153,7 @@ def test_stage8_25_committed_artifacts_docs_and_readme_record_redesign() -> None
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.26 PASS`" in combined
+    assert "Current repository state: `Stage 8.27 PASS`" in combined
     assert "Stage 8.25   literature-aligned LLM role redesign" in combined
     assert "branch_collapse_to_best_reward_select" in combined
     assert "ownership-aware strategy DSL" in combined
