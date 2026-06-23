@@ -1,0 +1,20 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 272,
+  "FE_grouping": 0,
+  "FE_proposal": 136,
+  "FE_repair": 0,
+  "FE_total": 408,
+  "all_extra_fe_counted": true,
+  "budget_scope": "llm_vs_non_llm_contribution_ablation",
+  "inherited_stage8_20_FE_total": 288,
+  "llm_call_used": false,
+  "new_llm_candidate_generation_used": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "schema_version": "loco.stage8_21_fe_ledger.v1",
+  "stage": "8.21",
+  "status": "PASS"
+}

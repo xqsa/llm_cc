@@ -1,0 +1,15 @@
+{
+  "allowed_next_work": "freeze_llm_origin_beat_best_reward_policy",
+  "decision": "ROUTE_TO_FREEZE_LLM_ORIGIN_BEAT_BEST_REWARD_POLICY",
+  "next_route": "freeze_llm_origin_beat_best_reward_policy",
+  "next_stage": "Stage 8.22",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_21_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.21",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

@@ -1,0 +1,61 @@
+stage: "8.21"
+name: "LLM vs non-LLM Contribution Ablation"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Compare the Stage 8.20 LLM-reflective policy pool against deterministic non-LLM policy pools under the same train-side evaluator and beat-best_reward evidence surface."
+  runner: "loco.coordination.llm_contribution_ablation"
+  cli_entrypoint: "scripts/stage8/run_stage8_21_llm_contribution_ablation.py"
+  new_llm_candidate_generation_allowed: false
+  llm_call_allowed: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_20_report: "artifacts/selection_audit/stage8_20/llm_reflective_search_report.json"
+  stage8_20_accepted_candidates: "artifacts/selection_audit/stage8_20/accepted_candidates.jsonl"
+  stage8_20_evaluator_report: "artifacts/selection_audit/stage8_20/candidate_evaluator_report.json"
+  stage8_20_fe_ledger: "artifacts/selection_audit/stage8_20/fe_ledger.json"
+  stage8_20_runtime_boundary: "artifacts/selection_audit/stage8_20/runtime_boundary.json"
+  stage8_20_next_route_decision: "artifacts/selection_audit/stage8_20/next_route_decision.json"
+
+ablation_contract:
+  same_train_side_evaluator_used: true
+  required_pools:
+    - "llm_reflective_pool"
+    - "hand_designed_pool"
+    - "random_mutation_pool"
+    - "literature_inspired_pool"
+    - "stage8_16_human_repair_policy"
+  required_llm_candidate_source: "Stage 8.20 accepted_candidates.jsonl"
+  required_stage8_20_selected_candidate_id: "stage8_20_round_candidate_8"
+  pass_conditions:
+    - "llm_reflective_pool_evaluated"
+    - "non_llm_pools_evaluated"
+    - "llm_pool_best_rank == 1"
+    - "llm_pool_beats_non_llm_pool_best"
+    - "llm_pool_train_objective_loss_count_vs_best_reward == 0"
+
+artifacts:
+  output_dir: "artifacts/selection_audit/stage8_21"
+  files:
+    - "llm_contribution_ablation_report.json"
+    - "pool_summary.json"
+    - "pool_candidate_table.jsonl"
+    - "win_loss_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no new LLM candidate generation"
+  - "no fake LLM candidates"
+  - "no selected operator revision"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
