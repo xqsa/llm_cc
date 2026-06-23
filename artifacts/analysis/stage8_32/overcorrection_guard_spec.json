@@ -1,0 +1,47 @@
+{
+  "diagnostic_anchor": {
+    "best_reward_group_count": 0,
+    "break_count": 7200,
+    "contribution_leader_count": 7200,
+    "owner_proposal_select_count": 3600,
+    "preserve_count": 0,
+    "shrinkage_repair_count": 3600,
+    "trust_best_reward_count": 0
+  },
+  "forbidden_degenerate_pattern": "always_contribution_leader_break",
+  "guard_logic": [
+    {
+      "action": "trust_best_reward",
+      "if": "best_reward_reliable",
+      "linkage": "preserve",
+      "owner": "best_reward_group"
+    },
+    {
+      "action": "owner_proposal_select",
+      "elif": "strong_owner_conflict AND best_reward_misleading",
+      "linkage": "break",
+      "owner": "contribution_leader"
+    },
+    {
+      "action": "shrinkage_repair_or_weighted_consensus",
+      "elif": "unstable_or_uncertain",
+      "linkage": "preserve",
+      "owner": "historical_owner_or_multi_owner"
+    },
+    {
+      "action": "weighted_consensus_or_simple_consensus",
+      "else": "preserve_safety",
+      "linkage": "preserve",
+      "owner": "multi_owner"
+    }
+  ],
+  "guarded_against_overcorrection": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "previous_failure_mode": "contribution_leader_break_overcorrection",
+  "repair_policy_id": "stage8_32_guarded_owner_trust_repair_v1",
+  "schema_version": "loco.stage8_32_overcorrection_guard_spec.v1",
+  "source_stage": "8.31",
+  "stage": "8.32",
+  "status": "PASS"
+}

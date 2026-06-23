@@ -1,0 +1,44 @@
+{
+  "family": "conditional_owner_trust_overcorrection_guard",
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "origin": "stage8_32_repair_design_no_llm",
+  "rules": [
+    {
+      "allow_multi_assignment": false,
+      "condition": "best_reward_reliable",
+      "coordination_action": "trust_best_reward",
+      "fallback_repair_action": "weighted_consensus",
+      "linkage_decision": "preserve",
+      "shared_variable_owner": "best_reward_group"
+    },
+    {
+      "allow_multi_assignment": false,
+      "condition": "strong_owner_conflict AND best_reward_misleading",
+      "coordination_action": "owner_proposal_select",
+      "fallback_repair_action": "shrinkage_repair",
+      "linkage_decision": "break",
+      "shared_variable_owner": "contribution_leader"
+    },
+    {
+      "allow_multi_assignment": false,
+      "condition": "unstable_or_uncertain",
+      "coordination_action": "shrinkage_repair",
+      "fallback_repair_action": "weighted_consensus",
+      "linkage_decision": "preserve",
+      "shared_variable_owner": "historical_owner"
+    },
+    {
+      "allow_multi_assignment": true,
+      "condition": "always",
+      "coordination_action": "weighted_consensus",
+      "fallback_repair_action": "simple_consensus",
+      "linkage_decision": "preserve",
+      "shared_variable_owner": "multi_owner"
+    }
+  ],
+  "schema_version": "loco.stage8_32_guarded_owner_trust_policy.v1",
+  "source_failure_mode": "contribution_leader_break_overcorrection",
+  "stage": "8.32",
+  "strategy_id": "stage8_32_guarded_owner_trust_repair_v1"
+}

@@ -1,0 +1,19 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 0,
+  "FE_repair": 0,
+  "FE_total": 0,
+  "all_extra_fe_counted": true,
+  "budget_scope": "overcorrection_guard_design_no_objective_no_llm_no_cec",
+  "cec_checkpoint_executed": false,
+  "inherited_stage8_31_FE_total": 0,
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_32_fe_ledger.v1",
+  "stage": "8.32",
+  "status": "PASS"
+}

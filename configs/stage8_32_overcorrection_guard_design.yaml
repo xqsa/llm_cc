@@ -1,0 +1,83 @@
+stage: "8.32"
+name: "Overcorrection Guard / Conditional Owner-Trust Repair"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+public_status: "Current repository state: `Stage 8.32 PASS`"
+
+purpose:
+  summary: "Design a guarded owner-trust repair policy for the Stage 8.31 contribution_leader + break overcorrection failure."
+  runner: "loco.coordination.overcorrection_guard_design"
+  cli_entrypoint: "scripts/stage8/run_stage8_32_overcorrection_guard_design.py"
+  source_stage: "8.31"
+  repair_scope: "overcorrection_guard_design_only"
+  repair_policy_id: "stage8_32_guarded_owner_trust_repair_v1"
+  overcorrection_guard_designed: true
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  cec_checkpoint_executed: false
+  llm_call_used: false
+  new_candidate_generation_used: false
+  selected_policy_revision_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_31_failure_diagnosis: "artifacts/analysis/stage8_31/failure_diagnosis_report.json"
+  stage8_31_overcorrection: "artifacts/analysis/stage8_31/overcorrection_diagnosis.json"
+  stage8_31_branch_usage: "artifacts/analysis/stage8_31/branch_usage_diagnosis.json"
+  stage8_31_fe_ledger: "artifacts/analysis/stage8_31/fe_ledger.json"
+  stage8_31_runtime_boundary: "artifacts/analysis/stage8_31/runtime_boundary.json"
+  stage8_31_next_route: "artifacts/analysis/stage8_31/next_route_decision.json"
+
+guard_logic:
+  - condition: "best_reward_reliable"
+    shared_variable_owner: "best_reward_group"
+    linkage_decision: "preserve"
+    coordination_action: "trust_best_reward"
+  - condition: "strong_owner_conflict AND best_reward_misleading"
+    shared_variable_owner: "contribution_leader"
+    linkage_decision: "break"
+    coordination_action: "owner_proposal_select"
+  - condition: "unstable_or_uncertain"
+    shared_variable_owner: "historical_owner or multi_owner"
+    linkage_decision: "preserve"
+    coordination_action: "shrinkage_repair / weighted_consensus"
+  - condition: "always"
+    shared_variable_owner: "multi_owner"
+    linkage_decision: "preserve"
+    coordination_action: "weighted_consensus / simple_consensus"
+
+artifacts:
+  output_dir: "artifacts/analysis/stage8_32"
+  files:
+    - "repair_design_report.json"
+    - "guarded_policy_payload.json"
+    - "overcorrection_guard_spec.json"
+    - "static_guard_coverage_report.json"
+    - "claim_boundary_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no new LLM strategy generation"
+  - "no selected policy revision"
+  - "no objective loop execution"
+  - "no new objective evaluation"
+  - "no CEC checkpoint execution"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
+
+next_route:
+  next_stage: "Stage 8.33"
+  allowed_next_work: "static_guard_sanity_or_bounded_checkpoint_gate"
+  run_full_25_run_panel_next: false
+  run_cec_checkpoint_next: false

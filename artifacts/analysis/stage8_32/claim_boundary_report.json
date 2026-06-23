@@ -1,0 +1,21 @@
+{
+  "allowed_claim": "Stage 8.32 designs a guarded owner-trust repair policy that avoids the Stage 8.31 always contribution_leader + break failure mode.",
+  "claim_scope": "repair design gate only",
+  "final_performance_claim_allowed": false,
+  "forbidden_claims": [
+    "SOTA improvement",
+    "final objective-value performance improvement",
+    "CEC2013 checkpoint improvement",
+    "formal 25-run CEC2013 result",
+    "objective-loop repair success"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "official_benchmark_claim_allowed": false,
+  "policy_repair_selected_for_objective_run": false,
+  "schema_version": "loco.stage8_32_claim_boundary_report.v1",
+  "sota_claim_allowed": false,
+  "source_stage": "8.31",
+  "stage": "8.32",
+  "status": "PASS"
+}

@@ -1,0 +1,80 @@
+{
+  "FE_total": 0,
+  "all_required_guard_paths_covered": true,
+  "branch_counts": {
+    "owner_proposal_select": 1,
+    "shrinkage_repair": 1,
+    "simple_consensus": 0,
+    "trust_best_reward": 1,
+    "weighted_consensus": 1
+  },
+  "degenerate_always_contribution_leader_break_avoided": true,
+  "fixture_count": 4,
+  "fixture_rows": [
+    {
+      "FE_total": 0,
+      "decision": {
+        "allow_multi_assignment": false,
+        "condition": "best_reward_reliable",
+        "coordination_action": "trust_best_reward",
+        "fallback_repair_action": "weighted_consensus",
+        "linkage_decision": "preserve",
+        "shared_variable_owner": "best_reward_group"
+      },
+      "fixture_id": "best_reward_reliable_preserve"
+    },
+    {
+      "FE_total": 0,
+      "decision": {
+        "allow_multi_assignment": false,
+        "condition": "strong_owner_conflict AND best_reward_misleading",
+        "coordination_action": "owner_proposal_select",
+        "fallback_repair_action": "shrinkage_repair",
+        "linkage_decision": "break",
+        "shared_variable_owner": "contribution_leader"
+      },
+      "fixture_id": "strong_owner_conflict_best_reward_misleading"
+    },
+    {
+      "FE_total": 0,
+      "decision": {
+        "allow_multi_assignment": false,
+        "condition": "unstable_or_uncertain",
+        "coordination_action": "shrinkage_repair",
+        "fallback_repair_action": "weighted_consensus",
+        "linkage_decision": "preserve",
+        "shared_variable_owner": "historical_owner"
+      },
+      "fixture_id": "unstable_or_uncertain_historical_shrinkage"
+    },
+    {
+      "FE_total": 0,
+      "decision": {
+        "allow_multi_assignment": true,
+        "condition": "always",
+        "coordination_action": "weighted_consensus",
+        "fallback_repair_action": "simple_consensus",
+        "linkage_decision": "preserve",
+        "shared_variable_owner": "multi_owner"
+      },
+      "fixture_id": "default_preserve_weighted_safety"
+    }
+  ],
+  "linkage_decision_counts": {
+    "break": 1,
+    "preserve": 3
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_counts": {
+    "best_reward_group": 1,
+    "contribution_leader": 1,
+    "historical_owner": 1,
+    "multi_owner": 1
+  },
+  "repair_policy_id": "stage8_32_guarded_owner_trust_repair_v1",
+  "schema_version": "loco.stage8_32_static_guard_coverage_report.v1",
+  "source_stage": "8.31",
+  "stage": "8.32",
+  "status": "PASS"
+}
