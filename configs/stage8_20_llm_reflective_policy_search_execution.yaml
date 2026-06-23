@@ -1,0 +1,102 @@
+stage: "8.20"
+name: "LLM-reflective Coordination Policy Search Execution"
+created_by: "Codex"
+created_date: "2026-06-22"
+
+purpose:
+  summary: "Execute the Stage 8.19 LLM-reflective shared-variable coordination policy search loop, or write an honest blocked preflight artifact if no real LLM API is available."
+  runner: "loco.coordination.llm_reflective_policy_search_execution"
+  cli_entrypoint: "scripts/stage8/run_stage8_20_llm_reflective_policy_search_execution.py"
+  real_llm_api_required_for_pass: true
+  fake_llm_candidates_are_forbidden: true
+  unit_test_fake_provider_allowed_only_for_tests: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_19_design_report: "artifacts/selection_audit/stage8_19/llm_reflective_policy_search_design.json"
+  stage8_19_prompt_contract: "artifacts/selection_audit/stage8_19/reflection_prompt_contract.json"
+  stage8_19_dsl_contract: "artifacts/selection_audit/stage8_19/coordination_policy_dsl_contract.json"
+  stage8_19_ablation_plan: "artifacts/selection_audit/stage8_19/llm_contribution_ablation_plan.json"
+  stage8_19_beat_best_reward_gate: "artifacts/selection_audit/stage8_19/beat_best_reward_gate.json"
+  stage8_19_fe_ledger: "artifacts/selection_audit/stage8_19/fe_ledger.json"
+  stage8_19_runtime_boundary: "artifacts/selection_audit/stage8_19/runtime_boundary.json"
+  stage8_19_next_route_decision: "artifacts/selection_audit/stage8_19/next_route_decision.json"
+
+llm_reflective_execution_contract:
+  minimum_reflection_round_count: 2
+  candidate_count_per_round: 12
+  minimum_raw_llm_candidate_count_for_pass: 24
+  minimum_quality_pass_candidate_count_for_pass: 8
+  minimum_coordination_family_count_for_pass: 4
+  required_loop:
+    - "prompt LLM for shared-variable coordination policy programs"
+    - "audit generated programs against DSL and boundary"
+    - "evaluate quality-pass candidates on train-side objective cases"
+    - "feed evaluator summaries into the next reflection round"
+    - "apply beat-best_reward gate"
+
+dsl_contract:
+  target_scope: "shared_variables_only"
+  program_unit: "coordination_policy_program"
+  output_schema: "loco.stage8_20_raw_policy_batch.v1"
+  allowed_actions:
+    - "trust_best_reward"
+    - "damp_best_reward"
+    - "weighted_consensus"
+    - "simple_consensus"
+    - "shrinkage_repair"
+    - "reject_unstable_best_reward"
+  forbidden_capabilities:
+    - "optimizer_generation"
+    - "baseopt_modification"
+    - "controller_scheduler_generation"
+    - "benchmark_objective_rewrite"
+    - "validation_feedback_access"
+    - "test_feedback_access"
+    - "reported_results_runtime_feedback"
+
+blocked_state_contract:
+  status: "BLOCKED_NEEDS_REAL_LLM_API"
+  allowed_when: "LLM credentials are missing or the real provider call is unavailable"
+  llm_call_used: false
+  real_llm_api_called: false
+  new_llm_candidate_generation_used: false
+  fake_llm_candidates_used: false
+  FE_total: 0
+  next_route: "WAIT_FOR_REAL_LLM_API"
+
+beat_best_reward_gate:
+  selected_candidate_origin_required: "llm_reflective_generated"
+  selected_candidate_not_equivalent_to_best_reward_required: true
+  non_trust_best_reward_branch_exercised_required: true
+  win_count_vs_best_reward_select_min: 1
+  loss_count_vs_best_reward_select_max: 0
+  pass_condition_is_not_no_loss: true
+
+artifacts:
+  output_dir: "artifacts/selection_audit/stage8_20"
+  files:
+    - "llm_reflective_search_report.json"
+    - "api_preflight_report.json"
+    - "reflection_prompt_context.json"
+    - "reflection_rounds.jsonl"
+    - "raw_llm_candidates.jsonl"
+    - "accepted_candidates.jsonl"
+    - "rejected_candidates.jsonl"
+    - "static_audit_report.json"
+    - "candidate_evaluator_report.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no fake LLM candidate generation"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "no benchmark objective rewrite"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

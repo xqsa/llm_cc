@@ -166,9 +166,9 @@ def test_stage8_19_committed_artifacts_docs_and_readme_record_design_lock() -> N
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.19 PASS`" in combined
+    assert "Current repository state: `Stage 8.20 PASS`" in combined
     assert "Stage 8.19   LLM-reflective coordination policy search design lock     PASS" in combined
-    assert "Stage 8.20   execute LLM-reflective coordination policy search         NEXT" in combined
+    assert "Stage 8.20   LLM-reflective coordination policy search execution       PASS" in combined
     assert "LLM-reflective shared-variable coordination policy search" in combined
     assert "static one-shot LLM candidate generation is rejected" in combined
     assert "fake LLM candidates are forbidden" in combined

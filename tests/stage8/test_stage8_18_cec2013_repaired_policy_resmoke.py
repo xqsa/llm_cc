@@ -190,7 +190,7 @@ def test_stage8_18_committed_artifacts_docs_and_readme_record_resmoke() -> None:
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.19 PASS`" in combined
+    assert "Current repository state: `Stage 8.20 PASS`" in combined
     assert "Stage 8.18   CEC2013 F13/F14 repaired-policy re-smoke" in combined
     assert "reward_trust_gated_coordination_v1" in combined
     assert "repaired_policy_resmoke_promising = true" in combined

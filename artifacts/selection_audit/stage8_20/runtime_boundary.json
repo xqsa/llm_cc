@@ -1,0 +1,24 @@
+{
+  "claim_scope": "LLM-reflective policy search execution gate",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "fake_llm_candidate_generation": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_operator_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "llm_call_used": true,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "real_llm_api_called": true,
+  "schema_version": "loco.stage8_20_runtime_boundary.v1",
+  "stage": "8.20",
+  "status": "PASS",
+  "unit_test_injected_provider_used": false
+}
