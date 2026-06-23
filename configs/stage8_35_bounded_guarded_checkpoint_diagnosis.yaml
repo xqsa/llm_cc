@@ -1,0 +1,73 @@
+stage: "8.35"
+name: "Failure-Honest Bounded Guarded Checkpoint Diagnosis"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+public_status: "Current repository state: `Stage 8.35 PASS`"
+
+purpose:
+  summary: "Explain why Stage 8.34 only produces one less-loss case out of six."
+  runner: "loco.coordination.bounded_guarded_checkpoint_diagnosis"
+  cli_entrypoint: "scripts/stage8/run_stage8_35_bounded_guarded_checkpoint_diagnosis.py"
+  source_stage: "8.34"
+  diagnosis_scope: "failure_honest_bounded_guarded_checkpoint_diagnosis"
+  stage8_34_less_loss_case_count: 1
+  stage8_34_comparison_case_count: 6
+  stage8_34_less_loss_rate: 0.16666666666666666
+  primary_limitation: "limited_guard_applicability"
+  secondary_limitation: "no_new_proposal_or_optimizer_signal"
+  formal_25_run_recommended_now: false
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  cec_checkpoint_executed: false
+  FE_total: 0
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_34_checkpoint_report: "artifacts/objective_eval/stage8_34/bounded_guarded_checkpoint_report.json"
+  stage8_34_case_table: "artifacts/objective_eval/stage8_34/guarded_case_delta_table.jsonl"
+  stage8_34_win_loss: "artifacts/objective_eval/stage8_34/win_loss_report.json"
+  stage8_34_branch_report: "artifacts/objective_eval/stage8_34/guarded_policy_branch_report.json"
+  stage8_34_fe_ledger: "artifacts/objective_eval/stage8_34/fe_ledger.json"
+  stage8_34_runtime_boundary: "artifacts/objective_eval/stage8_34/runtime_boundary.json"
+  stage8_34_next_route: "artifacts/objective_eval/stage8_34/next_route_decision.json"
+
+diagnosis:
+  root_cause_summary: "guard fixes only the reliable-best-reward overcorrection case; most cases either remain tied or still need objective-level proposal repair"
+  dominant_cause: "limited_guard_applicability"
+  why_only_1_of_6: "The trust_best_reward guard fires on only one case, reducing that loss delta without flipping it to tie/win; the remaining losses still need better proposal quality or best-reward reliability modeling."
+
+artifacts:
+  output_dir: "artifacts/analysis/stage8_35"
+  files:
+    - "bounded_guarded_checkpoint_diagnosis_report.json"
+    - "one_of_six_less_loss_cause_report.json"
+    - "case_diagnosis_table.jsonl"
+    - "guard_branch_diagnosis.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no new LLM strategy generation"
+  - "no selected policy revision"
+  - "no objective loop execution"
+  - "no new objective evaluation"
+  - "no CEC checkpoint execution"
+  - "no formal 25-run panel execution"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
+
+next_route:
+  next_stage: "Stage 8.36"
+  allowed_next_work: "proposal_quality_or_best_reward_reliability_repair_before_formal_panel"
+  run_full_25_run_panel_next: false
+  run_cec_checkpoint_next: false

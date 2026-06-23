@@ -1,0 +1,28 @@
+{
+  "FE_total": 0,
+  "case_count": 6,
+  "guard_action_counts": {
+    "owner_proposal_select": 2,
+    "trust_best_reward": 1,
+    "unchanged_or_inherited": 3
+  },
+  "linkage_decision_counts": {
+    "break": 2,
+    "preserve": 4
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_counts": {
+    "best_reward_group": 1,
+    "contribution_leader": 2,
+    "multi_owner": 3
+  },
+  "owner_proposal_select_count": 2,
+  "repair_policy_id": "stage8_32_guarded_owner_trust_repair_v1",
+  "schema_version": "loco.stage8_34_guarded_policy_branch_report.v1",
+  "source_stage": "8.33",
+  "stage": "8.34",
+  "status": "PASS",
+  "trust_best_reward_count": 1,
+  "unchanged_or_inherited_count": 3
+}

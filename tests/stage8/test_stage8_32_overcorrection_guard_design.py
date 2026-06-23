@@ -192,7 +192,7 @@ def test_stage8_32_committed_artifacts_docs_and_readme_record_guard_design() -> 
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.33 PASS`" in combined
+    assert "Current repository state: `Stage 8.35 PASS`" in combined
     assert "Stage 8.32   overcorrection guard / conditional owner-trust repair" in combined
     assert "stage8_32_guarded_owner_trust_repair_v1" in combined
     assert "best_reward_reliable" in combined

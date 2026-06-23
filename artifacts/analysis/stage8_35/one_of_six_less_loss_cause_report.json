@@ -1,0 +1,18 @@
+{
+  "comparison_case_count": 6,
+  "dominant_cause": "limited_guard_applicability",
+  "explanation": "guard fixes only the reliable-best-reward overcorrection case; most cases either remain tied or still need objective-level proposal repair",
+  "formal_25_run_recommended_now": false,
+  "less_loss_case_count": 1,
+  "less_loss_rate": 0.16666666666666666,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "remaining_loss_case_count": 2,
+  "schema_version": "loco.stage8_35_one_of_six_less_loss_cause_report.v1",
+  "secondary_cause": "no_new_proposal_or_optimizer_signal",
+  "source_stage": "8.34",
+  "stage": "8.35",
+  "status": "PASS",
+  "total_loss_case_count": 3,
+  "unchanged_case_count": 5
+}

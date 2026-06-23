@@ -1,0 +1,14 @@
+{
+  "allowed_next_work": "proposal_quality_or_best_reward_reliability_repair_before_formal_panel",
+  "call_llm_next": false,
+  "decision": "BLOCK_FORMAL_PANEL_REPAIR_PROPOSAL_SIGNAL_FIRST",
+  "next_stage": "Stage 8.36",
+  "not_performance_claim": true,
+  "run_cec_checkpoint_next": false,
+  "run_full_25_run_panel_next": false,
+  "run_new_objective_next": false,
+  "schema_version": "loco.stage8_35_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.35",
+  "status": "PASS"
+}

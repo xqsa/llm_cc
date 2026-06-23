@@ -1,0 +1,17 @@
+{
+  "FE_total": 0,
+  "branch_limitation": "guard_applies_to_too_few_cases_to_change_panel_result",
+  "case_count": 6,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_proposal_select_count": 2,
+  "owner_proposal_select_share": 0.3333333333333333,
+  "schema_version": "loco.stage8_35_guard_branch_diagnosis.v1",
+  "source_stage": "8.34",
+  "stage": "8.35",
+  "status": "PASS",
+  "trust_best_reward_count": 1,
+  "trust_best_reward_share": 0.16666666666666666,
+  "unchanged_or_inherited_count": 3,
+  "unchanged_or_inherited_share": 0.5
+}
