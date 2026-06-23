@@ -1,0 +1,69 @@
+{
+  "benchmark_suite": "CEC2013_LSGO",
+  "function_ids": [
+    "F13",
+    "F14"
+  ],
+  "method_rows": [
+    {
+      "FE_global_objective": 7200,
+      "FE_total": 14400,
+      "mean_final_best": 2.1855529858266755e+18,
+      "median_final_best": 1.712002300252316e+18,
+      "method_name": "identity_no_coord",
+      "trace_row_count": 7200
+    },
+    {
+      "FE_global_objective": 7200,
+      "FE_total": 14400,
+      "mean_final_best": 2.185552142625462e+18,
+      "median_final_best": 1.712002300252316e+18,
+      "method_name": "simple_consensus",
+      "trace_row_count": 7200
+    },
+    {
+      "FE_global_objective": 7200,
+      "FE_total": 14400,
+      "mean_final_best": 2.1855514373701706e+18,
+      "median_final_best": 1.712002300252316e+18,
+      "method_name": "weighted_consensus",
+      "trace_row_count": 7200
+    },
+    {
+      "FE_global_objective": 7200,
+      "FE_total": 14400,
+      "mean_final_best": 2.1855484878619118e+18,
+      "median_final_best": 1.712002300252316e+18,
+      "method_name": "best_reward_select",
+      "trace_row_count": 7200
+    },
+    {
+      "FE_global_objective": 7200,
+      "FE_total": 14400,
+      "mean_final_best": 2.1855484878619118e+18,
+      "median_final_best": 1.712002300252316e+18,
+      "method_name": "stage8_22_frozen_llm_policy",
+      "trace_row_count": 7200
+    }
+  ],
+  "methods": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "stage8_22_frozen_llm_policy"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "run_count": 3,
+  "same_budget_across_methods": true,
+  "schema_version": "loco.stage8_23_method_summary.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "source_stage": "8.22",
+  "stage": "8.23",
+  "status": "PASS"
+}

@@ -1,0 +1,71 @@
+{
+  "FE_global_objective": 36030,
+  "FE_total": 72030,
+  "baseline_comparison_made": true,
+  "baseopt_modified": false,
+  "benchmark_suite": "CEC2013_LSGO",
+  "comparison_case_count": 6,
+  "controller_scheduler_generation_used": false,
+  "evolution_search_used": false,
+  "freeze_status": "FROZEN_FOR_CEC2013_F13_F14_MULTISEED_NOT_FINAL",
+  "frozen_policy_used": true,
+  "frozen_policy_vs_best_baseline": {
+    "loss": 0,
+    "tie": 6,
+    "win": 0
+  },
+  "frozen_policy_vs_best_reward_select": {
+    "loss": 0,
+    "tie": 6,
+    "win": 0
+  },
+  "function_count": 2,
+  "function_ids": [
+    "F13",
+    "F14"
+  ],
+  "llm_call_used": false,
+  "max_fe_per_method_per_function": 1200,
+  "method_count": 5,
+  "method_names": [
+    "identity_no_coord",
+    "simple_consensus",
+    "weighted_consensus",
+    "best_reward_select",
+    "stage8_22_frozen_llm_policy"
+  ],
+  "multiseed_pilot_executed": true,
+  "multiseed_pilot_promising": true,
+  "new_candidate_generation_used": false,
+  "new_objective_evaluation_used": true,
+  "not_final_performance_claim": true,
+  "not_full_25_run_panel": true,
+  "not_full_f1_f15_panel": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": true,
+  "official_cec2013_problem_loaded": true,
+  "optimizer_generation_used": false,
+  "pilot_scope": "cec2013_f13_f14_frozen_policy_multiseed_pilot",
+  "policy_branch_report_written": true,
+  "recommended_next_stage": "Stage 8.24",
+  "recommended_next_work": "cec2013_f13_f14_checkpoint_budget_pilot",
+  "reported_results_used_as_runtime_feedback": false,
+  "run_count": 3,
+  "run_full_25_run_panel_next": false,
+  "schema_version": "loco.stage8_23_multiseed_pilot_report.v1",
+  "seed_count": 3,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "selected_candidate_id": "stage8_20_round_candidate_8",
+  "selected_policy_revision_used": false,
+  "source_stage": "8.22",
+  "stage": "8.23",
+  "status": "PASS",
+  "test_feedback_used": false,
+  "trace_row_count": 36000,
+  "trust_best_reward_branch_count": 7200,
+  "validation_feedback_used": false
+}

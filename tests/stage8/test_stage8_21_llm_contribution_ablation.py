@@ -124,7 +124,7 @@ def test_stage8_21_committed_artifacts_docs_and_readme_record_contribution_ablat
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.22 PASS`" in combined
+    assert "Current repository state: `Stage 8.23 PASS`" in combined
     assert "Stage 8.21   LLM vs non-LLM contribution ablation" in combined
     assert "Stage 8.22" in combined
     assert "not a SOTA claim" in combined

@@ -1,0 +1,104 @@
+{
+  "baseline_comparison_made": true,
+  "benchmark_suite": "CEC2013_LSGO",
+  "case_rows": [
+    {
+      "best_baseline_final_best": 8.714428967708853e+16,
+      "best_baseline_method": "best_reward_select",
+      "best_reward_select_final_best": 8.714428967708853e+16,
+      "frozen_policy_final_best": 8.714428967708853e+16,
+      "frozen_vs_best_baseline_delta": 0.0,
+      "frozen_vs_best_baseline_result": "tie",
+      "frozen_vs_best_reward_select_delta": 0.0,
+      "frozen_vs_best_reward_select_result": "tie",
+      "function_id": "F13",
+      "seed": 0,
+      "selected_candidate_id": null
+    },
+    {
+      "best_baseline_final_best": 9.956563356854766e+16,
+      "best_baseline_method": "identity_no_coord",
+      "best_reward_select_final_best": 9.956563356854766e+16,
+      "frozen_policy_final_best": 9.956563356854766e+16,
+      "frozen_vs_best_baseline_delta": 0.0,
+      "frozen_vs_best_baseline_result": "tie",
+      "frozen_vs_best_reward_select_delta": 0.0,
+      "frozen_vs_best_reward_select_result": "tie",
+      "function_id": "F13",
+      "seed": 1,
+      "selected_candidate_id": null
+    },
+    {
+      "best_baseline_final_best": 1.0904658997935104e+17,
+      "best_baseline_method": "identity_no_coord",
+      "best_reward_select_final_best": 1.0904658997935104e+17,
+      "frozen_policy_final_best": 1.0904658997935104e+17,
+      "frozen_vs_best_baseline_delta": 0.0,
+      "frozen_vs_best_baseline_result": "tie",
+      "frozen_vs_best_reward_select_delta": 0.0,
+      "frozen_vs_best_reward_select_result": "tie",
+      "function_id": "F13",
+      "seed": 2,
+      "selected_candidate_id": null
+    },
+    {
+      "best_baseline_final_best": 5.074322565106659e+18,
+      "best_baseline_method": "best_reward_select",
+      "best_reward_select_final_best": 5.074322565106659e+18,
+      "frozen_policy_final_best": 5.074322565106659e+18,
+      "frozen_vs_best_baseline_delta": 0.0,
+      "frozen_vs_best_baseline_result": "tie",
+      "frozen_vs_best_reward_select_delta": 0.0,
+      "frozen_vs_best_reward_select_result": "tie",
+      "function_id": "F14",
+      "seed": 0,
+      "selected_candidate_id": null
+    },
+    {
+      "best_baseline_final_best": 4.4282538383145446e+18,
+      "best_baseline_method": "best_reward_select",
+      "best_reward_select_final_best": 4.4282538383145446e+18,
+      "frozen_policy_final_best": 4.4282538383145446e+18,
+      "frozen_vs_best_baseline_delta": 0.0,
+      "frozen_vs_best_baseline_result": "tie",
+      "frozen_vs_best_reward_select_delta": 0.0,
+      "frozen_vs_best_reward_select_result": "tie",
+      "function_id": "F14",
+      "seed": 1,
+      "selected_candidate_id": null
+    },
+    {
+      "best_baseline_final_best": 3.314958010525281e+18,
+      "best_baseline_method": "identity_no_coord",
+      "best_reward_select_final_best": 3.314958010525281e+18,
+      "frozen_policy_final_best": 3.314958010525281e+18,
+      "frozen_vs_best_baseline_delta": 0.0,
+      "frozen_vs_best_baseline_result": "tie",
+      "frozen_vs_best_reward_select_delta": 0.0,
+      "frozen_vs_best_reward_select_result": "tie",
+      "function_id": "F14",
+      "seed": 2,
+      "selected_candidate_id": null
+    }
+  ],
+  "comparison_case_count": 6,
+  "frozen_policy_vs_best_baseline": {
+    "loss": 0,
+    "tie": 6,
+    "win": 0
+  },
+  "frozen_policy_vs_best_reward_select": {
+    "loss": 0,
+    "tie": 6,
+    "win": 0
+  },
+  "multiseed_pilot_promising": true,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "promising_delta_threshold": 0.0,
+  "run_count": 3,
+  "schema_version": "loco.stage8_23_win_loss_report.v1",
+  "source_stage": "8.22",
+  "stage": "8.23",
+  "status": "PASS"
+}

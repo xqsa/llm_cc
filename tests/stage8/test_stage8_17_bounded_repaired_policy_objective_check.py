@@ -155,7 +155,7 @@ def test_stage8_17_committed_artifacts_docs_and_readme_record_objective_check() 
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.22 PASS`" in combined
+    assert "Current repository state: `Stage 8.23 PASS`" in combined
     assert "Stage 8.17   bounded train-side repaired-policy objective check" in combined
     assert "reward_trust_gated_coordination_v1" in combined
     assert "bounded_check_promising = true" in combined
