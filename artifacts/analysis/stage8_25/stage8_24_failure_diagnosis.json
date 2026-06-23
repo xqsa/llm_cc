@@ -1,0 +1,21 @@
+{
+  "branch_collapse_detected": true,
+  "collapsed_branch": "trust_best_reward",
+  "failure_mode": "branch_collapse_to_best_reward_select",
+  "formal_25_run_recommended_now": false,
+  "non_trust_branch_count": 0,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "root_cause_hypothesis": "policy_features_do_not_trigger_ownership_or_repair_branches_on_cec_f13_f14",
+  "schema_version": "loco.stage8_25_failure_diagnosis.v1",
+  "selected_candidate_id": "stage8_20_round_candidate_8",
+  "source_stage": "8.24",
+  "stage": "8.25",
+  "stage8_24_checkpoint_loss_count_vs_best_reward": 0,
+  "stage8_24_checkpoint_tie_count_vs_best_reward": 6,
+  "stage8_24_checkpoint_win_count_vs_best_reward": 0,
+  "stage8_24_policy_behavior_equivalent_to_best_reward": true,
+  "status": "PASS",
+  "trust_best_reward_branch_count": 720000,
+  "why_not_formal_25_run_now": "The 120000-FE checkpoint did not show superiority and the frozen policy is behavior-equivalent to best_reward_select on all policy steps."
+}

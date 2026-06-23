@@ -1,0 +1,25 @@
+{
+  "failure_feedback_to_include": [
+    "branch_collapse_to_best_reward_select",
+    "behavior_equivalent_to_best_reward_select",
+    "non_trust_branch_not_exercised",
+    "ownership_or_linkage_decision_missing"
+  ],
+  "feedback_loop_required": true,
+  "new_llm_role": "reflective_decomposition_ownership_coordination_strategy_program_designer",
+  "new_program_outputs": [
+    "shared_variable_owner",
+    "allow_multi_assignment",
+    "linkage_break_or_preserve",
+    "coordination_action",
+    "fallback_repair_action",
+    "behavior_equivalence_guard"
+  ],
+  "not_optimizer_generation": true,
+  "not_scheduler_controller_generation": true,
+  "old_llm_role": "static_shared_variable_coordination_policy_generator",
+  "rejected_role": "one_shot_or_static_coordination_action_generator",
+  "schema_version": "loco.stage8_25_llm_role_redesign.v1",
+  "stage": "8.25",
+  "status": "PASS"
+}

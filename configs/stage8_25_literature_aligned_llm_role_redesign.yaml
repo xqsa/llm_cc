@@ -1,0 +1,88 @@
+stage: "8.25"
+name: "Literature-aligned LLM Role Redesign"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+purpose:
+  summary: "Read Stage 8.24 checkpoint evidence, diagnose branch collapse, align the next direction with LSGO/LLM-AAD literature, and lock an ownership-aware strategy DSL contract for Stage 8.26."
+  runner: "loco.coordination.literature_aligned_llm_role_redesign"
+  cli_entrypoint: "scripts/stage8/run_stage8_25_literature_aligned_llm_role_redesign.py"
+  read_only: true
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_24_checkpoint_report: "artifacts/objective_eval/stage8_24/checkpoint_pilot_report.json"
+  stage8_24_win_loss_report: "artifacts/objective_eval/stage8_24/win_loss_report.json"
+  stage8_24_policy_branch_report: "artifacts/objective_eval/stage8_24/policy_branch_report.json"
+  stage8_24_fe_ledger: "artifacts/objective_eval/stage8_24/fe_ledger.json"
+  stage8_24_runtime_boundary: "artifacts/objective_eval/stage8_24/runtime_boundary.json"
+  stage8_24_next_route_decision: "artifacts/objective_eval/stage8_24/next_route_decision.json"
+
+diagnosis_contract:
+  source_stage: "8.24"
+  expected_failure_mode: "branch_collapse_to_best_reward_select"
+  expected_collapsed_branch: "trust_best_reward"
+  formal_25_run_recommended_now: false
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  llm_call_used: false
+  new_candidate_generation_used: false
+
+literature_alignment:
+  lsgo_overlap_decomposition:
+    - "DG"
+    - "RDG3"
+    - "OEDG"
+    - "FEA"
+  llm_automatic_algorithm_design:
+    - "FunSearch"
+    - "EoH"
+    - "ReEvo"
+    - "LLaMEA"
+
+redesigned_llm_role:
+  rejected_role: "one_shot_or_static_coordination_action_generator"
+  new_role: "reflective_decomposition_ownership_coordination_strategy_program_designer"
+  stage8_26_required: true
+
+strategy_dsl_contract:
+  target_scope: "shared_variables_and_decomposition_consequences"
+  allowed_outputs:
+    - "shared_variable_owner"
+    - "allow_multi_assignment"
+    - "linkage_break_or_preserve"
+    - "contribution_based_owner_switch"
+    - "coordination_action"
+    - "fallback_repair_action"
+    - "behavior_equivalence_guard"
+  behavior_equivalence_guards:
+    - "not_equivalent_to_best_reward_select"
+    - "non_trust_branch_exercised"
+    - "ownership_or_linkage_decision_exercised"
+
+artifacts:
+  output_dir: "artifacts/analysis/stage8_25"
+  files:
+    - "stage8_24_failure_diagnosis.json"
+    - "literature_alignment_matrix.json"
+    - "llm_role_redesign.json"
+    - "ownership_aware_strategy_dsl_contract.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+    - "stage8_25_report.json"
+
+forbidden_scope:
+  - "no objective loop"
+  - "no new objective evaluation"
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no selected policy revision"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"

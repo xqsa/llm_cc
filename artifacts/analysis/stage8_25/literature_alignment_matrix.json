@@ -1,0 +1,58 @@
+{
+  "alignment_summary": "LSGO literature points to decomposition and shared-variable ownership; LLM-AAD literature points to evaluator-in-the-loop reflective program search.",
+  "design_consequence": "Stage 8.26 must move from static action selection to an ownership-aware decomposition/coordination strategy DSL with behavior-equivalence guards.",
+  "items": [
+    {
+      "relevance": "decomposition quality drives cooperative coevolution performance",
+      "short_name": "DG",
+      "topic": "variable interaction decomposition for LSGO",
+      "url": "https://eprints.whiterose.ac.uk/id/eprint/156228/1/PID2794611.pdf"
+    },
+    {
+      "relevance": "overlap handling requires linkage break/preserve decisions, not only final-value consensus",
+      "short_name": "RDG3",
+      "topic": "overlapping component decomposition",
+      "url": "https://phoenixwilliams.github.io/PersonalWebsite/LargeScaleEA/Decomposition_for_Large-scale_Optimization_Problems_with_Overlapping_Components.pdf"
+    },
+    {
+      "relevance": "explicitly separates subcomponent and shared-variable identification/refinement",
+      "short_name": "OEDG",
+      "topic": "enhanced differential grouping for large-scale overlapping problems",
+      "url": "https://arxiv.org/html/2404.10515v1"
+    },
+    {
+      "relevance": "allows variables to belong to multiple factors and compete through global solution updates",
+      "short_name": "FEA",
+      "topic": "overlapping factor decomposition",
+      "url": "https://www.cs.montana.edu/sheppard/pubs/ssci-sis-2021b.pdf"
+    },
+    {
+      "relevance": "LLM should participate in an evaluator-in-the-loop program design process",
+      "short_name": "FunSearch",
+      "topic": "LLM program search with evaluator feedback",
+      "url": "https://www.nature.com/articles/s41586-023-06924-6"
+    },
+    {
+      "relevance": "automatic algorithm design uses iterative generation and selection, not one-shot prompts",
+      "short_name": "EoH",
+      "topic": "evolution of heuristics with LLMs",
+      "url": "https://arxiv.org/abs/2401.02051"
+    },
+    {
+      "relevance": "failure feedback can become verbal gradients for the next strategy generation round",
+      "short_name": "ReEvo",
+      "topic": "reflective evolution for LLM hyper-heuristics",
+      "url": "https://openreview.net/forum?id=483IPG0HWL"
+    },
+    {
+      "relevance": "continuous optimization LLM design loops need benchmark feedback and archive pressure",
+      "short_name": "LLaMEA",
+      "topic": "LLM evolutionary algorithm for generating metaheuristics",
+      "url": "https://arxiv.org/html/2405.20132v3"
+    }
+  ],
+  "literature_count": 8,
+  "schema_version": "loco.stage8_25_literature_alignment_matrix.v1",
+  "stage": "8.25",
+  "status": "PASS"
+}

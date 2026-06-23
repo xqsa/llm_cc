@@ -1,0 +1,48 @@
+{
+  "allowed_coordination_actions": [
+    "trust_best_reward",
+    "damp_best_reward",
+    "weighted_consensus",
+    "simple_consensus",
+    "shrinkage_repair",
+    "reject_unstable_best_reward",
+    "owner_proposal_select",
+    "multi_owner_weighted_vote"
+  ],
+  "allowed_outputs": [
+    "shared_variable_owner",
+    "allow_multi_assignment",
+    "linkage_break_or_preserve",
+    "contribution_based_owner_switch",
+    "coordination_action",
+    "fallback_repair_action",
+    "behavior_equivalence_guard"
+  ],
+  "behavior_equivalence_guards": [
+    "not_equivalent_to_best_reward_select",
+    "non_trust_branch_exercised",
+    "ownership_or_linkage_decision_exercised"
+  ],
+  "forbidden_capabilities": [
+    "generate_optimizer",
+    "modify_baseopt",
+    "rewrite_benchmark_objective",
+    "generate_scheduler_or_controller",
+    "use_validation_feedback",
+    "use_test_feedback",
+    "use_reported_sota_as_runtime_feedback"
+  ],
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "required_evaluator_reports": [
+    "behavior_equivalence_report",
+    "branch_coverage_report",
+    "ownership_decision_coverage_report",
+    "train_side_win_loss_report"
+  ],
+  "schema_version": "loco.stage8_25_ownership_aware_strategy_dsl_contract.v1",
+  "stage": "8.25",
+  "stage8_26_mvp_required": true,
+  "status": "PASS",
+  "target_scope": "shared_variables_and_decomposition_consequences"
+}

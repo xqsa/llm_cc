@@ -1,0 +1,16 @@
+{
+  "FE_coordination_extra": 0,
+  "FE_global_objective": 0,
+  "FE_grouping": 0,
+  "FE_proposal": 0,
+  "FE_repair": 0,
+  "FE_total": 0,
+  "all_extra_fe_counted": true,
+  "inherited_stage8_24_FE_total": 7200030,
+  "new_objective_evaluation_used": false,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_25_fe_ledger.v1",
+  "scope": "read_only_stage8_24_failure_diagnosis_and_design_lock",
+  "stage": "8.25",
+  "status": "PASS"
+}

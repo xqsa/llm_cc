@@ -203,7 +203,7 @@ def test_stage8_23_committed_artifacts_docs_and_readme_record_multiseed_pilot() 
         path.read_text(encoding="utf-8")
         for path in [CONFIG, STAGE_DOC, SELF_CHECK, README]
     )
-    assert "Current repository state: `Stage 8.24 PASS`" in combined
+    assert "Current repository state: `Stage 8.25 PASS`" in combined
     assert "Stage 8.23   CEC2013 F13/F14 multiseed pilot" in combined
     assert "stage8_20_round_candidate_8" in combined
     assert "FROZEN_FOR_CEC2013_F13_F14_MULTISEED_NOT_FINAL" in combined
