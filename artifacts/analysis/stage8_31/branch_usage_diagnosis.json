@@ -1,0 +1,46 @@
+{
+  "best_reward_group_count": 0,
+  "best_reward_group_share": 0.0,
+  "break_count": 7200,
+  "break_share": 1.0,
+  "contribution_leader_count": 7200,
+  "contribution_leader_share": 1.0,
+  "coordination_action_counts": {
+    "damp_best_reward": 0,
+    "multi_owner_weighted_vote": 0,
+    "owner_proposal_select": 3600,
+    "reject_unstable_best_reward": 0,
+    "shrinkage_repair": 3600,
+    "simple_consensus": 0,
+    "trust_best_reward": 0,
+    "weighted_consensus": 0
+  },
+  "linkage_decision_counts": {
+    "break": 7200,
+    "preserve": 0
+  },
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "owner_counts": {
+    "best_reward_group": 0,
+    "contribution_leader": 7200,
+    "historical_owner": 0,
+    "multi_owner": 0
+  },
+  "owner_proposal_select_count": 3600,
+  "owner_proposal_select_share": 0.5,
+  "policy_branch_collapse_confirmed": true,
+  "policy_trace_row_count": 7200,
+  "preserve_count": 0,
+  "preserve_share": 0.0,
+  "schema_version": "loco.stage8_31_branch_usage_diagnosis.v1",
+  "selected_strategy_id": "stage8_27_1",
+  "selected_strategy_origin": "llm_reflective_generated",
+  "shrinkage_repair_count": 3600,
+  "shrinkage_repair_share": 0.5,
+  "source_stage": "8.30",
+  "stage": "8.31",
+  "status": "PASS",
+  "trust_best_reward_count": 0,
+  "trust_best_reward_share": 0.0
+}

@@ -1,0 +1,73 @@
+stage: "8.31"
+name: "Behavior-distinct Checkpoint Failure Diagnosis"
+created_by: "Codex"
+created_date: "2026-06-23"
+
+public_status: "Current repository state: `Stage 8.31 PASS`"
+
+purpose:
+  summary: "Diagnose the Stage 8.30 CEC2013 F13/F14 checkpoint failure and confirm whether the frozen behavior-distinct policy overcorrects."
+  runner: "loco.coordination.behavior_distinct_checkpoint_failure_diagnosis"
+  cli_entrypoint: "scripts/stage8/run_stage8_31_behavior_distinct_checkpoint_failure_diagnosis.py"
+  source_stage: "8.30"
+  diagnosis_scope: "read_only_behavior_distinct_checkpoint_failure_diagnosis"
+  overcorrection_confirmed: true
+  overcorrection_type: "contribution_leader_break_overcorrection"
+  formal_25_run_recommended_now: false
+  objective_loop_executed: false
+  new_objective_evaluation_used: false
+  llm_call_used: false
+  new_candidate_generation_used: false
+  selected_policy_revision_used: false
+  not_performance_claim: true
+  not_sota_claim: true
+
+legal_inputs:
+  stage8_30_checkpoint_report: "artifacts/objective_eval/stage8_30/checkpoint_pilot_report.json"
+  stage8_30_win_loss: "artifacts/objective_eval/stage8_30/win_loss_report.json"
+  stage8_30_method_summary: "artifacts/objective_eval/stage8_30/method_summary.json"
+  stage8_30_policy_branch: "artifacts/objective_eval/stage8_30/policy_branch_report.json"
+  stage8_30_fe_ledger: "artifacts/objective_eval/stage8_30/fe_ledger.json"
+  stage8_30_runtime_boundary: "artifacts/objective_eval/stage8_30/runtime_boundary.json"
+  stage8_30_next_route: "artifacts/objective_eval/stage8_30/next_route_decision.json"
+
+diagnostic_findings:
+  stage8_30_behavior_policy_vs_best_reward_select: "1 win / 2 tie / 3 loss"
+  stage8_30_behavior_policy_vs_best_baseline: "1 win / 2 tie / 3 loss"
+  policy_branch_collapse_confirmed: true
+  contribution_leader_count: 7200
+  break_count: 7200
+  trust_best_reward_count: 0
+  preserve_count: 0
+  best_reward_group_count: 0
+
+artifacts:
+  output_dir: "artifacts/analysis/stage8_31"
+  files:
+    - "failure_diagnosis_report.json"
+    - "overcorrection_diagnosis.json"
+    - "case_delta_table.jsonl"
+    - "branch_usage_diagnosis.json"
+    - "fe_ledger.json"
+    - "runtime_boundary.json"
+    - "next_route_decision.json"
+
+forbidden_scope:
+  - "no LLM call"
+  - "no new candidate generation"
+  - "no new LLM strategy generation"
+  - "no selected policy revision"
+  - "no objective loop execution"
+  - "no new objective evaluation"
+  - "no validation feedback"
+  - "no test feedback"
+  - "no reported-results runtime feedback"
+  - "no BaseOpt modification"
+  - "no optimizer/controller/scheduler generation"
+  - "not a final objective-value performance claim"
+  - "not a SOTA claim"
+
+next_route:
+  next_stage: "Stage 8.32"
+  allowed_next_work: "design_overcorrection_guard_or_conditional_owner_trust_repair"
+  run_full_25_run_panel_next: false

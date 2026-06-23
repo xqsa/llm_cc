@@ -1,0 +1,34 @@
+{
+  "claim_scope": "Stage 8.30 failure diagnosis only",
+  "forbidden_behaviors": {
+    "baseopt_modification": false,
+    "controller_scheduler_generation": false,
+    "evolution_search": false,
+    "llm_call": false,
+    "new_candidate_generation": false,
+    "new_llm_strategy_generation": false,
+    "new_objective_evaluation": false,
+    "objective_loop_execution": false,
+    "optimizer_generation": false,
+    "reported_results_runtime_feedback": false,
+    "selected_policy_revision": false,
+    "test_feedback": false,
+    "validation_feedback": false
+  },
+  "legal_inputs": [
+    "artifacts/objective_eval/stage8_30/checkpoint_pilot_report.json",
+    "artifacts/objective_eval/stage8_30/win_loss_report.json",
+    "artifacts/objective_eval/stage8_30/method_summary.json",
+    "artifacts/objective_eval/stage8_30/policy_branch_report.json",
+    "artifacts/objective_eval/stage8_30/fe_ledger.json",
+    "artifacts/objective_eval/stage8_30/runtime_boundary.json",
+    "artifacts/objective_eval/stage8_30/next_route_decision.json"
+  ],
+  "new_objective_evaluation_used": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "objective_loop_executed": false,
+  "schema_version": "loco.stage8_31_runtime_boundary.v1",
+  "stage": "8.31",
+  "status": "PASS"
+}

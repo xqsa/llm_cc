@@ -1,0 +1,17 @@
+{
+  "allowed_next_work": "design_overcorrection_guard_or_conditional_owner_trust_repair",
+  "call_llm_next": false,
+  "decision": "CONFIRM_OVERCORRECTION_DIAGNOSE_BEFORE_REPAIR",
+  "decision_reason": "Stage 8.31 confirms that the behavior-distinct policy is exercised but over-applies contribution_leader + break / owner-proposal or shrinkage behavior without a best-reward trust/preserve path.",
+  "next_stage": "Stage 8.32",
+  "not_performance_claim": true,
+  "run_full_25_run_panel_next": false,
+  "run_new_objective_next": false,
+  "schema_version": "loco.stage8_31_next_route_decision.v1",
+  "sota_claim_made": false,
+  "stage": "8.31",
+  "status": "PASS",
+  "use_reported_results_as_runtime_feedback": false,
+  "use_test_feedback": false,
+  "use_validation_feedback": false
+}

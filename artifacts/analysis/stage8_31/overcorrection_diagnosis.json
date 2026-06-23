@@ -1,0 +1,21 @@
+{
+  "diagnostic_basis": {
+    "best_mean_method": "best_reward_select",
+    "best_reward_favored_loss_case_count": 3,
+    "best_reward_trust_absent": true,
+    "branch_collapse": true,
+    "checkpoint_not_promising": true,
+    "losses_exceed_wins_vs_best_reward_select": true
+  },
+  "formal_25_run_recommended_now": false,
+  "not_final_performance_claim": true,
+  "not_sota_claim": true,
+  "overcorrection_confirmed": true,
+  "overcorrection_type": "contribution_leader_break_overcorrection",
+  "primary_diagnosis": "The frozen behavior-distinct policy is exercised, but it collapses to contribution_leader + break with owner_proposal_select or shrinkage behavior and never preserves/trusts best_reward_select, so it overcorrects away from the CEC F13/F14 regimes where best_reward_select is favored.",
+  "repair_direction": "Add an overcorrection guard or conditional owner-trust path before any formal panel; do not rerun 25 times until this diagnosis is addressed.",
+  "schema_version": "loco.stage8_31_overcorrection_diagnosis.v1",
+  "source_stage": "8.30",
+  "stage": "8.31",
+  "status": "PASS"
+}
